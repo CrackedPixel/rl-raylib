@@ -26,7 +26,7 @@
 *           NOTE: If enabled, uses external module functions to load default raylib font (module: text)
 *
 *       #define SUPPORT_CAMERA_SYSTEM
-*           Camera module is included (rcamera.h) and multiple predefined cameras are available:
+*           raylib_camera module is included (rcamera.h) and multiple predefined cameras are available:
 *               free, 1st/3rd person, orbital, custom
 *
 *       #define SUPPORT_GESTURES_SYSTEM
@@ -48,7 +48,7 @@
 *           Allow automatic gif recording of current screen pressing CTRL+F12, defined in KeyCallback()
 *
 *       #define SUPPORT_COMPRESSION_API
-*           Support CompressData() and DecompressData() functions, those functions use zlib implementation
+*           Support raylib_compressdata() and raylib_decompressdata() functions, those functions use zlib implementation
 *           provided by stb_image and stb_image_write libraries, so, those libraries must be enabled on textures module
 *           for linkage
 *
@@ -56,7 +56,7 @@
 *           Support automatic events recording and playing, useful for automated testing systems or AI based game playing
 *
 *   DEPENDENCIES:
-*       raymath  - 3D math functionality (Vector2, Vector3, Matrix, Quaternion)
+*       raymath  - 3D math functionality (raylib_vector2, raylib_vector3, raylib_matrix, Quaternion)
 *       camera   - Multiple 3D camera modes (free, orbital, 1st person, 3rd person)
 *       gestures - Gestures system for touch-ready devices (or simulated from mouse inputs)
 *
@@ -105,16 +105,16 @@
 #include "utils.h"                  // Required for: TRACELOG() macros
 
 #include <stdlib.h>                 // Required for: srand(), rand(), atexit()
-#include <stdio.h>                  // Required for: sprintf() [Used in OpenURL()]
+#include <stdio.h>                  // Required for: sprintf() [Used in raylib_openurl()]
 #include <string.h>                 // Required for: strrchr(), strcmp(), strlen(), memset()
 #include <time.h>                   // Required for: time() [Used in InitTimer()]
-#include <math.h>                   // Required for: tan() [Used in BeginMode3D()], atan2f() [Used in LoadVrStereoConfig()]
+#include <math.h>                   // Required for: tan() [Used in raylib_beginmode3d()], atan2f() [Used in raylib_loadvrstereoconfig()]
 
 #define RLGL_IMPLEMENTATION
 #include "rlgl.h"                   // OpenGL abstraction layer to OpenGL 1.1, 3.3+ or ES2
 
 #define RAYMATH_IMPLEMENTATION
-#include "raymath.h"                // Vector2, Vector3, Quaternion and Matrix functionality
+#include "raymath.h"                // raylib_vector2, raylib_vector3, Quaternion and raylib_matrix functionality
 
 #if defined(SUPPORT_GESTURES_SYSTEM)
     #define RGESTURES_IMPLEMENTATION
@@ -123,7 +123,7 @@
 
 #if defined(SUPPORT_CAMERA_SYSTEM)
     #define RCAMERA_IMPLEMENTATION
-    #include "rcamera.h"            // Camera system functionality
+    #include "rcamera.h"            // raylib_camera system functionality
 #endif
 
 #if defined(SUPPORT_GIF_RECORDING)
@@ -153,7 +153,7 @@
     #define _GNU_SOURCE
 #endif
 
-// Platform specific defines to handle GetApplicationDirectory()
+// Platform specific defines to handle raylib_getapplicationdirectory()
 #if (defined(_WIN32) && !defined(PLATFORM_DESKTOP_RGFW)) || (defined(_MSC_VER) && defined(PLATFORM_DESKTOP_RGFW))
     #ifndef MAX_PATH
         #define MAX_PATH 1025
@@ -171,7 +171,7 @@ unsigned int __stdcall timeEndPeriod(unsigned int uPeriod);
 #endif // OSs
 
 #define _CRT_INTERNAL_NONSTDC_NAMES  1
-#include <sys/stat.h>               // Required for: stat(), S_ISREG [Used in GetFileModTime(), IsFilePath()]
+#include <sys/stat.h>               // Required for: stat(), S_ISREG [Used in raylib_getfilemodtime(), IsFilePath()]
 
 #if !defined(S_ISREG) && defined(S_IFMT) && defined(S_IFREG)
     #define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
@@ -181,16 +181,16 @@ unsigned int __stdcall timeEndPeriod(unsigned int uPeriod);
     #define DIRENT_MALLOC RL_MALLOC
     #define DIRENT_FREE RL_FREE
 
-    #include "external/dirent.h"    // Required for: DIR, opendir(), closedir() [Used in LoadDirectoryFiles()]
+    #include "external/dirent.h"    // Required for: DIR, opendir(), closedir() [Used in raylib_loaddirectoryfiles()]
 #else
-    #include <dirent.h>             // Required for: DIR, opendir(), closedir() [Used in LoadDirectoryFiles()]
+    #include <dirent.h>             // Required for: DIR, opendir(), closedir() [Used in raylib_loaddirectoryfiles()]
 #endif
 
 #if defined(_WIN32)
     #include <direct.h>             // Required for: _getch(), _chdir()
     #define GETCWD _getcwd          // NOTE: MSDN recommends not to use getcwd(), chdir()
     #define CHDIR _chdir
-    #include <io.h>                 // Required for: _access() [Used in FileExists()]
+    #include <io.h>                 // Required for: _access() [Used in raylib_fileexists()]
 #else
     #include <unistd.h>             // Required for: getch(), chdir() (POSIX), access()
     #define GETCWD getcwd
@@ -269,7 +269,7 @@ typedef struct CoreData {
         bool shouldClose;                   // Check if window set for closing
         bool resizedLastFrame;              // Check if window has been resized last frame
         bool eventWaiting;                  // Wait for events before ending frame
-        bool usingFbo;                      // Using FBO (RenderTexture) for rendering instead of default framebuffer
+        bool usingFbo;                      // Using FBO (raylib_rendertexture) for rendering instead of default framebuffer
 
         Point position;                     // Window position (required on fullscreen toggle)
         Point previousPosition;             // Window previous position (required on borderless windowed toggle)
@@ -281,7 +281,7 @@ typedef struct CoreData {
         Point renderOffset;                 // Offset from render area (must be divided by 2)
         Size screenMin;                     // Screen minimum width and height (for resizable window)
         Size screenMax;                     // Screen maximum width and height (for resizable window)
-        Matrix screenScale;                 // Matrix to scale screen (framebuffer rendering)
+        raylib_matrix screenScale;                 // raylib_matrix to scale screen (framebuffer rendering)
 
         char **dropFilepaths;               // Store dropped files paths pointers (provided by GLFW)
         unsigned int dropFileCount;         // Count dropped files strings
@@ -308,10 +308,10 @@ typedef struct CoreData {
 
         } Keyboard;
         struct {
-            Vector2 offset;                 // Mouse offset
-            Vector2 scale;                  // Mouse scaling
-            Vector2 currentPosition;        // Mouse position on screen
-            Vector2 previousPosition;       // Previous mouse position
+            raylib_vector2 offset;                 // Mouse offset
+            raylib_vector2 scale;                  // Mouse scaling
+            raylib_vector2 currentPosition;        // Mouse position on screen
+            raylib_vector2 previousPosition;       // Previous mouse position
 
             int cursor;                     // Tracks current mouse cursor
             bool cursorHidden;              // Track if cursor is hidden
@@ -319,14 +319,14 @@ typedef struct CoreData {
 
             char currentButtonState[MAX_MOUSE_BUTTONS];     // Registers current mouse button state
             char previousButtonState[MAX_MOUSE_BUTTONS];    // Registers previous mouse button state
-            Vector2 currentWheelMove;       // Registers current mouse wheel variation
-            Vector2 previousWheelMove;      // Registers previous mouse wheel variation
+            raylib_vector2 currentWheelMove;       // Registers current mouse wheel variation
+            raylib_vector2 previousWheelMove;      // Registers previous mouse wheel variation
 
         } Mouse;
         struct {
             int pointCount;                             // Number of touch points active
             int pointId[MAX_TOUCH_POINTS];              // Point identifiers
-            Vector2 position[MAX_TOUCH_POINTS];         // Touch position on screen
+            raylib_vector2 position[MAX_TOUCH_POINTS];         // Touch position on screen
             char currentTouchState[MAX_TOUCH_POINTS];   // Registers current touch state
             char previousTouchState[MAX_TOUCH_POINTS];  // Registers previous touch state
 
@@ -447,14 +447,14 @@ static const char *autoEventTypeName[] = {
 /*
 // Automation event (24 bytes)
 // NOTE: Opaque struct, internal to raylib
-struct AutomationEvent {
+struct raylib_automationevent {
     unsigned int frame;                 // Event frame
     unsigned int type;                  // Event type (AutomationEventType)
     int params[4];                      // Event parameters (if required)
 };
 */
 
-static AutomationEventList *currentEventList = NULL;        // Current automation events list, set by user, keep internal pointer
+static raylib_automationeventlist *currentEventList = NULL;        // Current automation events list, set by user, keep internal pointer
 static bool automationEventRecording = false;               // Recording automation events flag
 //static short automationEventEnabled = 0b0000001111111111; // TODO: Automation events enabled for recording/playing
 #endif
@@ -466,7 +466,7 @@ static bool automationEventRecording = false;               // Recording automat
 //----------------------------------------------------------------------------------
 
 #if defined(SUPPORT_MODULE_RTEXT) && defined(SUPPORT_DEFAULT_FONT)
-extern void LoadFontDefault(void);      // [Module: text] Loads default font on InitWindow()
+extern void LoadFontDefault(void);      // [Module: text] Loads default font on raylib_initwindow()
 extern void UnloadFontDefault(void);    // [Module: text] Unloads default font from GPU memory
 #endif
 
@@ -477,8 +477,8 @@ static void InitTimer(void);                                // Initialize timer,
 static void SetupFramebuffer(int width, int height);        // Setup main framebuffer (required by InitPlatform())
 static void SetupViewport(int width, int height);           // Set viewport for a provided width and height
 
-static void ScanDirectoryFiles(const char *basePath, FilePathList *list, const char *filter);   // Scan all files and directories in a base path
-static void ScanDirectoryFilesRecursively(const char *basePath, FilePathList *list, const char *filter);  // Scan all files and directories recursively from a base path
+static void ScanDirectoryFiles(const char *basePath, raylib_filepathlist *list, const char *filter);   // Scan all files and directories in a base path
+static void ScanDirectoryFilesRecursively(const char *basePath, raylib_filepathlist *list, const char *filter);  // Scan all files and directories recursively from a base path
 
 #if defined(SUPPORT_AUTOMATION_EVENTS)
 static void RecordAutomationEvent(void); // Record frame events (to internal events array)
@@ -486,11 +486,11 @@ static void RecordAutomationEvent(void); // Record frame events (to internal eve
 
 #if defined(_WIN32) && !defined(PLATFORM_DESKTOP_RGFW)
 // NOTE: We declare Sleep() function symbol to avoid including windows.h (kernel32.lib linkage required)
-void __stdcall Sleep(unsigned long msTimeout);              // Required for: WaitTime()
+void __stdcall Sleep(unsigned long msTimeout);              // Required for: raylib_waittime()
 #endif
 
 #if !defined(SUPPORT_MODULE_RTEXT)
-const char *TextFormat(const char *text, ...);              // Formatting of text with variables to 'embed'
+const char *raylib_textformat(const char *text, ...);              // Formatting of text with variables to 'embed'
 #endif // !SUPPORT_MODULE_RTEXT
 
 // Include platform-specific submodules
@@ -516,51 +516,51 @@ const char *TextFormat(const char *text, ...);              // Formatting of tex
 //----------------------------------------------------------------------------------
 
 // NOTE: Functions with a platform-specific implementation on rcore_<platform>.c
-//bool WindowShouldClose(void)
-//void ToggleFullscreen(void)
-//void ToggleBorderlessWindowed(void)
-//void MaximizeWindow(void)
-//void MinimizeWindow(void)
-//void RestoreWindow(void)
+//bool raylib_windowshouldclose(void)
+//void raylib_togglefullscreen(void)
+//void raylib_toggleborderlesswindowed(void)
+//void raylib_maximizewindow(void)
+//void raylib_minimizewindow(void)
+//void raylib_restorewindow(void)
 
-//void SetWindowState(unsigned int flags)
-//void ClearWindowState(unsigned int flags)
+//void raylib_setwindowstate(unsigned int flags)
+//void raylib_clearwindowstate(unsigned int flags)
 
-//void SetWindowIcon(Image image)
-//void SetWindowIcons(Image *images, int count)
-//void SetWindowTitle(const char *title)
-//void SetWindowPosition(int x, int y)
-//void SetWindowMonitor(int monitor)
-//void SetWindowMinSize(int width, int height)
-//void SetWindowMaxSize(int width, int height)
-//void SetWindowSize(int width, int height)
-//void SetWindowOpacity(float opacity)
-//void SetWindowFocused(void)
+//void raylib_setwindowicon(raylib_image image)
+//void raylib_setwindowicons(raylib_image *images, int count)
+//void raylib_setwindowtitle(const char *title)
+//void raylib_setwindowposition(int x, int y)
+//void raylib_setwindowmonitor(int monitor)
+//void raylib_setwindowminsize(int width, int height)
+//void raylib_setwindowmaxsize(int width, int height)
+//void raylib_setwindowsize(int width, int height)
+//void raylib_setwindowopacity(float opacity)
+//void raylib_setwindowfocused(void)
 //void *GetWindowHandle(void)
-//Vector2 GetWindowPosition(void)
-//Vector2 GetWindowScaleDPI(void)
+//raylib_vector2 raylib_getwindowposition(void)
+//raylib_vector2 raylib_getwindowscaledpi(void)
 
-//int GetMonitorCount(void)
-//int GetCurrentMonitor(void)
-//int GetMonitorWidth(int monitor)
-//int GetMonitorHeight(int monitor)
-//int GetMonitorPhysicalWidth(int monitor)
-//int GetMonitorPhysicalHeight(int monitor)
-//int GetMonitorRefreshRate(int monitor)
-//Vector2 GetMonitorPosition(int monitor)
-//const char *GetMonitorName(int monitor)
+//int raylib_getmonitorcount(void)
+//int raylib_getcurrentmonitor(void)
+//int raylib_getmonitorwidth(int monitor)
+//int raylib_getmonitorheight(int monitor)
+//int raylib_getmonitorphysicalwidth(int monitor)
+//int raylib_getmonitorphysicalheight(int monitor)
+//int raylib_getmonitorrefreshrate(int monitor)
+//raylib_vector2 raylib_getmonitorposition(int monitor)
+//const char *raylib_getmonitorname(int monitor)
 
-//void SetClipboardText(const char *text)
-//const char *GetClipboardText(void)
+//void raylib_setclipboardtext(const char *text)
+//const char *raylib_getclipboardtext(void)
 
-//void ShowCursor(void)
-//void HideCursor(void)
-//void EnableCursor(void)
-//void DisableCursor(void)
+//void raylib_show_cursor(void)
+//void raylib_hidecursor(void)
+//void raylib_enablecursor(void)
+//void raylib_disablecursor(void)
 
 // Initialize window and OpenGL context
 // NOTE: data parameter could be used to pass any kind of required data to the initialization
-void InitWindow(int width, int height, const char *title)
+void raylib_initwindow(int width, int height, const char *title)
 {
     TRACELOG(LOG_INFO, "Initializing raylib %s", RAYLIB_VERSION);
 
@@ -619,7 +619,7 @@ void InitWindow(int width, int height, const char *title)
     // Initialize global input state
     memset(&CORE.Input, 0, sizeof(CORE.Input));     // Reset CORE.Input structure to 0
     CORE.Input.Keyboard.exitKey = KEY_ESCAPE;
-    CORE.Input.Mouse.scale = (Vector2){ 1.0f, 1.0f };
+    CORE.Input.Mouse.scale = (raylib_vector2){ 1.0f, 1.0f };
     CORE.Input.Mouse.cursor = MOUSE_CURSOR_ARROW;
     CORE.Input.Gamepad.lastButtonPressed = GAMEPAD_BUTTON_UNKNOWN;
 
@@ -642,24 +642,24 @@ void InitWindow(int width, int height, const char *title)
     #if defined(SUPPORT_MODULE_RSHAPES)
     // Set font white rectangle for shapes drawing, so shapes and text can be batched together
     // WARNING: rshapes module is required, if not available, default internal white rectangle is used
-    Rectangle rec = GetFontDefault().recs[95];
+    raylib_rectangle rec = raylib_getfontdefault().recs[95];
     if (CORE.Window.flags & FLAG_MSAA_4X_HINT)
     {
         // NOTE: We try to maxime rec padding to avoid pixel bleeding on MSAA filtering
-        SetShapesTexture(GetFontDefault().texture, (Rectangle){ rec.x + 2, rec.y + 2, 1, 1 });
+        raylib_setshapestexture(raylib_getfontdefault().texture, (raylib_rectangle){ rec.x + 2, rec.y + 2, 1, 1 });
     }
     else
     {
         // NOTE: We set up a 1px padding on char rectangle to avoid pixel bleeding
-        SetShapesTexture(GetFontDefault().texture, (Rectangle){ rec.x + 1, rec.y + 1, rec.width - 2, rec.height - 2 });
+        raylib_setshapestexture(raylib_getfontdefault().texture, (raylib_rectangle){ rec.x + 1, rec.y + 1, rec.width - 2, rec.height - 2 });
     }
     #endif
 #else
     #if defined(SUPPORT_MODULE_RSHAPES)
     // Set default texture and rectangle to be used for shapes drawing
     // NOTE: rlgl default texture is a 1x1 pixel UNCOMPRESSED_R8G8B8A8
-    Texture2D texture = { rlGetTextureIdDefault(), 1, 1, 1, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
-    SetShapesTexture(texture, (Rectangle){ 0.0f, 0.0f, 1.0f, 1.0f });    // WARNING: Module required: rshapes
+    raylib_texture2d texture = { rlGetTextureIdDefault(), 1, 1, 1, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
+    raylib_setshapestexture(texture, (raylib_rectangle){ 0.0f, 0.0f, 1.0f, 1.0f });    // WARNING: Module required: rshapes
     #endif
 #endif
 #if defined(SUPPORT_MODULE_RTEXT) && defined(SUPPORT_DEFAULT_FONT)
@@ -667,8 +667,8 @@ void InitWindow(int width, int height, const char *title)
     {
         // Set default font texture filter for HighDPI (blurry)
         // RL_TEXTURE_FILTER_LINEAR - tex filter: BILINEAR, no mipmaps
-        rlTextureParameters(GetFontDefault().texture.id, RL_TEXTURE_MIN_FILTER, RL_TEXTURE_FILTER_LINEAR);
-        rlTextureParameters(GetFontDefault().texture.id, RL_TEXTURE_MAG_FILTER, RL_TEXTURE_FILTER_LINEAR);
+        rlTextureParameters(raylib_getfontdefault().texture.id, RL_TEXTURE_MIN_FILTER, RL_TEXTURE_FILTER_LINEAR);
+        rlTextureParameters(raylib_getfontdefault().texture.id, RL_TEXTURE_MAG_FILTER, RL_TEXTURE_FILTER_LINEAR);
     }
 #endif
 
@@ -676,11 +676,11 @@ void InitWindow(int width, int height, const char *title)
     CORE.Window.shouldClose = false;
 
     // Initialize random seed
-    SetRandomSeed((unsigned int)time(NULL));
+    raylib_setrandomseed((unsigned int)time(NULL));
 }
 
 // Close window and unload OpenGL context
-void CloseWindow(void)
+void raylib_closewindow(void)
 {
 #if defined(SUPPORT_GIF_RECORDING)
     if (gifRecording)
@@ -707,71 +707,71 @@ void CloseWindow(void)
 }
 
 // Check if window has been initialized successfully
-bool IsWindowReady(void)
+bool raylib_iswindowready(void)
 {
     return CORE.Window.ready;
 }
 
 // Check if window is currently fullscreen
-bool IsWindowFullscreen(void)
+bool raylib_iswindowfullscreen(void)
 {
     return CORE.Window.fullscreen;
 }
 
 // Check if window is currently hidden
-bool IsWindowHidden(void)
+bool raylib_iswindowhidden(void)
 {
     return ((CORE.Window.flags & FLAG_WINDOW_HIDDEN) > 0);
 }
 
 // Check if window has been minimized
-bool IsWindowMinimized(void)
+bool raylib_iswindowminimized(void)
 {
     return ((CORE.Window.flags & FLAG_WINDOW_MINIMIZED) > 0);
 }
 
 // Check if window has been maximized
-bool IsWindowMaximized(void)
+bool raylib_iswindowmaximized(void)
 {
     return ((CORE.Window.flags & FLAG_WINDOW_MAXIMIZED) > 0);
 }
 
 // Check if window has the focus
-bool IsWindowFocused(void)
+bool raylib_iswindowfocused(void)
 {
     return ((CORE.Window.flags & FLAG_WINDOW_UNFOCUSED) == 0);
 }
 
 // Check if window has been resizedLastFrame
-bool IsWindowResized(void)
+bool raylib_iswindowresized(void)
 {
     return CORE.Window.resizedLastFrame;
 }
 
 // Check if one specific window flag is enabled
-bool IsWindowState(unsigned int flag)
+bool raylib_iswindowstate(unsigned int flag)
 {
     return ((CORE.Window.flags & flag) > 0);
 }
 
 // Get current screen width
-int GetScreenWidth(void)
+int raylib_getscreenwidth(void)
 {
     return CORE.Window.screen.width;
 }
 
 // Get current screen height
-int GetScreenHeight(void)
+int raylib_getscreenheight(void)
 {
     return CORE.Window.screen.height;
 }
 
 // Get current render width which is equal to screen width*dpi scale
-int GetRenderWidth(void)
+int raylib_getrenderwidth(void)
 {
     int width = 0;
 #if defined(__APPLE__)
-    Vector2 scale = GetWindowScaleDPI();
+    raylib_vector2 scale = raylib_getwindowscaledpi();
     width = (int)((float)CORE.Window.render.width*scale.x);
 #else
     width = CORE.Window.render.width;
@@ -780,11 +780,11 @@ int GetRenderWidth(void)
 }
 
 // Get current screen height which is equal to screen height*dpi scale
-int GetRenderHeight(void)
+int raylib_getrenderheight(void)
 {
     int height = 0;
 #if defined(__APPLE__)
-    Vector2 scale = GetWindowScaleDPI();
+    raylib_vector2 scale = raylib_getwindowscaledpi();
     height = (int)((float)CORE.Window.render.height*scale.y);
 #else
     height = CORE.Window.render.height;
@@ -792,26 +792,26 @@ int GetRenderHeight(void)
     return height;
 }
 
-// Enable waiting for events on EndDrawing(), no automatic event polling
-void EnableEventWaiting(void)
+// Enable waiting for events on raylib_enddrawing(), no automatic event polling
+void raylib_enableeventwaiting(void)
 {
     CORE.Window.eventWaiting = true;
 }
 
-// Disable waiting for events on EndDrawing(), automatic events polling
-void DisableEventWaiting(void)
+// Disable waiting for events on raylib_enddrawing(), automatic events polling
+void raylib_disableeventwaiting(void)
 {
     CORE.Window.eventWaiting = false;
 }
 
 // Check if cursor is not visible
-bool IsCursorHidden(void)
+bool raylib_iscursorhidden(void)
 {
     return CORE.Input.Mouse.cursorHidden;
 }
 
 // Check if cursor is on the current screen
-bool IsCursorOnScreen(void)
+bool raylib_iscursoronscreen(void)
 {
     return CORE.Input.Mouse.cursorOnScreen;
 }
@@ -821,19 +821,19 @@ bool IsCursorOnScreen(void)
 //----------------------------------------------------------------------------------
 
 // Set background color (framebuffer clear color)
-void ClearBackground(Color color)
+void raylib_clearbackground(raylib_color color)
 {
     rlClearColor(color.r, color.g, color.b, color.a);   // Set clear color
     rlClearScreenBuffers();                             // Clear current framebuffers
 }
 
 // Setup canvas (framebuffer) to start drawing
-void BeginDrawing(void)
+void raylib_begindrawing(void)
 {
-    // WARNING: Previously to BeginDrawing() other render textures drawing could happen,
+    // WARNING: Previously to raylib_begindrawing() other render textures drawing could happen,
     // consequently the measure for update vs draw is not accurate (only the total frame time is accurate)
 
-    CORE.Time.current = GetTime();      // Number of elapsed seconds since InitTimer()
+    CORE.Time.current = raylib_gettime();      // Number of elapsed seconds since InitTimer()
     CORE.Time.update = CORE.Time.current - CORE.Time.previous;
     CORE.Time.previous = CORE.Time.current;
 
@@ -845,7 +845,7 @@ void BeginDrawing(void)
 }
 
 // End canvas drawing and swap buffers (double buffering)
-void EndDrawing(void)
+void raylib_enddrawing(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -856,14 +856,14 @@ void EndDrawing(void)
         #ifndef GIF_RECORD_FRAMERATE
         #define GIF_RECORD_FRAMERATE    10
         #endif
-        gifFrameCounter += GetFrameTime()*1000;
+        gifFrameCounter += raylib_getframetime()*1000;
 
         // NOTE: We record one gif frame depending on the desired gif framerate
         if (gifFrameCounter > 1000/GIF_RECORD_FRAMERATE)
         {
             // Get image data for the current frame (from backbuffer)
             // NOTE: This process is quite slow... :(
-            Vector2 scale = GetWindowScaleDPI();
+            raylib_vector2 scale = raylib_getwindowscaledpi();
             unsigned char *screenData = rlReadScreenPixels((int)((float)CORE.Window.render.width*scale.x), (int)((float)CORE.Window.render.height*scale.y));
 
             #ifndef GIF_RECORD_BITRATE
@@ -879,10 +879,10 @@ void EndDrawing(void)
 
     #if defined(SUPPORT_MODULE_RSHAPES) && defined(SUPPORT_MODULE_RTEXT)
         // Display the recording indicator every half-second
-        if ((int)(GetTime()/0.5)%2 == 1)
+        if ((int)(raylib_gettime()/0.5)%2 == 1)
         {
-            DrawCircle(30, CORE.Window.screen.height - 20, 10, MAROON);                 // WARNING: Module required: rshapes
-            DrawText("GIF RECORDING", 50, CORE.Window.screen.height - 25, 10, RED);     // WARNING: Module required: rtext
+            raylib_drawcircle(30, CORE.Window.screen.height - 20, 10, raylib_maroon);                 // WARNING: Module required: rshapes
+            raylib_draw_text("GIF RECORDING", 50, CORE.Window.screen.height - 25, 10, raylib_red);     // WARNING: Module required: rtext
         }
     #endif
 
@@ -895,10 +895,10 @@ void EndDrawing(void)
 #endif
 
 #if !defined(SUPPORT_CUSTOM_FRAME_CONTROL)
-    SwapScreenBuffer();                  // Copy back buffer to front buffer (screen)
+    raylib_swapscreenbuffer();                  // Copy back buffer to front buffer (screen)
 
     // Frame time control system
-    CORE.Time.current = GetTime();
+    CORE.Time.current = raylib_gettime();
     CORE.Time.draw = CORE.Time.current - CORE.Time.previous;
     CORE.Time.previous = CORE.Time.current;
 
@@ -907,23 +907,23 @@ void EndDrawing(void)
     // Wait for some milliseconds...
     if (CORE.Time.frame < CORE.Time.target)
     {
-        WaitTime(CORE.Time.target - CORE.Time.frame);
+        raylib_waittime(CORE.Time.target - CORE.Time.frame);
 
-        CORE.Time.current = GetTime();
+        CORE.Time.current = raylib_gettime();
         double waitTime = CORE.Time.current - CORE.Time.previous;
         CORE.Time.previous = CORE.Time.current;
 
         CORE.Time.frame += waitTime;    // Total frame time: update + draw + wait
     }
 
-    PollInputEvents();      // Poll user events (before next frame update)
+    raylib_pollinputevents();      // Poll user events (before next frame update)
 #endif
 
 #if defined(SUPPORT_SCREEN_CAPTURE)
-    if (IsKeyPressed(KEY_F12))
+    if (raylib_iskeypressed(KEY_F12))
     {
 #if defined(SUPPORT_GIF_RECORDING)
-        if (IsKeyDown(KEY_LEFT_CONTROL))
+        if (raylib_iskeydown(KEY_LEFT_CONTROL))
         {
             if (gifRecording)
             {
@@ -931,7 +931,7 @@ void EndDrawing(void)
 
                 MsfGifResult result = msf_gif_end(&gifState);
 
-                SaveFileData(TextFormat("%s/screenrec%03i.gif", CORE.Storage.basePath, screenshotCounter), result.data, (unsigned int)result.dataSize);
+                raylib_savefiledata(raylib_textformat("%s/screenrec%03i.gif", CORE.Storage.basePath, screenshotCounter), result.data, (unsigned int)result.dataSize);
                 msf_gif_free(result);
 
                 TRACELOG(LOG_INFO, "SYSTEM: Finish animated GIF recording");
@@ -941,17 +941,17 @@ void EndDrawing(void)
                 gifRecording = true;
                 gifFrameCounter = 0;
 
-                Vector2 scale = GetWindowScaleDPI();
+                raylib_vector2 scale = raylib_getwindowscaledpi();
                 msf_gif_begin(&gifState, (int)((float)CORE.Window.render.width*scale.x), (int)((float)CORE.Window.render.height*scale.y));
                 screenshotCounter++;
 
-                TRACELOG(LOG_INFO, "SYSTEM: Start animated GIF recording: %s", TextFormat("screenrec%03i.gif", screenshotCounter));
+                TRACELOG(LOG_INFO, "SYSTEM: Start animated GIF recording: %s", raylib_textformat("screenrec%03i.gif", screenshotCounter));
             }
         }
         else
 #endif  // SUPPORT_GIF_RECORDING
         {
-            TakeScreenshot(TextFormat("screenshot%03i.png", screenshotCounter));
+            raylib_takescreenshot(raylib_textformat("screenshot%03i.png", screenshotCounter));
             screenshotCounter++;
         }
     }
@@ -961,18 +961,18 @@ void EndDrawing(void)
 }
 
 // Initialize 2D mode with custom camera (2D)
-void BeginMode2D(Camera2D camera)
+void raylib_beginmode2d(raylib_camera2d camera)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
     rlLoadIdentity();               // Reset current matrix (modelview)
 
     // Apply 2d camera transformation to modelview
-    rlMultMatrixf(MatrixToFloat(GetCameraMatrix2D(camera)));
+    rlMultMatrixf(MatrixToFloat(raylib_getcameramatrix2d(camera)));
 }
 
 // Ends 2D mode with custom camera
-void EndMode2D(void)
+void raylib_endmode2d(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -982,7 +982,7 @@ void EndMode2D(void)
 }
 
 // Initializes 3D mode with custom camera (3D)
-void BeginMode3D(Camera camera)
+void raylib_beginmode3d(raylib_camera camera)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -1013,15 +1013,15 @@ void BeginMode3D(Camera camera)
     rlMatrixMode(RL_MODELVIEW);     // Switch back to modelview matrix
     rlLoadIdentity();               // Reset current matrix (modelview)
 
-    // Setup Camera view
-    Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
+    // Setup raylib_camera view
+    raylib_matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
     rlMultMatrixf(MatrixToFloat(matView));      // Multiply modelview matrix by view matrix (camera)
 
     rlEnableDepthTest();            // Enable DEPTH_TEST for 3D
 }
 
 // Ends 3D mode and returns to default 2D orthographic mode
-void EndMode3D(void)
+void raylib_endmode3d(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -1037,7 +1037,7 @@ void EndMode3D(void)
 }
 
 // Initializes render texture for drawing
-void BeginTextureMode(RenderTexture2D target)
+void raylib_begintexturemode(raylib_rendertexture2d target)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -1061,14 +1061,14 @@ void BeginTextureMode(RenderTexture2D target)
     //rlScalef(0.0f, -1.0f, 0.0f);  // Flip Y-drawing (?)
 
     // Setup current width/height for proper aspect ratio
-    // calculation when using BeginMode3D()
+    // calculation when using raylib_beginmode3d()
     CORE.Window.currentFbo.width = target.texture.width;
     CORE.Window.currentFbo.height = target.texture.height;
     CORE.Window.usingFbo = true;
 }
 
 // Ends drawing to render texture
-void EndTextureMode(void)
+void raylib_endtexturemode(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -1077,7 +1077,7 @@ void EndTextureMode(void)
     // Set viewport to default framebuffer size
     SetupViewport(CORE.Window.render.width, CORE.Window.render.height);
 
-    // Go back to the modelview state from BeginDrawing since we are back to the default FBO
+    // Go back to the modelview state from raylib_begindrawing since we are back to the default FBO
     rlMatrixMode(RL_MODELVIEW);     // Switch back to modelview matrix
     rlLoadIdentity();               // Reset current matrix (modelview)
     rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale)); // Apply screen scaling if required
@@ -1089,33 +1089,33 @@ void EndTextureMode(void)
 }
 
 // Begin custom shader mode
-void BeginShaderMode(Shader shader)
+void raylib_beginshadermode(raylib_shader shader)
 {
     rlSetShader(shader.id, shader.locs);
 }
 
 // End custom shader mode (returns to default shader)
-void EndShaderMode(void)
+void raylib_endshadermode(void)
 {
     rlSetShader(rlGetShaderIdDefault(), rlGetShaderLocsDefault());
 }
 
 // Begin blending mode (alpha, additive, multiplied, subtract, custom)
-// NOTE: Blend modes supported are enumerated in BlendMode enum
-void BeginBlendMode(int mode)
+// NOTE: Blend modes supported are enumerated in raylib_blendmode enum
+void raylib_beginblendmode(int mode)
 {
     rlSetBlendMode(mode);
 }
 
 // End blending mode (reset to default: alpha blending)
-void EndBlendMode(void)
+void raylib_endblendmode(void)
 {
     rlSetBlendMode(BLEND_ALPHA);
 }
 
 // Begin scissor mode (define screen area for following drawing)
 // NOTE: Scissor rec refers to bottom-left corner, we change it to upper-left
-void BeginScissorMode(int x, int y, int width, int height)
+void raylib_beginscissormode(int x, int y, int width, int height)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
@@ -1124,13 +1124,13 @@ void BeginScissorMode(int x, int y, int width, int height)
 #if defined(__APPLE__)
     if (!CORE.Window.usingFbo)
     {
-        Vector2 scale = GetWindowScaleDPI();
-        rlScissor((int)(x*scale.x), (int)(GetScreenHeight()*scale.y - (((y + height)*scale.y))), (int)(width*scale.x), (int)(height*scale.y));
+        raylib_vector2 scale = raylib_getwindowscaledpi();
+        rlScissor((int)(x*scale.x), (int)(raylib_getscreenheight()*scale.y - (((y + height)*scale.y))), (int)(width*scale.x), (int)(height*scale.y));
     }
 #else
     if (!CORE.Window.usingFbo && ((CORE.Window.flags & FLAG_WINDOW_HIGHDPI) > 0))
     {
-        Vector2 scale = GetWindowScaleDPI();
+        raylib_vector2 scale = raylib_getwindowscaledpi();
         rlScissor((int)(x*scale.x), (int)(CORE.Window.currentFbo.height - (y + height)*scale.y), (int)(width*scale.x), (int)(height*scale.y));
     }
 #endif
@@ -1141,7 +1141,7 @@ void BeginScissorMode(int x, int y, int width, int height)
 }
 
 // End scissor mode
-void EndScissorMode(void)
+void raylib_endscissormode(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
     rlDisableScissorTest();
@@ -1152,7 +1152,7 @@ void EndScissorMode(void)
 //----------------------------------------------------------------------------------
 
 // Begin VR drawing configuration
-void BeginVrStereoMode(VrStereoConfig config)
+void raylib_beginvrstereomode(raylib_vrstereoconfig config)
 {
     rlEnableStereoRender();
 
@@ -1162,15 +1162,15 @@ void BeginVrStereoMode(VrStereoConfig config)
 }
 
 // End VR drawing process (and desktop mirror)
-void EndVrStereoMode(void)
+void raylib_endvrstereomode(void)
 {
     rlDisableStereoRender();
 }
 
 // Load VR stereo config for VR simulator device parameters
-VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device)
+raylib_vrstereoconfig raylib_loadvrstereoconfig(raylib_vrdeviceinfo device)
 {
-    VrStereoConfig config = { 0 };
+    raylib_vrstereoconfig config = { 0 };
 
     if (rlGetVersion() != RL_OPENGL_11)
     {
@@ -1211,13 +1211,13 @@ VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device)
 
         // Compute camera projection matrices
         float projOffset = 4.0f*lensShift;      // Scaled to projection space coordinates [-1..1]
-        Matrix proj = MatrixPerspective(fovy, aspect, rlGetCullDistanceNear(), rlGetCullDistanceFar());
+        raylib_matrix proj = MatrixPerspective(fovy, aspect, rlGetCullDistanceNear(), rlGetCullDistanceFar());
 
         config.projection[0] = MatrixMultiply(proj, MatrixTranslate(projOffset, 0.0f, 0.0f));
         config.projection[1] = MatrixMultiply(proj, MatrixTranslate(-projOffset, 0.0f, 0.0f));
 
         // Compute camera transformation matrices
-        // NOTE: Camera movement might seem more natural if we model the head
+        // NOTE: raylib_camera movement might seem more natural if we model the head
         // Our axis of rotation is the base of our head, so we might want to add
         // some y (base of head to eye level) and -z (center of head to eye protrusion) to the camera positions
         config.viewOffset[0] = MatrixTranslate(device.interpupillaryDistance*0.5f, 0.075f, 0.045f);
@@ -1242,9 +1242,9 @@ VrStereoConfig LoadVrStereoConfig(VrDeviceInfo device)
 }
 
 // Unload VR stereo config properties
-void UnloadVrStereoConfig(VrStereoConfig config)
+void raylib_unloadvrstereoconfig(raylib_vrstereoconfig config)
 {
-    TRACELOG(LOG_INFO, "UnloadVrStereoConfig not implemented in rcore.c");
+    TRACELOG(LOG_INFO, "raylib_unloadvrstereoconfig not implemented in rcore.c");
 }
 
 //----------------------------------------------------------------------------------
@@ -1253,28 +1253,28 @@ void UnloadVrStereoConfig(VrStereoConfig config)
 
 // Load shader from files and bind default locations
 // NOTE: If shader string is NULL, using default vertex/fragment shaders
-Shader LoadShader(const char *vsFileName, const char *fsFileName)
+raylib_shader raylib_loadshader(const char *vsFileName, const char *fsFileName)
 {
-    Shader shader = { 0 };
+    raylib_shader shader = { 0 };
 
     char *vShaderStr = NULL;
     char *fShaderStr = NULL;
 
-    if (vsFileName != NULL) vShaderStr = LoadFileText(vsFileName);
-    if (fsFileName != NULL) fShaderStr = LoadFileText(fsFileName);
+    if (vsFileName != NULL) vShaderStr = raylib_loadfiletext(vsFileName);
+    if (fsFileName != NULL) fShaderStr = raylib_loadfiletext(fsFileName);
 
-    shader = LoadShaderFromMemory(vShaderStr, fShaderStr);
+    shader = raylib_loadshaderfrommemory(vShaderStr, fShaderStr);
 
-    UnloadFileText(vShaderStr);
-    UnloadFileText(fShaderStr);
+    raylib_unloadfiletext(vShaderStr);
+    raylib_unloadfiletext(fShaderStr);
 
     return shader;
 }
 
 // Load shader from code strings and bind default locations
-Shader LoadShaderFromMemory(const char *vsCode, const char *fsCode)
+raylib_shader raylib_loadshaderfrommemory(const char *vsCode, const char *fsCode)
 {
-    Shader shader = { 0 };
+    raylib_shader shader = { 0 };
 
     shader.id = rlLoadShaderCode(vsCode, fsCode);
 
@@ -1322,7 +1322,7 @@ Shader LoadShaderFromMemory(const char *vsCode, const char *fsCode)
 }
 
 // Check if a shader is ready
-bool IsShaderReady(Shader shader)
+bool raylib_isshaderready(raylib_shader shader)
 {
     return ((shader.id > 0) &&          // Validate shader id (loaded successfully)
             (shader.locs != NULL));     // Validate memory has been allocated for default shader locations
@@ -1354,7 +1354,7 @@ bool IsShaderReady(Shader shader)
 }
 
 // Unload shader from GPU memory (VRAM)
-void UnloadShader(Shader shader)
+void raylib_unloadshader(raylib_shader shader)
 {
     if (shader.id != rlGetShaderIdDefault())
     {
@@ -1366,25 +1366,25 @@ void UnloadShader(Shader shader)
 }
 
 // Get shader uniform location
-int GetShaderLocation(Shader shader, const char *uniformName)
+int raylib_getshaderlocation(raylib_shader shader, const char *uniformName)
 {
     return rlGetLocationUniform(shader.id, uniformName);
 }
 
 // Get shader attribute location
-int GetShaderLocationAttrib(Shader shader, const char *attribName)
+int raylib_getshaderlocationattrib(raylib_shader shader, const char *attribName)
 {
     return rlGetLocationAttrib(shader.id, attribName);
 }
 
 // Set shader uniform value
-void SetShaderValue(Shader shader, int locIndex, const void *value, int uniformType)
+void raylib_setshadervalue(raylib_shader shader, int locIndex, const void *value, int uniformType)
 {
-    SetShaderValueV(shader, locIndex, value, uniformType, 1);
+    raylib_setshadervaluev(shader, locIndex, value, uniformType, 1);
 }
 
 // Set shader uniform value vector
-void SetShaderValueV(Shader shader, int locIndex, const void *value, int uniformType, int count)
+void raylib_setshadervaluev(raylib_shader shader, int locIndex, const void *value, int uniformType, int count)
 {
     if (locIndex > -1)
     {
@@ -1395,7 +1395,7 @@ void SetShaderValueV(Shader shader, int locIndex, const void *value, int uniform
 }
 
 // Set shader uniform value (matrix 4x4)
-void SetShaderValueMatrix(Shader shader, int locIndex, Matrix mat)
+void raylib_setshadervaluematrix(raylib_shader shader, int locIndex, raylib_matrix mat)
 {
     if (locIndex > -1)
     {
@@ -1406,7 +1406,7 @@ void SetShaderValueMatrix(Shader shader, int locIndex, Matrix mat)
 }
 
 // Set shader uniform value for texture
-void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture)
+void raylib_setshadervaluetexture(raylib_shader shader, int locIndex, raylib_texture2d texture)
 {
     if (locIndex > -1)
     {
@@ -1421,17 +1421,17 @@ void SetShaderValueTexture(Shader shader, int locIndex, Texture2D texture)
 //----------------------------------------------------------------------------------
 
 // Get a ray trace from screen position (i.e mouse)
-Ray GetScreenToWorldRay(Vector2 position, Camera camera)
+raylib_ray raylib_getscreentoworldray(raylib_vector2 position, raylib_camera camera)
 {
-    Ray ray = GetScreenToWorldRayEx(position, camera, GetScreenWidth(), GetScreenHeight());
+    raylib_ray ray = raylib_getscreentoworldrayex(position, camera, raylib_getscreenwidth(), raylib_getscreenheight());
 
     return ray;
 }
 
 // Get a ray trace from the screen position (i.e mouse) within a specific section of the screen
-Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int width, int height)
+raylib_ray raylib_getscreentoworldrayex(raylib_vector2 position, raylib_camera camera, int width, int height)
 {
-    Ray ray = { 0 };
+    raylib_ray ray = { 0 };
 
     // Calculate normalized device coordinates
     // NOTE: y value is negative
@@ -1440,12 +1440,12 @@ Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int width, int height
     float z = 1.0f;
 
     // Store values in a vector
-    Vector3 deviceCoords = { x, y, z };
+    raylib_vector3 deviceCoords = { x, y, z };
 
     // Calculate view matrix from camera look at
-    Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
+    raylib_matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
 
-    Matrix matProj = MatrixIdentity();
+    raylib_matrix matProj = MatrixIdentity();
 
     if (camera.projection == CAMERA_PERSPECTIVE)
     {
@@ -1463,17 +1463,17 @@ Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int width, int height
     }
 
     // Unproject far/near points
-    Vector3 nearPoint = Vector3Unproject((Vector3){ deviceCoords.x, deviceCoords.y, 0.0f }, matProj, matView);
-    Vector3 farPoint = Vector3Unproject((Vector3){ deviceCoords.x, deviceCoords.y, 1.0f }, matProj, matView);
+    raylib_vector3 nearPoint = Vector3Unproject((raylib_vector3){ deviceCoords.x, deviceCoords.y, 0.0f }, matProj, matView);
+    raylib_vector3 farPoint = Vector3Unproject((raylib_vector3){ deviceCoords.x, deviceCoords.y, 1.0f }, matProj, matView);
 
     // Unproject the mouse cursor in the near plane
     // We need this as the source position because orthographic projects,
     // compared to perspective doesn't have a convergence point,
     // meaning that the "eye" of the camera is more like a plane than a point
-    Vector3 cameraPlanePointerPos = Vector3Unproject((Vector3){ deviceCoords.x, deviceCoords.y, -1.0f }, matProj, matView);
+    raylib_vector3 cameraPlanePointerPos = Vector3Unproject((raylib_vector3){ deviceCoords.x, deviceCoords.y, -1.0f }, matProj, matView);
 
     // Calculate normalized direction vector
-    Vector3 direction = Vector3Normalize(Vector3Subtract(farPoint, nearPoint));
+    raylib_vector3 direction = Vector3Normalize(Vector3Subtract(farPoint, nearPoint));
 
     if (camera.projection == CAMERA_PERSPECTIVE) ray.position = camera.position;
     else if (camera.projection == CAMERA_ORTHOGRAPHIC) ray.position = cameraPlanePointerPos;
@@ -1485,17 +1485,17 @@ Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int width, int height
 }
 
 // Get transform matrix for camera
-Matrix GetCameraMatrix(Camera camera)
+raylib_matrix raylib_getcameramatrix(raylib_camera camera)
 {
-    Matrix mat = MatrixLookAt(camera.position, camera.target, camera.up);
+    raylib_matrix mat = MatrixLookAt(camera.position, camera.target, camera.up);
 
     return mat;
 }
 
 // Get camera 2d transform matrix
-Matrix GetCameraMatrix2D(Camera2D camera)
+raylib_matrix raylib_getcameramatrix2d(raylib_camera2d camera)
 {
-    Matrix matTransform = { 0 };
+    raylib_matrix matTransform = { 0 };
     // The camera in world-space is set by
     //   1. Move it to target
     //   2. Rotate by -rotation and scale by (1/zoom)
@@ -1510,10 +1510,10 @@ Matrix GetCameraMatrix2D(Camera2D camera)
     //   1. Move to offset
     //   2. Rotate and Scale
     //   3. Move by -target
-    Matrix matOrigin = MatrixTranslate(-camera.target.x, -camera.target.y, 0.0f);
-    Matrix matRotation = MatrixRotate((Vector3){ 0.0f, 0.0f, 1.0f }, camera.rotation*DEG2RAD);
-    Matrix matScale = MatrixScale(camera.zoom, camera.zoom, 1.0f);
-    Matrix matTranslation = MatrixTranslate(camera.offset.x, camera.offset.y, 0.0f);
+    raylib_matrix matOrigin = MatrixTranslate(-camera.target.x, -camera.target.y, 0.0f);
+    raylib_matrix matRotation = MatrixRotate((raylib_vector3){ 0.0f, 0.0f, 1.0f }, camera.rotation*DEG2RAD);
+    raylib_matrix matScale = MatrixScale(camera.zoom, camera.zoom, 1.0f);
+    raylib_matrix matTranslation = MatrixTranslate(camera.offset.x, camera.offset.y, 0.0f);
 
     matTransform = MatrixMultiply(MatrixMultiply(matOrigin, MatrixMultiply(matScale, matRotation)), matTranslation);
 
@@ -1521,18 +1521,18 @@ Matrix GetCameraMatrix2D(Camera2D camera)
 }
 
 // Get the screen space position from a 3d world space position
-Vector2 GetWorldToScreen(Vector3 position, Camera camera)
+raylib_vector2 raylib_getworldtoscreen(raylib_vector3 position, raylib_camera camera)
 {
-    Vector2 screenPosition = GetWorldToScreenEx(position, camera, GetScreenWidth(), GetScreenHeight());
+    raylib_vector2 screenPosition = raylib_getworldtoscreenex(position, camera, raylib_getscreenwidth(), raylib_getscreenheight());
 
     return screenPosition;
 }
 
 // Get size position for a 3d world space position (useful for texture drawing)
-Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height)
+raylib_vector2 raylib_getworldtoscreenex(raylib_vector3 position, raylib_camera camera, int width, int height)
 {
     // Calculate projection matrix (from perspective instead of frustum
-    Matrix matProj = MatrixIdentity();
+    raylib_matrix matProj = MatrixIdentity();
 
     if (camera.projection == CAMERA_PERSPECTIVE)
     {
@@ -1550,44 +1550,44 @@ Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int heigh
     }
 
     // Calculate view matrix from camera look at (and transpose it)
-    Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
+    raylib_matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
 
-    // TODO: Why not use Vector3Transform(Vector3 v, Matrix mat)?
+    // TODO: Why not use Vector3Transform(raylib_vector3 v, raylib_matrix mat)?
 
     // Convert world position vector to quaternion
     Quaternion worldPos = { position.x, position.y, position.z, 1.0f };
 
-    // Transform world position to view
+    // raylib_transform world position to view
     worldPos = QuaternionTransform(worldPos, matView);
 
-    // Transform result to projection (clip space position)
+    // raylib_transform result to projection (clip space position)
     worldPos = QuaternionTransform(worldPos, matProj);
 
     // Calculate normalized device coordinates (inverted y)
-    Vector3 ndcPos = { worldPos.x/worldPos.w, -worldPos.y/worldPos.w, worldPos.z/worldPos.w };
+    raylib_vector3 ndcPos = { worldPos.x/worldPos.w, -worldPos.y/worldPos.w, worldPos.z/worldPos.w };
 
     // Calculate 2d screen position vector
-    Vector2 screenPosition = { (ndcPos.x + 1.0f)/2.0f*(float)width, (ndcPos.y + 1.0f)/2.0f*(float)height };
+    raylib_vector2 screenPosition = { (ndcPos.x + 1.0f)/2.0f*(float)width, (ndcPos.y + 1.0f)/2.0f*(float)height };
 
     return screenPosition;
 }
 
 // Get the screen space position for a 2d camera world space position
-Vector2 GetWorldToScreen2D(Vector2 position, Camera2D camera)
+raylib_vector2 raylib_getworldtoscreen2d(raylib_vector2 position, raylib_camera2d camera)
 {
-    Matrix matCamera = GetCameraMatrix2D(camera);
-    Vector3 transform = Vector3Transform((Vector3){ position.x, position.y, 0 }, matCamera);
+    raylib_matrix matCamera = raylib_getcameramatrix2d(camera);
+    raylib_vector3 transform = Vector3Transform((raylib_vector3){ position.x, position.y, 0 }, matCamera);
 
-    return (Vector2){ transform.x, transform.y };
+    return (raylib_vector2){ transform.x, transform.y };
 }
 
 // Get the world space position for a 2d camera screen space position
-Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera)
+raylib_vector2 raylib_getscreentoworld2d(raylib_vector2 position, raylib_camera2d camera)
 {
-    Matrix invMatCamera = MatrixInvert(GetCameraMatrix2D(camera));
-    Vector3 transform = Vector3Transform((Vector3){ position.x, position.y, 0 }, invMatCamera);
+    raylib_matrix invMatCamera = MatrixInvert(raylib_getcameramatrix2d(camera));
+    raylib_vector3 transform = Vector3Transform((raylib_vector3){ position.x, position.y, 0 }, invMatCamera);
 
-    return (Vector2){ transform.x, transform.y };
+    return (raylib_vector2){ transform.x, transform.y };
 }
 
 //----------------------------------------------------------------------------------
@@ -1595,10 +1595,10 @@ Vector2 GetScreenToWorld2D(Vector2 position, Camera2D camera)
 //----------------------------------------------------------------------------------
 
 // NOTE: Functions with a platform-specific implementation on rcore_<platform>.c
-//double GetTime(void)
+//double raylib_gettime(void)
 
 // Set target FPS (maximum)
-void SetTargetFPS(int fps)
+void raylib_settargetfps(int fps)
 {
     if (fps < 1) CORE.Time.target = 0.0;
     else CORE.Time.target = 1.0/(double)fps;
@@ -1608,7 +1608,7 @@ void SetTargetFPS(int fps)
 
 // Get current FPS
 // NOTE: We calculate an average framerate
-int GetFPS(void)
+int raylib_getfps(void)
 {
     int fps = 0;
 
@@ -1620,7 +1620,7 @@ int GetFPS(void)
     static int index = 0;
     static float history[FPS_CAPTURE_FRAMES_COUNT] = { 0 };
     static float average = 0, last = 0;
-    float fpsFrame = GetFrameTime();
+    float fpsFrame = raylib_getframetime();
 
     // if we reset the window, reset the FPS info
     if (CORE.Time.frameCounter == 0)
@@ -1634,9 +1634,9 @@ int GetFPS(void)
 
     if (fpsFrame == 0) return 0;
 
-    if ((GetTime() - last) > FPS_STEP)
+    if ((raylib_gettime() - last) > FPS_STEP)
     {
-        last = (float)GetTime();
+        last = (float)raylib_gettime();
         index = (index + 1)%FPS_CAPTURE_FRAMES_COUNT;
         average -= history[index];
         history[index] = fpsFrame/FPS_CAPTURE_FRAMES_COUNT;
@@ -1650,7 +1650,7 @@ int GetFPS(void)
 }
 
 // Get time in seconds for last frame drawn (delta time)
-float GetFrameTime(void)
+float raylib_getframetime(void)
 {
     return (float)CORE.Time.frame;
 }
@@ -1660,24 +1660,24 @@ float GetFrameTime(void)
 //----------------------------------------------------------------------------------
 
 // NOTE: Functions with a platform-specific implementation on rcore_<platform>.c
-//void SwapScreenBuffer(void);
-//void PollInputEvents(void);
+//void raylib_swapscreenbuffer(void);
+//void raylib_pollinputevents(void);
 
 // Wait for some time (stop program execution)
 // NOTE: Sleep() granularity could be around 10 ms, it means, Sleep() could
 // take longer than expected... for that reason we use the busy wait loop
 // Ref: http://stackoverflow.com/questions/43057578/c-programming-win32-games-sleep-taking-longer-than-expected
 // Ref: http://www.geisswerks.com/ryan/FAQS/timing.html --> All about timing on Win32!
-void WaitTime(double seconds)
+void raylib_waittime(double seconds)
 {
     if (seconds < 0) return;    // Security check
 
 #if defined(SUPPORT_BUSY_WAIT_LOOP) || defined(SUPPORT_PARTIALBUSY_WAIT_LOOP)
-    double destinationTime = GetTime() + seconds;
+    double destinationTime = raylib_gettime() + seconds;
 #endif
 
 #if defined(SUPPORT_BUSY_WAIT_LOOP)
-    while (GetTime() < destinationTime) { }
+    while (raylib_gettime() < destinationTime) { }
 #else
     #if defined(SUPPORT_PARTIALBUSY_WAIT_LOOP)
         double sleepSeconds = seconds - seconds*0.05;  // NOTE: We reserve a percentage of the time for busy waiting
@@ -1704,7 +1704,7 @@ void WaitTime(double seconds)
     #endif
 
     #if defined(SUPPORT_PARTIALBUSY_WAIT_LOOP)
-        while (GetTime() < destinationTime) { }
+        while (raylib_gettime() < destinationTime) { }
     #endif
 #endif
 }
@@ -1714,10 +1714,10 @@ void WaitTime(double seconds)
 //----------------------------------------------------------------------------------
 
 // NOTE: Functions with a platform-specific implementation on rcore_<platform>.c
-//void OpenURL(const char *url)
+//void raylib_openurl(const char *url)
 
 // Set the seed for the random number generator
-void SetRandomSeed(unsigned int seed)
+void raylib_setrandomseed(unsigned int seed)
 {
 #if defined(SUPPORT_RPRAND_GENERATOR)
     rprand_set_seed(seed);
@@ -1727,7 +1727,7 @@ void SetRandomSeed(unsigned int seed)
 }
 
 // Get a random value between min and max included
-int GetRandomValue(int min, int max)
+int raylib_getrandomvalue(int min, int max)
 {
     int value = 0;
 
@@ -1747,7 +1747,7 @@ int GetRandomValue(int min, int max)
     // NOTE: Depending on the library it can be as low as 32767
     if ((unsigned int)(max - min) > (unsigned int)RAND_MAX)
     {
-        TRACELOG(LOG_WARNING, "Invalid GetRandomValue() arguments, range should not be higher than %i", RAND_MAX);
+        TRACELOG(LOG_WARNING, "Invalid raylib_getrandomvalue() arguments, range should not be higher than %i", RAND_MAX);
     }
 
     value = (rand()%(abs(max - min) + 1) + min);
@@ -1756,7 +1756,7 @@ int GetRandomValue(int min, int max)
 }
 
 // Load random values sequence, no values repeated, min and max included
-int *LoadRandomSequence(unsigned int count, int min, int max)
+int *raylib_loadrandomsequence(unsigned int count, int min, int max)
 {
     int *values = NULL;
 
@@ -1795,7 +1795,7 @@ int *LoadRandomSequence(unsigned int count, int min, int max)
 }
 
 // Unload random values sequence
-void UnloadRandomSequence(int *sequence)
+void raylib_unloadrandomsequence(int *sequence)
 {
 #if defined(SUPPORT_RPRAND_GENERATOR)
     rprand_unload_sequence(sequence);
@@ -1806,37 +1806,37 @@ void UnloadRandomSequence(int *sequence)
 
 // Takes a screenshot of current screen
 // NOTE: Provided fileName should not contain paths, saving to working directory
-void TakeScreenshot(const char *fileName)
+void raylib_takescreenshot(const char *fileName)
 {
 #if defined(SUPPORT_MODULE_RTEXTURES)
     // Security check to (partially) avoid malicious code
     if (strchr(fileName, '\'') != NULL) { TRACELOG(LOG_WARNING, "SYSTEM: Provided fileName could be potentially malicious, avoid [\'] character"); return; }
 
-    Vector2 scale = GetWindowScaleDPI();
+    raylib_vector2 scale = raylib_getwindowscaledpi();
     unsigned char *imgData = rlReadScreenPixels((int)((float)CORE.Window.render.width*scale.x), (int)((float)CORE.Window.render.height*scale.y));
-    Image image = { imgData, (int)((float)CORE.Window.render.width*scale.x), (int)((float)CORE.Window.render.height*scale.y), 1, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
+    raylib_image image = { imgData, (int)((float)CORE.Window.render.width*scale.x), (int)((float)CORE.Window.render.height*scale.y), 1, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
 
     char path[512] = { 0 };
-    strcpy(path, TextFormat("%s/%s", CORE.Storage.basePath, GetFileName(fileName)));
+    strcpy(path, raylib_textformat("%s/%s", CORE.Storage.basePath, raylib_getfilename(fileName)));
 
-    ExportImage(image, path);           // WARNING: Module required: rtextures
+    raylib_exportimage(image, path);           // WARNING: Module required: rtextures
     RL_FREE(imgData);
 
-    if (FileExists(path)) TRACELOG(LOG_INFO, "SYSTEM: [%s] Screenshot taken successfully", path);
+    if (raylib_fileexists(path)) TRACELOG(LOG_INFO, "SYSTEM: [%s] Screenshot taken successfully", path);
     else TRACELOG(LOG_WARNING, "SYSTEM: [%s] Screenshot could not be saved", path);
 #else
-    TRACELOG(LOG_WARNING,"IMAGE: ExportImage() requires module: rtextures");
+    TRACELOG(LOG_WARNING,"IMAGE: raylib_exportimage() requires module: rtextures");
 #endif
 }
 
 // Setup window configuration flags (view FLAGS)
 // NOTE: This function is expected to be called before window creation,
 // because it sets up some flags for the window creation process
-// To configure window states after creation, just use SetWindowState()
-void SetConfigFlags(unsigned int flags)
+// To configure window states after creation, just use raylib_setwindowstate()
+void raylib_setconfigflags(unsigned int flags)
 {
     // Selected flags are set but not evaluated at this point,
-    // flag evaluation happens at InitWindow() or SetWindowState()
+    // flag evaluation happens at raylib_initwindow() or raylib_setwindowstate()
     CORE.Window.flags |= flags;
 }
 
@@ -1845,7 +1845,7 @@ void SetConfigFlags(unsigned int flags)
 //----------------------------------------------------------------------------------
 
 // Check if the file exists
-bool FileExists(const char *fileName)
+bool raylib_fileexists(const char *fileName)
 {
     bool result = false;
 
@@ -1865,12 +1865,12 @@ bool FileExists(const char *fileName)
 
 // Check file extension
 // NOTE: Extensions checking is not case-sensitive
-bool IsFileExtension(const char *fileName, const char *ext)
+bool raylib_isfileextension(const char *fileName, const char *ext)
 {
     #define MAX_FILE_EXTENSION_LENGTH  16
 
     bool result = false;
-    const char *fileExt = GetFileExtension(fileName);
+    const char *fileExt = raylib_getfileextension(fileName);
 
     if (fileExt != NULL)
     {
@@ -1879,11 +1879,11 @@ bool IsFileExtension(const char *fileName, const char *ext)
         const char **checkExts = TextSplit(ext, ';', &extCount); // WARNING: Module required: rtext
 
         char fileExtLower[MAX_FILE_EXTENSION_LENGTH + 1] = { 0 };
-        strncpy(fileExtLower, TextToLower(fileExt), MAX_FILE_EXTENSION_LENGTH); // WARNING: Module required: rtext
+        strncpy(fileExtLower, raylib_texttolower(fileExt), MAX_FILE_EXTENSION_LENGTH); // WARNING: Module required: rtext
 
         for (int i = 0; i < extCount; i++)
         {
-            if (strcmp(fileExtLower, TextToLower(checkExts[i])) == 0)
+            if (strcmp(fileExtLower, raylib_texttolower(checkExts[i])) == 0)
             {
                 result = true;
                 break;
@@ -1898,7 +1898,7 @@ bool IsFileExtension(const char *fileName, const char *ext)
 }
 
 // Check if a directory path exists
-bool DirectoryExists(const char *dirPath)
+bool raylib_directoryexists(const char *dirPath)
 {
     bool result = false;
     DIR *dir = opendir(dirPath);
@@ -1914,7 +1914,7 @@ bool DirectoryExists(const char *dirPath)
 
 // Get file length in bytes
 // NOTE: GetFileSize() conflicts with windows.h
-int GetFileLength(const char *fileName)
+int raylib_getfilelength(const char *fileName)
 {
     int size = 0;
 
@@ -1932,7 +1932,7 @@ int GetFileLength(const char *fileName)
         long int fileSize = ftell(file);
 
         // Check for size overflow (INT_MAX)
-        if (fileSize > 2147483647) TRACELOG(LOG_WARNING, "[%s] File size overflows expected limit, do not use GetFileLength()", fileName);
+        if (fileSize > 2147483647) TRACELOG(LOG_WARNING, "[%s] File size overflows expected limit, do not use raylib_getfilelength()", fileName);
         else size = (int)fileSize;
 
         fclose(file);
@@ -1942,7 +1942,7 @@ int GetFileLength(const char *fileName)
 }
 
 // Get pointer to extension for a filename string (includes the dot: .png)
-const char *GetFileExtension(const char *fileName)
+const char *raylib_getfileextension(const char *fileName)
 {
     const char *dot = strrchr(fileName, '.');
 
@@ -1962,7 +1962,7 @@ static const char *strprbrk(const char *s, const char *charset)
 }
 
 // Get pointer to filename for a path string
-const char *GetFileName(const char *filePath)
+const char *raylib_getfilename(const char *filePath)
 {
     const char *fileName = NULL;
 
@@ -1974,7 +1974,7 @@ const char *GetFileName(const char *filePath)
 }
 
 // Get filename string without extension (uses static string)
-const char *GetFileNameWithoutExt(const char *filePath)
+const char *raylib_getfilenamewithoutext(const char *filePath)
 {
     #define MAX_FILENAME_LENGTH     256
 
@@ -1983,7 +1983,7 @@ const char *GetFileNameWithoutExt(const char *filePath)
 
     if (filePath != NULL)
     {
-        strcpy(fileName, GetFileName(filePath)); // Get filename.ext without path
+        strcpy(fileName, raylib_getfilename(filePath)); // Get filename.ext without path
         int size = (int)strlen(fileName); // Get size in bytes
 
         for (int i = size; i > 0; i--) // Reverse search '.'
@@ -2001,7 +2001,7 @@ const char *GetFileNameWithoutExt(const char *filePath)
 }
 
 // Get directory for a given filePath
-const char *GetDirectoryPath(const char *filePath)
+const char *raylib_getdirectorypath(const char *filePath)
 {
     /*
     // NOTE: Directory separator is different in Windows and other platforms,
@@ -2049,7 +2049,7 @@ const char *GetDirectoryPath(const char *filePath)
 }
 
 // Get previous directory path for a given path
-const char *GetPrevDirectoryPath(const char *dirPath)
+const char *raylib_getprevdirectorypath(const char *dirPath)
 {
     static char prevDirPath[MAX_FILEPATH_LENGTH] = { 0 };
     memset(prevDirPath, 0, MAX_FILEPATH_LENGTH);
@@ -2073,7 +2073,7 @@ const char *GetPrevDirectoryPath(const char *dirPath)
 }
 
 // Get current working directory
-const char *GetWorkingDirectory(void)
+const char *raylib_getworkingdirectory(void)
 {
     static char currentDir[MAX_FILEPATH_LENGTH] = { 0 };
     memset(currentDir, 0, MAX_FILEPATH_LENGTH);
@@ -2083,7 +2083,7 @@ const char *GetWorkingDirectory(void)
     return path;
 }
 
-const char *GetApplicationDirectory(void)
+const char *raylib_getapplicationdirectory(void)
 {
     static char appDir[MAX_FILEPATH_LENGTH] = { 0 };
     memset(appDir, 0, MAX_FILEPATH_LENGTH);
@@ -2163,9 +2163,9 @@ const char *GetApplicationDirectory(void)
 // NOTE: Base path is prepended to the scanned filepaths
 // WARNING: Directory is scanned twice, first time to get files count
 // No recursive scanning is done!
-FilePathList LoadDirectoryFiles(const char *dirPath)
+raylib_filepathlist raylib_loaddirectoryfiles(const char *dirPath)
 {
-    FilePathList files = { 0 };
+    raylib_filepathlist files = { 0 };
     unsigned int fileCounter = 0;
 
     struct dirent *entity;
@@ -2201,9 +2201,9 @@ FilePathList LoadDirectoryFiles(const char *dirPath)
 
 // Load directory filepaths with extension filtering and recursive directory scan
 // NOTE: On recursive loading we do not pre-scan for file count, we use MAX_FILEPATH_CAPACITY
-FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool scanSubdirs)
+raylib_filepathlist raylib_loaddirectoryfilesex(const char *basePath, const char *filter, bool scanSubdirs)
 {
-    FilePathList files = { 0 };
+    raylib_filepathlist files = { 0 };
 
     files.capacity = MAX_FILEPATH_CAPACITY;
     files.paths = (char **)RL_CALLOC(files.capacity, sizeof(char *));
@@ -2218,7 +2218,7 @@ FilePathList LoadDirectoryFilesEx(const char *basePath, const char *filter, bool
 
 // Unload directory filepaths
 // WARNING: files.count is not reseted to 0 after unloading
-void UnloadDirectoryFiles(FilePathList files)
+void raylib_unloaddirectoryfiles(raylib_filepathlist files)
 {
     for (unsigned int i = 0; i < files.capacity; i++) RL_FREE(files.paths[i]);
 
@@ -2226,7 +2226,7 @@ void UnloadDirectoryFiles(FilePathList files)
 }
 
 // Change working directory, returns true on success
-bool ChangeDirectory(const char *dir)
+bool raylib_changedirectory(const char *dir)
 {
     bool result = CHDIR(dir);
 
@@ -2236,7 +2236,7 @@ bool ChangeDirectory(const char *dir)
 }
 
 // Check if a given path point to a file
-bool IsPathFile(const char *path)
+bool raylib_ispathfile(const char *path)
 {
     struct stat result = { 0 };
     stat(path, &result);
@@ -2245,7 +2245,7 @@ bool IsPathFile(const char *path)
 }
 
 // Check if fileName is valid for the platform/OS
-bool IsFileNameValid(const char *fileName)
+bool raylib_isfilenamevalid(const char *fileName)
 {
     bool valid = true;
 
@@ -2303,7 +2303,7 @@ bool IsFileNameValid(const char *fileName)
 }
 
 // Check if a file has been dropped into window
-bool IsFileDropped(void)
+bool raylib_isfiledropped(void)
 {
     bool result = false;
 
@@ -2313,9 +2313,9 @@ bool IsFileDropped(void)
 }
 
 // Load dropped filepaths
-FilePathList LoadDroppedFiles(void)
+raylib_filepathlist raylib_loaddroppedfiles(void)
 {
-    FilePathList files = { 0 };
+    raylib_filepathlist files = { 0 };
 
     files.count = CORE.Window.dropFileCount;
     files.paths = CORE.Window.dropFilepaths;
@@ -2324,7 +2324,7 @@ FilePathList LoadDroppedFiles(void)
 }
 
 // Unload dropped filepaths
-void UnloadDroppedFiles(FilePathList files)
+void raylib_unloaddroppedfiles(raylib_filepathlist files)
 {
     // WARNING: files pointers are the same as internal ones
 
@@ -2340,7 +2340,7 @@ void UnloadDroppedFiles(FilePathList files)
 }
 
 // Get file modification time (last write time)
-long GetFileModTime(const char *fileName)
+long raylib_getfilemodtime(const char *fileName)
 {
     struct stat result = { 0 };
     long modTime = 0;
@@ -2360,7 +2360,7 @@ long GetFileModTime(const char *fileName)
 //----------------------------------------------------------------------------------
 
 // Compress data (DEFLATE algorithm)
-unsigned char *CompressData(const unsigned char *data, int dataSize, int *compDataSize)
+unsigned char *raylib_compressdata(const unsigned char *data, int dataSize, int *compDataSize)
 {
     #define COMPRESSION_QUALITY_DEFLATE  8
 
@@ -2382,7 +2382,7 @@ unsigned char *CompressData(const unsigned char *data, int dataSize, int *compDa
 }
 
 // Decompress data (DEFLATE algorithm)
-unsigned char *DecompressData(const unsigned char *compData, int compDataSize, int *dataSize)
+unsigned char *raylib_decompressdata(const unsigned char *compData, int compDataSize, int *dataSize)
 {
     unsigned char *data = NULL;
 
@@ -2407,7 +2407,7 @@ unsigned char *DecompressData(const unsigned char *compData, int compDataSize, i
 }
 
 // Encode data to Base64 string
-char *EncodeDataBase64(const unsigned char *data, int dataSize, int *outputSize)
+char *raylib_encodedatabase64(const unsigned char *data, int dataSize, int *outputSize)
 {
     static const unsigned char base64encodeTable[] = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
@@ -2443,7 +2443,7 @@ char *EncodeDataBase64(const unsigned char *data, int dataSize, int *outputSize)
 }
 
 // Decode Base64 string data
-unsigned char *DecodeDataBase64(const unsigned char *data, int *outputSize)
+unsigned char *raylib_decodedatabase64(const unsigned char *data, int *outputSize)
 {
     static const unsigned char base64decodeTable[] = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -2505,12 +2505,12 @@ unsigned char *DecodeDataBase64(const unsigned char *data, int *outputSize)
 //----------------------------------------------------------------------------------
 
 // Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
-AutomationEventList LoadAutomationEventList(const char *fileName)
+raylib_automationeventlist raylib_loadautomationeventlist(const char *fileName)
 {
-    AutomationEventList list = { 0 };
+    raylib_automationeventlist list = { 0 };
 
     // Allocate and empty automation event list, ready to record new events
-    list.events = (AutomationEvent *)RL_CALLOC(MAX_AUTOMATION_EVENTS, sizeof(AutomationEvent));
+    list.events = (raylib_automationevent *)RL_CALLOC(MAX_AUTOMATION_EVENTS, sizeof(raylib_automationevent));
     list.capacity = MAX_AUTOMATION_EVENTS;
 
 #if defined(SUPPORT_AUTOMATION_EVENTS)
@@ -2520,7 +2520,7 @@ AutomationEventList LoadAutomationEventList(const char *fileName)
         // Load automation events file (binary)
         /*
         //int dataSize = 0;
-        //unsigned char *data = LoadFileData(fileName, &dataSize);
+        //unsigned char *data = raylib_loadfiledata(fileName, &dataSize);
 
         FILE *raeFile = fopen(fileName, "rb");
         unsigned char fileId[4] = { 0 };
@@ -2531,14 +2531,14 @@ AutomationEventList LoadAutomationEventList(const char *fileName)
         {
             fread(&eventCount, sizeof(int), 1, raeFile);
             TRACELOG(LOG_WARNING, "Events loaded: %i\n", eventCount);
-            fread(events, sizeof(AutomationEvent), eventCount, raeFile);
+            fread(events, sizeof(raylib_automationevent), eventCount, raeFile);
         }
 
         fclose(raeFile);
         */
 
         // Load events file (text)
-        //unsigned char *buffer = LoadFileText(fileName);
+        //unsigned char *buffer = raylib_loadfiletext(fileName);
         FILE *raeFile = fopen(fileName, "rt");
 
         if (raeFile != NULL)
@@ -2585,7 +2585,7 @@ AutomationEventList LoadAutomationEventList(const char *fileName)
 }
 
 // Unload automation events list from file
-void UnloadAutomationEventList(AutomationEventList list)
+void raylib_unloadautomationeventlist(raylib_automationeventlist list)
 {
 #if defined(SUPPORT_AUTOMATION_EVENTS)
     RL_FREE(list.events);
@@ -2593,24 +2593,24 @@ void UnloadAutomationEventList(AutomationEventList list)
 }
 
 // Export automation events list as text file
-bool ExportAutomationEventList(AutomationEventList list, const char *fileName)
+bool raylib_exportautomationeventlist(raylib_automationeventlist list, const char *fileName)
 {
     bool success = false;
 
 #if defined(SUPPORT_AUTOMATION_EVENTS)
     // Export events as binary file
-    // TODO: Save to memory buffer and SaveFileData()
+    // TODO: Save to memory buffer and raylib_savefiledata()
     /*
     unsigned char fileId[4] = "rAE ";
     FILE *raeFile = fopen(fileName, "wb");
     fwrite(fileId, sizeof(unsigned char), 4, raeFile);
     fwrite(&eventCount, sizeof(int), 1, raeFile);
-    fwrite(events, sizeof(AutomationEvent), eventCount, raeFile);
+    fwrite(events, sizeof(raylib_automationevent), eventCount, raeFile);
     fclose(raeFile);
     */
 
     // Export events as text
-    // TODO: Save to memory buffer and SaveFileText()
+    // TODO: Save to memory buffer and raylib_savefiletext()
     char *txtData = (char *)RL_CALLOC(256*list.count + 2048, sizeof(char)); // 256 characters per line plus some header
 
     int byteCount = 0;
@@ -2635,7 +2635,7 @@ bool ExportAutomationEventList(AutomationEventList list, const char *fileName)
     }
 
     // NOTE: Text data size exported is determined by '\0' (NULL) character
-    success = SaveFileText(fileName, txtData);
+    success = raylib_savefiletext(fileName, txtData);
 
     RL_FREE(txtData);
 #endif
@@ -2644,7 +2644,7 @@ bool ExportAutomationEventList(AutomationEventList list, const char *fileName)
 }
 
 // Setup automation event list to record to
-void SetAutomationEventList(AutomationEventList *list)
+void raylib_setautomationeventlist(raylib_automationeventlist *list)
 {
 #if defined(SUPPORT_AUTOMATION_EVENTS)
     currentEventList = list;
@@ -2652,13 +2652,13 @@ void SetAutomationEventList(AutomationEventList *list)
 }
 
 // Set automation event internal base frame to start recording
-void SetAutomationEventBaseFrame(int frame)
+void raylib_setautomationeventbaseframe(int frame)
 {
     CORE.Time.frameCounter = frame;
 }
 
-// Start recording automation events (AutomationEventList must be set)
-void StartAutomationEventRecording(void)
+// Start recording automation events (raylib_automationeventlist must be set)
+void raylib_startautomationeventrecording(void)
 {
 #if defined(SUPPORT_AUTOMATION_EVENTS)
     automationEventRecording = true;
@@ -2666,7 +2666,7 @@ void StartAutomationEventRecording(void)
 }
 
 // Stop recording automation events
-void StopAutomationEventRecording(void)
+void raylib_stopautomationeventrecording(void)
 {
 #if defined(SUPPORT_AUTOMATION_EVENTS)
     automationEventRecording = false;
@@ -2674,10 +2674,10 @@ void StopAutomationEventRecording(void)
 }
 
 // Play a recorded automation event
-void PlayAutomationEvent(AutomationEvent event)
+void raylib_playautomationevent(raylib_automationevent event)
 {
 #if defined(SUPPORT_AUTOMATION_EVENTS)
-    // WARNING: When should event be played? After/before/replace PollInputEvents()? -> Up to the user!
+    // WARNING: When should event be played? After/before/replace raylib_pollinputevents()? -> Up to the user!
 
     if (!automationEventRecording)      // TODO: Allow recording events while playing?
     {
@@ -2726,23 +2726,23 @@ void PlayAutomationEvent(AutomationEvent event)
                 CORE.Input.Gamepad.axisState[event.params[0]][event.params[1]] = ((float)event.params[2]/32768.0f);
             } break;
     #if defined(SUPPORT_GESTURES_SYSTEM)
-            case INPUT_GESTURE: GESTURES.current = event.params[0]; break;     // param[0]: gesture (enum Gesture) -> rgestures.h: GESTURES.current
+            case INPUT_GESTURE: GESTURES.current = event.params[0]; break;     // param[0]: gesture (enum raylib_gesture) -> rgestures.h: GESTURES.current
     #endif
             // Window event
             case WINDOW_CLOSE: CORE.Window.shouldClose = true; break;
-            case WINDOW_MAXIMIZE: MaximizeWindow(); break;
-            case WINDOW_MINIMIZE: MinimizeWindow(); break;
-            case WINDOW_RESIZE: SetWindowSize(event.params[0], event.params[1]); break;
+            case WINDOW_MAXIMIZE: raylib_maximizewindow(); break;
+            case WINDOW_MINIMIZE: raylib_minimizewindow(); break;
+            case WINDOW_RESIZE: raylib_setwindowsize(event.params[0], event.params[1]); break;
 
             // Custom event
     #if defined(SUPPORT_SCREEN_CAPTURE)
             case ACTION_TAKE_SCREENSHOT:
             {
-                TakeScreenshot(TextFormat("screenshot%03i.png", screenshotCounter));
+                raylib_takescreenshot(raylib_textformat("screenshot%03i.png", screenshotCounter));
                 screenshotCounter++;
             } break;
     #endif
-            case ACTION_SETTARGETFPS: SetTargetFPS(event.params[0]); break;
+            case ACTION_SETTARGETFPS: raylib_settargetfps(event.params[0]); break;
             default: break;
         }
     }
@@ -2754,7 +2754,7 @@ void PlayAutomationEvent(AutomationEvent event)
 //----------------------------------------------------------------------------------
 
 // Check if a key has been pressed once
-bool IsKeyPressed(int key)
+bool raylib_iskeypressed(int key)
 {
 
     bool pressed = false;
@@ -2768,7 +2768,7 @@ bool IsKeyPressed(int key)
 }
 
 // Check if a key has been pressed again
-bool IsKeyPressedRepeat(int key)
+bool raylib_iskeypressedrepeat(int key)
 {
     bool repeat = false;
 
@@ -2781,7 +2781,7 @@ bool IsKeyPressedRepeat(int key)
 }
 
 // Check if a key is being pressed (key held down)
-bool IsKeyDown(int key)
+bool raylib_iskeydown(int key)
 {
     bool down = false;
 
@@ -2794,7 +2794,7 @@ bool IsKeyDown(int key)
 }
 
 // Check if a key has been released once
-bool IsKeyReleased(int key)
+bool raylib_iskeyreleased(int key)
 {
     bool released = false;
 
@@ -2807,7 +2807,7 @@ bool IsKeyReleased(int key)
 }
 
 // Check if a key is NOT being pressed (key not held down)
-bool IsKeyUp(int key)
+bool raylib_iskeyup(int key)
 {
     bool up = false;
 
@@ -2820,7 +2820,7 @@ bool IsKeyUp(int key)
 }
 
 // Get the last key pressed
-int GetKeyPressed(void)
+int raylib_getkeypressed(void)
 {
     int value = 0;
 
@@ -2842,7 +2842,7 @@ int GetKeyPressed(void)
 }
 
 // Get the last char pressed
-int GetCharPressed(void)
+int raylib_getcharpressed(void)
 {
     int value = 0;
 
@@ -2865,7 +2865,7 @@ int GetCharPressed(void)
 
 // Set a custom key to exit program
 // NOTE: default exitKey is set to ESCAPE
-void SetExitKey(int key)
+void raylib_setexitkey(int key)
 {
     CORE.Input.Keyboard.exitKey = key;
 }
@@ -2875,10 +2875,10 @@ void SetExitKey(int key)
 //----------------------------------------------------------------------------------
 
 // NOTE: Functions with a platform-specific implementation on rcore_<platform>.c
-//int SetGamepadMappings(const char *mappings)
+//int raylib_setgamepadmappings(const char *mappings)
 
 // Check if a gamepad is available
-bool IsGamepadAvailable(int gamepad)
+bool raylib_isgamepadavailable(int gamepad)
 {
     bool result = false;
 
@@ -2888,13 +2888,13 @@ bool IsGamepadAvailable(int gamepad)
 }
 
 // Get gamepad internal name id
-const char *GetGamepadName(int gamepad)
+const char *raylib_getgamepadname(int gamepad)
 {
     return CORE.Input.Gamepad.name[gamepad];
 }
 
 // Check if a gamepad button has been pressed once
-bool IsGamepadButtonPressed(int gamepad, int button)
+bool raylib_isgamepadbuttonpressed(int gamepad, int button)
 {
     bool pressed = false;
 
@@ -2905,7 +2905,7 @@ bool IsGamepadButtonPressed(int gamepad, int button)
 }
 
 // Check if a gamepad button is being pressed
-bool IsGamepadButtonDown(int gamepad, int button)
+bool raylib_isgamepadbuttondown(int gamepad, int button)
 {
     bool down = false;
 
@@ -2916,7 +2916,7 @@ bool IsGamepadButtonDown(int gamepad, int button)
 }
 
 // Check if a gamepad button has NOT been pressed once
-bool IsGamepadButtonReleased(int gamepad, int button)
+bool raylib_isgamepadbuttonreleased(int gamepad, int button)
 {
     bool released = false;
 
@@ -2927,7 +2927,7 @@ bool IsGamepadButtonReleased(int gamepad, int button)
 }
 
 // Check if a gamepad button is NOT being pressed
-bool IsGamepadButtonUp(int gamepad, int button)
+bool raylib_isgamepadbuttonup(int gamepad, int button)
 {
     bool up = false;
 
@@ -2938,19 +2938,19 @@ bool IsGamepadButtonUp(int gamepad, int button)
 }
 
 // Get the last gamepad button pressed
-int GetGamepadButtonPressed(void)
+int raylib_getgamepadbuttonpressed(void)
 {
     return CORE.Input.Gamepad.lastButtonPressed;
 }
 
 // Get gamepad axis count
-int GetGamepadAxisCount(int gamepad)
+int raylib_getgamepadaxiscount(int gamepad)
 {
     return CORE.Input.Gamepad.axisCount[gamepad];
 }
 
 // Get axis movement vector for a gamepad
-float GetGamepadAxisMovement(int gamepad, int axis)
+float raylib_getgamepadaxismovement(int gamepad, int axis)
 {
     float value = 0;
 
@@ -2965,11 +2965,11 @@ float GetGamepadAxisMovement(int gamepad, int axis)
 //----------------------------------------------------------------------------------
 
 // NOTE: Functions with a platform-specific implementation on rcore_<platform>.c
-//void SetMousePosition(int x, int y)
-//void SetMouseCursor(int cursor)
+//void raylib_setmouseposition(int x, int y)
+//void raylib_setmousecursor(int cursor)
 
 // Check if a mouse button has been pressed once
-bool IsMouseButtonPressed(int button)
+bool raylib_ismousebuttonpressed(int button)
 {
     bool pressed = false;
 
@@ -2982,7 +2982,7 @@ bool IsMouseButtonPressed(int button)
 }
 
 // Check if a mouse button is being pressed
-bool IsMouseButtonDown(int button)
+bool raylib_ismousebuttondown(int button)
 {
     bool down = false;
 
@@ -2995,7 +2995,7 @@ bool IsMouseButtonDown(int button)
 }
 
 // Check if a mouse button has been released once
-bool IsMouseButtonReleased(int button)
+bool raylib_ismousebuttonreleased(int button)
 {
     bool released = false;
 
@@ -3008,7 +3008,7 @@ bool IsMouseButtonReleased(int button)
 }
 
 // Check if a mouse button is NOT being pressed
-bool IsMouseButtonUp(int button)
+bool raylib_ismousebuttonup(int button)
 {
     bool up = false;
 
@@ -3021,23 +3021,23 @@ bool IsMouseButtonUp(int button)
 }
 
 // Get mouse position X
-int GetMouseX(void)
+int raylib_getmousex(void)
 {
     int mouseX = (int)((CORE.Input.Mouse.currentPosition.x + CORE.Input.Mouse.offset.x)*CORE.Input.Mouse.scale.x);
     return mouseX;
 }
 
 // Get mouse position Y
-int GetMouseY(void)
+int raylib_getmousey(void)
 {
     int mouseY = (int)((CORE.Input.Mouse.currentPosition.y + CORE.Input.Mouse.offset.y)*CORE.Input.Mouse.scale.y);
     return mouseY;
 }
 
 // Get mouse position XY
-Vector2 GetMousePosition(void)
+raylib_vector2 raylib_getmouseposition(void)
 {
-    Vector2 position = { 0 };
+    raylib_vector2 position = { 0 };
 
     position.x = (CORE.Input.Mouse.currentPosition.x + CORE.Input.Mouse.offset.x)*CORE.Input.Mouse.scale.x;
     position.y = (CORE.Input.Mouse.currentPosition.y + CORE.Input.Mouse.offset.y)*CORE.Input.Mouse.scale.y;
@@ -3046,9 +3046,9 @@ Vector2 GetMousePosition(void)
 }
 
 // Get mouse delta between frames
-Vector2 GetMouseDelta(void)
+raylib_vector2 raylib_getmousedelta(void)
 {
-    Vector2 delta = { 0 };
+    raylib_vector2 delta = { 0 };
 
     delta.x = CORE.Input.Mouse.currentPosition.x - CORE.Input.Mouse.previousPosition.x;
     delta.y = CORE.Input.Mouse.currentPosition.y - CORE.Input.Mouse.previousPosition.y;
@@ -3058,20 +3058,20 @@ Vector2 GetMouseDelta(void)
 
 // Set mouse offset
 // NOTE: Useful when rendering to different size targets
-void SetMouseOffset(int offsetX, int offsetY)
+void raylib_setmouseoffset(int offsetX, int offsetY)
 {
-    CORE.Input.Mouse.offset = (Vector2){ (float)offsetX, (float)offsetY };
+    CORE.Input.Mouse.offset = (raylib_vector2){ (float)offsetX, (float)offsetY };
 }
 
 // Set mouse scaling
 // NOTE: Useful when rendering to different size targets
-void SetMouseScale(float scaleX, float scaleY)
+void raylib_setmousescale(float scaleX, float scaleY)
 {
-    CORE.Input.Mouse.scale = (Vector2){ scaleX, scaleY };
+    CORE.Input.Mouse.scale = (raylib_vector2){ scaleX, scaleY };
 }
 
 // Get mouse wheel movement Y
-float GetMouseWheelMove(void)
+float raylib_getmousewheelmove(void)
 {
     float result = 0.0f;
 
@@ -3082,9 +3082,9 @@ float GetMouseWheelMove(void)
 }
 
 // Get mouse wheel movement X/Y as a vector
-Vector2 GetMouseWheelMoveV(void)
+raylib_vector2 raylib_getmousewheelmovev(void)
 {
-    Vector2 result = { 0 };
+    raylib_vector2 result = { 0 };
 
     result = CORE.Input.Mouse.currentWheelMove;
 
@@ -3096,14 +3096,14 @@ Vector2 GetMouseWheelMoveV(void)
 //----------------------------------------------------------------------------------
 
 // Get touch position X for touch point 0 (relative to screen size)
-int GetTouchX(void)
+int raylib_gettouchx(void)
 {
     int touchX = (int)CORE.Input.Touch.position[0].x;
     return touchX;
 }
 
 // Get touch position Y for touch point 0 (relative to screen size)
-int GetTouchY(void)
+int raylib_gettouchy(void)
 {
     int touchY = (int)CORE.Input.Touch.position[0].y;
     return touchY;
@@ -3111,9 +3111,9 @@ int GetTouchY(void)
 
 // Get touch position XY for a touch point index (relative to screen size)
 // TODO: Touch position should be scaled depending on display size and render size
-Vector2 GetTouchPosition(int index)
+raylib_vector2 raylib_gettouchposition(int index)
 {
-    Vector2 position = { -1.0f, -1.0f };
+    raylib_vector2 position = { -1.0f, -1.0f };
 
     if (index < MAX_TOUCH_POINTS) position = CORE.Input.Touch.position[index];
     else TRACELOG(LOG_WARNING, "INPUT: Required touch point out of range (Max touch points: %i)", MAX_TOUCH_POINTS);
@@ -3122,7 +3122,7 @@ Vector2 GetTouchPosition(int index)
 }
 
 // Get touch point identifier for given index
-int GetTouchPointId(int index)
+int raylib_gettouchpointid(int index)
 {
     int id = -1;
 
@@ -3132,7 +3132,7 @@ int GetTouchPointId(int index)
 }
 
 // Get number of touch points
-int GetTouchPointCount(void)
+int raylib_gettouchpointcount(void)
 {
     return CORE.Input.Touch.pointCount;
 }
@@ -3166,7 +3166,7 @@ void InitTimer(void)
     else TRACELOG(LOG_WARNING, "TIMER: Hi-resolution timer not available");
 #endif
 
-    CORE.Time.previous = GetTime();     // Get time as double
+    CORE.Time.previous = raylib_gettime();     // Get time as double
 }
 
 // Set viewport for a provided width and height
@@ -3179,7 +3179,7 @@ void SetupViewport(int width, int height)
     // NOTE: We consider render size (scaled) and offset in case black bars are required and
     // render area does not match full display area (this situation is only applicable on fullscreen mode)
 #if defined(__APPLE__)
-    Vector2 scale = GetWindowScaleDPI();
+    raylib_vector2 scale = raylib_getwindowscaledpi();
     rlViewport(CORE.Window.renderOffset.x/2*scale.x, CORE.Window.renderOffset.y/2*scale.y, (CORE.Window.render.width)*scale.x, (CORE.Window.render.height)*scale.y);
 #else
     rlViewport(CORE.Window.renderOffset.x/2, CORE.Window.renderOffset.y/2, CORE.Window.render.width, CORE.Window.render.height);
@@ -3277,7 +3277,7 @@ void SetupFramebuffer(int width, int height)
 // Scan all files and directories in a base path
 // WARNING: files.paths[] must be previously allocated and
 // contain enough space to store all required paths
-static void ScanDirectoryFiles(const char *basePath, FilePathList *files, const char *filter)
+static void ScanDirectoryFiles(const char *basePath, raylib_filepathlist *files, const char *filter)
 {
     static char path[MAX_FILEPATH_LENGTH] = { 0 };
     memset(path, 0, MAX_FILEPATH_LENGTH);
@@ -3300,7 +3300,7 @@ static void ScanDirectoryFiles(const char *basePath, FilePathList *files, const 
 
                 if (filter != NULL)
                 {
-                    if (IsFileExtension(path, filter))
+                    if (raylib_isfileextension(path, filter))
                     {
                         strcpy(files->paths[files->count], path);
                         files->count++;
@@ -3320,7 +3320,7 @@ static void ScanDirectoryFiles(const char *basePath, FilePathList *files, const 
 }
 
 // Scan all files and directories recursively from a base path
-static void ScanDirectoryFilesRecursively(const char *basePath, FilePathList *files, const char *filter)
+static void ScanDirectoryFilesRecursively(const char *basePath, raylib_filepathlist *files, const char *filter)
 {
     char path[MAX_FILEPATH_LENGTH] = { 0 };
     memset(path, 0, MAX_FILEPATH_LENGTH);
@@ -3341,11 +3341,11 @@ static void ScanDirectoryFilesRecursively(const char *basePath, FilePathList *fi
                 sprintf(path, "%s/%s", basePath, dp->d_name);
             #endif
 
-                if (IsPathFile(path))
+                if (raylib_ispathfile(path))
                 {
                     if (filter != NULL)
                     {
-                        if (IsFileExtension(path, filter))
+                        if (raylib_isfileextension(path, filter))
                         {
                             strcpy(files->paths[files->count], path);
                             files->count++;
@@ -3374,7 +3374,7 @@ static void ScanDirectoryFilesRecursively(const char *basePath, FilePathList *fi
 
 #if defined(SUPPORT_AUTOMATION_EVENTS)
 // Automation event recording
-// NOTE: Recording is by default done at EndDrawing(), before PollInputEvents()
+// NOTE: Recording is by default done at raylib_enddrawing(), before raylib_pollinputevents()
 static void RecordAutomationEvent(void)
 {
     // Checking events in current frame and save them into currentEventList
@@ -3641,7 +3641,7 @@ static void RecordAutomationEvent(void)
 #if !defined(SUPPORT_MODULE_RTEXT)
 // Formatting of text with variables to 'embed'
 // WARNING: String returned will expire after this function is called MAX_TEXTFORMAT_BUFFERS times
-const char *TextFormat(const char *text, ...)
+const char *raylib_textformat(const char *text, ...)
 {
 #ifndef MAX_TEXTFORMAT_BUFFERS
     #define MAX_TEXTFORMAT_BUFFERS      4        // Maximum number of static buffers for text formatting

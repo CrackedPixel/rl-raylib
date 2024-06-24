@@ -52,8 +52,8 @@
 #define RGFW_OPENGL_ES2
 #endif
 
-void ShowCursor(void);
-void CloseWindow(void);
+void raylib_show_cursor(void);
+void raylib_closewindow(void);
 
 #ifdef __linux__
 #define _INPUT_EVENT_CODES_H
@@ -67,9 +67,9 @@ void CloseWindow(void);
 
 #if defined(__WIN32) || defined(__WIN64)
 #define WIN32_LEAN_AND_MEAN
-#define Rectangle rectangle_win32
-#define CloseWindow CloseWindow_win32
-#define ShowCursor __imp_ShowCursor
+#define raylib_rectangle rectangle_win32
+#define raylib_closewindow CloseWindow_win32
+#define raylib_show_cursor __imp_ShowCursor
 #define _APISETSTRING_
 #endif
 
@@ -85,10 +85,10 @@ __declspec(dllimport) int __stdcall  MultiByteToWideChar(unsigned int CodePage, 
 #include "../external/RGFW.h"
 
 #if defined(__WIN32) || defined(__WIN64)
-#undef DrawText
-#undef ShowCursor
-#undef CloseWindow
-#undef Rectangle
+#undef raylib_draw_text
+#undef raylib_show_cursor
+#undef raylib_closewindow
+#undef raylib_rectangle
 #endif
 
 #ifdef __APPLE__
@@ -130,7 +130,7 @@ bool InitGraphicsDevice(void);   // Initialize graphics device
 //----------------------------------------------------------------------------------
 
 // Check if application should close
-bool WindowShouldClose(void)
+bool raylib_windowshouldclose(void)
 {   
     if (CORE.Window.shouldClose == false)
         CORE.Window.shouldClose = RGFW_window_shouldClose(platform.window);
@@ -139,41 +139,41 @@ bool WindowShouldClose(void)
 }
 
 // Toggle fullscreen mode
-void ToggleFullscreen(void)
+void raylib_togglefullscreen(void)
 {   
     RGFW_window_maximize(platform.window);
-    ToggleBorderlessWindowed();
+    raylib_toggleborderlesswindowed();
 }
 
 // Toggle borderless windowed mode
-void ToggleBorderlessWindowed(void)
+void raylib_toggleborderlesswindowed(void)
 {
     CORE.Window.flags & FLAG_WINDOW_UNDECORATED;
     
     if (platform.window != NULL)
-        TRACELOG(LOG_WARNING, "ToggleBorderlessWindowed() after window creation not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_toggleborderlesswindowed() after window creation not available on target platform");
 }
 
 // Set window state: maximized, if resizable
-void MaximizeWindow(void)
+void raylib_maximizewindow(void)
 {
     RGFW_window_maximize(platform.window);
 }
 
 // Set window state: minimized
-void MinimizeWindow(void)
+void raylib_minimizewindow(void)
 {
     RGFW_window_minimize(platform.window);
 }
 
 // Set window state: not minimized/maximized
-void RestoreWindow(void)
+void raylib_restorewindow(void)
 {
     RGFW_window_restore(platform.window);
 }
 
 // Set window configuration state using flags
-void SetWindowState(unsigned int flags)
+void raylib_setwindowstate(unsigned int flags)
 {
     CORE.Window.flags |= flags;
 
@@ -184,7 +184,7 @@ void SetWindowState(unsigned int flags)
     if (flags & FLAG_FULLSCREEN_MODE)
     {
         RGFW_window_maximize(platform.window);
-        ToggleBorderlessWindowed();
+        raylib_toggleborderlesswindowed();
     }
     if (flags & FLAG_WINDOW_RESIZABLE)
     {
@@ -193,7 +193,7 @@ void SetWindowState(unsigned int flags)
     }
     if (flags & FLAG_WINDOW_UNDECORATED)
     {
-        ToggleBorderlessWindowed();
+        raylib_toggleborderlesswindowed();
     }
     if (flags & FLAG_WINDOW_HIDDEN)
     {
@@ -209,31 +209,31 @@ void SetWindowState(unsigned int flags)
     }
     if (flags & FLAG_WINDOW_UNFOCUSED)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_WINDOW_UNFOCUSED is not supported on PLATFORM_DESKTOP_SDL");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_WINDOW_UNFOCUSED is not supported on PLATFORM_DESKTOP_SDL");
     }
     if (flags & FLAG_WINDOW_TOPMOST)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_WINDOW_TOPMOST is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_WINDOW_TOPMOST is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_ALWAYS_RUN)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_WINDOW_ALWAYS_RUN is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_WINDOW_ALWAYS_RUN is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_TRANSPARENT)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_WINDOW_TRANSPARENT is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_WINDOW_TRANSPARENT is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_HIGHDPI)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_WINDOW_HIGHDPI is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_WINDOW_HIGHDPI is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_MOUSE_PASSTHROUGH)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_WINDOW_MOUSE_PASSTHROUGH is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_WINDOW_MOUSE_PASSTHROUGH is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_BORDERLESS_WINDOWED_MODE)
     {
-        ToggleBorderlessWindowed();
+        raylib_toggleborderlesswindowed();
     }
     if (flags & FLAG_MSAA_4X_HINT)
     {
@@ -241,12 +241,12 @@ void SetWindowState(unsigned int flags)
     }
     if (flags & FLAG_INTERLACED_HINT)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState() - FLAG_INTERLACED_HINT is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate() - FLAG_INTERLACED_HINT is not supported on PLATFORM_DESKTOP_RGFW");
     }
 }
 
 // Clear window configuration state flags
-void ClearWindowState(unsigned int flags)
+void raylib_clearwindowstate(unsigned int flags)
 {
     CORE.Window.flags &= ~flags;
 
@@ -256,7 +256,7 @@ void ClearWindowState(unsigned int flags)
     }
     if (flags & FLAG_FULLSCREEN_MODE)
     {
-        ToggleBorderlessWindowed();
+        raylib_toggleborderlesswindowed();
         RGFW_window_restore(platform.window);
         CORE.Window.fullscreen = false;
     }
@@ -267,7 +267,7 @@ void ClearWindowState(unsigned int flags)
     }
     if (flags & FLAG_WINDOW_UNDECORATED)
     {
-        ToggleBorderlessWindowed();
+        raylib_toggleborderlesswindowed();
     }
     if (flags & FLAG_WINDOW_HIDDEN)
     {
@@ -283,33 +283,33 @@ void ClearWindowState(unsigned int flags)
     }
     if (flags & FLAG_WINDOW_UNFOCUSED)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_WINDOW_UNFOCUSED is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_WINDOW_UNFOCUSED is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_TOPMOST)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_WINDOW_TOPMOST is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_WINDOW_TOPMOST is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_ALWAYS_RUN)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_WINDOW_ALWAYS_RUN is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_WINDOW_ALWAYS_RUN is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_TRANSPARENT)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_WINDOW_TRANSPARENT is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_WINDOW_TRANSPARENT is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_HIGHDPI)
     {
         // NOTE: There also doesn't seem to be a feature to disable high DPI once enabled
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_WINDOW_HIGHDPI is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_WINDOW_HIGHDPI is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_WINDOW_MOUSE_PASSTHROUGH)
     {
         //SDL_SetWindowGrab(platform.window, SDL_TRUE);
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_WINDOW_MOUSE_PASSTHROUGH is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_WINDOW_MOUSE_PASSTHROUGH is not supported on PLATFORM_DESKTOP_RGFW");
     }
     if (flags & FLAG_BORDERLESS_WINDOWED_MODE)
     {
-        ToggleFullscreen();
+        raylib_togglefullscreen();
     }
     if (flags & FLAG_MSAA_4X_HINT)
     {
@@ -317,12 +317,12 @@ void ClearWindowState(unsigned int flags)
     }
     if (flags & FLAG_INTERLACED_HINT)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState() - FLAG_INTERLACED_HINT is not supported on PLATFORM_DESKTOP_RGFW");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate() - FLAG_INTERLACED_HINT is not supported on PLATFORM_DESKTOP_RGFW");
     }
 }
 
 // Set icon for window
-void SetWindowIcon(Image image)
+void raylib_setwindowicon(raylib_image image)
 {
     i32 channels = 4; 
 
@@ -370,32 +370,32 @@ void SetWindowIcon(Image image)
 }
 
 // Set icon for window
-void SetWindowIcons(Image *images, int count)
+void raylib_setwindowicons(raylib_image *images, int count)
 {
-    TRACELOG(LOG_WARNING, "SetWindowIcons() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowicons() not available on target platform");
 }
 
 // Set title for window
-void SetWindowTitle(const char *title)
+void raylib_setwindowtitle(const char *title)
 {
     RGFW_window_setName(platform.window, title);
     CORE.Window.title = title;
 }
 
 // Set window position on screen (windowed mode)
-void SetWindowPosition(int x, int y)
+void raylib_setwindowposition(int x, int y)
 {
     RGFW_window_move(platform.window, RGFW_VECTOR(x, y));
 }
 
 // Set monitor for the current window
-void SetWindowMonitor(int monitor)
+void raylib_setwindowmonitor(int monitor)
 {
     RGFW_window_moveToMonitor(platform.window, RGFW_getMonitors()[monitor]);
 }
 
 // Set window minimum dimensions (FLAG_WINDOW_RESIZABLE)
-void SetWindowMinSize(int width, int height)
+void raylib_setwindowminsize(int width, int height)
 {
     RGFW_window_setMinSize(platform.window, RGFW_AREA(width, height));
     CORE.Window.screenMin.width = width;
@@ -403,7 +403,7 @@ void SetWindowMinSize(int width, int height)
 }
 
 // Set window maximum dimensions (FLAG_WINDOW_RESIZABLE)
-void SetWindowMaxSize(int width, int height)
+void raylib_setwindowmaxsize(int width, int height)
 {
     RGFW_window_setMaxSize(platform.window, RGFW_AREA(width, height));
     CORE.Window.screenMax.width = width;
@@ -411,19 +411,19 @@ void SetWindowMaxSize(int width, int height)
 }
 
 // Set window dimensions
-void SetWindowSize(int width, int height)
+void raylib_setwindowsize(int width, int height)
 {
     RGFW_window_resize(platform.window, RGFW_AREA(width, height));
 }
 
 // Set window opacity, value opacity is between 0.0 and 1.0
-void SetWindowOpacity(float opacity)
+void raylib_setwindowopacity(float opacity)
 {
-    TRACELOG(LOG_WARNING, "SetWindowOpacity() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowopacity() not available on target platform");
 }
 
 // Set window focused
-void SetWindowFocused(void)
+void raylib_setwindowfocused(void)
 {
     RGFW_window_show(platform.window);
 }
@@ -439,7 +439,7 @@ void *GetWindowHandle(void)
 }
 
 // Get number of monitors
-int GetMonitorCount(void)
+int raylib_getmonitorcount(void)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
     u32 i;
@@ -452,7 +452,7 @@ int GetMonitorCount(void)
 }
 
 // Get number of monitors
-int GetCurrentMonitor(void)
+int raylib_getcurrentmonitor(void)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
     RGFW_monitor mon = RGFW_window_getMonitor(platform.window);
@@ -468,15 +468,15 @@ int GetCurrentMonitor(void)
 }
 
 // Get selected monitor position
-Vector2 GetMonitorPosition(int monitor)
+raylib_vector2 raylib_getmonitorposition(int monitor)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
 
-    return (Vector2){mons[monitor].rect.x, mons[monitor].rect.y}; 
+    return (raylib_vector2){mons[monitor].rect.x, mons[monitor].rect.y}; 
 }
 
 // Get selected monitor width (currently used by monitor)
-int GetMonitorWidth(int monitor)
+int raylib_getmonitorwidth(int monitor)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
 
@@ -484,7 +484,7 @@ int GetMonitorWidth(int monitor)
 }
 
 // Get selected monitor height (currently used by monitor)
-int GetMonitorHeight(int monitor)
+int raylib_getmonitorheight(int monitor)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
 
@@ -493,7 +493,7 @@ int GetMonitorHeight(int monitor)
 }
 
 // Get selected monitor physical width in millimetres
-int GetMonitorPhysicalWidth(int monitor)
+int raylib_getmonitorphysicalwidth(int monitor)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
 
@@ -501,7 +501,7 @@ int GetMonitorPhysicalWidth(int monitor)
 }
 
 // Get selected monitor physical height in millimetres
-int GetMonitorPhysicalHeight(int monitor)
+int raylib_getmonitorphysicalheight(int monitor)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
 
@@ -509,14 +509,14 @@ int GetMonitorPhysicalHeight(int monitor)
 }
 
 // Get selected monitor refresh rate
-int GetMonitorRefreshRate(int monitor)
+int raylib_getmonitorrefreshrate(int monitor)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorRefreshRate() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getmonitorrefreshrate() not implemented on target platform");
     return 0;
 }
 
 // Get the human-readable, UTF-8 encoded name of the selected monitor
-const char *GetMonitorName(int monitor)
+const char *raylib_getmonitorname(int monitor)
 {
     RGFW_monitor* mons = RGFW_getMonitors();
 
@@ -524,69 +524,69 @@ const char *GetMonitorName(int monitor)
 }
 
 // Get window position XY on monitor
-Vector2 GetWindowPosition(void)
+raylib_vector2 raylib_getwindowposition(void)
 {
-    return (Vector2){ platform.window->r.x, platform.window->r.y };
+    return (raylib_vector2){ platform.window->r.x, platform.window->r.y };
 }
 
 // Get window scale DPI factor for current monitor
-Vector2 GetWindowScaleDPI(void)
+raylib_vector2 raylib_getwindowscaledpi(void)
 {
     RGFW_monitor monitor = RGFW_window_getMonitor(platform.window);
 
-    return (Vector2){((u32)monitor.scaleX) * platform.window->r.w, ((u32) monitor.scaleX) * platform.window->r.h};
+    return (raylib_vector2){((u32)monitor.scaleX) * platform.window->r.w, ((u32) monitor.scaleX) * platform.window->r.h};
 }
 
 // Set clipboard text content
-void SetClipboardText(const char *text)
+void raylib_setclipboardtext(const char *text)
 {
     RGFW_writeClipboard(text, strlen(text));
 }
 
 // Get clipboard text content
 // NOTE: returned string is allocated and freed by GLFW
-const char *GetClipboardText(void)
+const char *raylib_getclipboardtext(void)
 {
     return RGFW_readClipboard(NULL);
 }
 
 // Show mouse cursor
-void ShowCursor(void)
+void raylib_show_cursor(void)
 {
     RGFW_window_showMouse(platform.window, true);
     CORE.Input.Mouse.cursorHidden = false;
 }
 
 // Hides mouse cursor
-void HideCursor(void)
+void raylib_hidecursor(void)
 {
     RGFW_window_showMouse(platform.window, false);
     CORE.Input.Mouse.cursorHidden = true;
 }
 
 // Enables cursor (unlock cursor)
-void EnableCursor(void)
+void raylib_enablecursor(void)
 {
     RGFW_window_mouseUnhold(platform.window);
 
     // Set cursor position in the middle
-    SetMousePosition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
+    raylib_setmouseposition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
     RGFW_window_showMouse(platform.window, true);
     CORE.Input.Mouse.cursorHidden = false;
 }
 
 // Disables cursor (lock cursor)
-void DisableCursor(void)
+void raylib_disablecursor(void)
 {
     RGFW_window_mouseHold(platform.window);
     // Set cursor position in the middle
-    SetMousePosition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
+    raylib_setmouseposition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
 
-    HideCursor();
+    raylib_hidecursor();
 }
 
 // Swap back buffer with front buffer (screen drawing)
-void SwapScreenBuffer(void)
+void raylib_swapscreenbuffer(void)
 {
     RGFW_window_swapBuffers(platform.window);
 }
@@ -596,7 +596,7 @@ void SwapScreenBuffer(void)
 //----------------------------------------------------------------------------------
 
 // Get elapsed time measure in seconds since InitTimer()
-double GetTime(void)
+double raylib_gettime(void)
 {
     double time = 0.0;
     unsigned long long int nanoSeconds = RGFW_getTimeNS();
@@ -610,7 +610,7 @@ double GetTime(void)
 // A user could craft a malicious string performing another action.
 // Only call this function yourself not with user input or make sure to check the string yourself.
 // Ref: https://github.com/raysan5/raylib/issues/686
-void OpenURL(const char *url)
+void raylib_openurl(const char *url)
 {
     // Security check to (partially) avoid malicious code on target platform
     if (strchr(url, '\'') != NULL) TRACELOG(LOG_WARNING, "SYSTEM: Provided URL could be potentially malicious, avoid [\'] character");
@@ -625,22 +625,22 @@ void OpenURL(const char *url)
 //----------------------------------------------------------------------------------
 
 // Set internal gamepad mappings
-int SetGamepadMappings(const char *mappings)
+int raylib_setgamepadmappings(const char *mappings)
 {
-    TRACELOG(LOG_WARNING, "SetGamepadMappings() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setgamepadmappings() not implemented on target platform");
     return 0;
 }
 
 // Set mouse position XY
-void SetMousePosition(int x, int y)
+void raylib_setmouseposition(int x, int y)
 {
     RGFW_window_moveMouse(platform.window, RGFW_VECTOR(x, y));
-    CORE.Input.Mouse.currentPosition = (Vector2){ (float)x, (float)y };
+    CORE.Input.Mouse.currentPosition = (raylib_vector2){ (float)x, (float)y };
     CORE.Input.Mouse.previousPosition = CORE.Input.Mouse.currentPosition;
 }
 
 // Set mouse cursor
-void SetMouseCursor(int cursor)
+void raylib_setmousecursor(int cursor)
 {
     switch (cursor) {
         case MOUSE_CURSOR_DEFAULT:
@@ -672,10 +672,10 @@ void SetMouseCursor(int cursor)
     }
 }
 
-static KeyboardKey ConvertScancodeToKey(u32 keycode);
+static raylib_keyboardkey ConvertScancodeToKey(u32 keycode);
 
 // Register all input events
-void PollInputEvents(void) 
+void raylib_pollinputevents(void) 
 {
 #if defined(SUPPORT_GESTURES_SYSTEM)
     // NOTE: Gestures update must be called every frame to reset gestures correctly
@@ -738,8 +738,8 @@ void PollInputEvents(void)
     #if defined(RGFW_X11) //|| defined(RGFW_MACOS)
     if (platform.window->src.winArgs & RGFW_HOLD_MOUSE) 
     {
-        CORE.Input.Mouse.previousPosition = (Vector2){ 0.0f, 0.0f };
-        CORE.Input.Mouse.currentPosition = (Vector2){ 0.0f, 0.0f };
+        CORE.Input.Mouse.previousPosition = (raylib_vector2){ 0.0f, 0.0f };
+        CORE.Input.Mouse.currentPosition = (raylib_vector2){ 0.0f, 0.0f };
     }
     else {
         CORE.Input.Mouse.previousPosition = CORE.Input.Mouse.currentPosition;
@@ -810,7 +810,7 @@ void PollInputEvents(void)
             // Keyboard events
             case RGFW_keyPressed:
             {
-                KeyboardKey key = ConvertScancodeToKey(event->keyCode);
+                raylib_keyboardkey key = ConvertScancodeToKey(event->keyCode);
                 
                 if (key != KEY_NULL) {
                     // If key was up, add it to the key pressed queue
@@ -841,7 +841,7 @@ void PollInputEvents(void)
 
             case RGFW_keyReleased:
             {
-                KeyboardKey key = ConvertScancodeToKey(event->keyCode);
+                raylib_keyboardkey key = ConvertScancodeToKey(event->keyCode);
                 if (key != KEY_NULL) CORE.Input.Keyboard.currentKeyState[key] = 0;
             } break;
 
@@ -885,7 +885,7 @@ void PollInputEvents(void)
             {
                 if (platform.window->src.winArgs & RGFW_HOLD_MOUSE) {
                                         
-                    CORE.Input.Mouse.previousPosition = (Vector2){ 0.0f, 0.0f };
+                    CORE.Input.Mouse.previousPosition = (raylib_vector2){ 0.0f, 0.0f };
                     
                     if ((event->point.x - (platform.window->r.w / 2)) * 2)
                         CORE.Input.Mouse.previousPosition.x = CORE.Input.Mouse.currentPosition.x;    
@@ -1038,13 +1038,13 @@ void PollInputEvents(void)
 
             // Register touch points position, only one point registered
             if (touchAction == 2 || realTouch) gestureEvent.position[0] = CORE.Input.Touch.position[0];
-            else gestureEvent.position[0] = GetMousePosition();
+            else gestureEvent.position[0] = raylib_getmouseposition();
 
             // Normalize gestureEvent.position[0] for CORE.Window.screen.width and CORE.Window.screen.height
-            gestureEvent.position[0].x /= (float)GetScreenWidth();
-            gestureEvent.position[0].y /= (float)GetScreenHeight();
+            gestureEvent.position[0].x /= (float)raylib_getscreenwidth();
+            gestureEvent.position[0].y /= (float)raylib_getscreenheight();
 
-            // Gesture data is sent to gestures-system for processing
+            // raylib_gesture data is sent to gestures-system for processing
             ProcessGestureEvent(gestureEvent);
 
             touchAction = -1;
@@ -1161,7 +1161,7 @@ int InitPlatform(void)
     // TODO: Initialize input events system
     // It could imply keyboard, mouse, gamepad, touch...
     // Depending on the platform libraries/SDK it could use a callback mechanism
-    // For system events and inputs evens polling on a per-frame basis, use PollInputEvents()
+    // For system events and inputs evens polling on a per-frame basis, use raylib_pollinputevents()
     //----------------------------------------------------------------------------
     // ...
     //----------------------------------------------------------------------------
@@ -1173,7 +1173,7 @@ int InitPlatform(void)
 
     // TODO: Initialize storage system
     //----------------------------------------------------------------------------
-    CORE.Storage.basePath = GetWorkingDirectory();
+    CORE.Storage.basePath = raylib_getworkingdirectory();
     //----------------------------------------------------------------------------
 
     #ifdef RGFW_X11
@@ -1196,7 +1196,7 @@ void ClosePlatform(void)
 }
 
 
-static KeyboardKey ConvertScancodeToKey(u32 keycode) {
+static raylib_keyboardkey ConvertScancodeToKey(u32 keycode) {
     switch (keycode) {
         case RGFW_Quote:
             return KEY_APOSTROPHE;

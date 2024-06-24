@@ -443,7 +443,7 @@ spatialization model is fairly simple and is roughly on feature parity with Open
 environmental occlusion are not currently supported, but planned for the future. The supported
 features include:
 
-  * Sound and listener positioning and orientation with cones
+  * raylib_sound and listener positioning and orientation with cones
   * Attenuation models: none, inverse, linear and exponential
   * Doppler effect
 
@@ -1363,7 +1363,7 @@ The direction works the same way as a listener and represents the sound's forwar
     ma_sound_set_direction(&sound, forwardX, forwardY, forwardZ);
     ```
 
-Sound's also have a cone for controlling directional attenuation. This works exactly the same as
+raylib_sound's also have a cone for controlling directional attenuation. This works exactly the same as
 listeners:
 
     ```c
@@ -1432,12 +1432,12 @@ You can fade sounds in and out with `ma_sound_set_fade_in_pcm_frames()` and
 starting volume:
 
     ```c
-    // Fade in over 1 second.
+    // raylib_fade in over 1 second.
     ma_sound_set_fade_in_milliseconds(&sound, 0, 1, 1000);
 
     // ... sometime later ...
 
-    // Fade out over 1 second, starting from the current volume.
+    // raylib_fade out over 1 second, starting from the current volume.
     ma_sound_set_fade_in_milliseconds(&sound, -1, 0, 1000);
     ```
 
@@ -1497,7 +1497,7 @@ source, mainly for convenience:
     ma_sound_get_length_in_pcm_frames(&sound, &length);
     ```
 
-Sound groups have the same API as sounds, only they are called `ma_sound_group`, and since they do
+raylib_sound groups have the same API as sounds, only they are called `ma_sound_group`, and since they do
 not have any notion of a data source, anything relating to a data source is unavailable.
 
 Internally, sound data is loaded via the `ma_decoder` API which means by default it only supports
@@ -2715,7 +2715,7 @@ The different dithering modes include the following, in order of efficiency:
     | Type      | Enum Token               |
     +-----------+--------------------------+
     | None      | ma_dither_mode_none      |
-    | Rectangle | ma_dither_mode_rectangle |
+    | raylib_rectangle | ma_dither_mode_rectangle |
     | Triangle  | ma_dither_mode_triangle  |
     +-----------+--------------------------+
 
@@ -11014,7 +11014,7 @@ typedef struct ma_engine ma_engine;
 typedef struct ma_sound  ma_sound;
 
 
-/* Sound flags. */
+/* raylib_sound flags. */
 typedef enum
 {
     /* Resource manager flags. */
@@ -74501,7 +74501,7 @@ static ma_node_config ma_engine_node_base_node_config_init(const ma_engine_node_
     ma_node_config baseNodeConfig;
 
     if (pConfig->type == ma_engine_node_type_sound) {
-        /* Sound. */
+        /* raylib_sound. */
         baseNodeConfig = ma_node_config_init();
         baseNodeConfig.vtable       = &g_ma_engine_node_vtable__sound;
         baseNodeConfig.initialState = ma_node_state_stopped;    /* Sounds are stopped by default. */

@@ -105,8 +105,8 @@ static int get_pixel_data_size(int width, int height, int format);
 // Loading DDS from memory image data (compressed or uncompressed)
 void *rl_load_dds_from_memory(const unsigned char *file_data, unsigned int file_size, int *width, int *height, int *format, int *mips)
 {
-    void *image_data = NULL;        // Image data pointer
-    int image_pixel_size = 0;       // Image pixel size
+    void *image_data = NULL;        // raylib_image data pointer
+    int image_pixel_size = 0;       // raylib_image pixel size
 
     unsigned char *file_data_ptr = (unsigned char *)file_data;
 
@@ -172,8 +172,8 @@ void *rl_load_dds_from_memory(const unsigned char *file_data, unsigned int file_
             *width = header->width;
             *height = header->height;
 
-            if (*width % 4 != 0) LOG("WARNING: IMAGE: DDS file width must be multiple of 4. Image will not display correctly");
-            if (*height % 4 != 0) LOG("WARNING: IMAGE: DDS file height must be multiple of 4. Image will not display correctly");
+            if (*width % 4 != 0) LOG("WARNING: IMAGE: DDS file width must be multiple of 4. raylib_image will not display correctly");
+            if (*height % 4 != 0) LOG("WARNING: IMAGE: DDS file height must be multiple of 4. raylib_image will not display correctly");
 
             image_pixel_size = header->width*header->height;
 
@@ -298,7 +298,7 @@ void *rl_load_dds_from_memory(const unsigned char *file_data, unsigned int file_
 // PKM is a much simpler file format used mainly to contain a single ETC1/ETC2 compressed image (no mipmaps)
 void *rl_load_pkm_from_memory(const unsigned char *file_data, unsigned int file_size, int *width, int *height, int *format, int *mips)
 {
-    void *image_data = NULL;        // Image data pointer
+    void *image_data = NULL;        // raylib_image data pointer
 
     unsigned char *file_data_ptr = (unsigned char *)file_data;
 
@@ -316,8 +316,8 @@ void *rl_load_pkm_from_memory(const unsigned char *file_data, unsigned int file_
         char id[4];                 // "PKM "
         char version[2];            // "10" or "20"
         unsigned short format;      // Data format (big-endian) (Check list below)
-        unsigned short width;       // Texture width (big-endian) (orig_width rounded to multiple of 4)
-        unsigned short height;      // Texture height (big-endian) (orig_height rounded to multiple of 4)
+        unsigned short width;       // raylib_texture width (big-endian) (orig_width rounded to multiple of 4)
+        unsigned short height;      // raylib_texture height (big-endian) (orig_height rounded to multiple of 4)
         unsigned short orig_width;   // Original width (big-endian)
         unsigned short orig_height;  // Original height (big-endian)
     } pkm_header;
@@ -374,7 +374,7 @@ void *rl_load_pkm_from_memory(const unsigned char *file_data, unsigned int file_
 // TODO: Review KTX loading, many things changed!
 void *rl_load_ktx_from_memory(const unsigned char *file_data, unsigned int file_size, int *width, int *height, int *format, int *mips)
 {
-    void *image_data = NULL;        // Image data pointer
+    void *image_data = NULL;        // raylib_image data pointer
 
     unsigned char *file_data_ptr = (unsigned char *)file_data;
 
@@ -401,8 +401,8 @@ void *rl_load_ktx_from_memory(const unsigned char *file_data, unsigned int file_
         unsigned int gl_format;                 // For compressed textures is 0
         unsigned int gl_internal_format;        // Compressed internal format
         unsigned int gl_base_internal_format;   // Same as glFormat (RGB, RGBA, ALPHA...)
-        unsigned int width;                     // Texture image width in pixels
-        unsigned int height;                    // Texture image height in pixels
+        unsigned int width;                     // raylib_texture image width in pixels
+        unsigned int height;                    // raylib_texture image height in pixels
         unsigned int depth;                     // For 2D textures is 0
         unsigned int elements;                  // Number of array elements, usually 0
         unsigned int faces;                     // Cubemap faces, for no-cubemap = 1
@@ -465,8 +465,8 @@ int rl_save_ktx(const char *file_name, void *data, int width, int height, int fo
         unsigned int gl_format;                 // For compressed textures is 0
         unsigned int gl_internal_format;        // Compressed internal format
         unsigned int gl_base_internal_format;   // Same as glFormat (RGB, RGBA, ALPHA...)   // KTX 2.0: UInt32 vkFormat
-        unsigned int width;                     // Texture image width in pixels
-        unsigned int height;                    // Texture image height in pixels
+        unsigned int width;                     // raylib_texture image width in pixels
+        unsigned int height;                    // raylib_texture image height in pixels
         unsigned int depth;                     // For 2D textures is 0
         unsigned int elements;                  // Number of array elements, usually 0
         unsigned int faces;                     // Cubemap faces, for no-cubemap = 1
@@ -571,7 +571,7 @@ int rl_save_ktx(const char *file_name, void *data, int width, int height, int fo
 // NOTE: PVR v2 not supported, use PVR v3 instead
 void *rl_load_pvr_from_memory(const unsigned char *file_data, unsigned int file_size, int *width, int *height, int *format, int *mips)
 {
-    void *image_data = NULL;        // Image data pointer
+    void *image_data = NULL;        // raylib_image data pointer
 
     unsigned char *file_data_ptr = (unsigned char *)file_data;
 
@@ -706,7 +706,7 @@ void *rl_load_pvr_from_memory(const unsigned char *file_data, unsigned int file_
 // Load ASTC compressed image data (ASTC compression)
 void *rl_load_astc_from_memory(const unsigned char *file_data, unsigned int file_size, int *width, int *height, int *format, int *mips)
 {
-    void *image_data = NULL;        // Image data pointer
+    void *image_data = NULL;        // raylib_image data pointer
 
     unsigned char *file_data_ptr = (unsigned char *)file_data;
 

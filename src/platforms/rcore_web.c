@@ -100,7 +100,7 @@ static const char cursorLUT[11][12] = {
     "not-allowed"  // 10 MOUSE_CURSOR_NOT_ALLOWED
 };
 
-Vector2 lockedMousePos = { 0 };
+raylib_vector2 lockedMousePos = { 0 };
 
 //----------------------------------------------------------------------------------
 // Module Internal Functions Declaration
@@ -149,7 +149,7 @@ static EM_BOOL EmscriptenGamepadCallback(int eventType, const EmscriptenGamepadE
 //----------------------------------------------------------------------------------
 
 // Check if application should close
-bool WindowShouldClose(void)
+bool raylib_windowshouldclose(void)
 {
     // Emterpreter-Async required to run sync code
     // https://github.com/emscripten-core/emscripten/wiki/Emterpreter#emterpreter-async-run-synchronous-code
@@ -161,7 +161,7 @@ bool WindowShouldClose(void)
 }
 
 // Toggle fullscreen mode
-void ToggleFullscreen(void)
+void raylib_togglefullscreen(void)
 {
     platform.ourFullscreen = true;
     bool enterFullscreen = false;
@@ -268,7 +268,7 @@ void ToggleFullscreen(void)
 }
 
 // Toggle borderless windowed mode
-void ToggleBorderlessWindowed(void)
+void raylib_toggleborderlesswindowed(void)
 {
     platform.ourFullscreen = true;
     bool enterBorderless = false;
@@ -313,25 +313,25 @@ void ToggleBorderlessWindowed(void)
 }
 
 // Set window state: maximized, if resizable
-void MaximizeWindow(void)
+void raylib_maximizewindow(void)
 {
-    TRACELOG(LOG_WARNING, "MaximizeWindow() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_maximizewindow() not available on target platform");
 }
 
 // Set window state: minimized
-void MinimizeWindow(void)
+void raylib_minimizewindow(void)
 {
-    TRACELOG(LOG_WARNING, "MinimizeWindow() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_minimizewindow() not available on target platform");
 }
 
 // Set window state: not minimized/maximized
-void RestoreWindow(void)
+void raylib_restorewindow(void)
 {
-    TRACELOG(LOG_WARNING, "RestoreWindow() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_restorewindow() not available on target platform");
 }
 
 // Set window configuration state using flags
-void SetWindowState(unsigned int flags)
+void raylib_setwindowstate(unsigned int flags)
 {
     // Check previous state and requested state to apply required changes
     // NOTE: In most cases the functions already change the flags internally
@@ -339,35 +339,35 @@ void SetWindowState(unsigned int flags)
     // State change: FLAG_VSYNC_HINT
     if ((flags & FLAG_VSYNC_HINT) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_VSYNC_HINT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_VSYNC_HINT) not available on target platform");
     }
 
     // State change: FLAG_BORDERLESS_WINDOWED_MODE
     if ((flags & FLAG_BORDERLESS_WINDOWED_MODE) > 0)
     {
-        // NOTE: Window state flag updated inside ToggleBorderlessWindowed() function
+        // NOTE: Window state flag updated inside raylib_toggleborderlesswindowed() function
         const bool wasFullscreen = EM_ASM_INT( { if (document.fullscreenElement) return 1; }, 0);
         if (wasFullscreen)
         {
             const int canvasWidth = EM_ASM_INT( { return document.getElementById('canvas').width; }, 0);
             const int canvasStyleWidth = EM_ASM_INT( { return parseInt(document.getElementById('canvas').style.width); }, 0);
-            if ((CORE.Window.flags & FLAG_FULLSCREEN_MODE) || canvasStyleWidth > canvasWidth) ToggleBorderlessWindowed();
+            if ((CORE.Window.flags & FLAG_FULLSCREEN_MODE) || canvasStyleWidth > canvasWidth) raylib_toggleborderlesswindowed();
         }
-        else ToggleBorderlessWindowed();
+        else raylib_toggleborderlesswindowed();
     }
 
     // State change: FLAG_FULLSCREEN_MODE
     if ((flags & FLAG_FULLSCREEN_MODE) > 0)
     {
-        // NOTE: Window state flag updated inside ToggleFullscreen() function
+        // NOTE: Window state flag updated inside raylib_togglefullscreen() function
         const bool wasFullscreen = EM_ASM_INT( { if (document.fullscreenElement) return 1; }, 0);
         if (wasFullscreen)
         {
             const int canvasWidth = EM_ASM_INT( { return document.getElementById('canvas').width; }, 0);
             const int screenWidth = EM_ASM_INT( { return screen.width; }, 0);
-            if ((CORE.Window.flags & FLAG_BORDERLESS_WINDOWED_MODE) || screenWidth == canvasWidth ) ToggleFullscreen();
+            if ((CORE.Window.flags & FLAG_BORDERLESS_WINDOWED_MODE) || screenWidth == canvasWidth ) raylib_togglefullscreen();
         }
-        else ToggleFullscreen();
+        else raylib_togglefullscreen();
     }
 
     // State change: FLAG_WINDOW_RESIZABLE
@@ -380,43 +380,43 @@ void SetWindowState(unsigned int flags)
     // State change: FLAG_WINDOW_UNDECORATED
     if ((flags & FLAG_WINDOW_UNDECORATED) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_UNDECORATED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_UNDECORATED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_HIDDEN
     if ((flags & FLAG_WINDOW_HIDDEN) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_HIDDEN) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_HIDDEN) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_MINIMIZED
     if ((flags & FLAG_WINDOW_MINIMIZED) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_MINIMIZED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_MINIMIZED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_MAXIMIZED
     if ((flags & FLAG_WINDOW_MAXIMIZED) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_MAXIMIZED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_MAXIMIZED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_UNFOCUSED
     if ((flags & FLAG_WINDOW_UNFOCUSED) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_UNFOCUSED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_UNFOCUSED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_TOPMOST
     if ((flags & FLAG_WINDOW_TOPMOST) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_TOPMOST) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_TOPMOST) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_ALWAYS_RUN
     if ((flags & FLAG_WINDOW_ALWAYS_RUN) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_ALWAYS_RUN) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_ALWAYS_RUN) not available on target platform");
     }
 
     // The following states can not be changed after window creation
@@ -425,36 +425,36 @@ void SetWindowState(unsigned int flags)
     // State change: FLAG_WINDOW_TRANSPARENT
     if ((flags & FLAG_WINDOW_TRANSPARENT) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_TRANSPARENT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_TRANSPARENT) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_HIGHDPI
     if ((flags & FLAG_WINDOW_HIGHDPI) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_HIGHDPI) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_HIGHDPI) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_MOUSE_PASSTHROUGH
     if ((flags & FLAG_WINDOW_MOUSE_PASSTHROUGH) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_WINDOW_MOUSE_PASSTHROUGH) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_WINDOW_MOUSE_PASSTHROUGH) not available on target platform");
     }
 
     // State change: FLAG_MSAA_4X_HINT
     if ((flags & FLAG_MSAA_4X_HINT) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_MSAA_4X_HINT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_MSAA_4X_HINT) not available on target platform");
     }
 
     // State change: FLAG_INTERLACED_HINT
     if ((flags & FLAG_INTERLACED_HINT) > 0)
     {
-        TRACELOG(LOG_WARNING, "SetWindowState(FLAG_INTERLACED_HINT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_setwindowstate(FLAG_INTERLACED_HINT) not available on target platform");
     }
 }
 
 // Clear window configuration state flags
-void ClearWindowState(unsigned int flags)
+void raylib_clearwindowstate(unsigned int flags)
 {
     // Check previous state and requested state to apply required changes
     // NOTE: In most cases the functions already change the flags internally
@@ -462,7 +462,7 @@ void ClearWindowState(unsigned int flags)
     // State change: FLAG_VSYNC_HINT
     if ((flags & FLAG_VSYNC_HINT) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_VSYNC_HINT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_VSYNC_HINT) not available on target platform");
     }
 
     // State change: FLAG_BORDERLESS_WINDOWED_MODE
@@ -504,43 +504,43 @@ void ClearWindowState(unsigned int flags)
     // State change: FLAG_WINDOW_HIDDEN
     if ((flags & FLAG_WINDOW_HIDDEN) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_HIDDEN) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_HIDDEN) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_MINIMIZED
     if ((flags & FLAG_WINDOW_MINIMIZED) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_MINIMIZED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_MINIMIZED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_MAXIMIZED
     if ((flags & FLAG_WINDOW_MAXIMIZED) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_MAXIMIZED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_MAXIMIZED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_UNDECORATED
     if ((flags & FLAG_WINDOW_UNDECORATED) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_UNDECORATED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_UNDECORATED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_UNFOCUSED
     if ((flags & FLAG_WINDOW_UNFOCUSED) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_UNFOCUSED) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_UNFOCUSED) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_TOPMOST
     if ((flags & FLAG_WINDOW_TOPMOST) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_TOPMOST) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_TOPMOST) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_ALWAYS_RUN
     if ((flags & FLAG_WINDOW_ALWAYS_RUN) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_ALWAYS_RUN) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_ALWAYS_RUN) not available on target platform");
     }
 
     // The following states can not be changed after window creation
@@ -549,67 +549,67 @@ void ClearWindowState(unsigned int flags)
     // State change: FLAG_WINDOW_TRANSPARENT
     if ((flags & FLAG_WINDOW_TRANSPARENT) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_TRANSPARENT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_TRANSPARENT) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_HIGHDPI
     if ((flags & FLAG_WINDOW_HIGHDPI) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_HIGHDPI) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_HIGHDPI) not available on target platform");
     }
 
     // State change: FLAG_WINDOW_MOUSE_PASSTHROUGH
     if ((flags & FLAG_WINDOW_MOUSE_PASSTHROUGH) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_WINDOW_MOUSE_PASSTHROUGH) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_WINDOW_MOUSE_PASSTHROUGH) not available on target platform");
     }
 
     // State change: FLAG_MSAA_4X_HINT
     if ((flags & FLAG_MSAA_4X_HINT) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_MSAA_4X_HINT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_MSAA_4X_HINT) not available on target platform");
     }
 
     // State change: FLAG_INTERLACED_HINT
     if ((flags & FLAG_INTERLACED_HINT) > 0)
     {
-        TRACELOG(LOG_WARNING, "ClearWindowState(FLAG_INTERLACED_HINT) not available on target platform");
+        TRACELOG(LOG_WARNING, "raylib_clearwindowstate(FLAG_INTERLACED_HINT) not available on target platform");
     }
 }
 
 // Set icon for window
-void SetWindowIcon(Image image)
+void raylib_setwindowicon(raylib_image image)
 {
-    TRACELOG(LOG_WARNING, "SetWindowIcon() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowicon() not available on target platform");
 }
 
 // Set icon for window, multiple images
-void SetWindowIcons(Image *images, int count)
+void raylib_setwindowicons(raylib_image *images, int count)
 {
-    TRACELOG(LOG_WARNING, "SetWindowIcons() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowicons() not available on target platform");
 }
 
 // Set title for window
-void SetWindowTitle(const char *title)
+void raylib_setwindowtitle(const char *title)
 {
     CORE.Window.title = title;
     emscripten_set_window_title(title);
 }
 
 // Set window position on screen (windowed mode)
-void SetWindowPosition(int x, int y)
+void raylib_setwindowposition(int x, int y)
 {
-    TRACELOG(LOG_WARNING, "SetWindowPosition() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowposition() not available on target platform");
 }
 
 // Set monitor for the current window
-void SetWindowMonitor(int monitor)
+void raylib_setwindowmonitor(int monitor)
 {
-    TRACELOG(LOG_WARNING, "SetWindowMonitor() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowmonitor() not available on target platform");
 }
 
 // Set window minimum dimensions (FLAG_WINDOW_RESIZABLE)
-void SetWindowMinSize(int width, int height)
+void raylib_setwindowminsize(int width, int height)
 {
     CORE.Window.screenMin.width = width;
     CORE.Window.screenMin.height = height;
@@ -619,7 +619,7 @@ void SetWindowMinSize(int width, int height)
 }
 
 // Set window maximum dimensions (FLAG_WINDOW_RESIZABLE)
-void SetWindowMaxSize(int width, int height)
+void raylib_setwindowmaxsize(int width, int height)
 {
     CORE.Window.screenMax.width = width;
     CORE.Window.screenMax.height = height;
@@ -629,21 +629,21 @@ void SetWindowMaxSize(int width, int height)
 }
 
 // Set window dimensions
-void SetWindowSize(int width, int height)
+void raylib_setwindowsize(int width, int height)
 {
     glfwSetWindowSize(platform.handle, width, height);
 }
 
 // Set window opacity, value opacity is between 0.0 and 1.0
-void SetWindowOpacity(float opacity)
+void raylib_setwindowopacity(float opacity)
 {
-    TRACELOG(LOG_WARNING, "SetWindowOpacity() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowopacity() not available on target platform");
 }
 
 // Set window focused
-void SetWindowFocused(void)
+void raylib_setwindowfocused(void)
 {
-    TRACELOG(LOG_WARNING, "SetWindowFocused() not available on target platform");
+    TRACELOG(LOG_WARNING, "raylib_setwindowfocused() not available on target platform");
 }
 
 // Get native window handle
@@ -654,28 +654,28 @@ void *GetWindowHandle(void)
 }
 
 // Get number of monitors
-int GetMonitorCount(void)
+int raylib_getmonitorcount(void)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorCount() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getmonitorcount() not implemented on target platform");
     return 1;
 }
 
 // Get number of monitors
-int GetCurrentMonitor(void)
+int raylib_getcurrentmonitor(void)
 {
-    TRACELOG(LOG_WARNING, "GetCurrentMonitor() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getcurrentmonitor() not implemented on target platform");
     return 0;
 }
 
 // Get selected monitor position
-Vector2 GetMonitorPosition(int monitor)
+raylib_vector2 raylib_getmonitorposition(int monitor)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorPosition() not implemented on target platform");
-    return (Vector2){ 0, 0 };
+    TRACELOG(LOG_WARNING, "raylib_getmonitorposition() not implemented on target platform");
+    return (raylib_vector2){ 0, 0 };
 }
 
 // Get selected monitor width (currently used by monitor)
-int GetMonitorWidth(int monitor)
+int raylib_getmonitorwidth(int monitor)
 {
     // NOTE: Returned value is limited to the current monitor where the browser window is located
     int width = 0;
@@ -684,7 +684,7 @@ int GetMonitorWidth(int monitor)
 }
 
 // Get selected monitor height (currently used by monitor)
-int GetMonitorHeight(int monitor)
+int raylib_getmonitorheight(int monitor)
 {
     // NOTE: Returned value is limited to the current monitor where the browser window is located
     int height = 0;
@@ -693,52 +693,52 @@ int GetMonitorHeight(int monitor)
 }
 
 // Get selected monitor physical width in millimetres
-int GetMonitorPhysicalWidth(int monitor)
+int raylib_getmonitorphysicalwidth(int monitor)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorPhysicalWidth() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getmonitorphysicalwidth() not implemented on target platform");
     return 0;
 }
 
 // Get selected monitor physical height in millimetres
-int GetMonitorPhysicalHeight(int monitor)
+int raylib_getmonitorphysicalheight(int monitor)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorPhysicalHeight() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getmonitorphysicalheight() not implemented on target platform");
     return 0;
 }
 
 // Get selected monitor refresh rate
-int GetMonitorRefreshRate(int monitor)
+int raylib_getmonitorrefreshrate(int monitor)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorRefreshRate() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getmonitorrefreshrate() not implemented on target platform");
     return 0;
 }
 
 // Get the human-readable, UTF-8 encoded name of the selected monitor
-const char *GetMonitorName(int monitor)
+const char *raylib_getmonitorname(int monitor)
 {
-    TRACELOG(LOG_WARNING, "GetMonitorName() not implemented on target platform");
+    TRACELOG(LOG_WARNING, "raylib_getmonitorname() not implemented on target platform");
     return "";
 }
 
 // Get window position XY on monitor
-Vector2 GetWindowPosition(void)
+raylib_vector2 raylib_getwindowposition(void)
 {
     // NOTE: Returned position is relative to the current monitor where the browser window is located
-    Vector2 position = { 0, 0 };
+    raylib_vector2 position = { 0, 0 };
     position.x = (float)EM_ASM_INT( { return window.screenX; }, 0);
     position.y = (float)EM_ASM_INT( { return window.screenY; }, 0);
     return position;
 }
 
 // Get window scale DPI factor for current monitor
-Vector2 GetWindowScaleDPI(void)
+raylib_vector2 raylib_getwindowscaledpi(void)
 {
-    TRACELOG(LOG_WARNING, "GetWindowScaleDPI() not implemented on target platform");
-    return (Vector2){ 1.0f, 1.0f };
+    TRACELOG(LOG_WARNING, "raylib_getwindowscaledpi() not implemented on target platform");
+    return (raylib_vector2){ 1.0f, 1.0f };
 }
 
 // Set clipboard text content
-void SetClipboardText(const char *text)
+void raylib_setclipboardtext(const char *text)
 {
     // Security check to (partially) avoid malicious code
     if (strchr(text, '\'') != NULL) TRACELOG(LOG_WARNING, "SYSTEM: Provided Clipboard could be potentially malicious, avoid [\'] character");
@@ -747,7 +747,7 @@ void SetClipboardText(const char *text)
 
 // Get clipboard text content
 // NOTE: returned string is allocated and freed by GLFW
-const char *GetClipboardText(void)
+const char *raylib_getclipboardtext(void)
 {
 /*
     // Accessing clipboard data from browser is tricky due to security reasons
@@ -768,7 +768,7 @@ const char *GetClipboardText(void)
 }
 
 // Show mouse cursor
-void ShowCursor(void)
+void raylib_show_cursor(void)
 {
     if (CORE.Input.Mouse.cursorHidden)
     {
@@ -779,7 +779,7 @@ void ShowCursor(void)
 }
 
 // Hides mouse cursor
-void HideCursor(void)
+void raylib_hidecursor(void)
 {
     if (!CORE.Input.Mouse.cursorHidden)
     {
@@ -790,30 +790,30 @@ void HideCursor(void)
 }
 
 // Enables cursor (unlock cursor)
-void EnableCursor(void)
+void raylib_enablecursor(void)
 {
     emscripten_exit_pointerlock();
 
     // Set cursor position in the middle
-    SetMousePosition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
+    raylib_setmouseposition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
 
     // NOTE: CORE.Input.Mouse.cursorHidden handled by EmscriptenPointerlockCallback()
 }
 
 // Disables cursor (lock cursor)
-void DisableCursor(void)
+void raylib_disablecursor(void)
 {
     // TODO: figure out how not to hard code the canvas ID here.
     emscripten_request_pointerlock("#canvas", 1);
 
     // Set cursor position in the middle
-    SetMousePosition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
+    raylib_setmouseposition(CORE.Window.screen.width/2, CORE.Window.screen.height/2);
 
     // NOTE: CORE.Input.Mouse.cursorHidden handled by EmscriptenPointerlockCallback()
 }
 
 // Swap back buffer with front buffer (screen drawing)
-void SwapScreenBuffer(void)
+void raylib_swapscreenbuffer(void)
 {
     glfwSwapBuffers(platform.handle);
 }
@@ -823,7 +823,7 @@ void SwapScreenBuffer(void)
 //----------------------------------------------------------------------------------
 
 // Get elapsed time measure in seconds since InitTimer()
-double GetTime(void)
+double raylib_gettime(void)
 {
     double time = glfwGetTime();   // Elapsed time since glfwInit()
     return time;
@@ -834,11 +834,11 @@ double GetTime(void)
 // A user could craft a malicious string performing another action.
 // Only call this function yourself not with user input or make sure to check the string yourself.
 // Ref: https://github.com/raysan5/raylib/issues/686
-void OpenURL(const char *url)
+void raylib_openurl(const char *url)
 {
     // Security check to (partially) avoid malicious code on target platform
     if (strchr(url, '\'') != NULL) TRACELOG(LOG_WARNING, "SYSTEM: Provided URL could be potentially malicious, avoid [\'] character");
-    else emscripten_run_script(TextFormat("window.open('%s', '_blank')", url));
+    else emscripten_run_script(raylib_textformat("window.open('%s', '_blank')", url));
 }
 
 //----------------------------------------------------------------------------------
@@ -846,23 +846,23 @@ void OpenURL(const char *url)
 //----------------------------------------------------------------------------------
 
 // Set internal gamepad mappings
-int SetGamepadMappings(const char *mappings)
+int raylib_setgamepadmappings(const char *mappings)
 {
-    TRACELOG(LOG_INFO, "SetGamepadMappings not implemented in rcore_web.c");
+    TRACELOG(LOG_INFO, "raylib_setgamepadmappings not implemented in rcore_web.c");
 
     return 0;
 }
 
 // Set gamepad vibration
-void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor)
+void raylib_setgamepadvibration(int gamepad, float leftMotor, float rightMotor)
 {
     TRACELOG(LOG_WARNING, "GamepadSetVibration() not implemented on target platform");
 }
 
 // Set mouse position XY
-void SetMousePosition(int x, int y)
+void raylib_setmouseposition(int x, int y)
 {
-    CORE.Input.Mouse.currentPosition = (Vector2){ (float)x, (float)y };
+    CORE.Input.Mouse.currentPosition = (raylib_vector2){ (float)x, (float)y };
     CORE.Input.Mouse.previousPosition = CORE.Input.Mouse.currentPosition;
 
     if (CORE.Input.Mouse.cursorHidden) lockedMousePos = CORE.Input.Mouse.currentPosition;
@@ -872,7 +872,7 @@ void SetMousePosition(int x, int y)
 }
 
 // Set mouse cursor
-void SetMouseCursor(int cursor)
+void raylib_setmousecursor(int cursor)
 {
     if (CORE.Input.Mouse.cursor != cursor)
     {
@@ -883,7 +883,7 @@ void SetMouseCursor(int cursor)
 }
 
 // Register all input events
-void PollInputEvents(void)
+void raylib_pollinputevents(void)
 {
 #if defined(SUPPORT_GESTURES_SYSTEM)
     // NOTE: Gestures update must be called every frame to reset gestures correctly
@@ -913,7 +913,7 @@ void PollInputEvents(void)
 
     // Register previous mouse wheel state
     CORE.Input.Mouse.previousWheelMove = CORE.Input.Mouse.currentWheelMove;
-    CORE.Input.Mouse.currentWheelMove = (Vector2){ 0.0f, 0.0f };
+    CORE.Input.Mouse.currentWheelMove = (raylib_vector2){ 0.0f, 0.0f };
 
     // Register previous mouse position
     CORE.Input.Mouse.previousPosition = CORE.Input.Mouse.currentPosition;
@@ -924,7 +924,7 @@ void PollInputEvents(void)
     // Reset touch positions
     // TODO: It resets on target platform the mouse position and not filled again until a move-event,
     // so, if mouse is not moved it returns a (0, 0) position... this behaviour should be reviewed!
-    //for (int i = 0; i < MAX_TOUCH_POINTS; i++) CORE.Input.Touch.position[i] = (Vector2){ 0, 0 };
+    //for (int i = 0; i < MAX_TOUCH_POINTS; i++) CORE.Input.Touch.position[i] = (raylib_vector2){ 0, 0 };
 
 
     // Gamepad support using emscripten API
@@ -948,7 +948,7 @@ void PollInputEvents(void)
             // Register buttons data for every connected gamepad
             for (int j = 0; (j < gamepadState.numButtons) && (j < MAX_GAMEPAD_BUTTONS); j++)
             {
-                GamepadButton button = -1;
+                raylib_gamepadbutton button = -1;
 
                 // Gamepad Buttons reference: https://www.w3.org/TR/gamepad/#gamepad-interface
                 switch (j)
@@ -1243,7 +1243,7 @@ int InitPlatform(void)
         return -1;
     }
 
-    if ((CORE.Window.flags & FLAG_WINDOW_MINIMIZED) > 0) MinimizeWindow();
+    if ((CORE.Window.flags & FLAG_WINDOW_MINIMIZED) > 0) raylib_minimizewindow();
 
     // If graphic device is no properly initialized, we end program
     if (!CORE.Window.ready) { TRACELOG(LOG_FATAL, "PLATFORM: Failed to initialize graphic device"); return -1; }
@@ -1296,7 +1296,7 @@ int InitPlatform(void)
 
     // Initialize storage system
     //----------------------------------------------------------------------------
-    CORE.Storage.basePath = GetWorkingDirectory();
+    CORE.Storage.basePath = raylib_getworkingdirectory();
     //----------------------------------------------------------------------------
 
     TRACELOG(LOG_INFO, "PLATFORM: WEB: Initialized successfully");
@@ -1328,12 +1328,12 @@ static void WindowSizeCallback(GLFWwindow *window, int width, int height)
     CORE.Window.currentFbo.height = height;
     CORE.Window.resizedLastFrame = true;
 
-    if (IsWindowFullscreen()) return;
+    if (raylib_iswindowfullscreen()) return;
 
     // Set current screen size
     if ((CORE.Window.flags & FLAG_WINDOW_HIGHDPI) > 0)
     {
-        Vector2 windowScaleDPI = GetWindowScaleDPI();
+        raylib_vector2 windowScaleDPI = raylib_getwindowscaledpi();
 
         CORE.Window.screen.width = (unsigned int)(width/windowScaleDPI.x);
         CORE.Window.screen.height = (unsigned int)(height/windowScaleDPI.y);
@@ -1408,7 +1408,7 @@ static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, i
     if (key < 0) return;    // Security check, macOS fn key generates -1
 
     // WARNING: GLFW could return GLFW_REPEAT, we need to consider it as 1
-    // to work properly with our implementation (IsKeyDown/IsKeyUp checks)
+    // to work properly with our implementation (raylib_iskeydown/raylib_iskeyup checks)
     if (action == GLFW_RELEASE) CORE.Input.Keyboard.currentKeyState[key] = 0;
     else if(action == GLFW_PRESS) CORE.Input.Keyboard.currentKeyState[key] = 1;
     else if(action == GLFW_REPEAT) CORE.Input.Keyboard.keyRepeatInFrame[key] = 1;
@@ -1469,15 +1469,15 @@ static void MouseButtonCallback(GLFWwindow *window, int button, int action, int 
     gestureEvent.pointCount = 1;
 
     // Register touch points position, only one point registered
-    gestureEvent.position[0] = GetMousePosition();
+    gestureEvent.position[0] = raylib_getmouseposition();
 
     // Normalize gestureEvent.position[0] for CORE.Window.screen.width and CORE.Window.screen.height
-    gestureEvent.position[0].x /= (float)GetScreenWidth();
-    gestureEvent.position[0].y /= (float)GetScreenHeight();
+    gestureEvent.position[0].x /= (float)raylib_getscreenwidth();
+    gestureEvent.position[0].y /= (float)raylib_getscreenheight();
 
-    // Gesture data is sent to gestures-system for processing
+    // raylib_gesture data is sent to gestures-system for processing
     // Prevent calling ProcessGestureEvent() when Emscripten is present and there's a touch gesture, so EmscriptenTouchCallback() can handle it itself
-    if (GetMouseX() != 0 || GetMouseY() != 0) ProcessGestureEvent(gestureEvent);
+    if (raylib_getmousex() != 0 || raylib_getmousey() != 0) ProcessGestureEvent(gestureEvent);
 
 #endif
 }
@@ -1509,10 +1509,10 @@ static void MouseCursorPosCallback(GLFWwindow *window, double x, double y)
     gestureEvent.position[0] = CORE.Input.Touch.position[0];
 
     // Normalize gestureEvent.position[0] for CORE.Window.screen.width and CORE.Window.screen.height
-    gestureEvent.position[0].x /= (float)GetScreenWidth();
-    gestureEvent.position[0].y /= (float)GetScreenHeight();
+    gestureEvent.position[0].x /= (float)raylib_getscreenwidth();
+    gestureEvent.position[0].y /= (float)raylib_getscreenheight();
 
-    // Gesture data is sent to gestures-system for processing
+    // raylib_gesture data is sent to gestures-system for processing
     ProcessGestureEvent(gestureEvent);
 #endif
 }
@@ -1532,7 +1532,7 @@ static EM_BOOL EmscriptenMouseMoveCallback(int eventType, const EmscriptenMouseE
 // GLFW3 Scrolling Callback, runs on mouse wheel
 static void MouseScrollCallback(GLFWwindow *window, double xoffset, double yoffset)
 {
-    CORE.Input.Mouse.currentWheelMove = (Vector2){ (float)xoffset, (float)yoffset };
+    CORE.Input.Mouse.currentWheelMove = (raylib_vector2){ (float)xoffset, (float)yoffset };
 }
 
 // GLFW3 CursorEnter Callback, when cursor enters the window
@@ -1598,7 +1598,7 @@ static EM_BOOL EmscriptenResizeCallback(int eventType, const EmscriptenUiEvent *
     CORE.Window.currentFbo.height = height;
     CORE.Window.resizedLastFrame = true;
 
-    if (IsWindowFullscreen()) return 1;
+    if (raylib_iswindowfullscreen()) return 1;
 
     // Set current screen size
     CORE.Window.screen.width = width;
@@ -1672,11 +1672,11 @@ static EM_BOOL EmscriptenTouchCallback(int eventType, const EmscriptenTouchEvent
         CORE.Input.Touch.pointId[i] = touchEvent->touches[i].identifier;
 
         // Register touch points position
-        CORE.Input.Touch.position[i] = (Vector2){touchEvent->touches[i].targetX, touchEvent->touches[i].targetY};
+        CORE.Input.Touch.position[i] = (raylib_vector2){touchEvent->touches[i].targetX, touchEvent->touches[i].targetY};
 
         // Normalize gestureEvent.position[x] for CORE.Window.screen.width and CORE.Window.screen.height
-        CORE.Input.Touch.position[i].x *= ((float)GetScreenWidth()/(float)canvasWidth);
-        CORE.Input.Touch.position[i].y *= ((float)GetScreenHeight()/(float)canvasHeight);
+        CORE.Input.Touch.position[i].x *= ((float)raylib_getscreenwidth()/(float)canvasWidth);
+        CORE.Input.Touch.position[i].y *= ((float)raylib_getscreenheight()/(float)canvasHeight);
 
         if (eventType == EMSCRIPTEN_EVENT_TOUCHSTART) CORE.Input.Touch.currentTouchState[i] = 1;
         else if (eventType == EMSCRIPTEN_EVENT_TOUCHEND) CORE.Input.Touch.currentTouchState[i] = 0;
@@ -1706,11 +1706,11 @@ static EM_BOOL EmscriptenTouchCallback(int eventType, const EmscriptenTouchEvent
         gestureEvent.position[i] = CORE.Input.Touch.position[i];
 
         // Normalize gestureEvent.position[i]
-        gestureEvent.position[i].x /= (float)GetScreenWidth();
-        gestureEvent.position[i].y /= (float)GetScreenHeight();
+        gestureEvent.position[i].x /= (float)raylib_getscreenwidth();
+        gestureEvent.position[i].y /= (float)raylib_getscreenheight();
     }
 
-    // Gesture data is sent to gestures system for processing
+    // raylib_gesture data is sent to gestures system for processing
     ProcessGestureEvent(gestureEvent);
 
     // Reset the pointCount for web, if it was the last Touch End event

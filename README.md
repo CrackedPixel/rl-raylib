@@ -1,3 +1,7 @@
+# This is a fork of raylib with the pure goal of renaming functions to prevent name conflicts for people who otherwise can't get around it.
+
+## All credit to the original work goes to Ramon "Ray" Santamaria and you should use his original project if possible
+
 <img align="left" style="width:260px" src="https://github.com/raysan5/raylib/blob/master/logo/raylib_logo_animation.gif" width="288px">
 
 **raylib is a simple and easy-to-use library to enjoy videogames programming.**

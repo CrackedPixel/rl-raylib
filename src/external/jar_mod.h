@@ -36,7 +36,7 @@
 //         jar_mod_fillbuffer(&modctx, samplebuff, 4096, 0);
 //         bufferFull=true;
 //     }
-//     if(IsKeyDown(KEY_ENTER))
+//     if(raylib_iskeydown(KEY_ENTER))
 //         return 1;
 //     return 0;
 // }

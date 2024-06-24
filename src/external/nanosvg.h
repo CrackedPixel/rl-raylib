@@ -1058,7 +1058,7 @@ static void nsvg__addPath(NSVGparser* p, char closed)
 	path->closed = closed;
 	path->npts = p->npts;
 
-	// Transform path.
+	// raylib_transform path.
 	for (i = 0; i < p->npts; ++i)
 		nsvg__xformPoint(&path->pts[i*2], &path->pts[i*2+1], p->pts[i*2], p->pts[i*2+1], attr->xform);
 
@@ -2910,7 +2910,7 @@ static void nsvg__scaleToViewbox(NSVGparser* p, const char* units)
 		ty += nsvg__viewAlign(p->viewHeight*sy, p->image->height, p->alignY) / sy;
 	}
 
-	// Transform
+	// raylib_transform
 	sx *= us;
 	sy *= us;
 	avgs = (sx+sy) / 2.0f;

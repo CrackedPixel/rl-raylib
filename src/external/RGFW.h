@@ -4101,7 +4101,7 @@ static HMODULE wglinstance = NULL;
 		D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc = { 0 };
 		depthStencilViewDesc.Format = depthStencilDesc.Format;
 		depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-		depthStencilViewDesc.Texture2D.MipSlice = 0;
+		depthStencilViewDesc.raylib_texture2d.MipSlice = 0;
 
 		RGFW_dxInfo.pDevice->lpVtbl->CreateDepthStencilView(RGFW_dxInfo.pDevice, (ID3D11Resource*) pDepthStencilTexture, &depthStencilViewDesc, &win->src.pDepthStencilView);
 
