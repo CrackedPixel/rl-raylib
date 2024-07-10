@@ -575,8 +575,8 @@ replacements=(
 
     # text drawing
     DrawFPS,raylib_drawfps
-    DrawText,raylib_draw_text
-    DrawTextEx,raylib_draw_text_ex
+    DrawText,raylib_drawtext
+    DrawTextEx,raylib_drawtextex
     DrawTextPro,raylib_drawtextpro
     DrawTextCodepoint,raylib_drawtextcodepoint
     DrawTextCodepoints,raylib_drawtextcodepoints
@@ -793,4 +793,10 @@ for pair in "${replacements[@]}"; do
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./src/*.c
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./src/**/*.h
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./src/**/*.c
+
+    # examples
+    sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/*.c
+    sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/*.h
+    sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/**/*.c
+    sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/**/*.h
 done
