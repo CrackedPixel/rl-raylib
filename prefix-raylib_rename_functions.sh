@@ -34,6 +34,7 @@ replacements=(
     Vector3,raylib_vector3
     Vector4,raylib_vector4
     Vector4,raylib_vector4
+    Quaternion,raylib_quaternion
     Matrix,raylib_matrix
     Color,raylib_color
     Rectangle,raylib_rectangle
@@ -134,6 +135,7 @@ replacements=(
     SetWindowSize,raylib_setwindowsize
     SetWindowOpacity,raylib_setwindowopacity
     SetWindowFocused,raylib_setwindowfocused
+    GetWindowHandle,raylib_getwindowhandle
     GetScreenWidth,raylib_getscreenwidth
     GetScreenHeight,raylib_getscreenheight
     GetRenderWidth,raylib_getrenderwidth
@@ -460,6 +462,7 @@ replacements=(
     # image manipulation
     ImageCopy,raylib_imagecopy
     ImageFromImage,raylib_imagefromimage
+    ImageFromChannel,raylib_imagefromchannel
     ImageText,raylib_imagetext
     ImageTextEx,raylib_imagetextex
     ImageFormat,raylib_imageformat
@@ -500,6 +503,7 @@ replacements=(
     ImageDrawPixelV,raylib_imagedrawpixelv
     ImageDrawLine,raylib_imagedrawline
     ImageDrawLineV,raylib_imagedrawlinev
+    ImageDrawLineEx,raylib_imagedrawlineex
     ImageDrawCircle,raylib_imagedrawcircle
     ImageDrawCircleV,raylib_imagedrawcirclev
     ImageDrawCircleLines,raylib_imagedrawcirclelines
@@ -609,6 +613,7 @@ replacements=(
     TextReplace,raylib_textreplace
     TextInsert,raylib_textinsert
     TextJoin,raylib_textjoin
+    TextSplit,raylib_textsplit
     TextAppend,raylib_textappend
     TextFindIndex,raylib_textfindindex
     TextToUpper,raylib_texttoupper
