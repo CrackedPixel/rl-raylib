@@ -794,6 +794,7 @@ for pair in "${replacements[@]}"; do
     search_for=$(echo "$pair" | cut -d',' -f1)
     replace_with=$(echo "$pair" | cut -d',' -f2)
 
+    # source
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./src/*.h
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./src/*.c
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./src/**/*.h
@@ -804,4 +805,7 @@ for pair in "${replacements[@]}"; do
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/*.h
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/**/*.c
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./examples/**/*.h
+
+    # parser
+    sed -i "s/\\<$search_for\\>/$replace_with/g" ./parser/**/*.*
 done
