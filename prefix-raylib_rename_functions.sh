@@ -808,4 +808,7 @@ for pair in "${replacements[@]}"; do
 
     # parser
     sed -i "s/\\<$search_for\\>/$replace_with/g" ./parser/**/*.*
+
+    # misc
+    sed -i "s/\\<$search_for\\>/$replace_with/g" ./README.md
 done
