@@ -1075,6 +1075,12 @@ void SetMouseCursor(int cursor)
     }
 }
 
+// Get physical key name.
+const char *GetKeyName(int key)
+{
+    return glfwGetKeyName(key, glfwGetKeyScancode(key));
+}
+
 // Register all input events
 void PollInputEvents(void)
 {
@@ -1624,16 +1630,16 @@ int InitPlatform(void)
     char *glfwPlatform = "";
     switch (glfwGetPlatform())
     {
-        case GLFW_PLATFORM_WIN32:   glfwPlatform = "Win32";   break;
-        case GLFW_PLATFORM_COCOA:   glfwPlatform = "Cocoa";   break;
+        case GLFW_PLATFORM_WIN32: glfwPlatform = "Win32"; break;
+        case GLFW_PLATFORM_COCOA: glfwPlatform = "Cocoa"; break;
         case GLFW_PLATFORM_WAYLAND: glfwPlatform = "Wayland"; break;
-        case GLFW_PLATFORM_X11:     glfwPlatform = "X11";     break;
-        case GLFW_PLATFORM_NULL:    glfwPlatform = "Null";    break;
+        case GLFW_PLATFORM_X11: glfwPlatform = "X11"; break;
+        case GLFW_PLATFORM_NULL: glfwPlatform = "Null"; break;
+        default: break;
     }
 #endif
 
-    TRACELOG(LOG_INFO, "GLFW platform: %s", glfwPlatform);
-    TRACELOG(LOG_INFO, "PLATFORM: DESKTOP (GLFW): Initialized successfully");
+    TRACELOG(LOG_INFO, "PLATFORM: DESKTOP (GLFW - %s): Initialized successfully", glfwPlatform);
 
     return 0;
 }
