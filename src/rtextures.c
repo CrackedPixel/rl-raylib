@@ -371,7 +371,7 @@ Image LoadImageSvg(const char *fileNameOrString, int width, int height)
 
         if (isSvgStringValid)
         {
-            struct NSVGimage *svgImage = nsvgParse(fileData, "px", 96.0f);
+            struct NSVGimage *svgImage = nsvgParse((char *)fileData, "px", 96.0f);
 
             unsigned char *img = RL_MALLOC(width*height*4);
 
@@ -404,7 +404,7 @@ Image LoadImageSvg(const char *fileNameOrString, int width, int height)
             nsvgDeleteRasterizer(rast);
         }
 
-        if (isSvgStringValid && (fileData != fileNameOrString)) UnloadFileData(fileData);
+        if (isSvgStringValid && (fileData != (unsigned char *)fileNameOrString)) UnloadFileData(fileData);
     }
 #else
     TRACELOG(LOG_WARNING, "SVG image support not enabled, image can not be loaded");
@@ -611,7 +611,7 @@ Image LoadImageFromMemory(const char *fileType, const unsigned char *fileData, i
             (fileData[2] == 'v') &&
             (fileData[3] == 'g'))
         {
-            struct NSVGimage *svgImage = nsvgParse(fileData, "px", 96.0f);
+            struct NSVGimage *svgImage = nsvgParse((char *)fileData, "px", 96.0f);
             unsigned char *img = RL_MALLOC(svgImage->width*svgImage->height*4);
 
             // Rasterize
@@ -1112,6 +1112,7 @@ Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float
 {
     Color *pixels = (Color *)RL_MALLOC(width*height*sizeof(Color));
 
+    float aspectRatio = (float)width / (float)height;
     for (int y = 0; y < height; y++)
     {
         for (int x = 0; x < width; x++)
@@ -1119,6 +1120,10 @@ Image GenImagePerlinNoise(int width, int height, int offsetX, int offsetY, float
             float nx = (float)(x + offsetX)*(scale/(float)width);
             float ny = (float)(y + offsetY)*(scale/(float)height);
 
+            // Apply aspect ratio compensation to wider side
+            if (width > height) nx *= aspectRatio;
+            else ny /= aspectRatio;
+            
             // Basic perlin noise implementation (not used)
             //float p = (stb_perlin_noise3(nx, ny, 0.0f, 0, 0, 0);
 
@@ -4560,6 +4565,9 @@ void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2
 
         if (source.width < 0) { flipX = true; source.width *= -1; }
         if (source.height < 0) source.y -= source.height;
+        
+        if (dest.width < 0) dest.width *= -1;
+        if (dest.height < 0) dest.height *= -1;
 
         Vector2 topLeft = { 0 };
         Vector2 topRight = { 0 };
@@ -4980,6 +4988,8 @@ Vector3 ColorToHSV(Color color)
     return hsv;
 }
 
+
+
 // Get a Color from HSV values
 // Implementation reference: https://en.wikipedia.org/wiki/HSL_and_HSV#Alternative_HSV_conversion
 // NOTE: Color->HSV->Color conversion will not yield exactly the same color due to rounding errors
@@ -5176,6 +5186,22 @@ Color ColorAlphaBlend(Color dst, Color src, Color tint)
 #endif
 
     return out;
+}
+
+// Get color lerp interpolation between two colors, factor [0.0f..1.0f]
+Color ColorLerp(Color color1, Color color2, float factor) 
+{ 
+    Color color = { 0 };
+    
+    if (factor < 0.0f) factor = 0.0f;
+    else if (factor > 1.0f) factor = 1.0f;
+
+    color.r = (unsigned char)((1.0f - factor)*color1.r + factor*color2.r);
+    color.g = (unsigned char)((1.0f - factor)*color1.g + factor*color2.g);
+    color.b = (unsigned char)((1.0f - factor)*color1.b + factor*color2.b);
+    color.a = (unsigned char)((1.0f - factor)*color1.a + factor*color2.a);
+
+    return color;
 }
 
 // Get a Color struct from hexadecimal value
@@ -5403,7 +5429,8 @@ int GetPixelDataSize(int width, int height, int format)
         default: break;
     }
 
-    dataSize = width*height*bpp/8;  // Total data size in bytes
+    double bytesPerPixel = (double)bpp/8.0;
+    dataSize = (int)(bytesPerPixel*width*height); // Total data size in bytes
 
     // Most compressed formats works on 4x4 blocks,
     // if texture is smaller, minimum dataSize is 8 or 16
