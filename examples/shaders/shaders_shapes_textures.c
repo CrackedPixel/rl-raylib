@@ -36,20 +36,20 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - shapes and texture shaders");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - shapes and texture shaders");
 
-    Texture2D fudesumi = LoadTexture("resources/fudesumi.png");
+    RL_Texture2D fudesumi = RL_LoadTexture("resources/fudesumi.png");
 
     // Load shader to be used on some parts drawing
     // NOTE 1: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
     // NOTE 2: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -58,63 +58,63 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             // Start drawing with default shader
 
-            DrawText("USING DEFAULT SHADER", 20, 40, 10, RED);
+            RL_DrawText("USING DEFAULT SHADER", 20, 40, 10, RL_RED);
 
-            DrawCircle(80, 120, 35, DARKBLUE);
-            DrawCircleGradient(80, 220, 60, GREEN, SKYBLUE);
-            DrawCircleLines(80, 340, 80, DARKBLUE);
+            RL_DrawCircle(80, 120, 35, RL_DARKBLUE);
+            RL_DrawCircleGradient(80, 220, 60, RL_GREEN, RL_SKYBLUE);
+            RL_DrawCircleLines(80, 340, 80, RL_DARKBLUE);
 
-
-            // Activate our custom shader to be applied on next shapes/textures drawings
-            BeginShaderMode(shader);
-
-                DrawText("USING CUSTOM SHADER", 190, 40, 10, RED);
-
-                DrawRectangle(250 - 60, 90, 120, 60, RED);
-                DrawRectangleGradientH(250 - 90, 170, 180, 130, MAROON, GOLD);
-                DrawRectangleLines(250 - 40, 320, 80, 60, ORANGE);
-
-            // Activate our default shader for next drawings
-            EndShaderMode();
-
-            DrawText("USING DEFAULT SHADER", 370, 40, 10, RED);
-
-            DrawTriangle((Vector2){430, 80},
-                         (Vector2){430 - 60, 150},
-                         (Vector2){430 + 60, 150}, VIOLET);
-
-            DrawTriangleLines((Vector2){430, 160},
-                              (Vector2){430 - 20, 230},
-                              (Vector2){430 + 20, 230}, DARKBLUE);
-
-            DrawPoly((Vector2){430, 320}, 6, 80, 0, BROWN);
 
             // Activate our custom shader to be applied on next shapes/textures drawings
-            BeginShaderMode(shader);
+            RL_BeginShaderMode(shader);
 
-                DrawTexture(fudesumi, 500, -30, WHITE);    // Using custom shader
+                RL_DrawText("USING CUSTOM SHADER", 190, 40, 10, RL_RED);
+
+                RL_DrawRectangle(250 - 60, 90, 120, 60, RL_RED);
+                RL_DrawRectangleGradientH(250 - 90, 170, 180, 130, RL_MAROON, RL_GOLD);
+                RL_DrawRectangleLines(250 - 40, 320, 80, 60, RL_ORANGE);
 
             // Activate our default shader for next drawings
-            EndShaderMode();
+            RL_EndShaderMode();
 
-            DrawText("(c) Fudesumi sprite by Eiden Marsal", 380, screenHeight - 20, 10, GRAY);
+            RL_DrawText("USING DEFAULT SHADER", 370, 40, 10, RL_RED);
 
-        EndDrawing();
+            RL_DrawTriangle((RL_Vector2){430, 80},
+                         (RL_Vector2){430 - 60, 150},
+                         (RL_Vector2){430 + 60, 150}, RL_VIOLET);
+
+            RL_DrawTriangleLines((RL_Vector2){430, 160},
+                              (RL_Vector2){430 - 20, 230},
+                              (RL_Vector2){430 + 20, 230}, RL_DARKBLUE);
+
+            RL_DrawPoly((RL_Vector2){430, 320}, 6, 80, 0, RL_BROWN);
+
+            // Activate our custom shader to be applied on next shapes/textures drawings
+            RL_BeginShaderMode(shader);
+
+                RL_DrawTexture(fudesumi, 500, -30, RL_WHITE);    // Using custom shader
+
+            // Activate our default shader for next drawings
+            RL_EndShaderMode();
+
+            RL_DrawText("(c) Fudesumi sprite by Eiden Marsal", 380, screenHeight - 20, 10, RL_GRAY);
+
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);       // Unload shader
-    UnloadTexture(fudesumi);    // Unload texture
+    RL_UnloadShader(shader);       // Unload shader
+    RL_UnloadTexture(fudesumi);    // Unload texture
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

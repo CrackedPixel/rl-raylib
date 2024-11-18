@@ -60,16 +60,16 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [audio] example - raw audio streaming");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [audio] example - raw audio streaming");
 
-    InitAudioDevice();              // Initialize audio device
+    RL_InitAudioDevice();              // Initialize audio device
 
-    SetAudioStreamBufferSizeDefault(MAX_SAMPLES_PER_UPDATE);
+    RL_SetAudioStreamBufferSizeDefault(MAX_SAMPLES_PER_UPDATE);
 
     // Init raw audio stream (sample rate: 44100, sample size: 16bit-short, channels: 1-mono)
-    AudioStream stream = LoadAudioStream(44100, 16, 1);
+    RL_AudioStream stream = RL_LoadAudioStream(44100, 16, 1);
 
-    SetAudioStreamCallback(stream, AudioInputCallback);
+    RL_SetAudioStreamCallback(stream, AudioInputCallback);
 
     // Buffer for the single cycle waveform we are synthesizing
     short *data = (short *)malloc(sizeof(short)*MAX_SAMPLES);
@@ -77,10 +77,10 @@ int main(void)
     // Frame buffer, describing the waveform when repeated over the course of a frame
     short *writeBuf = (short *)malloc(sizeof(short)*MAX_SAMPLES_PER_UPDATE);
 
-    PlayAudioStream(stream);        // Start processing stream buffer (no data loaded currently)
+    RL_PlayAudioStream(stream);        // Start processing stream buffer (no data loaded currently)
 
     // Position read in to determine next frequency
-    Vector2 mousePosition = { -100.0f, -100.0f };
+    RL_Vector2 mousePosition = { -100.0f, -100.0f };
 
     /*
     // Cycles per second (hz)
@@ -96,27 +96,27 @@ int main(void)
     // Computed size in samples of the sine wave
     int waveLength = 1;
 
-    Vector2 position = { 0, 0 };
+    RL_Vector2 position = { 0, 0 };
 
-    SetTargetFPS(30);               // Set our game to run at 30 frames-per-second
+    RL_SetTargetFPS(30);               // Set our game to run at 30 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
 
         // Sample mouse input.
-        mousePosition = GetMousePosition();
+        mousePosition = RL_GetMousePosition();
 
-        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        if (RL_IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             float fp = (float)(mousePosition.y);
             frequency = 40.0f + (float)(fp);
 
             float pan = (float)(mousePosition.x) / (float)screenWidth;
-            SetAudioStreamPan(stream, pan);
+            RL_SetAudioStreamPan(stream, pan);
         }
 
         // Rewrite the sine wave
@@ -147,7 +147,7 @@ int main(void)
 
         /*
         // Refill audio stream if required
-        if (IsAudioStreamProcessed(stream))
+        if (RL_IsAudioStreamProcessed(stream))
         {
             // Synthesize a buffer that is exactly the requested size
             int writeCursor = 0;
@@ -172,19 +172,19 @@ int main(void)
             }
 
             // Copy finished frame to audio stream
-            UpdateAudioStream(stream, writeBuf, MAX_SAMPLES_PER_UPDATE);
+            RL_UpdateAudioStream(stream, writeBuf, MAX_SAMPLES_PER_UPDATE);
         }
         */
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextFormat("sine frequency: %i",(int)frequency), GetScreenWidth() - 220, 10, 20, RED);
-            DrawText("click mouse button to change frequency or pan", 10, 10, 20, DARKGRAY);
+            RL_DrawText(RL_TextFormat("sine frequency: %i",(int)frequency), RL_GetScreenWidth() - 220, 10, 20, RL_RED);
+            RL_DrawText("click mouse button to change frequency or pan", 10, 10, 20, RL_DARKGRAY);
 
             // Draw the current buffer state proportionate to the screen
             for (int i = 0; i < screenWidth; i++)
@@ -192,10 +192,10 @@ int main(void)
                 position.x = (float)i;
                 position.y = 250 + 50*data[i*MAX_SAMPLES/screenWidth]/32000.0f;
 
-                DrawPixelV(position, RED);
+                RL_DrawPixelV(position, RL_RED);
             }
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
@@ -204,10 +204,10 @@ int main(void)
     free(data);                 // Unload sine wave data
     free(writeBuf);             // Unload write buffer
 
-    UnloadAudioStream(stream);   // Close raw audio stream and delete buffers from RAM
-    CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
+    RL_UnloadAudioStream(stream);   // Close raw audio stream and delete buffers from RAM
+    RL_CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

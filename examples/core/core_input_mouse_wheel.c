@@ -23,40 +23,40 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
 
     int boxPositionY = screenHeight/2 - 40;
     int scrollSpeed = 4;            // Scrolling speed in pixels
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        boxPositionY -= (int)(GetMouseWheelMove()*scrollSpeed);
+        boxPositionY -= (int)(RL_GetMouseWheelMove()*scrollSpeed);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawRectangle(screenWidth/2 - 40, boxPositionY, 80, 80, MAROON);
+            RL_DrawRectangle(screenWidth/2 - 40, boxPositionY, 80, 80, RL_MAROON);
 
-            DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, GRAY);
-            DrawText(TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, LIGHTGRAY);
+            RL_DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20, RL_GRAY);
+            RL_DrawText(RL_TextFormat("Box position Y: %03i", boxPositionY), 10, 40, 20, RL_LIGHTGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

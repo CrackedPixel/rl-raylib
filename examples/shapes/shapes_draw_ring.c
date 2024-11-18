@@ -28,9 +28,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shapes] example - draw ring");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shapes] example - draw ring");
 
-    Vector2 center = {(GetScreenWidth() - 300)/2.0f, GetScreenHeight()/2.0f };
+    RL_Vector2 center = {(RL_GetScreenWidth() - 300)/2.0f, RL_GetScreenHeight()/2.0f };
 
     float innerRadius = 80.0f;
     float outerRadius = 190.0f;
@@ -43,11 +43,11 @@ int main(void)
     bool drawRingLines = false;
     bool drawCircleLines = false;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -56,44 +56,44 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawLine(500, 0, 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.6f));
-            DrawRectangle(500, 0, GetScreenWidth() - 500, GetScreenHeight(), Fade(LIGHTGRAY, 0.3f));
+            RL_DrawLine(500, 0, 500, RL_GetScreenHeight(), RL_Fade(RL_LIGHTGRAY, 0.6f));
+            RL_DrawRectangle(500, 0, RL_GetScreenWidth() - 500, RL_GetScreenHeight(), RL_Fade(RL_LIGHTGRAY, 0.3f));
 
-            if (drawRing) DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, Fade(MAROON, 0.3f));
-            if (drawRingLines) DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, Fade(BLACK, 0.4f));
-            if (drawCircleLines) DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, (int)segments, Fade(BLACK, 0.4f));
+            if (drawRing) RL_DrawRing(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, RL_Fade(RL_MAROON, 0.3f));
+            if (drawRingLines) RL_DrawRingLines(center, innerRadius, outerRadius, startAngle, endAngle, (int)segments, RL_Fade(RL_BLACK, 0.4f));
+            if (drawCircleLines) RL_DrawCircleSectorLines(center, outerRadius, startAngle, endAngle, (int)segments, RL_Fade(RL_BLACK, 0.4f));
 
             // Draw GUI controls
             //------------------------------------------------------------------------------
-            GuiSliderBar((Rectangle){ 600, 40, 120, 20 }, "StartAngle", TextFormat("%.2f", startAngle), &startAngle, -450, 450);
-            GuiSliderBar((Rectangle){ 600, 70, 120, 20 }, "EndAngle", TextFormat("%.2f", endAngle), &endAngle, -450, 450);
+            GuiSliderBar((RL_Rectangle){ 600, 40, 120, 20 }, "StartAngle", RL_TextFormat("%.2f", startAngle), &startAngle, -450, 450);
+            GuiSliderBar((RL_Rectangle){ 600, 70, 120, 20 }, "EndAngle", RL_TextFormat("%.2f", endAngle), &endAngle, -450, 450);
 
-            GuiSliderBar((Rectangle){ 600, 140, 120, 20 }, "InnerRadius", TextFormat("%.2f", innerRadius), &innerRadius, 0, 100);
-            GuiSliderBar((Rectangle){ 600, 170, 120, 20 }, "OuterRadius", TextFormat("%.2f", outerRadius), &outerRadius, 0, 200);
+            GuiSliderBar((RL_Rectangle){ 600, 140, 120, 20 }, "InnerRadius", RL_TextFormat("%.2f", innerRadius), &innerRadius, 0, 100);
+            GuiSliderBar((RL_Rectangle){ 600, 170, 120, 20 }, "OuterRadius", RL_TextFormat("%.2f", outerRadius), &outerRadius, 0, 200);
 
-            GuiSliderBar((Rectangle){ 600, 240, 120, 20 }, "Segments", TextFormat("%.2f", segments), &segments, 0, 100);
+            GuiSliderBar((RL_Rectangle){ 600, 240, 120, 20 }, "Segments", RL_TextFormat("%.2f", segments), &segments, 0, 100);
 
-            GuiCheckBox((Rectangle){ 600, 320, 20, 20 }, "Draw Ring", &drawRing);
-            GuiCheckBox((Rectangle){ 600, 350, 20, 20 }, "Draw RingLines", &drawRingLines);
-            GuiCheckBox((Rectangle){ 600, 380, 20, 20 }, "Draw CircleLines", &drawCircleLines);
+            GuiCheckBox((RL_Rectangle){ 600, 320, 20, 20 }, "Draw Ring", &drawRing);
+            GuiCheckBox((RL_Rectangle){ 600, 350, 20, 20 }, "Draw RingLines", &drawRingLines);
+            GuiCheckBox((RL_Rectangle){ 600, 380, 20, 20 }, "Draw CircleLines", &drawCircleLines);
             //------------------------------------------------------------------------------
 
             int minSegments = (int)ceilf((endAngle - startAngle)/90);
-            DrawText(TextFormat("MODE: %s", (segments >= minSegments)? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments)? MAROON : DARKGRAY);
+            RL_DrawText(RL_TextFormat("MODE: %s", (segments >= minSegments)? "MANUAL" : "AUTO"), 600, 270, 10, (segments >= minSegments)? RL_MAROON : RL_DARKGRAY);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

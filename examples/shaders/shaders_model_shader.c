@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [shaders] example - Model shader
+*   raylib [shaders] example - RL_Model shader
 *
 *   NOTE: This example requires raylib OpenGL 3.3 or ES2 versions for shaders support,
 *         OpenGL 1.1 does not support shaders, recompile raylib to OpenGL 3.3 version.
@@ -36,71 +36,71 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
+    RL_SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - model shader");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 4.0f, 4.0f, 4.0f };    // Camera position
-    camera.target = (Vector3){ 0.0f, 1.0f, -1.0f };     // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 4.0f, 4.0f, 4.0f };    // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 1.0f, -1.0f };     // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
-    Model model = LoadModel("resources/models/watermill.obj");                   // Load OBJ model
-    Texture2D texture = LoadTexture("resources/models/watermill_diffuse.png");   // Load model texture
+    RL_Model model = RL_LoadModel("resources/models/watermill.obj");                   // Load OBJ model
+    RL_Texture2D texture = RL_LoadTexture("resources/models/watermill_diffuse.png");   // Load model texture
 
     // Load shader for model
     // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/grayscale.fs", GLSL_VERSION));
 
     model.materials[0].shader = shader;                     // Set shader effect to 3d model
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture; // Bind texture to model
 
-    Vector3 position = { 0.0f, 0.0f, 0.0f };    // Set model position
+    RL_Vector3 position = { 0.0f, 0.0f, 0.0f };    // Set model position
 
-    DisableCursor();                    // Limit cursor to relative movement inside the window
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_DisableCursor();                    // Limit cursor to relative movement inside the window
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_FREE);
+        RL_UpdateCamera(&camera, CAMERA_FREE);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
-                DrawModel(model, position, 0.2f, WHITE);   // Draw 3d model with texture
+                RL_DrawModel(model, position, 0.2f, RL_WHITE);   // Draw 3d model with texture
 
-                DrawGrid(10, 1.0f);     // Draw a grid
+                RL_DrawGrid(10, 1.0f);     // Draw a grid
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, GRAY);
+            RL_DrawText("(c) Watermill 3D model by Alberto Cano", screenWidth - 210, screenHeight - 20, 10, RL_GRAY);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);       // Unload shader
-    UnloadTexture(texture);     // Unload texture
-    UnloadModel(model);         // Unload model
+    RL_UnloadShader(shader);       // Unload shader
+    RL_UnloadTexture(texture);     // Unload texture
+    RL_UnloadModel(model);         // Unload model
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

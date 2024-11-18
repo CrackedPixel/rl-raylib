@@ -37,32 +37,32 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - storage save/load values");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - storage save/load values");
 
     int score = 0;
     int hiscore = 0;
     int framesCounter = 0;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_R))
+        if (RL_IsKeyPressed(KEY_R))
         {
-            score = GetRandomValue(1000, 2000);
-            hiscore = GetRandomValue(2000, 4000);
+            score = RL_GetRandomValue(1000, 2000);
+            hiscore = RL_GetRandomValue(2000, 4000);
         }
 
-        if (IsKeyPressed(KEY_ENTER))
+        if (RL_IsKeyPressed(KEY_ENTER))
         {
             SaveStorageValue(STORAGE_POSITION_SCORE, score);
             SaveStorageValue(STORAGE_POSITION_HISCORE, hiscore);
         }
-        else if (IsKeyPressed(KEY_SPACE))
+        else if (RL_IsKeyPressed(KEY_SPACE))
         {
             // NOTE: If requested position could not be found, value 0 is returned
             score = LoadStorageValue(STORAGE_POSITION_SCORE);
@@ -74,26 +74,26 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextFormat("SCORE: %i", score), 280, 130, 40, MAROON);
-            DrawText(TextFormat("HI-SCORE: %i", hiscore), 210, 200, 50, BLACK);
+            RL_DrawText(RL_TextFormat("SCORE: %i", score), 280, 130, 40, RL_MAROON);
+            RL_DrawText(RL_TextFormat("HI-SCORE: %i", hiscore), 210, 200, 50, RL_BLACK);
 
-            DrawText(TextFormat("frames: %i", framesCounter), 10, 10, 20, LIME);
+            RL_DrawText(RL_TextFormat("frames: %i", framesCounter), 10, 10, 20, RL_LIME);
 
-            DrawText("Press R to generate random numbers", 220, 40, 20, LIGHTGRAY);
-            DrawText("Press ENTER to SAVE values", 250, 310, 20, LIGHTGRAY);
-            DrawText("Press SPACE to LOAD values", 252, 350, 20, LIGHTGRAY);
+            RL_DrawText("Press R to generate random numbers", 220, 40, 20, RL_LIGHTGRAY);
+            RL_DrawText("Press ENTER to SAVE values", 250, 310, 20, RL_LIGHTGRAY);
+            RL_DrawText("Press SPACE to LOAD values", 252, 350, 20, RL_LIGHTGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;
@@ -106,7 +106,7 @@ bool SaveStorageValue(unsigned int position, int value)
     bool success = false;
     int dataSize = 0;
     unsigned int newDataSize = 0;
-    unsigned char *fileData = LoadFileData(STORAGE_DATA_FILE, &dataSize);
+    unsigned char *fileData = RL_LoadFileData(STORAGE_DATA_FILE, &dataSize);
     unsigned char *newFileData = NULL;
 
     if (fileData != NULL)
@@ -126,7 +126,7 @@ bool SaveStorageValue(unsigned int position, int value)
             else
             {
                 // RL_REALLOC failed
-                TraceLog(LOG_WARNING, "FILEIO: [%s] Failed to realloc data (%u), position in bytes (%u) bigger than actual file size", STORAGE_DATA_FILE, dataSize, position*sizeof(int));
+                RL_TraceLog(LOG_WARNING, "FILEIO: [%s] Failed to realloc data (%u), position in bytes (%u) bigger than actual file size", STORAGE_DATA_FILE, dataSize, position*sizeof(int));
 
                 // We store the old size of the file
                 newFileData = fileData;
@@ -144,24 +144,24 @@ bool SaveStorageValue(unsigned int position, int value)
             dataPtr[position] = value;
         }
 
-        success = SaveFileData(STORAGE_DATA_FILE, newFileData, newDataSize);
+        success = RL_SaveFileData(STORAGE_DATA_FILE, newFileData, newDataSize);
         RL_FREE(newFileData);
 
-        TraceLog(LOG_INFO, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
+        RL_TraceLog(LOG_INFO, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
     }
     else
     {
-        TraceLog(LOG_INFO, "FILEIO: [%s] File created successfully", STORAGE_DATA_FILE);
+        RL_TraceLog(LOG_INFO, "FILEIO: [%s] File created successfully", STORAGE_DATA_FILE);
 
         dataSize = (position + 1)*sizeof(int);
         fileData = (unsigned char *)RL_MALLOC(dataSize);
         int *dataPtr = (int *)fileData;
         dataPtr[position] = value;
 
-        success = SaveFileData(STORAGE_DATA_FILE, fileData, dataSize);
-        UnloadFileData(fileData);
+        success = RL_SaveFileData(STORAGE_DATA_FILE, fileData, dataSize);
+        RL_UnloadFileData(fileData);
 
-        TraceLog(LOG_INFO, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
+        RL_TraceLog(LOG_INFO, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
     }
 
     return success;
@@ -173,20 +173,20 @@ int LoadStorageValue(unsigned int position)
 {
     int value = 0;
     int dataSize = 0;
-    unsigned char *fileData = LoadFileData(STORAGE_DATA_FILE, &dataSize);
+    unsigned char *fileData = RL_LoadFileData(STORAGE_DATA_FILE, &dataSize);
 
     if (fileData != NULL)
     {
-        if (dataSize < ((int)(position*4))) TraceLog(LOG_WARNING, "FILEIO: [%s] Failed to find storage position: %i", STORAGE_DATA_FILE, position);
+        if (dataSize < ((int)(position*4))) RL_TraceLog(LOG_WARNING, "FILEIO: [%s] Failed to find storage position: %i", STORAGE_DATA_FILE, position);
         else
         {
             int *dataPtr = (int *)fileData;
             value = dataPtr[position];
         }
 
-        UnloadFileData(fileData);
+        RL_UnloadFileData(fileData);
 
-        TraceLog(LOG_INFO, "FILEIO: [%s] Loaded storage value: %i", STORAGE_DATA_FILE, value);
+        RL_TraceLog(LOG_INFO, "FILEIO: [%s] Loaded storage value: %i", STORAGE_DATA_FILE, value);
     }
 
     return value;

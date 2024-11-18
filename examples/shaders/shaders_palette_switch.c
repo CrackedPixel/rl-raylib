@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [shaders] example - Color palette switch
+*   raylib [shaders] example - RL_Color palette switch
 *
 *   NOTE: This example requires raylib OpenGL 3.3 or ES2 versions for shaders support,
 *         OpenGL 1.1 does not support shaders, recompile raylib to OpenGL 3.3 version.
@@ -81,71 +81,71 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - color palette switch");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - color palette switch");
 
     // Load shader to be used on some parts drawing
     // NOTE 1: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
     // NOTE 2: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/palette_switch.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/palette_switch.fs", GLSL_VERSION));
 
     // Get variable (uniform) location on the shader to connect with the program
     // NOTE: If uniform variable could not be found in the shader, function returns -1
-    int paletteLoc = GetShaderLocation(shader, "palette");
+    int paletteLoc = RL_GetShaderLocation(shader, "palette");
 
     int currentPalette = 0;
     int lineHeight = screenHeight/COLORS_PER_PALETTE;
 
-    SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())            // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())            // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_RIGHT)) currentPalette++;
-        else if (IsKeyPressed(KEY_LEFT)) currentPalette--;
+        if (RL_IsKeyPressed(KEY_RIGHT)) currentPalette++;
+        else if (RL_IsKeyPressed(KEY_LEFT)) currentPalette--;
 
         if (currentPalette >= MAX_PALETTES) currentPalette = 0;
         else if (currentPalette < 0) currentPalette = MAX_PALETTES - 1;
 
         // Send palette data to the shader to be used on drawing
         // NOTE: We are sending RGB triplets w/o the alpha channel
-        SetShaderValueV(shader, paletteLoc, palettes[currentPalette], SHADER_UNIFORM_IVEC3, COLORS_PER_PALETTE);
+        RL_SetShaderValueV(shader, paletteLoc, palettes[currentPalette], SHADER_UNIFORM_IVEC3, COLORS_PER_PALETTE);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginShaderMode(shader);
+            RL_BeginShaderMode(shader);
 
                 for (int i = 0; i < COLORS_PER_PALETTE; i++)
                 {
                     // Draw horizontal screen-wide rectangles with increasing "palette index"
                     // The used palette index is encoded in the RGB components of the pixel
-                    DrawRectangle(0, lineHeight*i, GetScreenWidth(), lineHeight, (Color){ i, i, i, 255 });
+                    RL_DrawRectangle(0, lineHeight*i, RL_GetScreenWidth(), lineHeight, (RL_Color){ i, i, i, 255 });
                 }
 
-            EndShaderMode();
+            RL_EndShaderMode();
 
-            DrawText("< >", 10, 10, 30, DARKBLUE);
-            DrawText("CURRENT PALETTE:", 60, 15, 20, RAYWHITE);
-            DrawText(paletteText[currentPalette], 300, 15, 20, RED);
+            RL_DrawText("< >", 10, 10, 30, RL_DARKBLUE);
+            RL_DrawText("CURRENT PALETTE:", 60, 15, 20, RL_RAYWHITE);
+            RL_DrawText(paletteText[currentPalette], 300, 15, 20, RL_RED);
 
-            DrawFPS(700, 15);
+            RL_DrawFPS(700, 15);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);       // Unload shader
+    RL_UnloadShader(shader);       // Unload shader
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

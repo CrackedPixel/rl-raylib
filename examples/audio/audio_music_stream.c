@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [audio] example - Music playing (streaming)
+*   raylib [audio] example - RL_Music playing (streaming)
 *
 *   Example originally created with raylib 1.3, last time updated with raylib 4.0
 *
@@ -23,75 +23,75 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [audio] example - music playing (streaming)");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [audio] example - music playing (streaming)");
 
-    InitAudioDevice();              // Initialize audio device
+    RL_InitAudioDevice();              // Initialize audio device
 
-    Music music = LoadMusicStream("resources/country.mp3");
+    RL_Music music = RL_LoadMusicStream("resources/country.mp3");
 
-    PlayMusicStream(music);
+    RL_PlayMusicStream(music);
 
     float timePlayed = 0.0f;        // Time played normalized [0.0f..1.0f]
-    bool pause = false;             // Music playing paused
+    bool pause = false;             // RL_Music playing paused
 
-    SetTargetFPS(30);               // Set our game to run at 30 frames-per-second
+    RL_SetTargetFPS(30);               // Set our game to run at 30 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateMusicStream(music);   // Update music buffer with new stream data
+        RL_UpdateMusicStream(music);   // Update music buffer with new stream data
         
         // Restart music playing (stop and play)
-        if (IsKeyPressed(KEY_SPACE))
+        if (RL_IsKeyPressed(KEY_SPACE))
         {
-            StopMusicStream(music);
-            PlayMusicStream(music);
+            RL_StopMusicStream(music);
+            RL_PlayMusicStream(music);
         }
 
         // Pause/Resume music playing
-        if (IsKeyPressed(KEY_P))
+        if (RL_IsKeyPressed(KEY_P))
         {
             pause = !pause;
 
-            if (pause) PauseMusicStream(music);
-            else ResumeMusicStream(music);
+            if (pause) RL_PauseMusicStream(music);
+            else RL_ResumeMusicStream(music);
         }
 
         // Get normalized time played for current music stream
-        timePlayed = GetMusicTimePlayed(music)/GetMusicTimeLength(music);
+        timePlayed = RL_GetMusicTimePlayed(music)/RL_GetMusicTimeLength(music);
 
         if (timePlayed > 1.0f) timePlayed = 1.0f;   // Make sure time played is no longer than music
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, LIGHTGRAY);
+            RL_DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, RL_LIGHTGRAY);
 
-            DrawRectangle(200, 200, 400, 12, LIGHTGRAY);
-            DrawRectangle(200, 200, (int)(timePlayed*400.0f), 12, MAROON);
-            DrawRectangleLines(200, 200, 400, 12, GRAY);
+            RL_DrawRectangle(200, 200, 400, 12, RL_LIGHTGRAY);
+            RL_DrawRectangle(200, 200, (int)(timePlayed*400.0f), 12, RL_MAROON);
+            RL_DrawRectangleLines(200, 200, 400, 12, RL_GRAY);
 
-            DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, LIGHTGRAY);
-            DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, LIGHTGRAY);
+            RL_DrawText("PRESS SPACE TO RESTART MUSIC", 215, 250, 20, RL_LIGHTGRAY);
+            RL_DrawText("PRESS P TO PAUSE/RESUME MUSIC", 208, 280, 20, RL_LIGHTGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadMusicStream(music);   // Unload music stream buffers from RAM
+    RL_UnloadMusicStream(music);   // Unload music stream buffers from RAM
 
-    CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
+    RL_CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

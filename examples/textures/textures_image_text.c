@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [texture] example - Image text drawing using TTF generated font
+*   raylib [texture] example - RL_Image text drawing using TTF generated font
 *
 *   Example originally created with raylib 1.8, last time updated with raylib 4.0
 *
@@ -23,65 +23,65 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [texture] example - image text drawing");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [texture] example - image text drawing");
 
-    Image parrots = LoadImage("resources/parrots.png"); // Load image in CPU memory (RAM)
+    RL_Image parrots = RL_LoadImage("resources/parrots.png"); // Load image in CPU memory (RAM)
 
-    // TTF Font loading with custom generation parameters
-    Font font = LoadFontEx("resources/KAISG.ttf", 64, 0, 0);
+    // TTF RL_Font loading with custom generation parameters
+    RL_Font font = RL_LoadFontEx("resources/KAISG.ttf", 64, 0, 0);
 
     // Draw over image using custom font
-    ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", (Vector2){ 20.0f, 20.0f }, (float)font.baseSize, 0.0f, RED);
+    RL_ImageDrawTextEx(&parrots, font, "[Parrots font drawing]", (RL_Vector2){ 20.0f, 20.0f }, (float)font.baseSize, 0.0f, RL_RED);
 
-    Texture2D texture = LoadTextureFromImage(parrots);  // Image converted to texture, uploaded to GPU memory (VRAM)
-    UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
+    RL_Texture2D texture = RL_LoadTextureFromImage(parrots);  // RL_Image converted to texture, uploaded to GPU memory (VRAM)
+    RL_UnloadImage(parrots);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM
 
-    Vector2 position = { (float)(screenWidth/2 - texture.width/2), (float)(screenHeight/2 - texture.height/2 - 20) };
+    RL_Vector2 position = { (float)(screenWidth/2 - texture.width/2), (float)(screenHeight/2 - texture.height/2 - 20) };
 
     bool showFont = false;
 
-    SetTargetFPS(60);
+    RL_SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_SPACE)) showFont = true;
+        if (RL_IsKeyDown(KEY_SPACE)) showFont = true;
         else showFont = false;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             if (!showFont)
             {
                 // Draw texture with text already drawn inside
-                DrawTextureV(texture, position, WHITE);
+                RL_DrawTextureV(texture, position, RL_WHITE);
 
                 // Draw text directly using sprite font
-                DrawTextEx(font, "[Parrots font drawing]", (Vector2){ position.x + 20,
-                           position.y + 20 + 280 }, (float)font.baseSize, 0.0f, WHITE);
+                RL_DrawTextEx(font, "[Parrots font drawing]", (RL_Vector2){ position.x + 20,
+                           position.y + 20 + 280 }, (float)font.baseSize, 0.0f, RL_WHITE);
             }
-            else DrawTexture(font.texture, screenWidth/2 - font.texture.width/2, 50, BLACK);
+            else RL_DrawTexture(font.texture, screenWidth/2 - font.texture.width/2, 50, RL_BLACK);
 
-            DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, DARKGRAY);
+            RL_DrawText("PRESS SPACE to SHOW FONT ATLAS USED", 290, 420, 10, RL_DARKGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(texture);     // Texture unloading
+    RL_UnloadTexture(texture);     // RL_Texture unloading
 
-    UnloadFont(font);           // Unload custom font
+    RL_UnloadFont(font);           // Unload custom font
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

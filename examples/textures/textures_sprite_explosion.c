@@ -26,15 +26,15 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite explosion");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite explosion");
 
-    InitAudioDevice();
+    RL_InitAudioDevice();
 
     // Load explosion sound
-    Sound fxBoom = LoadSound("resources/boom.wav");
+    RL_Sound fxBoom = RL_LoadSound("resources/boom.wav");
 
     // Load explosion texture
-    Texture2D explosion = LoadTexture("resources/explosion.png");
+    RL_Texture2D explosion = RL_LoadTexture("resources/explosion.png");
 
     // Init variables for animation
     float frameWidth = (float)(explosion.width/NUM_FRAMES_PER_LINE);   // Sprite one frame rectangle width
@@ -42,31 +42,31 @@ int main(void)
     int currentFrame = 0;
     int currentLine = 0;
 
-    Rectangle frameRec = { 0, 0, frameWidth, frameHeight };
-    Vector2 position = { 0.0f, 0.0f };
+    RL_Rectangle frameRec = { 0, 0, frameWidth, frameHeight };
+    RL_Vector2 position = { 0.0f, 0.0f };
 
     bool active = false;
     int framesCounter = 0;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //---------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
 
         // Check for mouse button pressed and activate explosion (if not active)
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !active)
+        if (RL_IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !active)
         {
-            position = GetMousePosition();
+            position = RL_GetMousePosition();
             active = true;
 
             position.x -= frameWidth/2.0f;
             position.y -= frameHeight/2.0f;
 
-            PlaySound(fxBoom);
+            RL_PlaySound(fxBoom);
         }
 
         // Compute explosion animation frames
@@ -100,25 +100,25 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             // Draw explosion required frame rectangle
-            if (active) DrawTextureRec(explosion, frameRec, position, WHITE);
+            if (active) RL_DrawTextureRec(explosion, frameRec, position, RL_WHITE);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(explosion);   // Unload texture
-    UnloadSound(fxBoom);        // Unload sound
+    RL_UnloadTexture(explosion);   // Unload texture
+    RL_UnloadSound(fxBoom);        // Unload sound
 
-    CloseAudioDevice();
+    RL_CloseAudioDevice();
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

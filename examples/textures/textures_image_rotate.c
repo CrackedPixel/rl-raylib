@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - Image Rotation
+*   raylib [textures] example - RL_Image Rotation
 *
 *   Example originally created with raylib 1.0, last time updated with raylib 1.0
 *
@@ -25,34 +25,34 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - texture rotation");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - texture rotation");
 
     // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
-    Image image45 = LoadImage("resources/raylib_logo.png");
-    Image image90 = LoadImage("resources/raylib_logo.png");
-    Image imageNeg90 = LoadImage("resources/raylib_logo.png");
+    RL_Image image45 = RL_LoadImage("resources/raylib_logo.png");
+    RL_Image image90 = RL_LoadImage("resources/raylib_logo.png");
+    RL_Image imageNeg90 = RL_LoadImage("resources/raylib_logo.png");
 
-    ImageRotate(&image45, 45);
-    ImageRotate(&image90, 90);
-    ImageRotate(&imageNeg90, -90);
+    RL_ImageRotate(&image45, 45);
+    RL_ImageRotate(&image90, 90);
+    RL_ImageRotate(&imageNeg90, -90);
 
-    Texture2D textures[NUM_TEXTURES] = { 0 };
+    RL_Texture2D textures[NUM_TEXTURES] = { 0 };
 
-    textures[0] = LoadTextureFromImage(image45);
-    textures[1] = LoadTextureFromImage(image90);
-    textures[2] = LoadTextureFromImage(imageNeg90);
+    textures[0] = RL_LoadTextureFromImage(image45);
+    textures[1] = RL_LoadTextureFromImage(image90);
+    textures[2] = RL_LoadTextureFromImage(imageNeg90);
 
     int currentTexture = 0;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //---------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_RIGHT))
+        if (RL_IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || RL_IsKeyPressed(KEY_RIGHT))
         {
             currentTexture = (currentTexture + 1)%NUM_TEXTURES; // Cycle between the textures
         }
@@ -60,23 +60,23 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawTexture(textures[currentTexture], screenWidth/2 - textures[currentTexture].width/2, screenHeight/2 - textures[currentTexture].height/2, WHITE);
+            RL_DrawTexture(textures[currentTexture], screenWidth/2 - textures[currentTexture].width/2, screenHeight/2 - textures[currentTexture].height/2, RL_WHITE);
 
-            DrawText("Press LEFT MOUSE BUTTON to rotate the image clockwise", 250, 420, 10, DARKGRAY);
+            RL_DrawText("Press LEFT MOUSE BUTTON to rotate the image clockwise", 250, 420, 10, RL_DARKGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    for (int i = 0; i < NUM_TEXTURES; i++) UnloadTexture(textures[i]);
+    for (int i = 0; i < NUM_TEXTURES; i++) RL_UnloadTexture(textures[i]);
 
-    CloseWindow();                // Close window and OpenGL context
+    RL_CloseWindow();                // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

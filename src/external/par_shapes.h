@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-// Ray (@raysan5): Commented to avoid conflict with raylib bool
+// RL_Ray (@raysan5): Commented to avoid conflict with raylib bool
 /*
 #if !defined(_MSC_VER)
 # include <stdbool.h>
@@ -103,7 +103,7 @@ par_shapes_mesh* par_shapes_create_parametric(par_shapes_fn, int slices,
     int stacks, void* userdata);
 
 // Generate points for a 20-sided polyhedron that fits in the unit sphere.
-// Texture coordinates and normals are not generated.
+// RL_Texture coordinates and normals are not generated.
 par_shapes_mesh* par_shapes_create_icosahedron();
 
 // Generate points for a 12-sided polyhedron that fits in the unit sphere.
@@ -130,7 +130,7 @@ par_shapes_mesh* par_shapes_create_rock(int seed, int nsubdivisions);
 
 // Create trees or vegetation by executing a recursive turtle graphics program.
 // The program is a list of command-argument pairs.  See the unit test for
-// an example.  Texture coordinates and normals are not generated.
+// an example.  RL_Texture coordinates and normals are not generated.
 par_shapes_mesh* par_shapes_create_lsystem(char const* program, int slices,
     int maxdepth);
 

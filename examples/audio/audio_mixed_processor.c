@@ -53,70 +53,70 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [audio] example - processing mixed output");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [audio] example - processing mixed output");
 
-    InitAudioDevice();              // Initialize audio device
+    RL_InitAudioDevice();              // Initialize audio device
 
-    AttachAudioMixedProcessor(ProcessAudio);
+    RL_AttachAudioMixedProcessor(ProcessAudio);
 
-    Music music = LoadMusicStream("resources/country.mp3");
-    Sound sound = LoadSound("resources/coin.wav");
+    RL_Music music = RL_LoadMusicStream("resources/country.mp3");
+    RL_Sound sound = RL_LoadSound("resources/coin.wav");
 
-    PlayMusicStream(music);
+    RL_PlayMusicStream(music);
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateMusicStream(music);   // Update music buffer with new stream data
+        RL_UpdateMusicStream(music);   // Update music buffer with new stream data
 
         // Modify processing variables
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_LEFT)) exponent -= 0.05f;
-        if (IsKeyPressed(KEY_RIGHT)) exponent += 0.05f;
+        if (RL_IsKeyPressed(KEY_LEFT)) exponent -= 0.05f;
+        if (RL_IsKeyPressed(KEY_RIGHT)) exponent += 0.05f;
 
         if (exponent <= 0.5f) exponent = 0.5f;
         if (exponent >= 3.0f) exponent = 3.0f;
 
-        if (IsKeyPressed(KEY_SPACE)) PlaySound(sound);
+        if (RL_IsKeyPressed(KEY_SPACE)) RL_PlaySound(sound);
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, LIGHTGRAY);
+            RL_DrawText("MUSIC SHOULD BE PLAYING!", 255, 150, 20, RL_LIGHTGRAY);
 
-            DrawText(TextFormat("EXPONENT = %.2f", exponent), 215, 180, 20, LIGHTGRAY);
+            RL_DrawText(RL_TextFormat("EXPONENT = %.2f", exponent), 215, 180, 20, RL_LIGHTGRAY);
 
-            DrawRectangle(199, 199, 402, 34, LIGHTGRAY);
+            RL_DrawRectangle(199, 199, 402, 34, RL_LIGHTGRAY);
             for (int i = 0; i < 400; i++)
             {
-                DrawLine(201 + i, 232 - (int)(averageVolume[i] * 32), 201 + i, 232, MAROON);
+                RL_DrawLine(201 + i, 232 - (int)(averageVolume[i] * 32), 201 + i, 232, RL_MAROON);
             }
-            DrawRectangleLines(199, 199, 402, 34, GRAY);
+            RL_DrawRectangleLines(199, 199, 402, 34, RL_GRAY);
 
-            DrawText("PRESS SPACE TO PLAY OTHER SOUND", 200, 250, 20, LIGHTGRAY);
-            DrawText("USE LEFT AND RIGHT ARROWS TO ALTER DISTORTION", 140, 280, 20, LIGHTGRAY);
+            RL_DrawText("PRESS SPACE TO PLAY OTHER SOUND", 200, 250, 20, RL_LIGHTGRAY);
+            RL_DrawText("USE LEFT AND RIGHT ARROWS TO ALTER DISTORTION", 140, 280, 20, RL_LIGHTGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadMusicStream(music);   // Unload music stream buffers from RAM
+    RL_UnloadMusicStream(music);   // Unload music stream buffers from RAM
 
-    DetachAudioMixedProcessor(ProcessAudio);  // Disconnect audio processor
+    RL_DetachAudioMixedProcessor(ProcessAudio);  // Disconnect audio processor
 
-    CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
+    RL_CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -28,20 +28,20 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
 
     // Define the camera to look into our 3d world
-    Camera camera = { { 0.0f, 10.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, FOVY_PERSPECTIVE, CAMERA_PERSPECTIVE };
+    RL_Camera camera = { { 0.0f, 10.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, FOVY_PERSPECTIVE, CAMERA_PERSPECTIVE };
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_SPACE))
+        if (RL_IsKeyPressed(KEY_SPACE))
         {
             if (camera.projection == CAMERA_PERSPECTIVE)
             {
@@ -58,44 +58,44 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
-                DrawCube((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RED);
-                DrawCubeWires((Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, GOLD);
-                DrawCubeWires((Vector3){-4.0f, 0.0f, -2.0f}, 3.0f, 6.0f, 2.0f, MAROON);
+                RL_DrawCube((RL_Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RL_RED);
+                RL_DrawCubeWires((RL_Vector3){-4.0f, 0.0f, 2.0f}, 2.0f, 5.0f, 2.0f, RL_GOLD);
+                RL_DrawCubeWires((RL_Vector3){-4.0f, 0.0f, -2.0f}, 3.0f, 6.0f, 2.0f, RL_MAROON);
 
-                DrawSphere((Vector3){-1.0f, 0.0f, -2.0f}, 1.0f, GREEN);
-                DrawSphereWires((Vector3){1.0f, 0.0f, 2.0f}, 2.0f, 16, 16, LIME);
+                RL_DrawSphere((RL_Vector3){-1.0f, 0.0f, -2.0f}, 1.0f, RL_GREEN);
+                RL_DrawSphereWires((RL_Vector3){1.0f, 0.0f, 2.0f}, 2.0f, 16, 16, RL_LIME);
 
-                DrawCylinder((Vector3){4.0f, 0.0f, -2.0f}, 1.0f, 2.0f, 3.0f, 4, SKYBLUE);
-                DrawCylinderWires((Vector3){4.0f, 0.0f, -2.0f}, 1.0f, 2.0f, 3.0f, 4, DARKBLUE);
-                DrawCylinderWires((Vector3){4.5f, -1.0f, 2.0f}, 1.0f, 1.0f, 2.0f, 6, BROWN);
+                RL_DrawCylinder((RL_Vector3){4.0f, 0.0f, -2.0f}, 1.0f, 2.0f, 3.0f, 4, RL_SKYBLUE);
+                RL_DrawCylinderWires((RL_Vector3){4.0f, 0.0f, -2.0f}, 1.0f, 2.0f, 3.0f, 4, RL_DARKBLUE);
+                RL_DrawCylinderWires((RL_Vector3){4.5f, -1.0f, 2.0f}, 1.0f, 1.0f, 2.0f, 6, RL_BROWN);
 
-                DrawCylinder((Vector3){1.0f, 0.0f, -4.0f}, 0.0f, 1.5f, 3.0f, 8, GOLD);
-                DrawCylinderWires((Vector3){1.0f, 0.0f, -4.0f}, 0.0f, 1.5f, 3.0f, 8, PINK);
+                RL_DrawCylinder((RL_Vector3){1.0f, 0.0f, -4.0f}, 0.0f, 1.5f, 3.0f, 8, RL_GOLD);
+                RL_DrawCylinderWires((RL_Vector3){1.0f, 0.0f, -4.0f}, 0.0f, 1.5f, 3.0f, 8, RL_PINK);
 
-                DrawGrid(10, 1.0f);        // Draw a grid
+                RL_DrawGrid(10, 1.0f);        // Draw a grid
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("Press Spacebar to switch camera type", 10, GetScreenHeight() - 30, 20, DARKGRAY);
+            RL_DrawText("Press Spacebar to switch camera type", 10, RL_GetScreenHeight() - 30, 20, RL_DARKGRAY);
 
-            if (camera.projection == CAMERA_ORTHOGRAPHIC) DrawText("ORTHOGRAPHIC", 10, 40, 20, BLACK);
-            else if (camera.projection == CAMERA_PERSPECTIVE) DrawText("PERSPECTIVE", 10, 40, 20, BLACK);
+            if (camera.projection == CAMERA_ORTHOGRAPHIC) RL_DrawText("ORTHOGRAPHIC", 10, 40, 20, RL_BLACK);
+            else if (camera.projection == CAMERA_PERSPECTIVE) RL_DrawText("PERSPECTIVE", 10, 40, 20, RL_BLACK);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -28,9 +28,9 @@
 // Declare custom functions required for the example
 //------------------------------------------------------------------------------------
 // Load custom render texture, create a writable depth texture buffer
-static RenderTexture2D LoadRenderTextureDepthTex(int width, int height);
+static RL_RenderTexture2D LoadRenderTextureDepthTex(int width, int height);
 // Unload render texture from GPU memory (VRAM)
-static void UnloadRenderTextureDepthTex(RenderTexture2D target);
+static void UnloadRenderTextureDepthTex(RL_RenderTexture2D target);
 
 //------------------------------------------------------------------------------------
 // Declare custom Structs
@@ -50,101 +50,101 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - write depth buffer");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - write depth buffer");
 
-    // This Shader calculates pixel depth and color using raymarch
-    Shader shdrRaymarch = LoadShader(0, TextFormat("resources/shaders/glsl%i/hybrid_raymarch.fs", GLSL_VERSION));
+    // This RL_Shader calculates pixel depth and color using raymarch
+    RL_Shader shdrRaymarch = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/hybrid_raymarch.fs", GLSL_VERSION));
 
-    // This Shader is a standard rasterization fragment shader with the addition of depth writing
+    // This RL_Shader is a standard rasterization fragment shader with the addition of depth writing
     // You are required to write depth for all shaders if one shader does it
-    Shader shdrRaster = LoadShader(0, TextFormat("resources/shaders/glsl%i/hybrid_raster.fs", GLSL_VERSION));
+    RL_Shader shdrRaster = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/hybrid_raster.fs", GLSL_VERSION));
 
     // Declare Struct used to store camera locs.
     RayLocs marchLocs = {0};
 
     // Fill the struct with shader locs.
-    marchLocs.camPos = GetShaderLocation(shdrRaymarch, "camPos");
-    marchLocs.camDir = GetShaderLocation(shdrRaymarch, "camDir");
-    marchLocs.screenCenter = GetShaderLocation(shdrRaymarch, "screenCenter");
+    marchLocs.camPos = RL_GetShaderLocation(shdrRaymarch, "camPos");
+    marchLocs.camDir = RL_GetShaderLocation(shdrRaymarch, "camDir");
+    marchLocs.screenCenter = RL_GetShaderLocation(shdrRaymarch, "screenCenter");
 
     // Transfer screenCenter position to shader. Which is used to calculate ray direction. 
-    Vector2 screenCenter = {.x = screenWidth/2.0f, .y = screenHeight/2.0f};
-    SetShaderValue(shdrRaymarch, marchLocs.screenCenter , &screenCenter , SHADER_UNIFORM_VEC2);
+    RL_Vector2 screenCenter = {.x = screenWidth/2.0f, .y = screenHeight/2.0f};
+    RL_SetShaderValue(shdrRaymarch, marchLocs.screenCenter , &screenCenter , SHADER_UNIFORM_VEC2);
 
     // Use Customized function to create writable depth texture buffer
-    RenderTexture2D target = LoadRenderTextureDepthTex(screenWidth, screenHeight);
+    RL_RenderTexture2D target = LoadRenderTextureDepthTex(screenWidth, screenHeight);
 
     // Define the camera to look into our 3d world
-    Camera camera = {
-        .position = (Vector3){ 0.5f, 1.0f, 1.5f },    // Camera position
-        .target = (Vector3){ 0.0f, 0.5f, 0.0f },      // Camera looking at point
-        .up = (Vector3){ 0.0f, 1.0f, 0.0f },          // Camera up vector (rotation towards target)
-        .fovy = 45.0f,                                // Camera field-of-view Y
-        .projection = CAMERA_PERSPECTIVE              // Camera projection type
+    RL_Camera camera = {
+        .position = (RL_Vector3){ 0.5f, 1.0f, 1.5f },    // RL_Camera position
+        .target = (RL_Vector3){ 0.0f, 0.5f, 0.0f },      // RL_Camera looking at point
+        .up = (RL_Vector3){ 0.0f, 1.0f, 0.0f },          // RL_Camera up vector (rotation towards target)
+        .fovy = 45.0f,                                // RL_Camera field-of-view Y
+        .projection = CAMERA_PERSPECTIVE              // RL_Camera projection type
     };
     
-    // Camera FOV is pre-calculated in the camera Distance.
+    // RL_Camera FOV is pre-calculated in the camera Distance.
     float camDist = 1.0f/(tanf(camera.fovy*0.5f*DEG2RAD));
     
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_ORBITAL);
+        RL_UpdateCamera(&camera, CAMERA_ORBITAL);
 
-        // Update Camera Postion in the ray march shader.
-        SetShaderValue(shdrRaymarch, marchLocs.camPos, &(camera.position), RL_SHADER_UNIFORM_VEC3);
+        // Update RL_Camera Postion in the ray march shader.
+        RL_SetShaderValue(shdrRaymarch, marchLocs.camPos, &(camera.position), RL_SHADER_UNIFORM_VEC3);
         
-        // Update Camera Looking Vector. Vector length determines FOV.
-        Vector3 camDir = Vector3Scale( Vector3Normalize( Vector3Subtract(camera.target, camera.position)) , camDist);
-        SetShaderValue(shdrRaymarch, marchLocs.camDir, &(camDir), RL_SHADER_UNIFORM_VEC3);
+        // Update RL_Camera Looking Vector. Vector length determines FOV.
+        RL_Vector3 camDir = Vector3Scale( Vector3Normalize( Vector3Subtract(camera.target, camera.position)) , camDist);
+        RL_SetShaderValue(shdrRaymarch, marchLocs.camDir, &(camDir), RL_SHADER_UNIFORM_VEC3);
         //----------------------------------------------------------------------------------
         
         // Draw
         //----------------------------------------------------------------------------------
         // Draw into our custom render texture (framebuffer)
-        BeginTextureMode(target);
-            ClearBackground(WHITE);
+        RL_BeginTextureMode(target);
+            RL_ClearBackground(RL_WHITE);
 
             // Raymarch Scene
             rlEnableDepthTest(); //Manually enable Depth Test to handle multiple rendering methods.
-            BeginShaderMode(shdrRaymarch);
-                DrawRectangleRec((Rectangle){0,0, (float)screenWidth, (float)screenHeight},WHITE);
-            EndShaderMode();
+            RL_BeginShaderMode(shdrRaymarch);
+                RL_DrawRectangleRec((RL_Rectangle){0,0, (float)screenWidth, (float)screenHeight},RL_WHITE);
+            RL_EndShaderMode();
             
             // Rasterize Scene
-            BeginMode3D(camera);
-                BeginShaderMode(shdrRaster);
-                    DrawCubeWiresV((Vector3){ 0.0f, 0.5f, 1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, RED);
-                    DrawCubeV((Vector3){ 0.0f, 0.5f, 1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, PURPLE);
-                    DrawCubeWiresV((Vector3){ 0.0f, 0.5f, -1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, DARKGREEN);
-                    DrawCubeV((Vector3) { 0.0f, 0.5f, -1.0f }, (Vector3){ 1.0f, 1.0f, 1.0f }, YELLOW);
-                    DrawGrid(10, 1.0f);
-                EndShaderMode();
-            EndMode3D();
-        EndTextureMode();
+            RL_BeginMode3D(camera);
+                RL_BeginShaderMode(shdrRaster);
+                    RL_DrawCubeWiresV((RL_Vector3){ 0.0f, 0.5f, 1.0f }, (RL_Vector3){ 1.0f, 1.0f, 1.0f }, RL_RED);
+                    RL_DrawCubeV((RL_Vector3){ 0.0f, 0.5f, 1.0f }, (RL_Vector3){ 1.0f, 1.0f, 1.0f }, RL_PURPLE);
+                    RL_DrawCubeWiresV((RL_Vector3){ 0.0f, 0.5f, -1.0f }, (RL_Vector3){ 1.0f, 1.0f, 1.0f }, RL_DARKGREEN);
+                    RL_DrawCubeV((RL_Vector3) { 0.0f, 0.5f, -1.0f }, (RL_Vector3){ 1.0f, 1.0f, 1.0f }, RL_YELLOW);
+                    RL_DrawGrid(10, 1.0f);
+                RL_EndShaderMode();
+            RL_EndMode3D();
+        RL_EndTextureMode();
 
         // Draw into screen our custom render texture 
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
+        RL_BeginDrawing();
+            RL_ClearBackground(RL_RAYWHITE);
         
-            DrawTextureRec(target.texture, (Rectangle) { 0, 0, (float)screenWidth, (float)-screenHeight }, (Vector2) { 0, 0 }, WHITE);
-            DrawFPS(10, 10);
-        EndDrawing();
+            RL_DrawTextureRec(target.texture, (RL_Rectangle) { 0, 0, (float)screenWidth, (float)-screenHeight }, (RL_Vector2) { 0, 0 }, RL_WHITE);
+            RL_DrawFPS(10, 10);
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
     UnloadRenderTextureDepthTex(target);
-    UnloadShader(shdrRaymarch);
-    UnloadShader(shdrRaster);
+    RL_UnloadShader(shdrRaymarch);
+    RL_UnloadShader(shdrRaster);
 
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;
@@ -154,9 +154,9 @@ int main(void)
 // Define custom functions required for the example
 //------------------------------------------------------------------------------------
 // Load custom render texture, create a writable depth texture buffer
-RenderTexture2D LoadRenderTextureDepthTex(int width, int height)
+RL_RenderTexture2D LoadRenderTextureDepthTex(int width, int height)
 {
-    RenderTexture2D target = { 0 };
+    RL_RenderTexture2D target = { 0 };
 
     target.id = rlLoadFramebuffer(); // Load an empty framebuffer
 
@@ -193,11 +193,11 @@ RenderTexture2D LoadRenderTextureDepthTex(int width, int height)
 }
 
 // Unload render texture from GPU memory (VRAM)
-void UnloadRenderTextureDepthTex(RenderTexture2D target)
+void UnloadRenderTextureDepthTex(RL_RenderTexture2D target)
 {
     if (target.id > 0)
     {
-        // Color texture attached to FBO is deleted
+        // RL_Color texture attached to FBO is deleted
         rlUnloadTexture(target.texture.id);
         rlUnloadTexture(target.depth.id);
 

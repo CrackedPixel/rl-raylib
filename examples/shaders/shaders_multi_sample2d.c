@@ -36,74 +36,74 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib - multiple sample2D");
+    RL_InitWindow(screenWidth, screenHeight, "raylib - multiple sample2D");
 
-    Image imRed = GenImageColor(800, 450, (Color){ 255, 0, 0, 255 });
-    Texture texRed = LoadTextureFromImage(imRed);
-    UnloadImage(imRed);
+    RL_Image imRed = RL_GenImageColor(800, 450, (RL_Color){ 255, 0, 0, 255 });
+    RL_Texture texRed = RL_LoadTextureFromImage(imRed);
+    RL_UnloadImage(imRed);
 
-    Image imBlue = GenImageColor(800, 450, (Color){ 0, 0, 255, 255 });
-    Texture texBlue = LoadTextureFromImage(imBlue);
-    UnloadImage(imBlue);
+    RL_Image imBlue = RL_GenImageColor(800, 450, (RL_Color){ 0, 0, 255, 255 });
+    RL_Texture texBlue = RL_LoadTextureFromImage(imBlue);
+    RL_UnloadImage(imBlue);
 
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/color_mix.fs", GLSL_VERSION));
 
     // Get an additional sampler2D location to be enabled on drawing
-    int texBlueLoc = GetShaderLocation(shader, "texture1");
+    int texBlueLoc = RL_GetShaderLocation(shader, "texture1");
 
     // Get shader uniform for divider
-    int dividerLoc = GetShaderLocation(shader, "divider");
+    int dividerLoc = RL_GetShaderLocation(shader, "divider");
     float dividerValue = 0.5f;
 
-    SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                           // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())                // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())                // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_RIGHT)) dividerValue += 0.01f;
-        else if (IsKeyDown(KEY_LEFT)) dividerValue -= 0.01f;
+        if (RL_IsKeyDown(KEY_RIGHT)) dividerValue += 0.01f;
+        else if (RL_IsKeyDown(KEY_LEFT)) dividerValue -= 0.01f;
 
         if (dividerValue < 0.0f) dividerValue = 0.0f;
         else if (dividerValue > 1.0f) dividerValue = 1.0f;
 
-        SetShaderValue(shader, dividerLoc, &dividerValue, SHADER_UNIFORM_FLOAT);
+        RL_SetShaderValue(shader, dividerLoc, &dividerValue, SHADER_UNIFORM_FLOAT);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginShaderMode(shader);
+            RL_BeginShaderMode(shader);
 
                 // WARNING: Additional samplers are enabled for all draw calls in the batch,
-                // EndShaderMode() forces batch drawing and consequently resets active textures
+                // RL_EndShaderMode() forces batch drawing and consequently resets active textures
                 // to let other sampler2D to be activated on consequent drawings (if required)
-                SetShaderValueTexture(shader, texBlueLoc, texBlue);
+                RL_SetShaderValueTexture(shader, texBlueLoc, texBlue);
 
                 // We are drawing texRed using default sampler2D texture0 but
                 // an additional texture units is enabled for texBlue (sampler2D texture1)
-                DrawTexture(texRed, 0, 0, WHITE);
+                RL_DrawTexture(texRed, 0, 0, RL_WHITE);
 
-            EndShaderMode();
+            RL_EndShaderMode();
 
-            DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, GetScreenHeight() - 40, 20, RAYWHITE);
+            RL_DrawText("Use KEY_LEFT/KEY_RIGHT to move texture mixing in shader!", 80, RL_GetScreenHeight() - 40, 20, RL_RAYWHITE);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);       // Unload shader
-    UnloadTexture(texRed);      // Unload texture
-    UnloadTexture(texBlue);     // Unload texture
+    RL_UnloadShader(shader);       // Unload shader
+    RL_UnloadTexture(texRed);      // Unload texture
+    RL_UnloadTexture(texBlue);     // Unload texture
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

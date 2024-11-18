@@ -23,23 +23,23 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - background scrolling");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - background scrolling");
 
     // NOTE: Be careful, background width must be equal or bigger than screen width
     // if not, texture should be draw more than two times for scrolling effect
-    Texture2D background = LoadTexture("resources/cyberpunk_street_background.png");
-    Texture2D midground = LoadTexture("resources/cyberpunk_street_midground.png");
-    Texture2D foreground = LoadTexture("resources/cyberpunk_street_foreground.png");
+    RL_Texture2D background = RL_LoadTexture("resources/cyberpunk_street_background.png");
+    RL_Texture2D midground = RL_LoadTexture("resources/cyberpunk_street_midground.png");
+    RL_Texture2D foreground = RL_LoadTexture("resources/cyberpunk_street_foreground.png");
 
     float scrollingBack = 0.0f;
     float scrollingMid = 0.0f;
     float scrollingFore = 0.0f;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ int main(void)
         scrollingMid -= 0.5f;
         scrollingFore -= 1.0f;
 
-        // NOTE: Texture is scaled twice its size, so it sould be considered on scrolling
+        // NOTE: RL_Texture is scaled twice its size, so it sould be considered on scrolling
         if (scrollingBack <= -background.width*2) scrollingBack = 0;
         if (scrollingMid <= -midground.width*2) scrollingMid = 0;
         if (scrollingFore <= -foreground.width*2) scrollingFore = 0;
@@ -55,37 +55,37 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(GetColor(0x052c46ff));
+            RL_ClearBackground(RL_GetColor(0x052c46ff));
 
             // Draw background image twice
-            // NOTE: Texture is scaled twice its size
-            DrawTextureEx(background, (Vector2){ scrollingBack, 20 }, 0.0f, 2.0f, WHITE);
-            DrawTextureEx(background, (Vector2){ background.width*2 + scrollingBack, 20 }, 0.0f, 2.0f, WHITE);
+            // NOTE: RL_Texture is scaled twice its size
+            RL_DrawTextureEx(background, (RL_Vector2){ scrollingBack, 20 }, 0.0f, 2.0f, RL_WHITE);
+            RL_DrawTextureEx(background, (RL_Vector2){ background.width*2 + scrollingBack, 20 }, 0.0f, 2.0f, RL_WHITE);
 
             // Draw midground image twice
-            DrawTextureEx(midground, (Vector2){ scrollingMid, 20 }, 0.0f, 2.0f, WHITE);
-            DrawTextureEx(midground, (Vector2){ midground.width*2 + scrollingMid, 20 }, 0.0f, 2.0f, WHITE);
+            RL_DrawTextureEx(midground, (RL_Vector2){ scrollingMid, 20 }, 0.0f, 2.0f, RL_WHITE);
+            RL_DrawTextureEx(midground, (RL_Vector2){ midground.width*2 + scrollingMid, 20 }, 0.0f, 2.0f, RL_WHITE);
 
             // Draw foreground image twice
-            DrawTextureEx(foreground, (Vector2){ scrollingFore, 70 }, 0.0f, 2.0f, WHITE);
-            DrawTextureEx(foreground, (Vector2){ foreground.width*2 + scrollingFore, 70 }, 0.0f, 2.0f, WHITE);
+            RL_DrawTextureEx(foreground, (RL_Vector2){ scrollingFore, 70 }, 0.0f, 2.0f, RL_WHITE);
+            RL_DrawTextureEx(foreground, (RL_Vector2){ foreground.width*2 + scrollingFore, 70 }, 0.0f, 2.0f, RL_WHITE);
 
-            DrawText("BACKGROUND SCROLLING & PARALLAX", 10, 10, 20, RED);
-            DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, RAYWHITE);
+            RL_DrawText("BACKGROUND SCROLLING & PARALLAX", 10, 10, 20, RL_RED);
+            RL_DrawText("(c) Cyberpunk Street Environment by Luis Zuno (@ansimuz)", screenWidth - 330, screenHeight - 20, 10, RL_RAYWHITE);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(background);  // Unload background texture
-    UnloadTexture(midground);   // Unload midground texture
-    UnloadTexture(foreground);  // Unload foreground texture
+    RL_UnloadTexture(background);  // Unload background texture
+    RL_UnloadTexture(midground);   // Unload midground texture
+    RL_UnloadTexture(foreground);  // Unload foreground texture
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -353,7 +353,7 @@ static void Vox_SetVoxel(VoxArray3D* pvoxarray, int x, int y, int z, unsigned ch
 
 	//if (offset > voxarray->arrayChunksSize)
 	//{
-	//	TraceLog(LOG_ERROR, "Out of array");
+	//	RL_TraceLog(LOG_ERROR, "Out of array");
 	//}
 
 	CubeChunk3D* chunk = &pvoxarray->m_arrayChunks[offset];
@@ -377,7 +377,7 @@ static void Vox_SetVoxel(VoxArray3D* pvoxarray, int x, int y, int z, unsigned ch
 
 	//if (offset > chunk->arraySize)
 	//{
-	//	TraceLog(LOG_ERROR, "Out of array");
+	//	RL_TraceLog(LOG_ERROR, "Out of array");
 	//}
 
 	chunk->m_array[offset] = id;
@@ -398,7 +398,7 @@ static unsigned char Vox_GetVoxel(VoxArray3D* pvoxarray, int x, int y, int z)
 
 	//if (offset > voxarray->arrayChunksSize)
 	//{
-	//	TraceLog(LOG_ERROR, "Out of array");
+	//	RL_TraceLog(LOG_ERROR, "Out of array");
 	//}
 
 	CubeChunk3D* chunk = &pvoxarray->m_arrayChunks[offset];
@@ -417,7 +417,7 @@ static unsigned char Vox_GetVoxel(VoxArray3D* pvoxarray, int x, int y, int z)
 
 	//if (offset > chunk->arraySize)
 	//{
-	//	TraceLog(LOG_ERROR, "Out of array");
+	//	RL_TraceLog(LOG_ERROR, "Out of array");
 	//}
 	return chunk->m_array[offset];
 
@@ -664,7 +664,7 @@ int Vox_LoadFromMemory(unsigned char* pvoxData, unsigned int voxDataSize, VoxArr
 	}
 
 	//////////////////////////////////////////////////////////
-	// Building Mesh
+	// Building RL_Mesh
 	//   TODO compute globals indices array
 
 	// Init Arrays

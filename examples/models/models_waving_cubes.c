@@ -27,28 +27,28 @@ int main()
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - waving cubes");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - waving cubes");
 
     // Initialize the camera
-    Camera3D camera = { 0 };
-    camera.position = (Vector3){ 30.0f, 20.0f, 30.0f }; // Camera position
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 70.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera3D camera = { 0 };
+    camera.position = (RL_Vector3){ 30.0f, 20.0f, 30.0f }; // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 70.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
     // Specify the amount of blocks in each direction
     const int numBlocks = 15;
 
-    SetTargetFPS(60);
+    RL_SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        double time = GetTime();
+        double time = RL_GetTime();
 
         // Calculate time scale for cube position and size
         float scale = (2.0f + (float)sin(time))*0.7f;
@@ -61,13 +61,13 @@ int main()
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
-                DrawGrid(10, 5.0f);
+                RL_DrawGrid(10, 5.0f);
 
                 for (int x = 0; x < numBlocks; x++)
                 {
@@ -82,7 +82,7 @@ int main()
                             float scatter = sinf(blockScale*20.0f + (float)(time*4.0f));
 
                             // Calculate the cube position
-                            Vector3 cubePos = {
+                            RL_Vector3 cubePos = {
                                 (float)(x - numBlocks/2)*(scale*3.0f) + scatter,
                                 (float)(y - numBlocks/2)*(scale*2.0f) + scatter,
                                 (float)(z - numBlocks/2)*(scale*3.0f) + scatter
@@ -91,28 +91,28 @@ int main()
                             // Pick a color with a hue depending on cube position for the rainbow color effect
                             // NOTE: This function is quite costly to be done per cube and frame, 
                             // pre-catching the results into a separate array could improve performance
-                            Color cubeColor = ColorFromHSV((float)(((x + y + z)*18)%360), 0.75f, 0.9f);
+                            RL_Color cubeColor = RL_ColorFromHSV((float)(((x + y + z)*18)%360), 0.75f, 0.9f);
 
                             // Calculate cube size
                             float cubeSize = (2.4f - scale)*blockScale;
 
                             // And finally, draw the cube!
-                            DrawCube(cubePos, cubeSize, cubeSize, cubeSize, cubeColor);
+                            RL_DrawCube(cubePos, cubeSize, cubeSize, cubeSize, cubeColor);
                         }
                     }
                 }
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

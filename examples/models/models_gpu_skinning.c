@@ -35,22 +35,22 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - GPU skinning");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - GPU skinning");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 5.0f, 5.0f, 5.0f }; // Camera position
-    camera.target = (Vector3){ 0.0f, 2.0f, 0.0f };  // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };      // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                            // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;         // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 5.0f, 5.0f, 5.0f }; // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 2.0f, 0.0f };  // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };      // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                            // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;         // RL_Camera projection type
 
     // Load gltf model
-    Model characterModel = LoadModel("resources/models/gltf/greenman.glb"); // Load character model
+    RL_Model characterModel = RL_LoadModel("resources/models/gltf/greenman.glb"); // Load character model
     
     // Load skinning shader
-    Shader skinningShader = LoadShader(TextFormat("resources/shaders/glsl%i/skinning.vs", GLSL_VERSION),
-                                       TextFormat("resources/shaders/glsl%i/skinning.fs", GLSL_VERSION));
+    RL_Shader skinningShader = RL_LoadShader(RL_TextFormat("resources/shaders/glsl%i/skinning.vs", GLSL_VERSION),
+                                       RL_TextFormat("resources/shaders/glsl%i/skinning.fs", GLSL_VERSION));
     
     characterModel.materials[1].shader = skinningShader;
     
@@ -58,28 +58,28 @@ int main(void)
     int animsCount = 0;
     unsigned int animIndex = 0;
     unsigned int animCurrentFrame = 0;
-    ModelAnimation *modelAnimations = LoadModelAnimations("resources/models/gltf/greenman.glb", &animsCount);
+    RL_ModelAnimation *modelAnimations = RL_LoadModelAnimations("resources/models/gltf/greenman.glb", &animsCount);
 
-    Vector3 position = { 0.0f, 0.0f, 0.0f }; // Set model position
+    RL_Vector3 position = { 0.0f, 0.0f, 0.0f }; // Set model position
 
-    DisableCursor();                    // Limit cursor to relative movement inside the window
+    RL_DisableCursor();                    // Limit cursor to relative movement inside the window
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_THIRD_PERSON);
+        RL_UpdateCamera(&camera, CAMERA_THIRD_PERSON);
         
         // Select current animation
-        if (IsKeyPressed(KEY_T)) animIndex = (animIndex + 1)%animsCount;
-        else if (IsKeyPressed(KEY_G)) animIndex = (animIndex + animsCount - 1)%animsCount;
+        if (RL_IsKeyPressed(KEY_T)) animIndex = (animIndex + 1)%animsCount;
+        else if (RL_IsKeyPressed(KEY_G)) animIndex = (animIndex + animsCount - 1)%animsCount;
 
         // Update model animation
-        ModelAnimation anim = modelAnimations[animIndex];
+        RL_ModelAnimation anim = modelAnimations[animIndex];
         animCurrentFrame = (animCurrentFrame + 1)%anim.frameCount;
         characterModel.transform = MatrixTranslate(position.x, position.y, position.z);
         UpdateModelAnimationBones(characterModel, anim, animCurrentFrame);
@@ -87,32 +87,32 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
             
                 // Draw character mesh, pose calculation is done in shader (GPU skinning)
-                DrawMesh(characterModel.meshes[0], characterModel.materials[1], characterModel.transform);
+                RL_DrawMesh(characterModel.meshes[0], characterModel.materials[1], characterModel.transform);
 
-                DrawGrid(10, 1.0f);
+                RL_DrawGrid(10, 1.0f);
                 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("Use the T/G to switch animation", 10, 10, 20, GRAY);
+            RL_DrawText("Use the T/G to switch animation", 10, 10, 20, RL_GRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadModelAnimations(modelAnimations, animsCount); // Unload model animation
-    UnloadModel(characterModel);    // Unload model and meshes/material
-    UnloadShader(skinningShader);   // Unload GPU skinning shader
+    RL_UnloadModelAnimations(modelAnimations, animsCount); // Unload model animation
+    RL_UnloadModel(characterModel);    // Unload model and meshes/material
+    RL_UnloadShader(skinningShader);   // Unload GPU skinning shader
     
-    CloseWindow();                  // Close window and OpenGL context
+    RL_CloseWindow();                  // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -23,17 +23,17 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [text] example - text formatting");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [text] example - text formatting");
 
     int score = 100020;
     int hiscore = 200450;
     int lives = 5;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -42,25 +42,25 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextFormat("Score: %08i", score), 200, 80, 20, RED);
+            RL_DrawText(RL_TextFormat("Score: %08i", score), 200, 80, 20, RL_RED);
 
-            DrawText(TextFormat("HiScore: %08i", hiscore), 200, 120, 20, GREEN);
+            RL_DrawText(RL_TextFormat("HiScore: %08i", hiscore), 200, 120, 20, RL_GREEN);
 
-            DrawText(TextFormat("Lives: %02i", lives), 200, 160, 40, BLUE);
+            RL_DrawText(RL_TextFormat("Lives: %02i", lives), 200, 160, 40, RL_BLUE);
 
-            DrawText(TextFormat("Elapsed Time: %02.02f ms", GetFrameTime()*1000), 200, 220, 20, BLACK);
+            RL_DrawText(RL_TextFormat("Elapsed Time: %02.02f ms", RL_GetFrameTime()*1000), 200, 220, 20, RL_BLACK);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

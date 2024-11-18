@@ -24,7 +24,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
- * @brief ANSI C89 / C++11 single header importer / exporter SDK for the Model 3D (.M3D) format
+ * @brief ANSI C89 / C++11 single header importer / exporter SDK for the RL_Model 3D (.M3D) format
  * https://gitlab.com/bztsrc/model3d
  *
  * PNG decompressor included from (with minor modifications to make it C89 valid):
@@ -1711,7 +1711,7 @@ static int _m3dstbi__parse_png_file(_m3dstbi__png *z, int scan, int req_comp)
             if (!s->img_x || !s->img_y) return _m3dstbi__err("0-pixel image","Corrupt PNG");
             if (!pal_img_n) {
                s->img_n = (color & 2 ? 3 : 1) + (color & 4 ? 1 : 0);
-               if ((1 << 30) / s->img_x / s->img_n < s->img_y) return _m3dstbi__err("too large", "Image too large to decode");
+               if ((1 << 30) / s->img_x / s->img_n < s->img_y) return _m3dstbi__err("too large", "RL_Image too large to decode");
                if (scan == STBI__SCAN_header) return 1;
             } else {
                s->img_n = 1;
@@ -2377,7 +2377,7 @@ static M3D_FLOAT _m3d_rsq(M3D_FLOAT x)
 #endif
 
 /**
- * Function to decode a Model 3D into in-memory format
+ * Function to decode a RL_Model 3D into in-memory format
  */
 m3d_t *m3d_load(unsigned char *data, m3dread_t readfilecb, m3dfree_t freecb, m3d_t *mtllib)
 {
@@ -2592,7 +2592,7 @@ m3d_t *m3d_load(unsigned char *data, m3dread_t readfilecb, m3dfree_t freecb, m3d
                 }
             } else
             /* material chunk */
-            if(!memcmp(pe, "Material", 8)) {
+            if(!memcmp(pe, "RL_Material", 8)) {
                 pe = _m3d_findarg(pe);
                 if(!*pe || *pe == '\r' || *pe == '\n') goto asciiend;
                 pe = _m3d_safestr(pe, 0);
@@ -2660,7 +2660,7 @@ m3d_t *m3d_load(unsigned char *data, m3dread_t readfilecb, m3dfree_t freecb, m3d
                                 if(model->errcode == M3D_ERR_ALLOC) { M3D_FREE(pe); goto memerr; }
                                 /* this error code only returned if readfilecb was specified */
                                 if(m->prop[j].value.textureid == M3D_UNDEF) {
-                                    M3D_LOG("Texture not found");
+                                    M3D_LOG("RL_Texture not found");
                                     M3D_LOG(pe);
                                     m->numprop--;
                                 }
@@ -2684,7 +2684,7 @@ m3d_t *m3d_load(unsigned char *data, m3dread_t readfilecb, m3dfree_t freecb, m3d
                 while(*ptr && *ptr != '\r' && *ptr != '\n') ptr = _m3d_findnl(ptr);
             } else
             /* mesh */
-            if(!memcmp(pe, "Mesh", 4)) {
+            if(!memcmp(pe, "RL_Mesh", 4)) {
                 mi = M3D_UNDEF;
 #ifdef M3D_VERTEXMAX
                 pi = M3D_UNDEF;
@@ -3281,7 +3281,7 @@ asciiend:
         return NULL;
     }
     if(model->nb_s > M3D_NUMBONE) {
-        M3D_LOG("Model has more bones per vertex than what importer was configured to support");
+        M3D_LOG("RL_Model has more bones per vertex than what importer was configured to support");
         model->errcode = M3D_ERR_TRUNC;
     }
 
@@ -3329,17 +3329,17 @@ memerr:         M3D_LOG("Out of memory");
 
         /* color map */
         if(M3D_CHUNKMAGIC(data, 'C','M','A','P')) {
-            M3D_LOG("Color map");
+            M3D_LOG("RL_Color map");
             if(model->cmap) { M3D_LOG("More color map chunks, should be unique"); model->errcode = M3D_ERR_CMAP; continue; }
-            if(!model->ci_s) { M3D_LOG("Color map chunk, shouldn't be any"); model->errcode = M3D_ERR_CMAP; continue; }
+            if(!model->ci_s) { M3D_LOG("RL_Color map chunk, shouldn't be any"); model->errcode = M3D_ERR_CMAP; continue; }
             model->numcmap = len / sizeof(uint32_t);
             model->cmap = (uint32_t*)(data + sizeof(m3dchunk_t));
         } else
         /* texture map */
         if(M3D_CHUNKMAGIC(data, 'T','M','A','P')) {
-            M3D_LOG("Texture map");
+            M3D_LOG("RL_Texture map");
             if(model->tmap) { M3D_LOG("More texture map chunks, should be unique"); model->errcode = M3D_ERR_TMAP; continue; }
-            if(!model->ti_s) { M3D_LOG("Texture map chunk, shouldn't be any"); model->errcode = M3D_ERR_TMAP; continue; }
+            if(!model->ti_s) { M3D_LOG("RL_Texture map chunk, shouldn't be any"); model->errcode = M3D_ERR_TMAP; continue; }
             reclen = model->vc_s + model->vc_s;
             model->numtmap = len / reclen;
             model->tmap = (m3dti_t*)M3D_MALLOC(model->numtmap * sizeof(m3dti_t));
@@ -3481,7 +3481,7 @@ memerr:         M3D_LOG("Out of memory");
         if(M3D_CHUNKMAGIC(data, 'M','T','R','L')) {
             data += sizeof(m3dchunk_t);
             M3D_GETSTR(name);
-            M3D_LOG("Material");
+            M3D_LOG("RL_Material");
             M3D_LOG(name);
             if(model->ci_s < 4 && !model->numcmap) model->errcode = M3D_ERR_CMAP;
             for(i = 0; i < model->nummaterial; i++)
@@ -3545,7 +3545,7 @@ memerr:         M3D_LOG("Out of memory");
                             if(model->errcode == M3D_ERR_ALLOC) goto memerr;
                             /* this error code only returned if readfilecb was specified */
                             if(m->prop[i].value.textureid == M3D_UNDEF) {
-                                M3D_LOG("Texture not found");
+                                M3D_LOG("RL_Texture not found");
                                 M3D_LOG(m->name);
                                 m->numprop--;
                             }
@@ -3572,7 +3572,7 @@ memerr:         M3D_LOG("Out of memory");
             _m3d_getpr(model, readfilecb, freecb, name);
         } else
         if(M3D_CHUNKMAGIC(data, 'M','E','S','H')) {
-            M3D_LOG("Mesh data");
+            M3D_LOG("RL_Mesh data");
             if(!model->vertex) { M3D_LOG("No vertex chunk before mesh"); model->errcode = M3D_ERR_VRTS; }
             /* mesh */
             data += sizeof(m3dchunk_t);
@@ -4717,7 +4717,7 @@ static char *_m3d_prtbone(char *ptr, m3db_t *bone, M3D_INDEX numbone, M3D_INDEX 
 #endif
 
 /**
- * Function to encode an in-memory model into on storage Model 3D format
+ * Function to encode an in-memory model into on storage RL_Model 3D format
  */
 unsigned char *m3d_save(m3d_t *model, int quality, int flags, unsigned int *size)
 {
@@ -5307,7 +5307,7 @@ memerr: if(vrtxidx) M3D_FREE(vrtxidx);
                 }
                 out = (unsigned char*)M3D_REALLOC(out, len); ptr += (uintptr_t)out;
                 if(!out) { setlocale(LC_NUMERIC, ol); goto memerr; }
-                ptr += sprintf(ptr, "Material %s\r\n", sn);
+                ptr += sprintf(ptr, "RL_Material %s\r\n", sn);
                 M3D_FREE(sn); sn = NULL;
                 for(i = 0; i < m->numprop; i++) {
                     k = 256;
@@ -5402,7 +5402,7 @@ memerr: if(vrtxidx) M3D_FREE(vrtxidx);
                 }
             out = (unsigned char*)M3D_REALLOC(out, len); ptr += (uintptr_t)out;
             if(!out) { setlocale(LC_NUMERIC, ol); goto memerr; }
-            ptr += sprintf(ptr, "Mesh\r\n");
+            ptr += sprintf(ptr, "RL_Mesh\r\n");
             last = M3D_UNDEF;
 #ifdef M3D_VERTEXMAX
             lastp = M3D_UNDEF;
@@ -6304,39 +6304,39 @@ memerr: if(vrtxidx) M3D_FREE(vrtxidx);
 namespace M3D {
 #ifdef M3D_IMPLEMENTATION
 
-    class Model {
+    class RL_Model {
         public:
             m3d_t *model;
 
         public:
-            Model() {
+            RL_Model() {
                 this->model = (m3d_t*)malloc(sizeof(m3d_t)); memset(this->model, 0, sizeof(m3d_t));
             }
-            Model(_unused const std::string &data, _unused m3dread_t ReadFileCB,
-                _unused m3dfree_t FreeCB, _unused M3D::Model mtllib) {
+            RL_Model(_unused const std::string &data, _unused m3dread_t ReadFileCB,
+                _unused m3dfree_t FreeCB, _unused M3D::RL_Model mtllib) {
 #ifndef M3D_NOIMPORTER
                 this->model = m3d_load((unsigned char *)data.data(), ReadFileCB, FreeCB, mtllib.model);
 #else
-                Model();
+                RL_Model();
 #endif
             }
-            Model(_unused const std::vector<unsigned char> data, _unused m3dread_t ReadFileCB,
-                _unused m3dfree_t FreeCB, _unused M3D::Model mtllib) {
+            RL_Model(_unused const std::vector<unsigned char> data, _unused m3dread_t ReadFileCB,
+                _unused m3dfree_t FreeCB, _unused M3D::RL_Model mtllib) {
 #ifndef M3D_NOIMPORTER
                 this->model = m3d_load((unsigned char *)&data[0], ReadFileCB, FreeCB, mtllib.model);
 #else
-                Model();
+                RL_Model();
 #endif
             }
-            Model(_unused const unsigned char *data, _unused m3dread_t ReadFileCB,
-                _unused m3dfree_t FreeCB, _unused M3D::Model mtllib) {
+            RL_Model(_unused const unsigned char *data, _unused m3dread_t ReadFileCB,
+                _unused m3dfree_t FreeCB, _unused M3D::RL_Model mtllib) {
 #ifndef M3D_NOIMPORTER
                 this->model = m3d_load((unsigned char*)data, ReadFileCB, FreeCB, mtllib.model);
 #else
-                Model();
+                RL_Model();
 #endif
             }
-            ~Model() { m3d_free(this->model); }
+            ~RL_Model() { m3d_free(this->model); }
 
         public:
             m3d_t *getCStruct() { return this->model; }
@@ -6475,16 +6475,16 @@ namespace M3D {
     };
 
 #else
-    class Model {
+    class RL_Model {
         private:
             m3d_t *model;
 
         public:
-            Model(const std::string &data, m3dread_t ReadFileCB, m3dfree_t FreeCB);
-            Model(const std::vector<unsigned char> data, m3dread_t ReadFileCB, m3dfree_t FreeCB);
-            Model(const unsigned char *data, m3dread_t ReadFileCB, m3dfree_t FreeCB);
-            Model();
-            ~Model();
+            RL_Model(const std::string &data, m3dread_t ReadFileCB, m3dfree_t FreeCB);
+            RL_Model(const std::vector<unsigned char> data, m3dread_t ReadFileCB, m3dfree_t FreeCB);
+            RL_Model(const unsigned char *data, m3dread_t ReadFileCB, m3dfree_t FreeCB);
+            RL_Model();
+            ~RL_Model();
 
         public:
             m3d_t *getCStruct();

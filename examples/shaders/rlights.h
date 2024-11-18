@@ -46,12 +46,12 @@
 typedef struct {   
     int type;
     bool enabled;
-    Vector3 position;
-    Vector3 target;
-    Color color;
+    RL_Vector3 position;
+    RL_Vector3 target;
+    RL_Color color;
     float attenuation;
     
-    // Shader locations
+    // RL_Shader locations
     int enabledLoc;
     int typeLoc;
     int positionLoc;
@@ -73,8 +73,8 @@ extern "C" {            // Prevents name mangling of functions
 //----------------------------------------------------------------------------------
 // Module Functions Declaration
 //----------------------------------------------------------------------------------
-Light CreateLight(int type, Vector3 position, Vector3 target, Color color, Shader shader);   // Create a light and get shader locations
-void UpdateLightValues(Shader shader, Light light);         // Send light properties to shader
+Light CreateLight(int type, RL_Vector3 position, RL_Vector3 target, RL_Color color, RL_Shader shader);   // Create a light and get shader locations
+void UpdateLightValues(RL_Shader shader, Light light);         // Send light properties to shader
 
 #ifdef __cplusplus
 }
@@ -118,7 +118,7 @@ static int lightsCount = 0;    // Current amount of created lights
 //----------------------------------------------------------------------------------
 
 // Create a light and get shader locations
-Light CreateLight(int type, Vector3 position, Vector3 target, Color color, Shader shader)
+Light CreateLight(int type, RL_Vector3 position, RL_Vector3 target, RL_Color color, RL_Shader shader)
 {
     Light light = { 0 };
 
@@ -131,11 +131,11 @@ Light CreateLight(int type, Vector3 position, Vector3 target, Color color, Shade
         light.color = color;
 
         // NOTE: Lighting shader naming must be the provided ones
-        light.enabledLoc = GetShaderLocation(shader, TextFormat("lights[%i].enabled", lightsCount));
-        light.typeLoc = GetShaderLocation(shader, TextFormat("lights[%i].type", lightsCount));
-        light.positionLoc = GetShaderLocation(shader, TextFormat("lights[%i].position", lightsCount));
-        light.targetLoc = GetShaderLocation(shader, TextFormat("lights[%i].target", lightsCount));
-        light.colorLoc = GetShaderLocation(shader, TextFormat("lights[%i].color", lightsCount));
+        light.enabledLoc = RL_GetShaderLocation(shader, RL_TextFormat("lights[%i].enabled", lightsCount));
+        light.typeLoc = RL_GetShaderLocation(shader, RL_TextFormat("lights[%i].type", lightsCount));
+        light.positionLoc = RL_GetShaderLocation(shader, RL_TextFormat("lights[%i].position", lightsCount));
+        light.targetLoc = RL_GetShaderLocation(shader, RL_TextFormat("lights[%i].target", lightsCount));
+        light.colorLoc = RL_GetShaderLocation(shader, RL_TextFormat("lights[%i].color", lightsCount));
 
         UpdateLightValues(shader, light);
         
@@ -147,24 +147,24 @@ Light CreateLight(int type, Vector3 position, Vector3 target, Color color, Shade
 
 // Send light properties to shader
 // NOTE: Light shader locations should be available 
-void UpdateLightValues(Shader shader, Light light)
+void UpdateLightValues(RL_Shader shader, Light light)
 {
     // Send to shader light enabled state and type
-    SetShaderValue(shader, light.enabledLoc, &light.enabled, SHADER_UNIFORM_INT);
-    SetShaderValue(shader, light.typeLoc, &light.type, SHADER_UNIFORM_INT);
+    RL_SetShaderValue(shader, light.enabledLoc, &light.enabled, SHADER_UNIFORM_INT);
+    RL_SetShaderValue(shader, light.typeLoc, &light.type, SHADER_UNIFORM_INT);
 
     // Send to shader light position values
     float position[3] = { light.position.x, light.position.y, light.position.z };
-    SetShaderValue(shader, light.positionLoc, position, SHADER_UNIFORM_VEC3);
+    RL_SetShaderValue(shader, light.positionLoc, position, SHADER_UNIFORM_VEC3);
 
     // Send to shader light target position values
     float target[3] = { light.target.x, light.target.y, light.target.z };
-    SetShaderValue(shader, light.targetLoc, target, SHADER_UNIFORM_VEC3);
+    RL_SetShaderValue(shader, light.targetLoc, target, SHADER_UNIFORM_VEC3);
 
     // Send to shader light color values
     float color[4] = { (float)light.color.r/(float)255, (float)light.color.g/(float)255, 
                        (float)light.color.b/(float)255, (float)light.color.a/(float)255 };
-    SetShaderValue(shader, light.colorLoc, color, SHADER_UNIFORM_VEC4);
+    RL_SetShaderValue(shader, light.colorLoc, color, SHADER_UNIFORM_VEC4);
 }
 
 #endif // RLIGHTS_IMPLEMENTATION

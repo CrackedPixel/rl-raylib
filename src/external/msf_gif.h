@@ -110,8 +110,8 @@ extern "C" {
 #endif //__cplusplus
 
 /**
- * @param width                Image width in pixels.
- * @param height               Image height in pixels.
+ * @param width                RL_Image width in pixels.
+ * @param height               RL_Image height in pixels.
  * @return                     Non-zero on success, 0 on error.
  */
 int msf_gif_begin(MsfGifState * handle, int width, int height);

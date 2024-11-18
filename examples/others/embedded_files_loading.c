@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [others] example - Embedded files loading (Wave and Image)
+*   raylib [others] example - Embedded files loading (RL_Wave and RL_Image)
 *
 *   Example originally created with raylib 3.0, last time updated with raylib 2.5
 *
@@ -15,8 +15,8 @@
 
 #include "raylib.h"
 
-#include "resources/audio_data.h"   // Wave file exported with ExportWaveAsCode()
-#include "resources/image_data.h"   // Image file exported with ExportImageAsCode()
+#include "resources/audio_data.h"   // RL_Wave file exported with RL_ExportWaveAsCode()
+#include "resources/image_data.h"   // RL_Image file exported with RL_ExportImageAsCode()
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -28,13 +28,13 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [others] example - embedded files loading");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [others] example - embedded files loading");
 
-    InitAudioDevice();              // Initialize audio device
+    RL_InitAudioDevice();              // Initialize audio device
 
     // Loaded in CPU memory (RAM) from header file (audio_data.h)
-    // Same as: Wave wave = LoadWave("sound.wav");
-    Wave wave = {
+    // Same as: RL_Wave wave = RL_LoadWave("sound.wav");
+    RL_Wave wave = {
         .data = AUDIO_DATA,
         .frameCount = AUDIO_FRAME_COUNT,
         .sampleRate = AUDIO_SAMPLE_RATE,
@@ -42,17 +42,17 @@ int main(void)
         .channels = AUDIO_CHANNELS
     };
 
-    // Wave converted to Sound to be played
-    Sound sound = LoadSoundFromWave(wave);
+    // RL_Wave converted to RL_Sound to be played
+    RL_Sound sound = RL_LoadSoundFromWave(wave);
 
-    // With a Wave loaded from file, after Sound is loaded, we can unload Wave
-    // but in our case, Wave is embedded in executable, in program .data segment
+    // With a RL_Wave loaded from file, after RL_Sound is loaded, we can unload RL_Wave
+    // but in our case, RL_Wave is embedded in executable, in program .data segment
     // we can not (and should not) try to free that private memory region
-    //UnloadWave(wave);             // Do not unload wave data!
+    //RL_UnloadWave(wave);             // Do not unload wave data!
 
     // Loaded in CPU memory (RAM) from header file (image_data.h)
-    // Same as: Image image = LoadImage("raylib_logo.png");
-    Image image = {
+    // Same as: RL_Image image = RL_LoadImage("raylib_logo.png");
+    RL_Image image = {
         .data = IMAGE_DATA,
         .width = IMAGE_WIDTH,
         .height = IMAGE_HEIGHT,
@@ -60,48 +60,48 @@ int main(void)
         .mipmaps = 1
     };
 
-    // Image converted to Texture (VRAM) to be drawn
-    Texture2D texture = LoadTextureFromImage(image);
+    // RL_Image converted to RL_Texture (VRAM) to be drawn
+    RL_Texture2D texture = RL_LoadTextureFromImage(image);
 
-    // With an Image loaded from file, after Texture is loaded, we can unload Image
-    // but in our case, Image is embedded in executable, in program .data segment
+    // With an RL_Image loaded from file, after RL_Texture is loaded, we can unload RL_Image
+    // but in our case, RL_Image is embedded in executable, in program .data segment
     // we can not (and should not) try to free that private memory region
-    //UnloadImage(image);           // Do not unload image data!
+    //RL_UnloadImage(image);           // Do not unload image data!
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_SPACE)) PlaySound(sound);      // Play sound
+        if (RL_IsKeyPressed(KEY_SPACE)) RL_PlaySound(sound);      // Play sound
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawTexture(texture, screenWidth/2 - texture.width/2, 40, WHITE);
+            RL_DrawTexture(texture, screenWidth/2 - texture.width/2, 40, RL_WHITE);
 
-            DrawText("raylib logo and sound loaded from header files", 150, 320, 20, LIGHTGRAY);
-            DrawText("Press SPACE to PLAY the sound!", 220, 370, 20, LIGHTGRAY);
+            RL_DrawText("raylib logo and sound loaded from header files", 150, 320, 20, RL_LIGHTGRAY);
+            RL_DrawText("Press SPACE to PLAY the sound!", 220, 370, 20, RL_LIGHTGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadSound(sound);     // Unload sound from VRAM
-    UnloadTexture(texture); // Unload texture from VRAM
+    RL_UnloadSound(sound);     // Unload sound from VRAM
+    RL_UnloadTexture(texture); // Unload texture from VRAM
 
-    CloseAudioDevice();     // Close audio device
+    RL_CloseAudioDevice();     // Close audio device
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

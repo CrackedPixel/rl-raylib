@@ -48,7 +48,7 @@
 // int intro_tick(long counter)
 // {
 //     jar_xm_generate_samples(musicptr, musicBuffer, (48000 / 60) / 2);
-//     if(IsKeyDown(KEY_ENTER))
+//     if(RL_IsKeyDown(KEY_ENTER))
 //         return 1;
 //     return 0;
 // }
@@ -2373,23 +2373,23 @@ void jar_xm_debug(jar_xm_context_t *ctx) {
     int x = 0, y = 0;
 
     // DEBUG VARIABLES
-    y += size; DrawText(TextFormat("CUR TBL = %i", ctx->current_table_index),       x, y, size, WHITE);
-    y += size; DrawText(TextFormat("CUR PAT = %i", ctx->module.pattern_table[ctx->current_table_index]),   x, y, size, WHITE);
-    y += size; DrawText(TextFormat("POS JMP = %d", ctx->position_jump),             x, y, size, WHITE);
-    y += size; DrawText(TextFormat("JMP DST = %i", ctx->jump_dest),                 x, y, size, WHITE);
-    y += size; DrawText(TextFormat("PTN BRK = %d", ctx->pattern_break),             x, y, size, WHITE);
-    y += size; DrawText(TextFormat("CUR ROW = %i", ctx->current_row),               x, y, size, WHITE);
-    y += size; DrawText(TextFormat("JMP ROW = %i", ctx->jump_row),                  x, y, size, WHITE);
-    y += size; DrawText(TextFormat("ROW LCT = %i", ctx->row_loop_count),            x, y, size, WHITE);
-    y += size; DrawText(TextFormat("LCT     = %i", ctx->loop_count),                x, y, size, WHITE);
-    y += size; DrawText(TextFormat("MAX LCT = %i", ctx->max_loop_count),            x, y, size, WHITE);
+    y += size; RL_DrawText(RL_TextFormat("CUR TBL = %i", ctx->current_table_index),       x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("CUR PAT = %i", ctx->module.pattern_table[ctx->current_table_index]),   x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("POS JMP = %d", ctx->position_jump),             x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("JMP DST = %i", ctx->jump_dest),                 x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("PTN BRK = %d", ctx->pattern_break),             x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("CUR ROW = %i", ctx->current_row),               x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("JMP ROW = %i", ctx->jump_row),                  x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("ROW LCT = %i", ctx->row_loop_count),            x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("LCT     = %i", ctx->loop_count),                x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("MAX LCT = %i", ctx->max_loop_count),            x, y, size, RL_WHITE);
     x = size * 12; y = 0;
 
-    y += size; DrawText(TextFormat("CUR TCK = %i", ctx->current_tick),              x, y, size, WHITE);
-    y += size; DrawText(TextFormat("XTR TCK = %i", ctx->extra_ticks),               x, y, size, WHITE);
-    y += size; DrawText(TextFormat("TCK/ROW = %i", ctx->tempo),                     x, y, size, ORANGE);
-    y += size; DrawText(TextFormat("SPL TCK = %f", ctx->remaining_samples_in_tick), x, y, size, WHITE);
-    y += size; DrawText(TextFormat("GEN SPL = %i", ctx->generated_samples),         x, y, size, WHITE);
+    y += size; RL_DrawText(RL_TextFormat("CUR TCK = %i", ctx->current_tick),              x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("XTR TCK = %i", ctx->extra_ticks),               x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("TCK/ROW = %i", ctx->tempo),                     x, y, size, RL_ORANGE);
+    y += size; RL_DrawText(RL_TextFormat("SPL TCK = %f", ctx->remaining_samples_in_tick), x, y, size, RL_WHITE);
+    y += size; RL_DrawText(RL_TextFormat("GEN SPL = %i", ctx->generated_samples),         x, y, size, RL_WHITE);
     y += size * 7;
 
     x = 0;
@@ -2398,19 +2398,19 @@ void jar_xm_debug(jar_xm_context_t *ctx) {
     for (int i=0; i < ctx->module.length; i++) {
         if (i == ctx->jump_dest) {
             if (ctx->position_jump) {
-                DrawRectangle(i * size * 2, y - size, size * 2, size, GOLD);
+                RL_DrawRectangle(i * size * 2, y - size, size * 2, size, RL_GOLD);
             } else {
-                DrawRectangle(i * size * 2, y - size, size * 2, size, BROWN);
+                RL_DrawRectangle(i * size * 2, y - size, size * 2, size, RL_BROWN);
             };
         };
         if (i == ctx->current_table_index) {
-//            DrawText(TextFormat("%02X", ctx->current_tick), i * size * 2, y - size, size, WHITE);
-            DrawRectangle(i * size * 2, y, size * 2, size, RED);
-            DrawText(TextFormat("%02X", ctx->current_row), i * size * 2, y - size, size, YELLOW);
+//            RL_DrawText(RL_TextFormat("%02X", ctx->current_tick), i * size * 2, y - size, size, RL_WHITE);
+            RL_DrawRectangle(i * size * 2, y, size * 2, size, RL_RED);
+            RL_DrawText(RL_TextFormat("%02X", ctx->current_row), i * size * 2, y - size, size, RL_YELLOW);
         } else {
-            DrawRectangle(i * size * 2, y, size * 2, size, ORANGE);
+            RL_DrawRectangle(i * size * 2, y, size * 2, size, RL_ORANGE);
         };
-        DrawText(TextFormat("%02X", ctx->module.pattern_table[i]), i * size * 2, y, size, WHITE);
+        RL_DrawText(RL_TextFormat("%02X", ctx->module.pattern_table[i]), i * size * 2, y, size, RL_WHITE);
     };
     y += size;
 
@@ -2420,11 +2420,11 @@ void jar_xm_debug(jar_xm_context_t *ctx) {
 
     x += 2 * size;
     for(uint8_t i = 0; i < ctx->module.num_channels; i++) {
-        DrawRectangle(x, y, 8 * size, size, PURPLE);
-        DrawText("N", x, y, size, YELLOW);
-        DrawText("I", x + size * 2, y, size, YELLOW);
-        DrawText("V", x + size * 4, y, size, YELLOW);
-        DrawText("FX", x + size * 6, y, size, YELLOW);
+        RL_DrawRectangle(x, y, 8 * size, size, RL_PURPLE);
+        RL_DrawText("N", x, y, size, RL_YELLOW);
+        RL_DrawText("I", x + size * 2, y, size, RL_YELLOW);
+        RL_DrawText("V", x + size * 4, y, size, RL_YELLOW);
+        RL_DrawText("FX", x + size * 6, y, size, RL_YELLOW);
         x += 9 * size;
     };
     x += size;
@@ -2432,31 +2432,31 @@ void jar_xm_debug(jar_xm_context_t *ctx) {
         y += size;
         x = 0;
         if (j >=0 && j < (cur->num_rows)) {
-            DrawRectangle(x, y, size * 2, size, BROWN);
-            DrawText(TextFormat("%02X",j), x, y, size, WHITE);
+            RL_DrawRectangle(x, y, size * 2, size, RL_BROWN);
+            RL_DrawText(RL_TextFormat("%02X",j), x, y, size, RL_WHITE);
             x += 2 * size;
             for(uint8_t i = 0; i < ctx->module.num_channels; i++) {
                 if (j==(ctx->current_row)) {
-                    DrawRectangle(x, y, 8 * size, size, DARKGREEN);
+                    RL_DrawRectangle(x, y, 8 * size, size, RL_DARKGREEN);
                 } else {
-                    DrawRectangle(x, y, 8 * size, size, DARKGRAY);
+                    RL_DrawRectangle(x, y, 8 * size, size, RL_DARKGRAY);
                 };
                 jar_xm_pattern_slot_t *s = cur->slots + j * ctx->module.num_channels + i;
            //     jar_xm_channel_context_t *ch = ctx->channels + i;
-                if (s->note > 0) {DrawText(TextFormat("%s%s", xm_note_chr(s->note), xm_octave_chr(s->note) ), x, y, size, WHITE);} else {DrawText("...", x, y, size, GRAY);};
+                if (s->note > 0) {RL_DrawText(RL_TextFormat("%s%s", xm_note_chr(s->note), xm_octave_chr(s->note) ), x, y, size, RL_WHITE);} else {RL_DrawText("...", x, y, size, RL_GRAY);};
                 if (s->instrument > 0) {
-                    DrawText(TextFormat("%02X", s->instrument), x + size * 2, y, size, WHITE);
+                    RL_DrawText(RL_TextFormat("%02X", s->instrument), x + size * 2, y, size, RL_WHITE);
                     if (s->volume_column == 0) {
-                        DrawText(TextFormat("%02X", 64), x + size * 4, y, size, YELLOW);
+                        RL_DrawText(RL_TextFormat("%02X", 64), x + size * 4, y, size, RL_YELLOW);
                     };
                 } else {
-                    DrawText("..", x + size * 2, y, size, GRAY);
+                    RL_DrawText("..", x + size * 2, y, size, RL_GRAY);
                     if (s->volume_column == 0) {
-                        DrawText("..", x + size * 4, y, size, GRAY);
+                        RL_DrawText("..", x + size * 4, y, size, RL_GRAY);
                     };
                 };
-                if (s->volume_column > 0) {DrawText(TextFormat("%02X", (s->volume_column - 16)), x + size * 4, y, size, WHITE);};
-                if (s->effect_type > 0 || s->effect_param > 0) {DrawText(TextFormat("%s%02X", xm_effect_chr(s->effect_type), s->effect_param), x + size * 6, y, size, WHITE);};
+                if (s->volume_column > 0) {RL_DrawText(RL_TextFormat("%02X", (s->volume_column - 16)), x + size * 4, y, size, RL_WHITE);};
+                if (s->effect_type > 0 || s->effect_param > 0) {RL_DrawText(RL_TextFormat("%s%02X", xm_effect_chr(s->effect_type), s->effect_param), x + size * 6, y, size, RL_WHITE);};
                 x += 9 * size;
             };
         };

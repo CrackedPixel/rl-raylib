@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - Retrieve image data from texture: LoadImageFromTexture()
+*   raylib [textures] example - Retrieve image data from texture: RL_LoadImageFromTexture()
 *
 *   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
 *
@@ -25,25 +25,25 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - texture to image");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - texture to image");
 
     // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
 
-    Image image = LoadImage("resources/raylib_logo.png");  // Load image data into CPU memory (RAM)
-    Texture2D texture = LoadTextureFromImage(image);       // Image converted to texture, GPU memory (RAM -> VRAM)
-    UnloadImage(image);                                    // Unload image data from CPU memory (RAM)
+    RL_Image image = RL_LoadImage("resources/raylib_logo.png");  // Load image data into CPU memory (RAM)
+    RL_Texture2D texture = RL_LoadTextureFromImage(image);       // RL_Image converted to texture, GPU memory (RAM -> VRAM)
+    RL_UnloadImage(image);                                    // Unload image data from CPU memory (RAM)
 
-    image = LoadImageFromTexture(texture);                 // Load image from GPU texture (VRAM -> RAM)
-    UnloadTexture(texture);                                // Unload texture from GPU memory (VRAM)
+    image = RL_LoadImageFromTexture(texture);                 // Load image from GPU texture (VRAM -> RAM)
+    RL_UnloadTexture(texture);                                // Unload texture from GPU memory (VRAM)
 
-    texture = LoadTextureFromImage(image);                 // Recreate texture from retrieved image data (RAM -> VRAM)
-    UnloadImage(image);                                    // Unload retrieved image data from CPU memory (RAM)
+    texture = RL_LoadTextureFromImage(image);                 // Recreate texture from retrieved image data (RAM -> VRAM)
+    RL_UnloadImage(image);                                    // Unload retrieved image data from CPU memory (RAM)
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //---------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -52,23 +52,23 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawTexture(texture, screenWidth/2 - texture.width/2, screenHeight/2 - texture.height/2, WHITE);
+            RL_DrawTexture(texture, screenWidth/2 - texture.width/2, screenHeight/2 - texture.height/2, RL_WHITE);
 
-            DrawText("this IS a texture loaded from an image!", 300, 370, 10, GRAY);
+            RL_DrawText("this IS a texture loaded from an image!", 300, 370, 10, RL_GRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(texture);       // Texture unloading
+    RL_UnloadTexture(texture);       // RL_Texture unloading
 
-    CloseWindow();                // Close window and OpenGL context
+    RL_CloseWindow();                // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

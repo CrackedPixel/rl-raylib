@@ -52,9 +52,9 @@
 *       #define RL_DEFAULT_BATCH_BUFFER_ELEMENTS   8192    // Default internal render batch elements limits
 *       #define RL_DEFAULT_BATCH_BUFFERS              1    // Default number of batch buffers (multi-buffering)
 *       #define RL_DEFAULT_BATCH_DRAWCALLS          256    // Default number of batch draw calls (by state changes: mode, texture)
-*       #define RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS    4    // Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())
+*       #define RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS    4    // Maximum number of textures units that can be activated on batch drawing (RL_SetShaderValueTexture())
 *
-*       #define RL_MAX_MATRIX_STACK_SIZE             32    // Maximum size of internal Matrix stack
+*       #define RL_MAX_MATRIX_STACK_SIZE             32    // Maximum size of internal RL_Matrix stack
 *       #define RL_MAX_SHADER_LOCATIONS              32    // Maximum number of shader locations supported
 *       #define RL_CULL_DISTANCE_NEAR              0.01    // Default projection matrix near cull distance
 *       #define RL_CULL_DISTANCE_FAR             1000.0    // Default projection matrix far cull distance
@@ -219,15 +219,15 @@
     #define RL_DEFAULT_BATCH_DRAWCALLS             256      // Default number of batch draw calls (by state changes: mode, texture)
 #endif
 #ifndef RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS
-    #define RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS       4      // Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())
+    #define RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS       4      // Maximum number of textures units that can be activated on batch drawing (RL_SetShaderValueTexture())
 #endif
 
-// Internal Matrix stack
+// Internal RL_Matrix stack
 #ifndef RL_MAX_MATRIX_STACK_SIZE
-    #define RL_MAX_MATRIX_STACK_SIZE                32      // Maximum size of Matrix stack
+    #define RL_MAX_MATRIX_STACK_SIZE                32      // Maximum size of RL_Matrix stack
 #endif
 
-// Shader limits
+// RL_Shader limits
 #ifndef RL_MAX_SHADER_LOCATIONS
     #define RL_MAX_SHADER_LOCATIONS                 32      // Maximum number of shader locations supported
 #endif
@@ -240,7 +240,7 @@
     #define RL_CULL_DISTANCE_FAR                1000.0      // Default far cull distance
 #endif
 
-// Texture parameters (equivalent to OpenGL defines)
+// RL_Texture parameters (equivalent to OpenGL defines)
 #define RL_TEXTURE_WRAP_S                       0x2802      // GL_TEXTURE_WRAP_S
 #define RL_TEXTURE_WRAP_T                       0x2803      // GL_TEXTURE_WRAP_T
 #define RL_TEXTURE_MAG_FILTER                   0x2800      // GL_TEXTURE_MAG_FILTER
@@ -253,14 +253,14 @@
 #define RL_TEXTURE_FILTER_LINEAR_MIP_NEAREST    0x2701      // GL_LINEAR_MIPMAP_NEAREST
 #define RL_TEXTURE_FILTER_MIP_LINEAR            0x2703      // GL_LINEAR_MIPMAP_LINEAR
 #define RL_TEXTURE_FILTER_ANISOTROPIC           0x3000      // Anisotropic filter (custom identifier)
-#define RL_TEXTURE_MIPMAP_BIAS_RATIO            0x4000      // Texture mipmap bias, percentage ratio (custom identifier)
+#define RL_TEXTURE_MIPMAP_BIAS_RATIO            0x4000      // RL_Texture mipmap bias, percentage ratio (custom identifier)
 
 #define RL_TEXTURE_WRAP_REPEAT                  0x2901      // GL_REPEAT
 #define RL_TEXTURE_WRAP_CLAMP                   0x812F      // GL_CLAMP_TO_EDGE
 #define RL_TEXTURE_WRAP_MIRROR_REPEAT           0x8370      // GL_MIRRORED_REPEAT
 #define RL_TEXTURE_WRAP_MIRROR_CLAMP            0x8742      // GL_MIRROR_CLAMP_EXT
 
-// Matrix modes (equivalent to OpenGL)
+// RL_Matrix modes (equivalent to OpenGL)
 #define RL_MODELVIEW                            0x1700      // GL_MODELVIEW
 #define RL_PROJECTION                           0x1701      // GL_PROJECTION
 #define RL_TEXTURE                              0x1702      // GL_TEXTURE
@@ -285,7 +285,7 @@
 #define RL_DYNAMIC_READ                         0x88E9      // GL_DYNAMIC_READ
 #define RL_DYNAMIC_COPY                         0x88EA      // GL_DYNAMIC_COPY
 
-// GL Shader type
+// GL RL_Shader type
 #define RL_FRAGMENT_SHADER                      0x8B30      // GL_FRAGMENT_SHADER
 #define RL_VERTEX_SHADER                        0x8B31      // GL_VERTEX_SHADER
 #define RL_COMPUTE_SHADER                       0x91B9      // GL_COMPUTE_SHADER
@@ -367,13 +367,13 @@ typedef enum bool { false = 0, true = !false } bool;
 #endif
 
 #if !defined(RL_MATRIX_TYPE)
-// Matrix, 4x4 components, column major, OpenGL style, right handed
-typedef struct Matrix {
-    float m0, m4, m8, m12;      // Matrix first row (4 components)
-    float m1, m5, m9, m13;      // Matrix second row (4 components)
-    float m2, m6, m10, m14;     // Matrix third row (4 components)
-    float m3, m7, m11, m15;     // Matrix fourth row (4 components)
-} Matrix;
+// RL_Matrix, 4x4 components, column major, OpenGL style, right handed
+typedef struct RL_Matrix {
+    float m0, m4, m8, m12;      // RL_Matrix first row (4 components)
+    float m1, m5, m9, m13;      // RL_Matrix second row (4 components)
+    float m2, m6, m10, m14;     // RL_Matrix third row (4 components)
+    float m3, m7, m11, m15;     // RL_Matrix fourth row (4 components)
+} RL_Matrix;
 #define RL_MATRIX_TYPE
 #endif
 
@@ -404,11 +404,11 @@ typedef struct rlDrawCall {
     int vertexCount;            // Number of vertex of the draw
     int vertexAlignment;        // Number of vertex required for index alignment (LINES, TRIANGLES)
     //unsigned int vaoId;       // Vertex array id to be used on the draw -> Using RLGL.currentBatch->vertexBuffer.vaoId
-    //unsigned int shaderId;    // Shader id to be used on the draw -> Using RLGL.currentShaderId
-    unsigned int textureId;     // Texture id to be used on the draw -> Use to create new draw call if changes
+    //unsigned int shaderId;    // RL_Shader id to be used on the draw -> Using RLGL.currentShaderId
+    unsigned int textureId;     // RL_Texture id to be used on the draw -> Use to create new draw call if changes
 
-    //Matrix projection;        // Projection matrix for this draw -> Using RLGL.projection by default
-    //Matrix modelview;         // Modelview matrix for this draw -> Using RLGL.modelview by default
+    //RL_Matrix projection;        // Projection matrix for this draw -> Using RLGL.projection by default
+    //RL_Matrix modelview;         // Modelview matrix for this draw -> Using RLGL.modelview by default
 } rlDrawCall;
 
 // rlRenderBatch type
@@ -445,7 +445,7 @@ typedef enum {
     RL_LOG_NONE                 // Disable logging
 } rlTraceLogLevel;
 
-// Texture pixel formats
+// RL_Texture pixel formats
 // NOTE: Support depends on OpenGL version
 typedef enum {
     RL_PIXELFORMAT_UNCOMPRESSED_GRAYSCALE = 1,     // 8 bit per pixel (no alpha)
@@ -474,7 +474,7 @@ typedef enum {
     RL_PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA        // 2 bpp
 } rlPixelFormat;
 
-// Texture parameters: filter mode
+// RL_Texture parameters: filter mode
 // NOTE 1: Filtering considers mipmaps if available in the texture
 // NOTE 2: Filter is accordingly set for minification and magnification
 typedef enum {
@@ -486,7 +486,7 @@ typedef enum {
     RL_TEXTURE_FILTER_ANISOTROPIC_16X,  // Anisotropic filtering 16x
 } rlTextureFilter;
 
-// Color blending modes (pre-defined)
+// RL_Color blending modes (pre-defined)
 typedef enum {
     RL_BLEND_ALPHA = 0,                 // Blend textures considering alpha (default)
     RL_BLEND_ADDITIVE,                  // Blend textures adding colors
@@ -498,62 +498,62 @@ typedef enum {
     RL_BLEND_CUSTOM_SEPARATE            // Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
 } rlBlendMode;
 
-// Shader location point type
+// RL_Shader location point type
 typedef enum {
-    RL_SHADER_LOC_VERTEX_POSITION = 0,  // Shader location: vertex attribute: position
-    RL_SHADER_LOC_VERTEX_TEXCOORD01,    // Shader location: vertex attribute: texcoord01
-    RL_SHADER_LOC_VERTEX_TEXCOORD02,    // Shader location: vertex attribute: texcoord02
-    RL_SHADER_LOC_VERTEX_NORMAL,        // Shader location: vertex attribute: normal
-    RL_SHADER_LOC_VERTEX_TANGENT,       // Shader location: vertex attribute: tangent
-    RL_SHADER_LOC_VERTEX_COLOR,         // Shader location: vertex attribute: color
-    RL_SHADER_LOC_MATRIX_MVP,           // Shader location: matrix uniform: model-view-projection
-    RL_SHADER_LOC_MATRIX_VIEW,          // Shader location: matrix uniform: view (camera transform)
-    RL_SHADER_LOC_MATRIX_PROJECTION,    // Shader location: matrix uniform: projection
-    RL_SHADER_LOC_MATRIX_MODEL,         // Shader location: matrix uniform: model (transform)
-    RL_SHADER_LOC_MATRIX_NORMAL,        // Shader location: matrix uniform: normal
-    RL_SHADER_LOC_VECTOR_VIEW,          // Shader location: vector uniform: view
-    RL_SHADER_LOC_COLOR_DIFFUSE,        // Shader location: vector uniform: diffuse color
-    RL_SHADER_LOC_COLOR_SPECULAR,       // Shader location: vector uniform: specular color
-    RL_SHADER_LOC_COLOR_AMBIENT,        // Shader location: vector uniform: ambient color
-    RL_SHADER_LOC_MAP_ALBEDO,           // Shader location: sampler2d texture: albedo (same as: RL_SHADER_LOC_MAP_DIFFUSE)
-    RL_SHADER_LOC_MAP_METALNESS,        // Shader location: sampler2d texture: metalness (same as: RL_SHADER_LOC_MAP_SPECULAR)
-    RL_SHADER_LOC_MAP_NORMAL,           // Shader location: sampler2d texture: normal
-    RL_SHADER_LOC_MAP_ROUGHNESS,        // Shader location: sampler2d texture: roughness
-    RL_SHADER_LOC_MAP_OCCLUSION,        // Shader location: sampler2d texture: occlusion
-    RL_SHADER_LOC_MAP_EMISSION,         // Shader location: sampler2d texture: emission
-    RL_SHADER_LOC_MAP_HEIGHT,           // Shader location: sampler2d texture: height
-    RL_SHADER_LOC_MAP_CUBEMAP,          // Shader location: samplerCube texture: cubemap
-    RL_SHADER_LOC_MAP_IRRADIANCE,       // Shader location: samplerCube texture: irradiance
-    RL_SHADER_LOC_MAP_PREFILTER,        // Shader location: samplerCube texture: prefilter
-    RL_SHADER_LOC_MAP_BRDF              // Shader location: sampler2d texture: brdf
+    RL_SHADER_LOC_VERTEX_POSITION = 0,  // RL_Shader location: vertex attribute: position
+    RL_SHADER_LOC_VERTEX_TEXCOORD01,    // RL_Shader location: vertex attribute: texcoord01
+    RL_SHADER_LOC_VERTEX_TEXCOORD02,    // RL_Shader location: vertex attribute: texcoord02
+    RL_SHADER_LOC_VERTEX_NORMAL,        // RL_Shader location: vertex attribute: normal
+    RL_SHADER_LOC_VERTEX_TANGENT,       // RL_Shader location: vertex attribute: tangent
+    RL_SHADER_LOC_VERTEX_COLOR,         // RL_Shader location: vertex attribute: color
+    RL_SHADER_LOC_MATRIX_MVP,           // RL_Shader location: matrix uniform: model-view-projection
+    RL_SHADER_LOC_MATRIX_VIEW,          // RL_Shader location: matrix uniform: view (camera transform)
+    RL_SHADER_LOC_MATRIX_PROJECTION,    // RL_Shader location: matrix uniform: projection
+    RL_SHADER_LOC_MATRIX_MODEL,         // RL_Shader location: matrix uniform: model (transform)
+    RL_SHADER_LOC_MATRIX_NORMAL,        // RL_Shader location: matrix uniform: normal
+    RL_SHADER_LOC_VECTOR_VIEW,          // RL_Shader location: vector uniform: view
+    RL_SHADER_LOC_COLOR_DIFFUSE,        // RL_Shader location: vector uniform: diffuse color
+    RL_SHADER_LOC_COLOR_SPECULAR,       // RL_Shader location: vector uniform: specular color
+    RL_SHADER_LOC_COLOR_AMBIENT,        // RL_Shader location: vector uniform: ambient color
+    RL_SHADER_LOC_MAP_ALBEDO,           // RL_Shader location: sampler2d texture: albedo (same as: RL_SHADER_LOC_MAP_DIFFUSE)
+    RL_SHADER_LOC_MAP_METALNESS,        // RL_Shader location: sampler2d texture: metalness (same as: RL_SHADER_LOC_MAP_SPECULAR)
+    RL_SHADER_LOC_MAP_NORMAL,           // RL_Shader location: sampler2d texture: normal
+    RL_SHADER_LOC_MAP_ROUGHNESS,        // RL_Shader location: sampler2d texture: roughness
+    RL_SHADER_LOC_MAP_OCCLUSION,        // RL_Shader location: sampler2d texture: occlusion
+    RL_SHADER_LOC_MAP_EMISSION,         // RL_Shader location: sampler2d texture: emission
+    RL_SHADER_LOC_MAP_HEIGHT,           // RL_Shader location: sampler2d texture: height
+    RL_SHADER_LOC_MAP_CUBEMAP,          // RL_Shader location: samplerCube texture: cubemap
+    RL_SHADER_LOC_MAP_IRRADIANCE,       // RL_Shader location: samplerCube texture: irradiance
+    RL_SHADER_LOC_MAP_PREFILTER,        // RL_Shader location: samplerCube texture: prefilter
+    RL_SHADER_LOC_MAP_BRDF              // RL_Shader location: sampler2d texture: brdf
 } rlShaderLocationIndex;
 
 #define RL_SHADER_LOC_MAP_DIFFUSE       RL_SHADER_LOC_MAP_ALBEDO
 #define RL_SHADER_LOC_MAP_SPECULAR      RL_SHADER_LOC_MAP_METALNESS
 
-// Shader uniform data type
+// RL_Shader uniform data type
 typedef enum {
-    RL_SHADER_UNIFORM_FLOAT = 0,        // Shader uniform type: float
-    RL_SHADER_UNIFORM_VEC2,             // Shader uniform type: vec2 (2 float)
-    RL_SHADER_UNIFORM_VEC3,             // Shader uniform type: vec3 (3 float)
-    RL_SHADER_UNIFORM_VEC4,             // Shader uniform type: vec4 (4 float)
-    RL_SHADER_UNIFORM_INT,              // Shader uniform type: int
-    RL_SHADER_UNIFORM_IVEC2,            // Shader uniform type: ivec2 (2 int)
-    RL_SHADER_UNIFORM_IVEC3,            // Shader uniform type: ivec3 (3 int)
-    RL_SHADER_UNIFORM_IVEC4,            // Shader uniform type: ivec4 (4 int)
-    RL_SHADER_UNIFORM_UINT,             // Shader uniform type: unsigned int
-    RL_SHADER_UNIFORM_UIVEC2,           // Shader uniform type: uivec2 (2 unsigned int)
-    RL_SHADER_UNIFORM_UIVEC3,           // Shader uniform type: uivec3 (3 unsigned int)
-    RL_SHADER_UNIFORM_UIVEC4,           // Shader uniform type: uivec4 (4 unsigned int)
-    RL_SHADER_UNIFORM_SAMPLER2D         // Shader uniform type: sampler2d
+    RL_SHADER_UNIFORM_FLOAT = 0,        // RL_Shader uniform type: float
+    RL_SHADER_UNIFORM_VEC2,             // RL_Shader uniform type: vec2 (2 float)
+    RL_SHADER_UNIFORM_VEC3,             // RL_Shader uniform type: vec3 (3 float)
+    RL_SHADER_UNIFORM_VEC4,             // RL_Shader uniform type: vec4 (4 float)
+    RL_SHADER_UNIFORM_INT,              // RL_Shader uniform type: int
+    RL_SHADER_UNIFORM_IVEC2,            // RL_Shader uniform type: ivec2 (2 int)
+    RL_SHADER_UNIFORM_IVEC3,            // RL_Shader uniform type: ivec3 (3 int)
+    RL_SHADER_UNIFORM_IVEC4,            // RL_Shader uniform type: ivec4 (4 int)
+    RL_SHADER_UNIFORM_UINT,             // RL_Shader uniform type: unsigned int
+    RL_SHADER_UNIFORM_UIVEC2,           // RL_Shader uniform type: uivec2 (2 unsigned int)
+    RL_SHADER_UNIFORM_UIVEC3,           // RL_Shader uniform type: uivec3 (3 unsigned int)
+    RL_SHADER_UNIFORM_UIVEC4,           // RL_Shader uniform type: uivec4 (4 unsigned int)
+    RL_SHADER_UNIFORM_SAMPLER2D         // RL_Shader uniform type: sampler2d
 } rlShaderUniformDataType;
 
-// Shader attribute data types
+// RL_Shader attribute data types
 typedef enum {
-    RL_SHADER_ATTRIB_FLOAT = 0,         // Shader attribute type: float
-    RL_SHADER_ATTRIB_VEC2,              // Shader attribute type: vec2 (2 float)
-    RL_SHADER_ATTRIB_VEC3,              // Shader attribute type: vec3 (3 float)
-    RL_SHADER_ATTRIB_VEC4               // Shader attribute type: vec4 (4 float)
+    RL_SHADER_ATTRIB_FLOAT = 0,         // RL_Shader attribute type: float
+    RL_SHADER_ATTRIB_VEC2,              // RL_Shader attribute type: vec2 (2 float)
+    RL_SHADER_ATTRIB_VEC3,              // RL_Shader attribute type: vec3 (3 float)
+    RL_SHADER_ATTRIB_VEC4               // RL_Shader attribute type: vec4 (4 float)
 } rlShaderAttributeDataType;
 
 // Framebuffer attachment type
@@ -590,7 +590,7 @@ typedef enum {
 } rlCullMode;
 
 //------------------------------------------------------------------------------------
-// Functions Declaration - Matrix operations
+// Functions Declaration - RL_Matrix operations
 //------------------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -655,7 +655,7 @@ RLAPI void rlDisableTextureCubemap(void);               // Disable texture cubem
 RLAPI void rlTextureParameters(unsigned int id, int param, int value); // Set texture parameters (filter, wrap)
 RLAPI void rlCubemapParameters(unsigned int id, int param, int value); // Set cubemap parameters (filter, wrap)
 
-// Shader state
+// RL_Shader state
 RLAPI void rlEnableShader(unsigned int id);             // Enable shader program
 RLAPI void rlDisableShader(void);                       // Disable shader program
 
@@ -676,7 +676,7 @@ RLAPI void rlEnableDepthMask(void);                     // Enable depth write
 RLAPI void rlDisableDepthMask(void);                    // Disable depth write
 RLAPI void rlEnableBackfaceCulling(void);               // Enable backface culling
 RLAPI void rlDisableBackfaceCulling(void);              // Disable backface culling
-RLAPI void rlColorMask(bool r, bool g, bool b, bool a); // Color mask control
+RLAPI void rlColorMask(bool r, bool g, bool b, bool a); // RL_Color mask control
 RLAPI void rlSetCullFace(int mode);                     // Set face culling mode
 RLAPI void rlEnableScissorTest(void);                   // Enable scissor test
 RLAPI void rlDisableScissorTest(void);                  // Disable scissor test
@@ -772,8 +772,8 @@ RLAPI void rlUnloadShaderProgram(unsigned int id);                              
 RLAPI int rlGetLocationUniform(unsigned int shaderId, const char *uniformName); // Get shader location uniform
 RLAPI int rlGetLocationAttrib(unsigned int shaderId, const char *attribName);   // Get shader location attribute
 RLAPI void rlSetUniform(int locIndex, const void *value, int uniformType, int count); // Set shader value uniform
-RLAPI void rlSetUniformMatrix(int locIndex, Matrix mat);                        // Set shader value matrix
-RLAPI void rlSetUniformMatrices(int locIndex, const Matrix *mat, int count);    // Set shader value matrices
+RLAPI void rlSetUniformMatrix(int locIndex, RL_Matrix mat);                        // Set shader value matrix
+RLAPI void rlSetUniformMatrices(int locIndex, const RL_Matrix *mat, int count);    // Set shader value matrices
 RLAPI void rlSetUniformSampler(int locIndex, unsigned int textureId);           // Set shader value sampler
 RLAPI void rlSetShader(unsigned int id, int *locs);                             // Set shader currently active (id and locations)
 
@@ -781,7 +781,7 @@ RLAPI void rlSetShader(unsigned int id, int *locs);                             
 RLAPI unsigned int rlLoadComputeShaderProgram(unsigned int shaderId);           // Load compute shader program
 RLAPI void rlComputeShaderDispatch(unsigned int groupX, unsigned int groupY, unsigned int groupZ); // Dispatch compute shader (equivalent to *draw* for graphics pipeline)
 
-// Shader buffer storage object management (ssbo)
+// RL_Shader buffer storage object management (ssbo)
 RLAPI unsigned int rlLoadShaderBuffer(unsigned int size, const void *data, int usageHint); // Load shader storage buffer object (SSBO)
 RLAPI void rlUnloadShaderBuffer(unsigned int ssboId);                           // Unload shader storage buffer object (SSBO)
 RLAPI void rlUpdateShaderBuffer(unsigned int id, const void *data, unsigned int dataSize, unsigned int offset); // Update SSBO buffer data
@@ -793,16 +793,16 @@ RLAPI unsigned int rlGetShaderBufferSize(unsigned int id);                      
 // Buffer management
 RLAPI void rlBindImageTexture(unsigned int id, unsigned int index, int format, bool readonly);  // Bind image texture
 
-// Matrix state management
-RLAPI Matrix rlGetMatrixModelview(void);                                  // Get internal modelview matrix
-RLAPI Matrix rlGetMatrixProjection(void);                                 // Get internal projection matrix
-RLAPI Matrix rlGetMatrixTransform(void);                                  // Get internal accumulated transform matrix
-RLAPI Matrix rlGetMatrixProjectionStereo(int eye);                        // Get internal projection matrix for stereo render (selected eye)
-RLAPI Matrix rlGetMatrixViewOffsetStereo(int eye);                        // Get internal view offset matrix for stereo render (selected eye)
-RLAPI void rlSetMatrixProjection(Matrix proj);                            // Set a custom projection matrix (replaces internal projection matrix)
-RLAPI void rlSetMatrixModelview(Matrix view);                             // Set a custom modelview matrix (replaces internal modelview matrix)
-RLAPI void rlSetMatrixProjectionStereo(Matrix right, Matrix left);        // Set eyes projection matrices for stereo rendering
-RLAPI void rlSetMatrixViewOffsetStereo(Matrix right, Matrix left);        // Set eyes view offsets matrices for stereo rendering
+// RL_Matrix state management
+RLAPI RL_Matrix rlGetMatrixModelview(void);                                  // Get internal modelview matrix
+RLAPI RL_Matrix rlGetMatrixProjection(void);                                 // Get internal projection matrix
+RLAPI RL_Matrix rlGetMatrixTransform(void);                                  // Get internal accumulated transform matrix
+RLAPI RL_Matrix rlGetMatrixProjectionStereo(int eye);                        // Get internal projection matrix for stereo render (selected eye)
+RLAPI RL_Matrix rlGetMatrixViewOffsetStereo(int eye);                        // Get internal view offset matrix for stereo render (selected eye)
+RLAPI void rlSetMatrixProjection(RL_Matrix proj);                            // Set a custom projection matrix (replaces internal projection matrix)
+RLAPI void rlSetMatrixModelview(RL_Matrix view);                             // Set a custom modelview matrix (replaces internal modelview matrix)
+RLAPI void rlSetMatrixProjectionStereo(RL_Matrix right, RL_Matrix left);        // Set eyes projection matrices for stereo rendering
+RLAPI void rlSetMatrixViewOffsetStereo(RL_Matrix right, RL_Matrix left);        // Set eyes view offsets matrices for stereo rendering
 
 // Quick and dirty cube/quad buffers load->draw->unload
 RLAPI void rlLoadDrawCube(void);     // Load and draw a cube
@@ -1045,13 +1045,13 @@ typedef struct rlglData {
         unsigned char colorr, colorg, colorb, colora;   // Current active color (added on glVertex*())
 
         int currentMatrixMode;              // Current matrix mode
-        Matrix *currentMatrix;              // Current matrix pointer
-        Matrix modelview;                   // Default modelview matrix
-        Matrix projection;                  // Default projection matrix
-        Matrix transform;                   // Transform matrix to be used with rlTranslate, rlRotate, rlScale
+        RL_Matrix *currentMatrix;              // Current matrix pointer
+        RL_Matrix modelview;                   // Default modelview matrix
+        RL_Matrix projection;                  // Default projection matrix
+        RL_Matrix transform;                   // RL_Transform matrix to be used with rlTranslate, rlRotate, rlScale
         bool transformRequired;             // Require transform matrix application to current draw-call vertex (if required)
-        Matrix stack[RL_MAX_MATRIX_STACK_SIZE];// Matrix stack for push/pop
-        int stackCounter;                   // Matrix stack counter
+        RL_Matrix stack[RL_MAX_MATRIX_STACK_SIZE];// RL_Matrix stack for push/pop
+        int stackCounter;                   // RL_Matrix stack counter
 
         unsigned int defaultTextureId;      // Default texture used on shapes/poly drawing (required by shader)
         unsigned int activeTextureId[RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS];    // Active texture ids to be enabled on batch drawing (0 active by default)
@@ -1063,8 +1063,8 @@ typedef struct rlglData {
         int *currentShaderLocs;             // Current shader locations pointer to be used on rendering (by default, defaultShaderLocs)
 
         bool stereoRender;                  // Stereo rendering flag
-        Matrix projectionStereo[2];         // VR stereo rendering eyes projection matrices
-        Matrix viewOffsetStereo[2];         // VR stereo rendering eyes view offset matrices
+        RL_Matrix projectionStereo[2];         // VR stereo rendering eyes projection matrices
+        RL_Matrix viewOffsetStereo[2];         // VR stereo rendering eyes view offset matrices
 
         // Blending variables
         int currentBlendMode;               // Blending mode active
@@ -1099,7 +1099,7 @@ typedef struct rlglData {
         bool texMirrorClamp;                // Clamp mirror wrap mode supported (GL_EXT_texture_mirror_clamp)
         bool texAnisoFilter;                // Anisotropic texture filtering support (GL_EXT_texture_filter_anisotropic)
         bool computeShader;                 // Compute shaders support (GL_ARB_compute_shader)
-        bool ssbo;                          // Shader storage buffer object support (GL_ARB_shader_storage_buffer_object)
+        bool ssbo;                          // RL_Shader storage buffer object support (GL_ARB_shader_storage_buffer_object)
 
         float maxAnisotropyLevel;           // Maximum anisotropy level supported (minimum is 2.0f)
         int maxDepthBits;                   // Maximum bits for depth component
@@ -1150,15 +1150,15 @@ static int rlGetPixelDataSize(int width, int height, int format);   // Get pixel
 typedef struct rl_float16 {
     float v[16];
 } rl_float16;
-static rl_float16 rlMatrixToFloatV(Matrix mat);             // Get float array of matrix data
-#define rlMatrixToFloat(mat) (rlMatrixToFloatV(mat).v)      // Get float vector for Matrix
-static Matrix rlMatrixIdentity(void);                       // Get identity matrix
-static Matrix rlMatrixMultiply(Matrix left, Matrix right);  // Multiply two matrices
-static Matrix rlMatrixTranspose(Matrix mat);                // Transposes provided matrix
-static Matrix rlMatrixInvert(Matrix mat);                   // Invert provided matrix
+static rl_float16 rlMatrixToFloatV(RL_Matrix mat);             // Get float array of matrix data
+#define rlMatrixToFloat(mat) (rlMatrixToFloatV(mat).v)      // Get float vector for RL_Matrix
+static RL_Matrix rlMatrixIdentity(void);                       // Get identity matrix
+static RL_Matrix rlMatrixMultiply(RL_Matrix left, RL_Matrix right);  // Multiply two matrices
+static RL_Matrix rlMatrixTranspose(RL_Matrix mat);                // Transposes provided matrix
+static RL_Matrix rlMatrixInvert(RL_Matrix mat);                   // Invert provided matrix
 
 //----------------------------------------------------------------------------------
-// Module Functions Definition - Matrix operations
+// Module Functions Definition - RL_Matrix operations
 //----------------------------------------------------------------------------------
 
 #if defined(GRAPHICS_API_OPENGL_11)
@@ -1207,7 +1207,7 @@ void rlMatrixMode(int mode)
 // Push the current matrix into RLGL.State.stack
 void rlPushMatrix(void)
 {
-    if (RLGL.State.stackCounter >= RL_MAX_MATRIX_STACK_SIZE) TRACELOG(RL_LOG_ERROR, "RLGL: Matrix stack overflow (RL_MAX_MATRIX_STACK_SIZE)");
+    if (RLGL.State.stackCounter >= RL_MAX_MATRIX_STACK_SIZE) TRACELOG(RL_LOG_ERROR, "RLGL: RL_Matrix stack overflow (RL_MAX_MATRIX_STACK_SIZE)");
 
     if (RLGL.State.currentMatrixMode == RL_MODELVIEW)
     {
@@ -1224,7 +1224,7 @@ void rlPopMatrix(void)
 {
     if (RLGL.State.stackCounter > 0)
     {
-        Matrix mat = RLGL.State.stack[RLGL.State.stackCounter - 1];
+        RL_Matrix mat = RLGL.State.stack[RLGL.State.stackCounter - 1];
         *RLGL.State.currentMatrix = mat;
         RLGL.State.stackCounter--;
     }
@@ -1245,7 +1245,7 @@ void rlLoadIdentity(void)
 // Multiply the current matrix by a translation matrix
 void rlTranslatef(float x, float y, float z)
 {
-    Matrix matTranslation = {
+    RL_Matrix matTranslation = {
         1.0f, 0.0f, 0.0f, x,
         0.0f, 1.0f, 0.0f, y,
         0.0f, 0.0f, 1.0f, z,
@@ -1260,7 +1260,7 @@ void rlTranslatef(float x, float y, float z)
 // NOTE: The provided angle must be in degrees
 void rlRotatef(float angle, float x, float y, float z)
 {
-    Matrix matRotation = rlMatrixIdentity();
+    RL_Matrix matRotation = rlMatrixIdentity();
 
     // Axis vector (x, y, z) normalization
     float lengthSquared = x*x + y*y + z*z;
@@ -1304,7 +1304,7 @@ void rlRotatef(float angle, float x, float y, float z)
 // Multiply the current matrix by a scaling matrix
 void rlScalef(float x, float y, float z)
 {
-    Matrix matScale = {
+    RL_Matrix matScale = {
         x, 0.0f, 0.0f, 0.0f,
         0.0f, y, 0.0f, 0.0f,
         0.0f, 0.0f, z, 0.0f,
@@ -1318,8 +1318,8 @@ void rlScalef(float x, float y, float z)
 // Multiply the current matrix by another matrix
 void rlMultMatrixf(const float *matf)
 {
-    // Matrix creation from array
-    Matrix mat = { matf[0], matf[4], matf[8], matf[12],
+    // RL_Matrix creation from array
+    RL_Matrix mat = { matf[0], matf[4], matf[8], matf[12],
                    matf[1], matf[5], matf[9], matf[13],
                    matf[2], matf[6], matf[10], matf[14],
                    matf[3], matf[7], matf[11], matf[15] };
@@ -1330,7 +1330,7 @@ void rlMultMatrixf(const float *matf)
 // Multiply the current matrix by a perspective matrix generated by parameters
 void rlFrustum(double left, double right, double bottom, double top, double znear, double zfar)
 {
-    Matrix matFrustum = { 0 };
+    RL_Matrix matFrustum = { 0 };
 
     float rl = (float)(right - left);
     float tb = (float)(top - bottom);
@@ -1364,7 +1364,7 @@ void rlOrtho(double left, double right, double bottom, double top, double znear,
 {
     // NOTE: If left-right and top-botton values are equal it could create a division by zero,
     // response to it is platform/compiler dependant
-    Matrix matOrtho = { 0 };
+    RL_Matrix matOrtho = { 0 };
 
     float rl = (float)(right - left);
     float tb = (float)(top - bottom);
@@ -1495,7 +1495,7 @@ void rlVertex3f(float x, float y, float z)
     float ty = y;
     float tz = z;
 
-    // Transform provided vector if required
+    // RL_Transform provided vector if required
     if (RLGL.State.transformRequired)
     {
         tx = RLGL.State.transform.m0*x + RLGL.State.transform.m4*y + RLGL.State.transform.m8*z + RLGL.State.transform.m12;
@@ -1565,7 +1565,7 @@ void rlVertex2i(int x, int y)
 }
 
 // Define one vertex (texture coordinate)
-// NOTE: Texture coordinates are limited to QUADS only
+// NOTE: RL_Texture coordinates are limited to QUADS only
 void rlTexCoord2f(float x, float y)
 {
     RLGL.State.texcoordx = x;
@@ -2051,7 +2051,7 @@ bool rlIsStereoRenderEnabled(void)
 // Clear color buffer with color
 void rlClearColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
-    // Color values clamp to 0.0f(0) and 1.0f(255)
+    // RL_Color values clamp to 0.0f(0) and 1.0f(255)
     float cr = (float)r/255;
     float cg = (float)g/255;
     float cb = (float)b/255;
@@ -2063,7 +2063,7 @@ void rlClearColor(unsigned char r, unsigned char g, unsigned char b, unsigned ch
 // Clear used screen buffers (color and depth)
 void rlClearScreenBuffers(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // Clear used buffers: Color and Depth (Depth is used for 3D)
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // Clear used buffers: RL_Color and Depth (Depth is used for 3D)
     //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);     // Stencil buffer not used...
 }
 
@@ -2181,7 +2181,7 @@ static void GLAPIENTRY rlDebugMessageCallback(GLenum source, GLenum type, GLuint
     // - #131185 - Buffer detailed info: Buffer object 1 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_ENUM_88e4)
     //             will use VIDEO memory as the source for buffer object operations. (severity: low)
     // - #131218 - Program/shader state performance warning: Vertex shader in program 7 is being recompiled based on GL state. (severity: medium)
-    // - #131204 - Texture state usage warning: The texture object (0) bound to texture image unit 0 does not have
+    // - #131204 - RL_Texture state usage warning: The texture object (0) bound to texture image unit 0 does not have
     //             a defined base level and cannot be used for texture mapping. (severity: low)
     if ((id == 131169) || (id == 131185) || (id == 131218) || (id == 131204)) return;
 
@@ -2259,7 +2259,7 @@ void rlglInit(int width, int height)
     if (RLGL.State.defaultTextureId != 0) TRACELOG(RL_LOG_INFO, "TEXTURE: [ID %i] Default texture loaded successfully", RLGL.State.defaultTextureId);
     else TRACELOG(RL_LOG_WARNING, "TEXTURE: Failed to load default texture");
 
-    // Init default Shader (customized for GL 3.3 and ES2)
+    // Init default RL_Shader (customized for GL 3.3 and ES2)
     // Loaded: RLGL.State.defaultShaderId + RLGL.State.defaultShaderLocs
     rlLoadShaderDefault();
     RLGL.State.currentShaderId = RLGL.State.defaultShaderId;
@@ -2289,7 +2289,7 @@ void rlglInit(int width, int height)
     glDisable(GL_DEPTH_TEST);                               // Disable depth testing for 2D (only used for 3D)
 
     // Init state: Blending mode
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);      // Color blending function (how colors are mixed)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);      // RL_Color blending function (how colors are mixed)
     glEnable(GL_BLEND);                                     // Enable color blending (required to work with transparencies)
 
     // Init state: Culling
@@ -2304,7 +2304,7 @@ void rlglInit(int width, int height)
 #endif
 
 #if defined(GRAPHICS_API_OPENGL_11)
-    // Init state: Color hints (deprecated in OpenGL 3.0+)
+    // Init state: RL_Color hints (deprecated in OpenGL 3.0+)
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);      // Improve quality of color and texture coordinate interpolation
     glShadeModel(GL_SMOOTH);                                // Smooth shading between vertex (vertex colors interpolation)
 #endif
@@ -2318,7 +2318,7 @@ void rlglInit(int width, int height)
     //----------------------------------------------------------
 #endif
 
-    // Init state: Color/Depth buffers clear
+    // Init state: RL_Color/Depth buffers clear
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);                   // Set clear color (black)
     glClearDepth(1.0f);                                     // Set clear depth value (default)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // Clear color and depth buffers (depth buffer required for 3D)
@@ -2386,8 +2386,8 @@ void rlLoadExtensions(void *loader)
 
     // Optional OpenGL 3.3 extensions
     RLGL.ExtSupported.texCompASTC = GLAD_GL_KHR_texture_compression_astc_hdr && GLAD_GL_KHR_texture_compression_astc_ldr;
-    RLGL.ExtSupported.texCompDXT = GLAD_GL_EXT_texture_compression_s3tc;  // Texture compression: DXT
-    RLGL.ExtSupported.texCompETC2 = GLAD_GL_ARB_ES3_compatibility;        // Texture compression: ETC2/EAC
+    RLGL.ExtSupported.texCompDXT = GLAD_GL_EXT_texture_compression_s3tc;  // RL_Texture compression: DXT
+    RLGL.ExtSupported.texCompETC2 = GLAD_GL_ARB_ES3_compatibility;        // RL_Texture compression: ETC2/EAC
     #if defined(GRAPHICS_API_OPENGL_43)
     RLGL.ExtSupported.computeShader = GLAD_GL_ARB_compute_shader;
     RLGL.ExtSupported.ssbo = GLAD_GL_ARB_shader_storage_buffer_object;
@@ -2622,7 +2622,7 @@ void rlLoadExtensions(void *loader)
     if (RLGL.ExtSupported.texCompPVRT) TRACELOG(RL_LOG_INFO, "GL: PVRT compressed textures supported");
     if (RLGL.ExtSupported.texCompASTC) TRACELOG(RL_LOG_INFO, "GL: ASTC compressed textures supported");
     if (RLGL.ExtSupported.computeShader) TRACELOG(RL_LOG_INFO, "GL: Compute shaders supported");
-    if (RLGL.ExtSupported.ssbo) TRACELOG(RL_LOG_INFO, "GL: Shader storage buffer objects supported");
+    if (RLGL.ExtSupported.ssbo) TRACELOG(RL_LOG_INFO, "GL: RL_Shader storage buffer objects supported");
 #endif  // RLGL_SHOW_GL_DETAILS_INFO
 
 #endif  // GRAPHICS_API_OPENGL_33 || GRAPHICS_API_OPENGL_ES2
@@ -2918,7 +2918,7 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
         glBufferSubData(GL_ARRAY_BUFFER, 0, RLGL.State.vertexCounter*3*sizeof(float), batch->vertexBuffer[batch->currentBuffer].vertices);
         //glBufferData(GL_ARRAY_BUFFER, sizeof(float)*3*4*batch->vertexBuffer[batch->currentBuffer].elementCount, batch->vertexBuffer[batch->currentBuffer].vertices, GL_DYNAMIC_DRAW);  // Update all buffer
 
-        // Texture coordinates buffer
+        // RL_Texture coordinates buffer
         glBindBuffer(GL_ARRAY_BUFFER, batch->vertexBuffer[batch->currentBuffer].vboId[1]);
         glBufferSubData(GL_ARRAY_BUFFER, 0, RLGL.State.vertexCounter*2*sizeof(float), batch->vertexBuffer[batch->currentBuffer].texcoords);
         //glBufferData(GL_ARRAY_BUFFER, sizeof(float)*2*4*batch->vertexBuffer[batch->currentBuffer].elementCount, batch->vertexBuffer[batch->currentBuffer].texcoords, GL_DYNAMIC_DRAW); // Update all buffer
@@ -2955,8 +2955,8 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
 
     // Draw batch vertex buffers (considering VR stereo if required)
     //------------------------------------------------------------------------------------------------------------
-    Matrix matProjection = RLGL.State.projection;
-    Matrix matModelView = RLGL.State.modelview;
+    RL_Matrix matProjection = RLGL.State.projection;
+    RL_Matrix matModelView = RLGL.State.modelview;
 
     int eyeCount = 1;
     if (RLGL.State.stereoRender) eyeCount = 2;
@@ -2981,7 +2981,7 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
             glUseProgram(RLGL.State.currentShaderId);
 
             // Create modelview-projection matrix and upload to shader
-            Matrix matMVP = rlMatrixMultiply(RLGL.State.modelview, RLGL.State.projection);
+            RL_Matrix matMVP = rlMatrixMultiply(RLGL.State.modelview, RLGL.State.projection);
             glUniformMatrix4fv(RLGL.State.currentShaderLocs[RL_SHADER_LOC_MATRIX_MVP], 1, false, rlMatrixToFloat(matMVP));
 
             if (RLGL.State.currentShaderLocs[RL_SHADER_LOC_MATRIX_PROJECTION] != -1)
@@ -3280,7 +3280,7 @@ unsigned int rlLoadTexture(const void *data, int width, int height, int format, 
         if (mipHeight < 1) mipHeight = 1;
     }
 
-    // Texture parameters configuration
+    // RL_Texture parameters configuration
     // NOTE: glTexParameteri does NOT affect texture uploading, just the way it's used
 #if defined(GRAPHICS_API_OPENGL_ES2)
     // NOTE: OpenGL ES 2.0 with no GL_OES_texture_npot support (i.e. WebGL) has limited NPOT support, so CLAMP_TO_EDGE must be used
@@ -3320,7 +3320,7 @@ unsigned int rlLoadTexture(const void *data, int width, int height, int format, 
     // Unbind current texture
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    if (id > 0) TRACELOG(RL_LOG_INFO, "TEXTURE: [ID %i] Texture loaded successfully (%ix%i | %s | %i mipmaps)", id, width, height, rlGetPixelFormatName(format), mipmapCount);
+    if (id > 0) TRACELOG(RL_LOG_INFO, "TEXTURE: [ID %i] RL_Texture loaded successfully (%ix%i | %s | %i mipmaps)", id, width, height, rlGetPixelFormatName(format), mipmapCount);
     else TRACELOG(RL_LOG_WARNING, "TEXTURE: Failed to load texture");
 
     return id;
@@ -3496,7 +3496,7 @@ void rlUpdateTexture(unsigned int id, int offsetX, int offsetY, int width, int h
     else TRACELOG(RL_LOG_WARNING, "TEXTURE: [ID %i] Failed to update for current texture format (%i)", id, format);
 }
 
-// Get OpenGL internal formats and data type from raylib PixelFormat
+// Get OpenGL internal formats and data type from raylib RL_PixelFormat
 void rlGetGlTextureFormats(int format, unsigned int *glInternalFormat, unsigned int *glFormat, unsigned int *glType)
 {
     *glInternalFormat = 0;
@@ -3644,7 +3644,7 @@ void *rlReadTexturePixels(unsigned int id, int width, int height, int format)
 
 #if defined(GRAPHICS_API_OPENGL_ES2)
     // glGetTexImage() is not available on OpenGL ES 2.0
-    // Texture width and height are required on OpenGL ES 2.0, there is no way to get it from texture id
+    // RL_Texture width and height are required on OpenGL ES 2.0, there is no way to get it from texture id
     // Two possible Options:
     // 1 - Bind texture to color fbo attachment and glReadPixels()
     // 2 - Create an fbo, activate it, render quad with texture, glReadPixels()
@@ -3717,7 +3717,7 @@ unsigned int rlLoadFramebuffer(void)
 }
 
 // Attach color buffer texture to an fbo (unloads previous attachment)
-// NOTE: Attach type: 0-Color, 1-Depth renderbuffer, 2-Depth texture
+// NOTE: Attach type: 0-RL_Color, 1-Depth renderbuffer, 2-Depth texture
 void rlFramebufferAttach(unsigned int fboId, unsigned int texId, int attachType, int texType, int mipLevel)
 {
 #if (defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)) && defined(RLGL_RENDER_TEXTURES_HINT)
@@ -4088,13 +4088,13 @@ unsigned int rlLoadShaderCode(const char *vsCode, const char *fsCode)
         // NOTE: We detach shader before deletion to make sure memory is freed
         if (vertexShaderId != RLGL.State.defaultVShaderId)
         {
-            // WARNING: Shader program linkage could fail and returned id is 0
+            // WARNING: RL_Shader program linkage could fail and returned id is 0
             if (id > 0) glDetachShader(id, vertexShaderId);
             glDeleteShader(vertexShaderId);
         }
         if (fragmentShaderId != RLGL.State.defaultFShaderId)
         {
-            // WARNING: Shader program linkage could fail and returned id is 0
+            // WARNING: RL_Shader program linkage could fail and returned id is 0
             if (id > 0) glDetachShader(id, fragmentShaderId);
             glDeleteShader(fragmentShaderId);
         }
@@ -4281,7 +4281,7 @@ int rlGetLocationUniform(unsigned int shaderId, const char *uniformName)
     location = glGetUniformLocation(shaderId, uniformName);
 
     //if (location == -1) TRACELOG(RL_LOG_WARNING, "SHADER: [ID %i] Failed to find shader uniform: %s", shaderId, uniformName);
-    //else TRACELOG(RL_LOG_INFO, "SHADER: [ID %i] Shader uniform (%s) set at location: %i", shaderId, uniformName, location);
+    //else TRACELOG(RL_LOG_INFO, "SHADER: [ID %i] RL_Shader uniform (%s) set at location: %i", shaderId, uniformName, location);
 #endif
     return location;
 }
@@ -4294,7 +4294,7 @@ int rlGetLocationAttrib(unsigned int shaderId, const char *attribName)
     location = glGetAttribLocation(shaderId, attribName);
 
     //if (location == -1) TRACELOG(RL_LOG_WARNING, "SHADER: [ID %i] Failed to find shader attribute: %s", shaderId, attribName);
-    //else TRACELOG(RL_LOG_INFO, "SHADER: [ID %i] Shader attribute (%s) set at location: %i", shaderId, attribName, location);
+    //else TRACELOG(RL_LOG_INFO, "SHADER: [ID %i] RL_Shader attribute (%s) set at location: %i", shaderId, attribName, location);
 #endif
     return location;
 }
@@ -4343,7 +4343,7 @@ void rlSetVertexAttributeDefault(int locIndex, const void *value, int attribType
 }
 
 // Set shader value uniform matrix
-void rlSetUniformMatrix(int locIndex, Matrix mat)
+void rlSetUniformMatrix(int locIndex, RL_Matrix mat)
 {
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     float matfloat[16] = {
@@ -4357,12 +4357,12 @@ void rlSetUniformMatrix(int locIndex, Matrix mat)
 }
 
 // Set shader value uniform matrix
-void rlSetUniformMatrices(int locIndex, const Matrix *matrices, int count)
+void rlSetUniformMatrices(int locIndex, const RL_Matrix *matrices, int count)
 {
 #if defined(GRAPHICS_API_OPENGL_33)
     glUniformMatrix4fv(locIndex, count, true, (const float *)matrices);
 #elif defined(GRAPHICS_API_OPENGL_ES2)
-    // WARNING: WebGL does not support Matrix transpose ("true" parameter)
+    // WARNING: WebGL does not support RL_Matrix transpose ("true" parameter)
     // REF: https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/uniformMatrix
     glUniformMatrix4fv(locIndex, count, false, (const float *)matrices);
 #endif
@@ -4555,16 +4555,16 @@ void rlBindImageTexture(unsigned int id, unsigned int index, int format, bool re
     rlGetGlTextureFormats(format, &glInternalFormat, &glFormat, &glType);
     glBindImageTexture(index, id, 0, 0, 0, readonly? GL_READ_ONLY : GL_READ_WRITE, glInternalFormat);
 #else
-    TRACELOG(RL_LOG_WARNING, "TEXTURE: Image texture binding not enabled. Define GRAPHICS_API_OPENGL_43");
+    TRACELOG(RL_LOG_WARNING, "TEXTURE: RL_Image texture binding not enabled. Define GRAPHICS_API_OPENGL_43");
 #endif
 }
 
-// Matrix state management
+// RL_Matrix state management
 //-----------------------------------------------------------------------------------------
 // Get internal modelview matrix
-Matrix rlGetMatrixModelview(void)
+RL_Matrix rlGetMatrixModelview(void)
 {
-    Matrix matrix = rlMatrixIdentity();
+    RL_Matrix matrix = rlMatrixIdentity();
 #if defined(GRAPHICS_API_OPENGL_11)
     float mat[16];
     glGetFloatv(GL_MODELVIEW_MATRIX, mat);
@@ -4591,12 +4591,12 @@ Matrix rlGetMatrixModelview(void)
 }
 
 // Get internal projection matrix
-Matrix rlGetMatrixProjection(void)
+RL_Matrix rlGetMatrixProjection(void)
 {
 #if defined(GRAPHICS_API_OPENGL_11)
     float mat[16];
     glGetFloatv(GL_PROJECTION_MATRIX,mat);
-    Matrix m;
+    RL_Matrix m;
     m.m0 = mat[0];
     m.m1 = mat[1];
     m.m2 = mat[2];
@@ -4620,13 +4620,13 @@ Matrix rlGetMatrixProjection(void)
 }
 
 // Get internal accumulated transform matrix
-Matrix rlGetMatrixTransform(void)
+RL_Matrix rlGetMatrixTransform(void)
 {
-    Matrix mat = rlMatrixIdentity();
+    RL_Matrix mat = rlMatrixIdentity();
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     // TODO: Consider possible transform matrices in the RLGL.State.stack
     // Is this the right order? or should we start with the first stored matrix instead of the last one?
-    //Matrix matStackTransform = rlMatrixIdentity();
+    //RL_Matrix matStackTransform = rlMatrixIdentity();
     //for (int i = RLGL.State.stackCounter; i > 0; i--) matStackTransform = rlMatrixMultiply(RLGL.State.stack[i], matStackTransform);
     mat = RLGL.State.transform;
 #endif
@@ -4634,9 +4634,9 @@ Matrix rlGetMatrixTransform(void)
 }
 
 // Get internal projection matrix for stereo render (selected eye)
-Matrix rlGetMatrixProjectionStereo(int eye)
+RL_Matrix rlGetMatrixProjectionStereo(int eye)
 {
-    Matrix mat = rlMatrixIdentity();
+    RL_Matrix mat = rlMatrixIdentity();
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     mat = RLGL.State.projectionStereo[eye];
 #endif
@@ -4644,9 +4644,9 @@ Matrix rlGetMatrixProjectionStereo(int eye)
 }
 
 // Get internal view offset matrix for stereo render (selected eye)
-Matrix rlGetMatrixViewOffsetStereo(int eye)
+RL_Matrix rlGetMatrixViewOffsetStereo(int eye)
 {
-    Matrix mat = rlMatrixIdentity();
+    RL_Matrix mat = rlMatrixIdentity();
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     mat = RLGL.State.viewOffsetStereo[eye];
 #endif
@@ -4654,7 +4654,7 @@ Matrix rlGetMatrixViewOffsetStereo(int eye)
 }
 
 // Set a custom modelview matrix (replaces internal modelview matrix)
-void rlSetMatrixModelview(Matrix view)
+void rlSetMatrixModelview(RL_Matrix view)
 {
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     RLGL.State.modelview = view;
@@ -4662,7 +4662,7 @@ void rlSetMatrixModelview(Matrix view)
 }
 
 // Set a custom projection matrix (replaces internal projection matrix)
-void rlSetMatrixProjection(Matrix projection)
+void rlSetMatrixProjection(RL_Matrix projection)
 {
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     RLGL.State.projection = projection;
@@ -4670,7 +4670,7 @@ void rlSetMatrixProjection(Matrix projection)
 }
 
 // Set eyes projection matrices for stereo rendering
-void rlSetMatrixProjectionStereo(Matrix right, Matrix left)
+void rlSetMatrixProjectionStereo(RL_Matrix right, RL_Matrix left)
 {
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     RLGL.State.projectionStereo[0] = right;
@@ -4679,7 +4679,7 @@ void rlSetMatrixProjectionStereo(Matrix right, Matrix left)
 }
 
 // Set eyes view offsets matrices for stereo rendering
-void rlSetMatrixViewOffsetStereo(Matrix right, Matrix left)
+void rlSetMatrixViewOffsetStereo(RL_Matrix right, RL_Matrix left)
 {
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     RLGL.State.viewOffsetStereo[0] = right;
@@ -5124,7 +5124,7 @@ static int rlGetPixelDataSize(int width, int height, int format)
 // Auxiliar math functions
 
 // Get float array of matrix data
-static rl_float16 rlMatrixToFloatV(Matrix mat)
+static rl_float16 rlMatrixToFloatV(RL_Matrix mat)
 {
     rl_float16 result = { 0 };
 
@@ -5149,9 +5149,9 @@ static rl_float16 rlMatrixToFloatV(Matrix mat)
 }
 
 // Get identity matrix
-static Matrix rlMatrixIdentity(void)
+static RL_Matrix rlMatrixIdentity(void)
 {
-    Matrix result = {
+    RL_Matrix result = {
         1.0f, 0.0f, 0.0f, 0.0f,
         0.0f, 1.0f, 0.0f, 0.0f,
         0.0f, 0.0f, 1.0f, 0.0f,
@@ -5163,9 +5163,9 @@ static Matrix rlMatrixIdentity(void)
 
 // Get two matrix multiplication
 // NOTE: When multiplying matrices... the order matters!
-static Matrix rlMatrixMultiply(Matrix left, Matrix right)
+static RL_Matrix rlMatrixMultiply(RL_Matrix left, RL_Matrix right)
 {
-    Matrix result = { 0 };
+    RL_Matrix result = { 0 };
 
     result.m0 = left.m0*right.m0 + left.m1*right.m4 + left.m2*right.m8 + left.m3*right.m12;
     result.m1 = left.m0*right.m1 + left.m1*right.m5 + left.m2*right.m9 + left.m3*right.m13;
@@ -5188,9 +5188,9 @@ static Matrix rlMatrixMultiply(Matrix left, Matrix right)
 }
 
 // Transposes provided matrix
-static Matrix rlMatrixTranspose(Matrix mat)
+static RL_Matrix rlMatrixTranspose(RL_Matrix mat)
 {
-    Matrix result = { 0 };
+    RL_Matrix result = { 0 };
 
     result.m0 = mat.m0;
     result.m1 = mat.m4;
@@ -5213,9 +5213,9 @@ static Matrix rlMatrixTranspose(Matrix mat)
 }
 
 // Invert provided matrix
-static Matrix rlMatrixInvert(Matrix mat)
+static RL_Matrix rlMatrixInvert(RL_Matrix mat)
 {
-    Matrix result = { 0 };
+    RL_Matrix result = { 0 };
 
     // Cache the matrix values (speed optimization)
     float a00 = mat.m0, a01 = mat.m1, a02 = mat.m2, a03 = mat.m3;

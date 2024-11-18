@@ -1,3 +1,10 @@
+# This is a fork of raylib with the pure goal of renaming functions to prevent name conflicts for people who otherwise can't get around it.
+
+## All credit to the original work goes to Ramon "RL_Ray" Santamaria and you should use his original project if possible.
+
+### If you feel something else should be renamed you can let me know, open an issue, or prepare a PR.
+
+---
 <img align="left" style="width:260px" src="https://github.com/raysan5/raylib/blob/master/logo/raylib_logo_animation.gif" width="288px">
 
 **raylib is a simple and easy-to-use library to enjoy videogames programming.**
@@ -46,7 +53,7 @@ features
   - Flexible Materials system, supporting classic maps and **PBR maps**
   - **Animated 3D models** supported (skeletal bones animation) (IQM, M3D, glTF)
   - Shaders support, including model shaders and **postprocessing** shaders
-  - **Powerful math module** for Vector, Matrix and Quaternion operations: [raymath](https://github.com/raysan5/raylib/blob/master/src/raymath.h)
+  - **Powerful math module** for Vector, RL_Matrix and RL_Quaternion operations: [raymath](https://github.com/raysan5/raylib/blob/master/src/raymath.h)
   - Audio loading and playing with streaming support (WAV, QOA, OGG, MP3, FLAC, XM, MOD)
   - **VR stereo rendering** support with configurable HMD device parameters
   - Huge examples collection with [+140 code examples](https://github.com/raysan5/raylib/tree/master/examples)!
@@ -61,17 +68,17 @@ This is a basic raylib example, it creates a window and draws the text `"Congrat
 
 int main(void)
 {
-    InitWindow(800, 450, "raylib [core] example - basic window");
+    RL_InitWindow(800, 450, "raylib [core] example - basic window");
 
-    while (!WindowShouldClose())
+    while (!RL_WindowShouldClose())
     {
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-        EndDrawing();
+        RL_BeginDrawing();
+            RL_ClearBackground(RL_RAYWHITE);
+            RL_DrawText("Congrats! You created your first window!", 190, 200, 20, RL_LIGHTGRAY);
+        RL_EndDrawing();
     }
 
-    CloseWindow();
+    RL_CloseWindow();
 
     return 0;
 }

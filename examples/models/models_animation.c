@@ -31,80 +31,80 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - model animation");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - model animation");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera mode type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 10.0f, 10.0f, 10.0f }; // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera mode type
 
-    Model model = LoadModel("resources/models/iqm/guy.iqm");                    // Load the animated model mesh and basic data
-    Texture2D texture = LoadTexture("resources/models/iqm/guytex.png");         // Load model texture and set material
-    SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, texture);     // Set model material map texture
+    RL_Model model = RL_LoadModel("resources/models/iqm/guy.iqm");                    // Load the animated model mesh and basic data
+    RL_Texture2D texture = RL_LoadTexture("resources/models/iqm/guytex.png");         // Load model texture and set material
+    RL_SetMaterialTexture(&model.materials[0], MATERIAL_MAP_DIFFUSE, texture);     // Set model material map texture
 
-    Vector3 position = { 0.0f, 0.0f, 0.0f };            // Set model position
+    RL_Vector3 position = { 0.0f, 0.0f, 0.0f };            // Set model position
 
     // Load animation data
     int animsCount = 0;
-    ModelAnimation *anims = LoadModelAnimations("resources/models/iqm/guyanim.iqm", &animsCount);
+    RL_ModelAnimation *anims = RL_LoadModelAnimations("resources/models/iqm/guyanim.iqm", &animsCount);
     int animFrameCounter = 0;
 
-    DisableCursor();                    // Catch cursor
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_DisableCursor();                    // Catch cursor
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_FIRST_PERSON);
+        RL_UpdateCamera(&camera, CAMERA_FIRST_PERSON);
 
         // Play animation when spacebar is held down
-        if (IsKeyDown(KEY_SPACE))
+        if (RL_IsKeyDown(KEY_SPACE))
         {
             animFrameCounter++;
-            UpdateModelAnimation(model, anims[0], animFrameCounter);
+            RL_UpdateModelAnimation(model, anims[0], animFrameCounter);
             if (animFrameCounter >= anims[0].frameCount) animFrameCounter = 0;
         }
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
-                DrawModelEx(model, position, (Vector3){ 1.0f, 0.0f, 0.0f }, -90.0f, (Vector3){ 1.0f, 1.0f, 1.0f }, WHITE);
+                RL_DrawModelEx(model, position, (RL_Vector3){ 1.0f, 0.0f, 0.0f }, -90.0f, (RL_Vector3){ 1.0f, 1.0f, 1.0f }, RL_WHITE);
 
                 for (int i = 0; i < model.boneCount; i++)
                 {
-                    DrawCube(anims[0].framePoses[animFrameCounter][i].translation, 0.2f, 0.2f, 0.2f, RED);
+                    RL_DrawCube(anims[0].framePoses[animFrameCounter][i].translation, 0.2f, 0.2f, 0.2f, RL_RED);
                 }
 
-                DrawGrid(10, 1.0f);         // Draw a grid
+                RL_DrawGrid(10, 1.0f);         // Draw a grid
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, MAROON);
-            DrawText("(c) Guy IQM 3D model by @culacant", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            RL_DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, 10, 20, RL_MAROON);
+            RL_DrawText("(c) Guy IQM 3D model by @culacant", screenWidth - 200, screenHeight - 20, 10, RL_GRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(texture);                     // Unload texture
-    UnloadModelAnimations(anims, animsCount);   // Unload model animations data
-    UnloadModel(model);                         // Unload model
+    RL_UnloadTexture(texture);                     // Unload texture
+    RL_UnloadModelAnimations(anims, animsCount);   // Unload model animations data
+    RL_UnloadModel(model);                         // Unload model
 
-    CloseWindow();                  // Close window and OpenGL context
+    RL_CloseWindow();                  // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -168,11 +168,11 @@
 //         which is the origin of each character. The current point's vertical
 //         position is the baseline. Even "baked fonts" use this model.
 //
-//      Vertical Font Metrics
+//      Vertical RL_Font Metrics
 //         The vertical qualities of the font, used to vertically position
 //         and space the characters. See docs for stbtt_GetFontVMetrics.
 //
-//      Font Size in Pixels or Points
+//      RL_Font Size in Pixels or Points
 //         The preferred interface for specifying font sizes in stb_truetype
 //         is to specify how tall the font's vertical extent should be in pixels.
 //         If that sounds good enough, skip the next paragraph.
@@ -1858,7 +1858,7 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo *info, int glyph_index, s
          // Get indexed glyph.
          comp_num_verts = stbtt_GetGlyphShape(info, gidx, &comp_verts);
          if (comp_num_verts > 0) {
-            // Transform vertices.
+            // RL_Transform vertices.
             for (i = 0; i < comp_num_verts; ++i) {
                stbtt_vertex* v = &comp_verts[i];
                stbtt_vertex_type x,y;

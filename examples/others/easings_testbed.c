@@ -106,9 +106,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [easings] example - easings testbed");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [easings] example - easings testbed");
 
-    Vector2 ballPosition = { 100.0f, 100.0f };
+    RL_Vector2 ballPosition = { 100.0f, 100.0f };
 
     float t = 0.0f;             // Current time (in any unit measure, but same unit as duration)
     float d = 300.0f;           // Total time it should take to complete (duration)
@@ -118,56 +118,56 @@ int main(void)
     int easingX = EASING_NONE;  // Easing selected for x axis
     int easingY = EASING_NONE;  // Easing selected for y axis
 
-    SetTargetFPS(60);
+    RL_SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_T)) boundedT = !boundedT;
+        if (RL_IsKeyPressed(KEY_T)) boundedT = !boundedT;
 
         // Choose easing for the X axis
-        if (IsKeyPressed(KEY_RIGHT))
+        if (RL_IsKeyPressed(KEY_RIGHT))
         {
             easingX++;
 
             if (easingX > EASING_NONE) easingX = 0;
         }
-        else if (IsKeyPressed(KEY_LEFT))
+        else if (RL_IsKeyPressed(KEY_LEFT))
         {
             if (easingX == 0) easingX = EASING_NONE;
             else easingX--;
         }
 
         // Choose easing for the Y axis
-        if (IsKeyPressed(KEY_DOWN))
+        if (RL_IsKeyPressed(KEY_DOWN))
         {
             easingY++;
 
             if (easingY > EASING_NONE) easingY = 0;
         }
-        else if (IsKeyPressed(KEY_UP))
+        else if (RL_IsKeyPressed(KEY_UP))
         {
             if (easingY == 0) easingY = EASING_NONE;
             else easingY--;
         }
 
         // Change d (duration) value
-        if (IsKeyPressed(KEY_W) && d < D_MAX - D_STEP) d += D_STEP;
-        else if (IsKeyPressed(KEY_Q) && d > D_MIN + D_STEP) d -= D_STEP;
+        if (RL_IsKeyPressed(KEY_W) && d < D_MAX - D_STEP) d += D_STEP;
+        else if (RL_IsKeyPressed(KEY_Q) && d > D_MIN + D_STEP) d -= D_STEP;
 
-        if (IsKeyDown(KEY_S) && d < D_MAX - D_STEP_FINE) d += D_STEP_FINE;
-        else if (IsKeyDown(KEY_A) && d > D_MIN + D_STEP_FINE) d -= D_STEP_FINE;
+        if (RL_IsKeyDown(KEY_S) && d < D_MAX - D_STEP_FINE) d += D_STEP_FINE;
+        else if (RL_IsKeyDown(KEY_A) && d > D_MIN + D_STEP_FINE) d -= D_STEP_FINE;
 
         // Play, pause and restart controls
-        if (IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_T) ||
-            IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_LEFT) ||
-            IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_UP) ||
-            IsKeyPressed(KEY_W) || IsKeyPressed(KEY_Q) ||
-            IsKeyDown(KEY_S)  || IsKeyDown(KEY_A) ||
-            (IsKeyPressed(KEY_ENTER) && (boundedT == true) && (t >= d)))
+        if (RL_IsKeyPressed(KEY_SPACE) || RL_IsKeyPressed(KEY_T) ||
+            RL_IsKeyPressed(KEY_RIGHT) || RL_IsKeyPressed(KEY_LEFT) ||
+            RL_IsKeyPressed(KEY_DOWN) || RL_IsKeyPressed(KEY_UP) ||
+            RL_IsKeyPressed(KEY_W) || RL_IsKeyPressed(KEY_Q) ||
+            RL_IsKeyDown(KEY_S)  || RL_IsKeyDown(KEY_A) ||
+            (RL_IsKeyPressed(KEY_ENTER) && (boundedT == true) && (t >= d)))
         {
             t = 0.0f;
             ballPosition.x = 100.0f;
@@ -175,7 +175,7 @@ int main(void)
             paused = true;
         }
 
-        if (IsKeyPressed(KEY_ENTER)) paused = !paused;
+        if (RL_IsKeyPressed(KEY_ENTER)) paused = !paused;
 
         // Movement computation
         if (!paused && ((boundedT && t < d) || !boundedT))
@@ -188,31 +188,31 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             // Draw information text
-            DrawText(TextFormat("Easing x: %s", Easings[easingX].name), 20, FONT_SIZE, FONT_SIZE, LIGHTGRAY);
-            DrawText(TextFormat("Easing y: %s", Easings[easingY].name), 20, FONT_SIZE*2, FONT_SIZE, LIGHTGRAY);
-            DrawText(TextFormat("t (%c) = %.2f d = %.2f", (boundedT == true)? 'b' : 'u', t, d), 20, FONT_SIZE*3, FONT_SIZE, LIGHTGRAY);
+            RL_DrawText(RL_TextFormat("Easing x: %s", Easings[easingX].name), 20, FONT_SIZE, FONT_SIZE, RL_LIGHTGRAY);
+            RL_DrawText(RL_TextFormat("Easing y: %s", Easings[easingY].name), 20, FONT_SIZE*2, FONT_SIZE, RL_LIGHTGRAY);
+            RL_DrawText(RL_TextFormat("t (%c) = %.2f d = %.2f", (boundedT == true)? 'b' : 'u', t, d), 20, FONT_SIZE*3, FONT_SIZE, RL_LIGHTGRAY);
 
             // Draw instructions text
-            DrawText("Use ENTER to play or pause movement, use SPACE to restart", 20, GetScreenHeight() - FONT_SIZE*2, FONT_SIZE, LIGHTGRAY);
-            DrawText("Use Q and W or A and S keys to change duration", 20, GetScreenHeight() - FONT_SIZE*3, FONT_SIZE, LIGHTGRAY);
-            DrawText("Use LEFT or RIGHT keys to choose easing for the x axis", 20, GetScreenHeight() - FONT_SIZE*4, FONT_SIZE, LIGHTGRAY);
-            DrawText("Use UP or DOWN keys to choose easing for the y axis", 20, GetScreenHeight() - FONT_SIZE*5, FONT_SIZE, LIGHTGRAY);
+            RL_DrawText("Use ENTER to play or pause movement, use SPACE to restart", 20, RL_GetScreenHeight() - FONT_SIZE*2, FONT_SIZE, RL_LIGHTGRAY);
+            RL_DrawText("Use Q and W or A and S keys to change duration", 20, RL_GetScreenHeight() - FONT_SIZE*3, FONT_SIZE, RL_LIGHTGRAY);
+            RL_DrawText("Use LEFT or RIGHT keys to choose easing for the x axis", 20, RL_GetScreenHeight() - FONT_SIZE*4, FONT_SIZE, RL_LIGHTGRAY);
+            RL_DrawText("Use UP or DOWN keys to choose easing for the y axis", 20, RL_GetScreenHeight() - FONT_SIZE*5, FONT_SIZE, RL_LIGHTGRAY);
 
             // Draw ball
-            DrawCircleV(ballPosition, 16.0f, MAROON);
+            RL_DrawCircleV(ballPosition, 16.0f, RL_MAROON);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();
+    RL_CloseWindow();
     //--------------------------------------------------------------------------------------
 
     return 0;

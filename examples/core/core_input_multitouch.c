@@ -27,31 +27,31 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - input multitouch");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - input multitouch");
 
-    Vector2 touchPositions[MAX_TOUCH_POINTS] = { 0 };
+    RL_Vector2 touchPositions[MAX_TOUCH_POINTS] = { 0 };
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //---------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
         // Get the touch point count ( how many fingers are touching the screen )
-        int tCount = GetTouchPointCount();
+        int tCount = RL_GetTouchPointCount();
         // Clamp touch points available ( set the maximum touch points allowed )
         if(tCount > MAX_TOUCH_POINTS) tCount = MAX_TOUCH_POINTS;
         // Get touch points positions
-        for (int i = 0; i < tCount; ++i) touchPositions[i] = GetTouchPosition(i);
+        for (int i = 0; i < tCount; ++i) touchPositions[i] = RL_GetTouchPosition(i);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
             
             for (int i = 0; i < tCount; ++i)
             {
@@ -59,20 +59,20 @@ int main(void)
                 if ((touchPositions[i].x > 0) && (touchPositions[i].y > 0))
                 {
                     // Draw circle and touch index number
-                    DrawCircleV(touchPositions[i], 34, ORANGE);
-                    DrawText(TextFormat("%d", i), (int)touchPositions[i].x - 10, (int)touchPositions[i].y - 70, 40, BLACK);
+                    RL_DrawCircleV(touchPositions[i], 34, RL_ORANGE);
+                    RL_DrawText(RL_TextFormat("%d", i), (int)touchPositions[i].x - 10, (int)touchPositions[i].y - 70, 40, RL_BLACK);
                 }
             }
 
-            DrawText("touch the screen at multiple locations to get multiple balls", 10, 10, 20, DARKGRAY);
+            RL_DrawText("touch the screen at multiple locations to get multiple balls", 10, 10, 20, RL_DARKGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

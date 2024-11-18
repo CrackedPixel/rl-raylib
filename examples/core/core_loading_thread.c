@@ -39,18 +39,18 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - loading thread");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - loading thread");
 
     pthread_t threadId = { 0 };     // Loading data thread id
 
     enum { STATE_WAITING, STATE_LOADING, STATE_FINISHED } state = STATE_WAITING;
     int framesCounter = 0;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -58,11 +58,11 @@ int main(void)
         {
             case STATE_WAITING:
             {
-                if (IsKeyPressed(KEY_ENTER))
+                if (RL_IsKeyPressed(KEY_ENTER))
                 {
                     int error = pthread_create(&threadId, NULL, &LoadDataThread, NULL);
-                    if (error != 0) TraceLog(LOG_ERROR, "Error creating loading thread");
-                    else TraceLog(LOG_INFO, "Loading thread initialized successfully");
+                    if (error != 0) RL_TraceLog(LOG_ERROR, "Error creating loading thread");
+                    else RL_TraceLog(LOG_INFO, "Loading thread initialized successfully");
 
                     state = STATE_LOADING;
                 }
@@ -74,15 +74,15 @@ int main(void)
                 {
                     framesCounter = 0;
                     int error = pthread_join(threadId, NULL);
-                    if (error != 0) TraceLog(LOG_ERROR, "Error joining loading thread");
-                    else TraceLog(LOG_INFO, "Loading thread terminated successfully");
+                    if (error != 0) RL_TraceLog(LOG_ERROR, "Error joining loading thread");
+                    else RL_TraceLog(LOG_INFO, "Loading thread terminated successfully");
 
                     state = STATE_FINISHED;
                 }
             } break;
             case STATE_FINISHED:
             {
-                if (IsKeyPressed(KEY_ENTER))
+                if (RL_IsKeyPressed(KEY_ENTER))
                 {
                     // Reset everything to launch again
                     atomic_store_explicit(&dataLoaded, false, memory_order_relaxed);
@@ -96,37 +96,37 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             switch (state)
             {
-                case STATE_WAITING: DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20, DARKGRAY); break;
+                case STATE_WAITING: RL_DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20, RL_DARKGRAY); break;
                 case STATE_LOADING:
                 {
-                    DrawRectangle(150, 200, atomic_load_explicit(&dataProgress, memory_order_relaxed), 60, SKYBLUE);
-                    if ((framesCounter/15)%2) DrawText("LOADING DATA...", 240, 210, 40, DARKBLUE);
+                    RL_DrawRectangle(150, 200, atomic_load_explicit(&dataProgress, memory_order_relaxed), 60, RL_SKYBLUE);
+                    if ((framesCounter/15)%2) RL_DrawText("LOADING DATA...", 240, 210, 40, RL_DARKBLUE);
 
                 } break;
                 case STATE_FINISHED:
                 {
-                    DrawRectangle(150, 200, 500, 60, LIME);
-                    DrawText("DATA LOADED!", 250, 210, 40, GREEN);
+                    RL_DrawRectangle(150, 200, 500, 60, RL_LIME);
+                    RL_DrawText("DATA LOADED!", 250, 210, 40, RL_GREEN);
 
                 } break;
                 default: break;
             }
 
-            DrawRectangleLines(150, 200, 500, 60, DARKGRAY);
+            RL_DrawRectangleLines(150, 200, 500, 60, RL_DARKGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

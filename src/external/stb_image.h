@@ -79,7 +79,7 @@ RECENT REVISION HISTORY:
 
  ============================    Contributors    =========================
 
- Image formats                          Extensions, features
+ RL_Image formats                          Extensions, features
     Sean Barrett (jpeg, png, bmp)          Jetro Lauha (stbi_info)
     Nicolas Schulz (hdr, psd)              Martin "SpartanJ" Golini (stbi_info)
     Jonathan Dummer (tga)                  James "moose2000" Brown (iPhone PNG)
@@ -1184,7 +1184,7 @@ static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int re
       return stbi__tga_load(s,x,y,comp,req_comp, ri);
    #endif
 
-   return stbi__errpuc("unknown image type", "Image not of any known type, or corrupt");
+   return stbi__errpuc("unknown image type", "RL_Image not of any known type, or corrupt");
 }
 
 static stbi_uc *stbi__convert_16_to_8(stbi__uint16 *orig, int w, int h, int channels)
@@ -1472,7 +1472,7 @@ static float *stbi__loadf_main(stbi__context *s, int *x, int *y, int *comp, int 
    data = stbi__load_and_postprocess_8bit(s, x, y, comp, req_comp);
    if (data)
       return stbi__ldr_to_hdr(data, *x, *y, req_comp ? req_comp : *comp);
-   return stbi__errpf("unknown image type", "Image not of any known type, or corrupt");
+   return stbi__errpf("unknown image type", "RL_Image not of any known type, or corrupt");
 }
 
 STBIDEF float *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
@@ -3295,7 +3295,7 @@ static int stbi__process_frame_header(stbi__jpeg *z, int scan)
 
    if (scan != STBI__SCAN_load) return 1;
 
-   if (!stbi__mad3sizes_valid(s->img_x, s->img_y, s->img_n, 0)) return stbi__err("too large", "Image too large to decode");
+   if (!stbi__mad3sizes_valid(s->img_x, s->img_y, s->img_n, 0)) return stbi__err("too large", "RL_Image too large to decode");
 
    for (i=0; i < s->img_n; ++i) {
       if (z->img_comp[i].h > h_max) h_max = z->img_comp[i].h;
@@ -5118,7 +5118,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
             if (!s->img_x || !s->img_y) return stbi__err("0-pixel image","Corrupt PNG");
             if (!pal_img_n) {
                s->img_n = (color & 2 ? 3 : 1) + (color & 4 ? 1 : 0);
-               if ((1 << 30) / s->img_x / s->img_n < s->img_y) return stbi__err("too large", "Image too large to decode");
+               if ((1 << 30) / s->img_x / s->img_n < s->img_y) return stbi__err("too large", "RL_Image too large to decode");
             } else {
                // if paletted, then pal_n is our final components, and
                // img_n is # components to decompress/filter.
@@ -6842,7 +6842,7 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
    for (;;) {
       int tag = stbi__get8(s);
       switch (tag) {
-         case 0x2C: /* Image Descriptor */
+         case 0x2C: /* RL_Image Descriptor */
          {
             stbi__int32 x, y, w, h;
             stbi_uc *o;
@@ -6852,7 +6852,7 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
             w = stbi__get16le(s);
             h = stbi__get16le(s);
             if (((x + w) > (g->w)) || ((y + h) > (g->h)))
-               return stbi__errpuc("bad Image Descriptor", "Corrupt GIF");
+               return stbi__errpuc("bad RL_Image Descriptor", "Corrupt GIF");
 
             g->line_size = g->w * 4;
             g->start_x = x * 4;
@@ -7041,7 +7041,7 @@ static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y,
       *z = layers;
       return out;
    } else {
-      return stbi__errpuc("not GIF", "Image was not as a gif type.");
+      return stbi__errpuc("not GIF", "RL_Image was not as a gif type.");
    }
 }
 
@@ -7668,7 +7668,7 @@ static int stbi__info_main(stbi__context *s, int *x, int *y, int *comp)
    if (stbi__tga_info(s, x, y, comp))
        return 1;
    #endif
-   return stbi__err("unknown image type", "Image not of any known type, or corrupt");
+   return stbi__err("unknown image type", "RL_Image not of any known type, or corrupt");
 }
 
 static int stbi__is_16_main(stbi__context *s)

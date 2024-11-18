@@ -25,27 +25,27 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shapes] example - collision area");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shapes] example - collision area");
 
     // Box A: Moving box
-    Rectangle boxA = { 10, GetScreenHeight()/2.0f - 50, 200, 100 };
+    RL_Rectangle boxA = { 10, RL_GetScreenHeight()/2.0f - 50, 200, 100 };
     int boxASpeedX = 4;
 
     // Box B: Mouse moved box
-    Rectangle boxB = { GetScreenWidth()/2.0f - 30, GetScreenHeight()/2.0f - 30, 60, 60 };
+    RL_Rectangle boxB = { RL_GetScreenWidth()/2.0f - 30, RL_GetScreenHeight()/2.0f - 30, 60, 60 };
 
-    Rectangle boxCollision = { 0 }; // Collision rectangle
+    RL_Rectangle boxCollision = { 0 }; // Collision rectangle
 
     int screenUpperLimit = 40;      // Top menu limits
 
     bool pause = false;             // Movement pause
     bool collision = false;         // Collision detection
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //----------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //-----------------------------------------------------
@@ -53,64 +53,64 @@ int main(void)
         if (!pause) boxA.x += boxASpeedX;
 
         // Bounce box on x screen limits
-        if (((boxA.x + boxA.width) >= GetScreenWidth()) || (boxA.x <= 0)) boxASpeedX *= -1;
+        if (((boxA.x + boxA.width) >= RL_GetScreenWidth()) || (boxA.x <= 0)) boxASpeedX *= -1;
 
         // Update player-controlled-box (box02)
-        boxB.x = GetMouseX() - boxB.width/2;
-        boxB.y = GetMouseY() - boxB.height/2;
+        boxB.x = RL_GetMouseX() - boxB.width/2;
+        boxB.y = RL_GetMouseY() - boxB.height/2;
 
         // Make sure Box B does not go out of move area limits
-        if ((boxB.x + boxB.width) >= GetScreenWidth()) boxB.x = GetScreenWidth() - boxB.width;
+        if ((boxB.x + boxB.width) >= RL_GetScreenWidth()) boxB.x = RL_GetScreenWidth() - boxB.width;
         else if (boxB.x <= 0) boxB.x = 0;
 
-        if ((boxB.y + boxB.height) >= GetScreenHeight()) boxB.y = GetScreenHeight() - boxB.height;
+        if ((boxB.y + boxB.height) >= RL_GetScreenHeight()) boxB.y = RL_GetScreenHeight() - boxB.height;
         else if (boxB.y <= screenUpperLimit) boxB.y = (float)screenUpperLimit;
 
         // Check boxes collision
-        collision = CheckCollisionRecs(boxA, boxB);
+        collision = RL_CheckCollisionRecs(boxA, boxB);
 
         // Get collision rectangle (only on collision)
-        if (collision) boxCollision = GetCollisionRec(boxA, boxB);
+        if (collision) boxCollision = RL_GetCollisionRec(boxA, boxB);
 
         // Pause Box A movement
-        if (IsKeyPressed(KEY_SPACE)) pause = !pause;
+        if (RL_IsKeyPressed(KEY_SPACE)) pause = !pause;
         //-----------------------------------------------------
 
         // Draw
         //-----------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision? RED : BLACK);
+            RL_DrawRectangle(0, 0, screenWidth, screenUpperLimit, collision? RL_RED : RL_BLACK);
 
-            DrawRectangleRec(boxA, GOLD);
-            DrawRectangleRec(boxB, BLUE);
+            RL_DrawRectangleRec(boxA, RL_GOLD);
+            RL_DrawRectangleRec(boxB, RL_BLUE);
 
             if (collision)
             {
                 // Draw collision area
-                DrawRectangleRec(boxCollision, LIME);
+                RL_DrawRectangleRec(boxCollision, RL_LIME);
 
                 // Draw collision message
-                DrawText("COLLISION!", GetScreenWidth()/2 - MeasureText("COLLISION!", 20)/2, screenUpperLimit/2 - 10, 20, BLACK);
+                RL_DrawText("COLLISION!", RL_GetScreenWidth()/2 - RL_MeasureText("COLLISION!", 20)/2, screenUpperLimit/2 - 10, 20, RL_BLACK);
 
                 // Draw collision area
-                DrawText(TextFormat("Collision Area: %i", (int)boxCollision.width*(int)boxCollision.height), GetScreenWidth()/2 - 100, screenUpperLimit + 10, 20, BLACK);
+                RL_DrawText(RL_TextFormat("Collision Area: %i", (int)boxCollision.width*(int)boxCollision.height), RL_GetScreenWidth()/2 - 100, screenUpperLimit + 10, 20, RL_BLACK);
             }
 
             // Draw help instructions
-            DrawText("Press SPACE to PAUSE/RESUME", 20, screenHeight - 35, 20, LIGHTGRAY);
+            RL_DrawText("Press SPACE to PAUSE/RESUME", 20, screenHeight - 35, 20, RL_LIGHTGRAY);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //-----------------------------------------------------
     }
 
     // De-Initialization
     //---------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //----------------------------------------------------------
 
     return 0;

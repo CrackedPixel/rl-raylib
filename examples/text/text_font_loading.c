@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [text] example - Font loading
+*   raylib [text] example - RL_Font loading
 *
 *   NOTE: raylib can load fonts from multiple input file formats:
 *
@@ -32,7 +32,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [text] example - font loading");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [text] example - font loading");
 
     // Define characters to draw
     // NOTE: raylib supports UTF-8 encoding, following list is actually codified as UTF8 internally
@@ -40,58 +40,58 @@ int main(void)
 
     // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
-    // BMFont (AngelCode) : Font data and image atlas have been generated using external program
-    Font fontBm = LoadFont("resources/pixantiqua.fnt");
+    // BMFont (AngelCode) : RL_Font data and image atlas have been generated using external program
+    RL_Font fontBm = RL_LoadFont("resources/pixantiqua.fnt");
 
-    // TTF font : Font data and atlas are generated directly from TTF
+    // TTF font : RL_Font data and atlas are generated directly from TTF
     // NOTE: We define a font base size of 32 pixels tall and up-to 250 characters
-    Font fontTtf = LoadFontEx("resources/pixantiqua.ttf", 32, 0, 250);
+    RL_Font fontTtf = RL_LoadFontEx("resources/pixantiqua.ttf", 32, 0, 250);
 
-    SetTextLineSpacing(16);         // Set line spacing for multiline text (when line breaks are included '\n')
+    RL_SetTextLineSpacing(16);         // Set line spacing for multiline text (when line breaks are included '\n')
 
     bool useTtf = false;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_SPACE)) useTtf = true;
+        if (RL_IsKeyDown(KEY_SPACE)) useTtf = true;
         else useTtf = false;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, LIGHTGRAY);
+            RL_DrawText("Hold SPACE to use TTF generated font", 20, 20, 20, RL_LIGHTGRAY);
 
             if (!useTtf)
             {
-                DrawTextEx(fontBm, msg, (Vector2){ 20.0f, 100.0f }, (float)fontBm.baseSize, 2, MAROON);
-                DrawText("Using BMFont (Angelcode) imported", 20, GetScreenHeight() - 30, 20, GRAY);
+                RL_DrawTextEx(fontBm, msg, (RL_Vector2){ 20.0f, 100.0f }, (float)fontBm.baseSize, 2, RL_MAROON);
+                RL_DrawText("Using BMFont (Angelcode) imported", 20, RL_GetScreenHeight() - 30, 20, RL_GRAY);
             }
             else
             {
-                DrawTextEx(fontTtf, msg, (Vector2){ 20.0f, 100.0f }, (float)fontTtf.baseSize, 2, LIME);
-                DrawText("Using TTF font generated", 20, GetScreenHeight() - 30, 20, GRAY);
+                RL_DrawTextEx(fontTtf, msg, (RL_Vector2){ 20.0f, 100.0f }, (float)fontTtf.baseSize, 2, RL_LIME);
+                RL_DrawText("Using TTF font generated", 20, RL_GetScreenHeight() - 30, 20, RL_GRAY);
             }
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadFont(fontBm);     // AngelCode Font unloading
-    UnloadFont(fontTtf);    // TTF Font unloading
+    RL_UnloadFont(fontBm);     // AngelCode RL_Font unloading
+    RL_UnloadFont(fontTtf);    // TTF RL_Font unloading
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

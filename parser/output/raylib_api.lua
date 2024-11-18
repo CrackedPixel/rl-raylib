@@ -133,159 +133,159 @@ return {
       description = ""
     },
     {
-      name = "LIGHTGRAY",
+      name = "RL_LIGHTGRAY",
       type = "COLOR",
-      value = "CLITERAL(Color){ 200, 200, 200, 255 }",
+      value = "CLITERAL(RL_Color){ 200, 200, 200, 255 }",
       description = "Light Gray"
     },
     {
-      name = "GRAY",
+      name = "RL_GRAY",
       type = "COLOR",
-      value = "CLITERAL(Color){ 130, 130, 130, 255 }",
+      value = "CLITERAL(RL_Color){ 130, 130, 130, 255 }",
       description = "Gray"
     },
     {
-      name = "DARKGRAY",
+      name = "RL_DARKGRAY",
       type = "COLOR",
-      value = "CLITERAL(Color){ 80, 80, 80, 255 }",
+      value = "CLITERAL(RL_Color){ 80, 80, 80, 255 }",
       description = "Dark Gray"
     },
     {
-      name = "YELLOW",
+      name = "RL_YELLOW",
       type = "COLOR",
-      value = "CLITERAL(Color){ 253, 249, 0, 255 }",
+      value = "CLITERAL(RL_Color){ 253, 249, 0, 255 }",
       description = "Yellow"
     },
     {
-      name = "GOLD",
+      name = "RL_GOLD",
       type = "COLOR",
-      value = "CLITERAL(Color){ 255, 203, 0, 255 }",
+      value = "CLITERAL(RL_Color){ 255, 203, 0, 255 }",
       description = "Gold"
     },
     {
-      name = "ORANGE",
+      name = "RL_ORANGE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 255, 161, 0, 255 }",
+      value = "CLITERAL(RL_Color){ 255, 161, 0, 255 }",
       description = "Orange"
     },
     {
-      name = "PINK",
+      name = "RL_PINK",
       type = "COLOR",
-      value = "CLITERAL(Color){ 255, 109, 194, 255 }",
+      value = "CLITERAL(RL_Color){ 255, 109, 194, 255 }",
       description = "Pink"
     },
     {
-      name = "RED",
+      name = "RL_RED",
       type = "COLOR",
-      value = "CLITERAL(Color){ 230, 41, 55, 255 }",
+      value = "CLITERAL(RL_Color){ 230, 41, 55, 255 }",
       description = "Red"
     },
     {
-      name = "MAROON",
+      name = "RL_MAROON",
       type = "COLOR",
-      value = "CLITERAL(Color){ 190, 33, 55, 255 }",
+      value = "CLITERAL(RL_Color){ 190, 33, 55, 255 }",
       description = "Maroon"
     },
     {
-      name = "GREEN",
+      name = "RL_GREEN",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 228, 48, 255 }",
+      value = "CLITERAL(RL_Color){ 0, 228, 48, 255 }",
       description = "Green"
     },
     {
-      name = "LIME",
+      name = "RL_LIME",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 158, 47, 255 }",
+      value = "CLITERAL(RL_Color){ 0, 158, 47, 255 }",
       description = "Lime"
     },
     {
-      name = "DARKGREEN",
+      name = "RL_DARKGREEN",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 117, 44, 255 }",
+      value = "CLITERAL(RL_Color){ 0, 117, 44, 255 }",
       description = "Dark Green"
     },
     {
-      name = "SKYBLUE",
+      name = "RL_SKYBLUE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 102, 191, 255, 255 }",
+      value = "CLITERAL(RL_Color){ 102, 191, 255, 255 }",
       description = "Sky Blue"
     },
     {
-      name = "BLUE",
+      name = "RL_BLUE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 121, 241, 255 }",
+      value = "CLITERAL(RL_Color){ 0, 121, 241, 255 }",
       description = "Blue"
     },
     {
-      name = "DARKBLUE",
+      name = "RL_DARKBLUE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 82, 172, 255 }",
+      value = "CLITERAL(RL_Color){ 0, 82, 172, 255 }",
       description = "Dark Blue"
     },
     {
-      name = "PURPLE",
+      name = "RL_PURPLE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 200, 122, 255, 255 }",
+      value = "CLITERAL(RL_Color){ 200, 122, 255, 255 }",
       description = "Purple"
     },
     {
-      name = "VIOLET",
+      name = "RL_VIOLET",
       type = "COLOR",
-      value = "CLITERAL(Color){ 135, 60, 190, 255 }",
+      value = "CLITERAL(RL_Color){ 135, 60, 190, 255 }",
       description = "Violet"
     },
     {
-      name = "DARKPURPLE",
+      name = "RL_DARKPURPLE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 112, 31, 126, 255 }",
+      value = "CLITERAL(RL_Color){ 112, 31, 126, 255 }",
       description = "Dark Purple"
     },
     {
-      name = "BEIGE",
+      name = "RL_BEIGE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 211, 176, 131, 255 }",
+      value = "CLITERAL(RL_Color){ 211, 176, 131, 255 }",
       description = "Beige"
     },
     {
-      name = "BROWN",
+      name = "RL_BROWN",
       type = "COLOR",
-      value = "CLITERAL(Color){ 127, 106, 79, 255 }",
+      value = "CLITERAL(RL_Color){ 127, 106, 79, 255 }",
       description = "Brown"
     },
     {
-      name = "DARKBROWN",
+      name = "RL_DARKBROWN",
       type = "COLOR",
-      value = "CLITERAL(Color){ 76, 63, 47, 255 }",
+      value = "CLITERAL(RL_Color){ 76, 63, 47, 255 }",
       description = "Dark Brown"
     },
     {
-      name = "WHITE",
+      name = "RL_WHITE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 255, 255, 255, 255 }",
+      value = "CLITERAL(RL_Color){ 255, 255, 255, 255 }",
       description = "White"
     },
     {
-      name = "BLACK",
+      name = "RL_BLACK",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 0, 0, 255 }",
+      value = "CLITERAL(RL_Color){ 0, 0, 0, 255 }",
       description = "Black"
     },
     {
-      name = "BLANK",
+      name = "RL_BLANK",
       type = "COLOR",
-      value = "CLITERAL(Color){ 0, 0, 0, 0 }",
+      value = "CLITERAL(RL_Color){ 0, 0, 0, 0 }",
       description = "Blank (Transparent)"
     },
     {
-      name = "MAGENTA",
+      name = "RL_MAGENTA",
       type = "COLOR",
-      value = "CLITERAL(Color){ 255, 0, 255, 255 }",
+      value = "CLITERAL(RL_Color){ 255, 0, 255, 255 }",
       description = "Magenta"
     },
     {
-      name = "RAYWHITE",
+      name = "RL_RAYWHITE",
       type = "COLOR",
-      value = "CLITERAL(Color){ 245, 245, 245, 255 }",
+      value = "CLITERAL(RL_Color){ 245, 245, 245, 255 }",
       description = "My own White (raylib logo)"
     },
     {
@@ -337,16 +337,16 @@ return {
       description = ""
     },
     {
-      name = "GetMouseRay",
+      name = "RL_GetMouseRay",
       type = "UNKNOWN",
-      value = "GetScreenToWorldRay",
+      value = "RL_GetScreenToWorldRay",
       description = "Compatibility hack for previous raylib versions"
     }
   },
   structs = {
     {
-      name = "Vector2",
-      description = "Vector2, 2 components",
+      name = "RL_Vector2",
+      description = "RL_Vector2, 2 components",
       fields = {
         {
           type = "float",
@@ -361,8 +361,8 @@ return {
       }
     },
     {
-      name = "Vector3",
-      description = "Vector3, 3 components",
+      name = "RL_Vector3",
+      description = "RL_Vector3, 3 components",
       fields = {
         {
           type = "float",
@@ -382,8 +382,8 @@ return {
       }
     },
     {
-      name = "Vector4",
-      description = "Vector4, 4 components",
+      name = "RL_Vector4",
+      description = "RL_Vector4, 4 components",
       fields = {
         {
           type = "float",
@@ -408,161 +408,161 @@ return {
       }
     },
     {
-      name = "Matrix",
-      description = "Matrix, 4x4 components, column major, OpenGL style, right-handed",
+      name = "RL_Matrix",
+      description = "RL_Matrix, 4x4 components, column major, OpenGL style, right-handed",
       fields = {
         {
           type = "float",
           name = "m0",
-          description = "Matrix first row (4 components)"
+          description = "RL_Matrix first row (4 components)"
         },
         {
           type = "float",
           name = "m4",
-          description = "Matrix first row (4 components)"
+          description = "RL_Matrix first row (4 components)"
         },
         {
           type = "float",
           name = "m8",
-          description = "Matrix first row (4 components)"
+          description = "RL_Matrix first row (4 components)"
         },
         {
           type = "float",
           name = "m12",
-          description = "Matrix first row (4 components)"
+          description = "RL_Matrix first row (4 components)"
         },
         {
           type = "float",
           name = "m1",
-          description = "Matrix second row (4 components)"
+          description = "RL_Matrix second row (4 components)"
         },
         {
           type = "float",
           name = "m5",
-          description = "Matrix second row (4 components)"
+          description = "RL_Matrix second row (4 components)"
         },
         {
           type = "float",
           name = "m9",
-          description = "Matrix second row (4 components)"
+          description = "RL_Matrix second row (4 components)"
         },
         {
           type = "float",
           name = "m13",
-          description = "Matrix second row (4 components)"
+          description = "RL_Matrix second row (4 components)"
         },
         {
           type = "float",
           name = "m2",
-          description = "Matrix third row (4 components)"
+          description = "RL_Matrix third row (4 components)"
         },
         {
           type = "float",
           name = "m6",
-          description = "Matrix third row (4 components)"
+          description = "RL_Matrix third row (4 components)"
         },
         {
           type = "float",
           name = "m10",
-          description = "Matrix third row (4 components)"
+          description = "RL_Matrix third row (4 components)"
         },
         {
           type = "float",
           name = "m14",
-          description = "Matrix third row (4 components)"
+          description = "RL_Matrix third row (4 components)"
         },
         {
           type = "float",
           name = "m3",
-          description = "Matrix fourth row (4 components)"
+          description = "RL_Matrix fourth row (4 components)"
         },
         {
           type = "float",
           name = "m7",
-          description = "Matrix fourth row (4 components)"
+          description = "RL_Matrix fourth row (4 components)"
         },
         {
           type = "float",
           name = "m11",
-          description = "Matrix fourth row (4 components)"
+          description = "RL_Matrix fourth row (4 components)"
         },
         {
           type = "float",
           name = "m15",
-          description = "Matrix fourth row (4 components)"
+          description = "RL_Matrix fourth row (4 components)"
         }
       }
     },
     {
-      name = "Color",
-      description = "Color, 4 components, R8G8B8A8 (32bit)",
+      name = "RL_Color",
+      description = "RL_Color, 4 components, R8G8B8A8 (32bit)",
       fields = {
         {
           type = "unsigned char",
           name = "r",
-          description = "Color red value"
+          description = "RL_Color red value"
         },
         {
           type = "unsigned char",
           name = "g",
-          description = "Color green value"
+          description = "RL_Color green value"
         },
         {
           type = "unsigned char",
           name = "b",
-          description = "Color blue value"
+          description = "RL_Color blue value"
         },
         {
           type = "unsigned char",
           name = "a",
-          description = "Color alpha value"
+          description = "RL_Color alpha value"
         }
       }
     },
     {
-      name = "Rectangle",
-      description = "Rectangle, 4 components",
+      name = "RL_Rectangle",
+      description = "RL_Rectangle, 4 components",
       fields = {
         {
           type = "float",
           name = "x",
-          description = "Rectangle top-left corner position x"
+          description = "RL_Rectangle top-left corner position x"
         },
         {
           type = "float",
           name = "y",
-          description = "Rectangle top-left corner position y"
+          description = "RL_Rectangle top-left corner position y"
         },
         {
           type = "float",
           name = "width",
-          description = "Rectangle width"
+          description = "RL_Rectangle width"
         },
         {
           type = "float",
           name = "height",
-          description = "Rectangle height"
+          description = "RL_Rectangle height"
         }
       }
     },
     {
-      name = "Image",
-      description = "Image, pixel data stored in CPU memory (RAM)",
+      name = "RL_Image",
+      description = "RL_Image, pixel data stored in CPU memory (RAM)",
       fields = {
         {
           type = "void *",
           name = "data",
-          description = "Image raw data"
+          description = "RL_Image raw data"
         },
         {
           type = "int",
           name = "width",
-          description = "Image base width"
+          description = "RL_Image base width"
         },
         {
           type = "int",
           name = "height",
-          description = "Image base height"
+          description = "RL_Image base height"
         },
         {
           type = "int",
@@ -572,13 +572,13 @@ return {
         {
           type = "int",
           name = "format",
-          description = "Data format (PixelFormat type)"
+          description = "Data format (RL_PixelFormat type)"
         }
       }
     },
     {
-      name = "Texture",
-      description = "Texture, tex data stored in GPU memory (VRAM)",
+      name = "RL_Texture",
+      description = "RL_Texture, tex data stored in GPU memory (VRAM)",
       fields = {
         {
           type = "unsigned int",
@@ -588,12 +588,12 @@ return {
         {
           type = "int",
           name = "width",
-          description = "Texture base width"
+          description = "RL_Texture base width"
         },
         {
           type = "int",
           name = "height",
-          description = "Texture base height"
+          description = "RL_Texture base height"
         },
         {
           type = "int",
@@ -603,13 +603,13 @@ return {
         {
           type = "int",
           name = "format",
-          description = "Data format (PixelFormat type)"
+          description = "Data format (RL_PixelFormat type)"
         }
       }
     },
     {
-      name = "RenderTexture",
-      description = "RenderTexture, fbo for texture rendering",
+      name = "RL_RenderTexture",
+      description = "RL_RenderTexture, fbo for texture rendering",
       fields = {
         {
           type = "unsigned int",
@@ -617,25 +617,25 @@ return {
           description = "OpenGL framebuffer object id"
         },
         {
-          type = "Texture",
+          type = "RL_Texture",
           name = "texture",
-          description = "Color buffer attachment texture"
+          description = "RL_Color buffer attachment texture"
         },
         {
-          type = "Texture",
+          type = "RL_Texture",
           name = "depth",
           description = "Depth buffer attachment texture"
         }
       }
     },
     {
-      name = "NPatchInfo",
-      description = "NPatchInfo, n-patch layout info",
+      name = "RL_NPatchInfo",
+      description = "RL_NPatchInfo, n-patch layout info",
       fields = {
         {
-          type = "Rectangle",
+          type = "RL_Rectangle",
           name = "source",
-          description = "Texture source rectangle"
+          description = "RL_Texture source rectangle"
         },
         {
           type = "int",
@@ -665,8 +665,8 @@ return {
       }
     },
     {
-      name = "GlyphInfo",
-      description = "GlyphInfo, font characters glyphs info",
+      name = "RL_GlyphInfo",
+      description = "RL_GlyphInfo, font characters glyphs info",
       fields = {
         {
           type = "int",
@@ -689,15 +689,15 @@ return {
           description = "Character advance position X"
         },
         {
-          type = "Image",
+          type = "RL_Image",
           name = "image",
           description = "Character image data"
         }
       }
     },
     {
-      name = "Font",
-      description = "Font, font texture and GlyphInfo array data",
+      name = "RL_Font",
+      description = "RL_Font, font texture and RL_GlyphInfo array data",
       fields = {
         {
           type = "int",
@@ -715,82 +715,82 @@ return {
           description = "Padding around the glyph characters"
         },
         {
-          type = "Texture2D",
+          type = "RL_Texture2D",
           name = "texture",
-          description = "Texture atlas containing the glyphs"
+          description = "RL_Texture atlas containing the glyphs"
         },
         {
-          type = "Rectangle *",
+          type = "RL_Rectangle *",
           name = "recs",
           description = "Rectangles in texture for the glyphs"
         },
         {
-          type = "GlyphInfo *",
+          type = "RL_GlyphInfo *",
           name = "glyphs",
           description = "Glyphs info data"
         }
       }
     },
     {
-      name = "Camera3D",
-      description = "Camera, defines position/orientation in 3d space",
+      name = "RL_Camera3D",
+      description = "RL_Camera, defines position/orientation in 3d space",
       fields = {
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "position",
-          description = "Camera position"
+          description = "RL_Camera position"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "target",
-          description = "Camera target it looks-at"
+          description = "RL_Camera target it looks-at"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "up",
-          description = "Camera up vector (rotation over its axis)"
+          description = "RL_Camera up vector (rotation over its axis)"
         },
         {
           type = "float",
           name = "fovy",
-          description = "Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic"
+          description = "RL_Camera field-of-view aperture in Y (degrees) in perspective, used as near plane width in orthographic"
         },
         {
           type = "int",
           name = "projection",
-          description = "Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC"
+          description = "RL_Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC"
         }
       }
     },
     {
-      name = "Camera2D",
-      description = "Camera2D, defines position/orientation in 2d space",
+      name = "RL_Camera2D",
+      description = "RL_Camera2D, defines position/orientation in 2d space",
       fields = {
         {
-          type = "Vector2",
+          type = "RL_Vector2",
           name = "offset",
-          description = "Camera offset (displacement from target)"
+          description = "RL_Camera offset (displacement from target)"
         },
         {
-          type = "Vector2",
+          type = "RL_Vector2",
           name = "target",
-          description = "Camera target (rotation and zoom origin)"
+          description = "RL_Camera target (rotation and zoom origin)"
         },
         {
           type = "float",
           name = "rotation",
-          description = "Camera rotation in degrees"
+          description = "RL_Camera rotation in degrees"
         },
         {
           type = "float",
           name = "zoom",
-          description = "Camera zoom (scaling), should be 1.0f by default"
+          description = "RL_Camera zoom (scaling), should be 1.0f by default"
         }
       }
     },
     {
-      name = "Mesh",
-      description = "Mesh, vertex data and vao/vbo",
+      name = "RL_Mesh",
+      description = "RL_Mesh, vertex data and vao/vbo",
       fields = {
         {
           type = "int",
@@ -858,7 +858,7 @@ return {
           description = "Vertex bone weight, up to 4 bones influence by vertex (skinning) (shader-location = 7)"
         },
         {
-          type = "Matrix *",
+          type = "RL_Matrix *",
           name = "boneMatrices",
           description = "Bones animated transformation matrices"
         },
@@ -880,86 +880,86 @@ return {
       }
     },
     {
-      name = "Shader",
-      description = "Shader",
+      name = "RL_Shader",
+      description = "RL_Shader",
       fields = {
         {
           type = "unsigned int",
           name = "id",
-          description = "Shader program id"
+          description = "RL_Shader program id"
         },
         {
           type = "int *",
           name = "locs",
-          description = "Shader locations array (RL_MAX_SHADER_LOCATIONS)"
+          description = "RL_Shader locations array (RL_MAX_SHADER_LOCATIONS)"
         }
       }
     },
     {
-      name = "MaterialMap",
-      description = "MaterialMap",
+      name = "RL_MaterialMap",
+      description = "RL_MaterialMap",
       fields = {
         {
-          type = "Texture2D",
+          type = "RL_Texture2D",
           name = "texture",
-          description = "Material map texture"
+          description = "RL_Material map texture"
         },
         {
-          type = "Color",
+          type = "RL_Color",
           name = "color",
-          description = "Material map color"
+          description = "RL_Material map color"
         },
         {
           type = "float",
           name = "value",
-          description = "Material map value"
+          description = "RL_Material map value"
         }
       }
     },
     {
-      name = "Material",
-      description = "Material, includes shader and maps",
+      name = "RL_Material",
+      description = "RL_Material, includes shader and maps",
       fields = {
         {
-          type = "Shader",
+          type = "RL_Shader",
           name = "shader",
-          description = "Material shader"
+          description = "RL_Material shader"
         },
         {
-          type = "MaterialMap *",
+          type = "RL_MaterialMap *",
           name = "maps",
-          description = "Material maps array (MAX_MATERIAL_MAPS)"
+          description = "RL_Material maps array (MAX_MATERIAL_MAPS)"
         },
         {
           type = "float[4]",
           name = "params",
-          description = "Material generic parameters (if required)"
+          description = "RL_Material generic parameters (if required)"
         }
       }
     },
     {
-      name = "Transform",
-      description = "Transform, vertex transformation data",
+      name = "RL_Transform",
+      description = "RL_Transform, vertex transformation data",
       fields = {
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "translation",
           description = "Translation"
         },
         {
-          type = "Quaternion",
+          type = "RL_Quaternion",
           name = "rotation",
           description = "Rotation"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "scale",
           description = "Scale"
         }
       }
     },
     {
-      name = "BoneInfo",
+      name = "RL_BoneInfo",
       description = "Bone, skeletal animation bone",
       fields = {
         {
@@ -975,11 +975,11 @@ return {
       }
     },
     {
-      name = "Model",
-      description = "Model, meshes, materials and animation data",
+      name = "RL_Model",
+      description = "RL_Model, meshes, materials and animation data",
       fields = {
         {
-          type = "Matrix",
+          type = "RL_Matrix",
           name = "transform",
           description = "Local transform matrix"
         },
@@ -994,19 +994,19 @@ return {
           description = "Number of materials"
         },
         {
-          type = "Mesh *",
+          type = "RL_Mesh *",
           name = "meshes",
           description = "Meshes array"
         },
         {
-          type = "Material *",
+          type = "RL_Material *",
           name = "materials",
           description = "Materials array"
         },
         {
           type = "int *",
           name = "meshMaterial",
-          description = "Mesh material number"
+          description = "RL_Mesh material number"
         },
         {
           type = "int",
@@ -1014,20 +1014,20 @@ return {
           description = "Number of bones"
         },
         {
-          type = "BoneInfo *",
+          type = "RL_BoneInfo *",
           name = "bones",
           description = "Bones information (skeleton)"
         },
         {
-          type = "Transform *",
+          type = "RL_Transform *",
           name = "bindPose",
           description = "Bones base transformation (pose)"
         }
       }
     },
     {
-      name = "ModelAnimation",
-      description = "ModelAnimation",
+      name = "RL_ModelAnimation",
+      description = "RL_ModelAnimation",
       fields = {
         {
           type = "int",
@@ -1040,12 +1040,12 @@ return {
           description = "Number of animation frames"
         },
         {
-          type = "BoneInfo *",
+          type = "RL_BoneInfo *",
           name = "bones",
           description = "Bones information (skeleton)"
         },
         {
-          type = "Transform **",
+          type = "RL_Transform **",
           name = "framePoses",
           description = "Poses array by frame"
         },
@@ -1057,24 +1057,24 @@ return {
       }
     },
     {
-      name = "Ray",
-      description = "Ray, ray for raycasting",
+      name = "RL_Ray",
+      description = "RL_Ray, ray for raycasting",
       fields = {
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "position",
-          description = "Ray position (origin)"
+          description = "RL_Ray position (origin)"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "direction",
-          description = "Ray direction (normalized)"
+          description = "RL_Ray direction (normalized)"
         }
       }
     },
     {
-      name = "RayCollision",
-      description = "RayCollision, ray hit information",
+      name = "RL_RayCollision",
+      description = "RL_RayCollision, ray hit information",
       fields = {
         {
           type = "bool",
@@ -1087,36 +1087,36 @@ return {
           description = "Distance to the nearest hit"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "point",
           description = "Point of the nearest hit"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "normal",
           description = "Surface normal of hit"
         }
       }
     },
     {
-      name = "BoundingBox",
-      description = "BoundingBox",
+      name = "RL_BoundingBox",
+      description = "RL_BoundingBox",
       fields = {
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "min",
           description = "Minimum vertex box-corner"
         },
         {
-          type = "Vector3",
+          type = "RL_Vector3",
           name = "max",
           description = "Maximum vertex box-corner"
         }
       }
     },
     {
-      name = "Wave",
-      description = "Wave, audio wave data",
+      name = "RL_Wave",
+      description = "RL_Wave, audio wave data",
       fields = {
         {
           type = "unsigned int",
@@ -1146,16 +1146,16 @@ return {
       }
     },
     {
-      name = "AudioStream",
-      description = "AudioStream, custom audio stream",
+      name = "RL_AudioStream",
+      description = "RL_AudioStream, custom audio stream",
       fields = {
         {
-          type = "rAudioBuffer *",
+          type = "RL_rAudioBuffer *",
           name = "buffer",
           description = "Pointer to internal data used by the audio system"
         },
         {
-          type = "rAudioProcessor *",
+          type = "RL_rAudioProcessor *",
           name = "processor",
           description = "Pointer to internal data processor, useful for audio effects"
         },
@@ -1177,11 +1177,11 @@ return {
       }
     },
     {
-      name = "Sound",
-      description = "Sound",
+      name = "RL_Sound",
+      description = "RL_Sound",
       fields = {
         {
-          type = "AudioStream",
+          type = "RL_AudioStream",
           name = "stream",
           description = "Audio stream"
         },
@@ -1193,11 +1193,11 @@ return {
       }
     },
     {
-      name = "Music",
-      description = "Music, audio stream, anything longer than ~10 seconds should be streamed",
+      name = "RL_Music",
+      description = "RL_Music, audio stream, anything longer than ~10 seconds should be streamed",
       fields = {
         {
-          type = "AudioStream",
+          type = "RL_AudioStream",
           name = "stream",
           description = "Audio stream"
         },
@@ -1209,7 +1209,7 @@ return {
         {
           type = "bool",
           name = "looping",
-          description = "Music looping enable"
+          description = "RL_Music looping enable"
         },
         {
           type = "int",
@@ -1224,8 +1224,8 @@ return {
       }
     },
     {
-      name = "VrDeviceInfo",
-      description = "VrDeviceInfo, Head-Mounted-Display device parameters",
+      name = "RL_VrDeviceInfo",
+      description = "RL_VrDeviceInfo, Head-Mounted-Display device parameters",
       fields = {
         {
           type = "int",
@@ -1275,16 +1275,16 @@ return {
       }
     },
     {
-      name = "VrStereoConfig",
-      description = "VrStereoConfig, VR stereo rendering configuration for simulator",
+      name = "RL_VrStereoConfig",
+      description = "RL_VrStereoConfig, VR stereo rendering configuration for simulator",
       fields = {
         {
-          type = "Matrix[2]",
+          type = "RL_Matrix[2]",
           name = "projection",
           description = "VR projection matrices (per eye)"
         },
         {
-          type = "Matrix[2]",
+          type = "RL_Matrix[2]",
           name = "viewOffset",
           description = "VR view offset matrices (per eye)"
         },
@@ -1321,7 +1321,7 @@ return {
       }
     },
     {
-      name = "FilePathList",
+      name = "RL_FilePathList",
       description = "File path list",
       fields = {
         {
@@ -1342,7 +1342,7 @@ return {
       }
     },
     {
-      name = "AutomationEvent",
+      name = "RL_AutomationEvent",
       description = "Automation event",
       fields = {
         {
@@ -1363,7 +1363,7 @@ return {
       }
     },
     {
-      name = "AutomationEventList",
+      name = "RL_AutomationEventList",
       description = "Automation event list",
       fields = {
         {
@@ -1377,7 +1377,7 @@ return {
           description = "Events entries count"
         },
         {
-          type = "AutomationEvent *",
+          type = "RL_AutomationEvent *",
           name = "events",
           description = "Events entries"
         }
@@ -1386,34 +1386,34 @@ return {
   },
   aliases = {
     {
-      type = "Vector4",
-      name = "Quaternion",
-      description = "Quaternion, 4 components (Vector4 alias)"
+      type = "RL_Vector4",
+      name = "RL_Quaternion",
+      description = "RL_Quaternion, 4 components (RL_Vector4 alias)"
     },
     {
-      type = "Texture",
-      name = "Texture2D",
-      description = "Texture2D, same as Texture"
+      type = "RL_Texture",
+      name = "RL_Texture2D",
+      description = "RL_Texture2D, same as RL_Texture"
     },
     {
-      type = "Texture",
-      name = "TextureCubemap",
-      description = "TextureCubemap, same as Texture"
+      type = "RL_Texture",
+      name = "RL_TextureCubemap",
+      description = "RL_TextureCubemap, same as RL_Texture"
     },
     {
-      type = "RenderTexture",
-      name = "RenderTexture2D",
-      description = "RenderTexture2D, same as RenderTexture"
+      type = "RL_RenderTexture",
+      name = "RL_RenderTexture2D",
+      description = "RL_RenderTexture2D, same as RL_RenderTexture"
     },
     {
-      type = "Camera3D",
-      name = "Camera",
-      description = "Camera type fallback, defaults to Camera3D"
+      type = "RL_Camera3D",
+      name = "RL_Camera",
+      description = "RL_Camera type fallback, defaults to RL_Camera3D"
     }
   },
   enums = {
     {
-      name = "ConfigFlags",
+      name = "RL_ConfigFlags",
       description = "System/Window config flags",
       values = {
         {
@@ -1499,7 +1499,7 @@ return {
       }
     },
     {
-      name = "TraceLogLevel",
+      name = "RL_TraceLogLevel",
       description = "Trace log level",
       values = {
         {
@@ -1545,7 +1545,7 @@ return {
       }
     },
     {
-      name = "KeyboardKey",
+      name = "RL_KeyboardKey",
       description = "Keyboard keys (US keyboard layout)",
       values = {
         {
@@ -2101,7 +2101,7 @@ return {
       }
     },
     {
-      name = "MouseButton",
+      name = "RL_MouseButton",
       description = "Mouse buttons",
       values = {
         {
@@ -2142,7 +2142,7 @@ return {
       }
     },
     {
-      name = "MouseCursor",
+      name = "RL_MouseCursor",
       description = "Mouse cursor",
       values = {
         {
@@ -2203,7 +2203,7 @@ return {
       }
     },
     {
-      name = "GamepadButton",
+      name = "RL_GamepadButton",
       description = "Gamepad buttons",
       values = {
         {
@@ -2299,7 +2299,7 @@ return {
       }
     },
     {
-      name = "GamepadAxis",
+      name = "RL_GamepadAxis",
       description = "Gamepad axis",
       values = {
         {
@@ -2335,8 +2335,8 @@ return {
       }
     },
     {
-      name = "MaterialMapIndex",
-      description = "Material map index",
+      name = "RL_MaterialMapIndex",
+      description = "RL_Material map index",
       values = {
         {
           name = "MATERIAL_MAP_ALBEDO",
@@ -2396,235 +2396,235 @@ return {
       }
     },
     {
-      name = "ShaderLocationIndex",
-      description = "Shader location index",
+      name = "RL_ShaderLocationIndex",
+      description = "RL_Shader location index",
       values = {
         {
           name = "SHADER_LOC_VERTEX_POSITION",
           value = 0,
-          description = "Shader location: vertex attribute: position"
+          description = "RL_Shader location: vertex attribute: position"
         },
         {
           name = "SHADER_LOC_VERTEX_TEXCOORD01",
           value = 1,
-          description = "Shader location: vertex attribute: texcoord01"
+          description = "RL_Shader location: vertex attribute: texcoord01"
         },
         {
           name = "SHADER_LOC_VERTEX_TEXCOORD02",
           value = 2,
-          description = "Shader location: vertex attribute: texcoord02"
+          description = "RL_Shader location: vertex attribute: texcoord02"
         },
         {
           name = "SHADER_LOC_VERTEX_NORMAL",
           value = 3,
-          description = "Shader location: vertex attribute: normal"
+          description = "RL_Shader location: vertex attribute: normal"
         },
         {
           name = "SHADER_LOC_VERTEX_TANGENT",
           value = 4,
-          description = "Shader location: vertex attribute: tangent"
+          description = "RL_Shader location: vertex attribute: tangent"
         },
         {
           name = "SHADER_LOC_VERTEX_COLOR",
           value = 5,
-          description = "Shader location: vertex attribute: color"
+          description = "RL_Shader location: vertex attribute: color"
         },
         {
           name = "SHADER_LOC_MATRIX_MVP",
           value = 6,
-          description = "Shader location: matrix uniform: model-view-projection"
+          description = "RL_Shader location: matrix uniform: model-view-projection"
         },
         {
           name = "SHADER_LOC_MATRIX_VIEW",
           value = 7,
-          description = "Shader location: matrix uniform: view (camera transform)"
+          description = "RL_Shader location: matrix uniform: view (camera transform)"
         },
         {
           name = "SHADER_LOC_MATRIX_PROJECTION",
           value = 8,
-          description = "Shader location: matrix uniform: projection"
+          description = "RL_Shader location: matrix uniform: projection"
         },
         {
           name = "SHADER_LOC_MATRIX_MODEL",
           value = 9,
-          description = "Shader location: matrix uniform: model (transform)"
+          description = "RL_Shader location: matrix uniform: model (transform)"
         },
         {
           name = "SHADER_LOC_MATRIX_NORMAL",
           value = 10,
-          description = "Shader location: matrix uniform: normal"
+          description = "RL_Shader location: matrix uniform: normal"
         },
         {
           name = "SHADER_LOC_VECTOR_VIEW",
           value = 11,
-          description = "Shader location: vector uniform: view"
+          description = "RL_Shader location: vector uniform: view"
         },
         {
           name = "SHADER_LOC_COLOR_DIFFUSE",
           value = 12,
-          description = "Shader location: vector uniform: diffuse color"
+          description = "RL_Shader location: vector uniform: diffuse color"
         },
         {
           name = "SHADER_LOC_COLOR_SPECULAR",
           value = 13,
-          description = "Shader location: vector uniform: specular color"
+          description = "RL_Shader location: vector uniform: specular color"
         },
         {
           name = "SHADER_LOC_COLOR_AMBIENT",
           value = 14,
-          description = "Shader location: vector uniform: ambient color"
+          description = "RL_Shader location: vector uniform: ambient color"
         },
         {
           name = "SHADER_LOC_MAP_ALBEDO",
           value = 15,
-          description = "Shader location: sampler2d texture: albedo (same as: SHADER_LOC_MAP_DIFFUSE)"
+          description = "RL_Shader location: sampler2d texture: albedo (same as: SHADER_LOC_MAP_DIFFUSE)"
         },
         {
           name = "SHADER_LOC_MAP_METALNESS",
           value = 16,
-          description = "Shader location: sampler2d texture: metalness (same as: SHADER_LOC_MAP_SPECULAR)"
+          description = "RL_Shader location: sampler2d texture: metalness (same as: SHADER_LOC_MAP_SPECULAR)"
         },
         {
           name = "SHADER_LOC_MAP_NORMAL",
           value = 17,
-          description = "Shader location: sampler2d texture: normal"
+          description = "RL_Shader location: sampler2d texture: normal"
         },
         {
           name = "SHADER_LOC_MAP_ROUGHNESS",
           value = 18,
-          description = "Shader location: sampler2d texture: roughness"
+          description = "RL_Shader location: sampler2d texture: roughness"
         },
         {
           name = "SHADER_LOC_MAP_OCCLUSION",
           value = 19,
-          description = "Shader location: sampler2d texture: occlusion"
+          description = "RL_Shader location: sampler2d texture: occlusion"
         },
         {
           name = "SHADER_LOC_MAP_EMISSION",
           value = 20,
-          description = "Shader location: sampler2d texture: emission"
+          description = "RL_Shader location: sampler2d texture: emission"
         },
         {
           name = "SHADER_LOC_MAP_HEIGHT",
           value = 21,
-          description = "Shader location: sampler2d texture: height"
+          description = "RL_Shader location: sampler2d texture: height"
         },
         {
           name = "SHADER_LOC_MAP_CUBEMAP",
           value = 22,
-          description = "Shader location: samplerCube texture: cubemap"
+          description = "RL_Shader location: samplerCube texture: cubemap"
         },
         {
           name = "SHADER_LOC_MAP_IRRADIANCE",
           value = 23,
-          description = "Shader location: samplerCube texture: irradiance"
+          description = "RL_Shader location: samplerCube texture: irradiance"
         },
         {
           name = "SHADER_LOC_MAP_PREFILTER",
           value = 24,
-          description = "Shader location: samplerCube texture: prefilter"
+          description = "RL_Shader location: samplerCube texture: prefilter"
         },
         {
           name = "SHADER_LOC_MAP_BRDF",
           value = 25,
-          description = "Shader location: sampler2d texture: brdf"
+          description = "RL_Shader location: sampler2d texture: brdf"
         },
         {
           name = "SHADER_LOC_VERTEX_BONEIDS",
           value = 26,
-          description = "Shader location: vertex attribute: boneIds"
+          description = "RL_Shader location: vertex attribute: boneIds"
         },
         {
           name = "SHADER_LOC_VERTEX_BONEWEIGHTS",
           value = 27,
-          description = "Shader location: vertex attribute: boneWeights"
+          description = "RL_Shader location: vertex attribute: boneWeights"
         },
         {
           name = "SHADER_LOC_BONE_MATRICES",
           value = 28,
-          description = "Shader location: array of matrices uniform: boneMatrices"
+          description = "RL_Shader location: array of matrices uniform: boneMatrices"
         }
       }
     },
     {
-      name = "ShaderUniformDataType",
-      description = "Shader uniform data type",
+      name = "RL_ShaderUniformDataType",
+      description = "RL_Shader uniform data type",
       values = {
         {
           name = "SHADER_UNIFORM_FLOAT",
           value = 0,
-          description = "Shader uniform type: float"
+          description = "RL_Shader uniform type: float"
         },
         {
           name = "SHADER_UNIFORM_VEC2",
           value = 1,
-          description = "Shader uniform type: vec2 (2 float)"
+          description = "RL_Shader uniform type: vec2 (2 float)"
         },
         {
           name = "SHADER_UNIFORM_VEC3",
           value = 2,
-          description = "Shader uniform type: vec3 (3 float)"
+          description = "RL_Shader uniform type: vec3 (3 float)"
         },
         {
           name = "SHADER_UNIFORM_VEC4",
           value = 3,
-          description = "Shader uniform type: vec4 (4 float)"
+          description = "RL_Shader uniform type: vec4 (4 float)"
         },
         {
           name = "SHADER_UNIFORM_INT",
           value = 4,
-          description = "Shader uniform type: int"
+          description = "RL_Shader uniform type: int"
         },
         {
           name = "SHADER_UNIFORM_IVEC2",
           value = 5,
-          description = "Shader uniform type: ivec2 (2 int)"
+          description = "RL_Shader uniform type: ivec2 (2 int)"
         },
         {
           name = "SHADER_UNIFORM_IVEC3",
           value = 6,
-          description = "Shader uniform type: ivec3 (3 int)"
+          description = "RL_Shader uniform type: ivec3 (3 int)"
         },
         {
           name = "SHADER_UNIFORM_IVEC4",
           value = 7,
-          description = "Shader uniform type: ivec4 (4 int)"
+          description = "RL_Shader uniform type: ivec4 (4 int)"
         },
         {
           name = "SHADER_UNIFORM_SAMPLER2D",
           value = 8,
-          description = "Shader uniform type: sampler2d"
+          description = "RL_Shader uniform type: sampler2d"
         }
       }
     },
     {
-      name = "ShaderAttributeDataType",
-      description = "Shader attribute data types",
+      name = "RL_ShaderAttributeDataType",
+      description = "RL_Shader attribute data types",
       values = {
         {
           name = "SHADER_ATTRIB_FLOAT",
           value = 0,
-          description = "Shader attribute type: float"
+          description = "RL_Shader attribute type: float"
         },
         {
           name = "SHADER_ATTRIB_VEC2",
           value = 1,
-          description = "Shader attribute type: vec2 (2 float)"
+          description = "RL_Shader attribute type: vec2 (2 float)"
         },
         {
           name = "SHADER_ATTRIB_VEC3",
           value = 2,
-          description = "Shader attribute type: vec3 (3 float)"
+          description = "RL_Shader attribute type: vec3 (3 float)"
         },
         {
           name = "SHADER_ATTRIB_VEC4",
           value = 3,
-          description = "Shader attribute type: vec4 (4 float)"
+          description = "RL_Shader attribute type: vec4 (4 float)"
         }
       }
     },
     {
-      name = "PixelFormat",
+      name = "RL_PixelFormat",
       description = "Pixel formats",
       values = {
         {
@@ -2750,8 +2750,8 @@ return {
       }
     },
     {
-      name = "TextureFilter",
-      description = "Texture parameters: filter mode",
+      name = "RL_TextureFilter",
+      description = "RL_Texture parameters: filter mode",
       values = {
         {
           name = "TEXTURE_FILTER_POINT",
@@ -2786,8 +2786,8 @@ return {
       }
     },
     {
-      name = "TextureWrap",
-      description = "Texture parameters: wrap mode",
+      name = "RL_TextureWrap",
+      description = "RL_Texture parameters: wrap mode",
       values = {
         {
           name = "TEXTURE_WRAP_REPEAT",
@@ -2812,7 +2812,7 @@ return {
       }
     },
     {
-      name = "CubemapLayout",
+      name = "RL_CubemapLayout",
       description = "Cubemap layouts",
       values = {
         {
@@ -2843,8 +2843,8 @@ return {
       }
     },
     {
-      name = "FontType",
-      description = "Font type, defines generation method",
+      name = "RL_FontType",
+      description = "RL_Font type, defines generation method",
       values = {
         {
           name = "FONT_DEFAULT",
@@ -2864,8 +2864,8 @@ return {
       }
     },
     {
-      name = "BlendMode",
-      description = "Color blending modes (pre-defined)",
+      name = "RL_BlendMode",
+      description = "RL_Color blending modes (pre-defined)",
       values = {
         {
           name = "BLEND_ALPHA",
@@ -2910,8 +2910,8 @@ return {
       }
     },
     {
-      name = "Gesture",
-      description = "Gesture",
+      name = "RL_Gesture",
+      description = "RL_Gesture",
       values = {
         {
           name = "GESTURE_NONE",
@@ -2971,39 +2971,39 @@ return {
       }
     },
     {
-      name = "CameraMode",
-      description = "Camera system modes",
+      name = "RL_CameraMode",
+      description = "RL_Camera system modes",
       values = {
         {
           name = "CAMERA_CUSTOM",
           value = 0,
-          description = "Camera custom, controlled by user (UpdateCamera() does nothing)"
+          description = "RL_Camera custom, controlled by user (RL_UpdateCamera() does nothing)"
         },
         {
           name = "CAMERA_FREE",
           value = 1,
-          description = "Camera free mode"
+          description = "RL_Camera free mode"
         },
         {
           name = "CAMERA_ORBITAL",
           value = 2,
-          description = "Camera orbital, around target, zoom supported"
+          description = "RL_Camera orbital, around target, zoom supported"
         },
         {
           name = "CAMERA_FIRST_PERSON",
           value = 3,
-          description = "Camera first person"
+          description = "RL_Camera first person"
         },
         {
           name = "CAMERA_THIRD_PERSON",
           value = 4,
-          description = "Camera third person"
+          description = "RL_Camera third person"
         }
       }
     },
     {
-      name = "CameraProjection",
-      description = "Camera projection",
+      name = "RL_CameraProjection",
+      description = "RL_Camera projection",
       values = {
         {
           name = "CAMERA_PERSPECTIVE",
@@ -3018,7 +3018,7 @@ return {
       }
     },
     {
-      name = "NPatchLayout",
+      name = "RL_NPatchLayout",
       description = "N-patch layout",
       values = {
         {
@@ -3041,7 +3041,7 @@ return {
   },
   callbacks = {
     {
-      name = "TraceLogCallback",
+      name = "RL_TraceLogCallback",
       description = "Logging: Redirect trace log messages",
       returnType = "void",
       params = {
@@ -3051,7 +3051,7 @@ return {
       }
     },
     {
-      name = "LoadFileDataCallback",
+      name = "RL_LoadFileDataCallback",
       description = "FileIO: Load binary data",
       returnType = "unsigned char *",
       params = {
@@ -3060,7 +3060,7 @@ return {
       }
     },
     {
-      name = "SaveFileDataCallback",
+      name = "RL_SaveFileDataCallback",
       description = "FileIO: Save binary data",
       returnType = "bool",
       params = {
@@ -3070,7 +3070,7 @@ return {
       }
     },
     {
-      name = "LoadFileTextCallback",
+      name = "RL_LoadFileTextCallback",
       description = "FileIO: Load text data",
       returnType = "char *",
       params = {
@@ -3078,7 +3078,7 @@ return {
       }
     },
     {
-      name = "SaveFileTextCallback",
+      name = "RL_SaveFileTextCallback",
       description = "FileIO: Save text data",
       returnType = "bool",
       params = {
@@ -3098,7 +3098,7 @@ return {
   },
   functions = {
     {
-      name = "InitWindow",
+      name = "RL_InitWindow",
       description = "Initialize window and OpenGL context",
       returnType = "void",
       params = {
@@ -3108,52 +3108,52 @@ return {
       }
     },
     {
-      name = "CloseWindow",
+      name = "RL_CloseWindow",
       description = "Close window and unload OpenGL context",
       returnType = "void"
     },
     {
-      name = "WindowShouldClose",
+      name = "RL_WindowShouldClose",
       description = "Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)",
       returnType = "bool"
     },
     {
-      name = "IsWindowReady",
+      name = "RL_IsWindowReady",
       description = "Check if window has been initialized successfully",
       returnType = "bool"
     },
     {
-      name = "IsWindowFullscreen",
+      name = "RL_IsWindowFullscreen",
       description = "Check if window is currently fullscreen",
       returnType = "bool"
     },
     {
-      name = "IsWindowHidden",
+      name = "RL_IsWindowHidden",
       description = "Check if window is currently hidden",
       returnType = "bool"
     },
     {
-      name = "IsWindowMinimized",
+      name = "RL_IsWindowMinimized",
       description = "Check if window is currently minimized",
       returnType = "bool"
     },
     {
-      name = "IsWindowMaximized",
+      name = "RL_IsWindowMaximized",
       description = "Check if window is currently maximized",
       returnType = "bool"
     },
     {
-      name = "IsWindowFocused",
+      name = "RL_IsWindowFocused",
       description = "Check if window is currently focused",
       returnType = "bool"
     },
     {
-      name = "IsWindowResized",
+      name = "RL_IsWindowResized",
       description = "Check if window has been resized last frame",
       returnType = "bool"
     },
     {
-      name = "IsWindowState",
+      name = "RL_IsWindowState",
       description = "Check if one specific window flag is enabled",
       returnType = "bool",
       params = {
@@ -3161,7 +3161,7 @@ return {
       }
     },
     {
-      name = "SetWindowState",
+      name = "RL_SetWindowState",
       description = "Set window configuration state using flags",
       returnType = "void",
       params = {
@@ -3169,7 +3169,7 @@ return {
       }
     },
     {
-      name = "ClearWindowState",
+      name = "RL_ClearWindowState",
       description = "Clear window configuration state flags",
       returnType = "void",
       params = {
@@ -3177,49 +3177,49 @@ return {
       }
     },
     {
-      name = "ToggleFullscreen",
+      name = "RL_ToggleFullscreen",
       description = "Toggle window state: fullscreen/windowed, resizes monitor to match window resolution",
       returnType = "void"
     },
     {
-      name = "ToggleBorderlessWindowed",
+      name = "RL_ToggleBorderlessWindowed",
       description = "Toggle window state: borderless windowed, resizes window to match monitor resolution",
       returnType = "void"
     },
     {
-      name = "MaximizeWindow",
+      name = "RL_MaximizeWindow",
       description = "Set window state: maximized, if resizable",
       returnType = "void"
     },
     {
-      name = "MinimizeWindow",
+      name = "RL_MinimizeWindow",
       description = "Set window state: minimized, if resizable",
       returnType = "void"
     },
     {
-      name = "RestoreWindow",
+      name = "RL_RestoreWindow",
       description = "Set window state: not minimized/maximized",
       returnType = "void"
     },
     {
-      name = "SetWindowIcon",
+      name = "RL_SetWindowIcon",
       description = "Set icon for window (single image, RGBA 32bit)",
       returnType = "void",
       params = {
-        {type = "Image", name = "image"}
+        {type = "RL_Image", name = "image"}
       }
     },
     {
-      name = "SetWindowIcons",
+      name = "RL_SetWindowIcons",
       description = "Set icon for window (multiple images, RGBA 32bit)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "images"},
+        {type = "RL_Image *", name = "images"},
         {type = "int", name = "count"}
       }
     },
     {
-      name = "SetWindowTitle",
+      name = "RL_SetWindowTitle",
       description = "Set title for window",
       returnType = "void",
       params = {
@@ -3227,7 +3227,7 @@ return {
       }
     },
     {
-      name = "SetWindowPosition",
+      name = "RL_SetWindowPosition",
       description = "Set window position on screen",
       returnType = "void",
       params = {
@@ -3236,7 +3236,7 @@ return {
       }
     },
     {
-      name = "SetWindowMonitor",
+      name = "RL_SetWindowMonitor",
       description = "Set monitor for the current window",
       returnType = "void",
       params = {
@@ -3244,7 +3244,7 @@ return {
       }
     },
     {
-      name = "SetWindowMinSize",
+      name = "RL_SetWindowMinSize",
       description = "Set window minimum dimensions (for FLAG_WINDOW_RESIZABLE)",
       returnType = "void",
       params = {
@@ -3253,7 +3253,7 @@ return {
       }
     },
     {
-      name = "SetWindowMaxSize",
+      name = "RL_SetWindowMaxSize",
       description = "Set window maximum dimensions (for FLAG_WINDOW_RESIZABLE)",
       returnType = "void",
       params = {
@@ -3262,7 +3262,7 @@ return {
       }
     },
     {
-      name = "SetWindowSize",
+      name = "RL_SetWindowSize",
       description = "Set window dimensions",
       returnType = "void",
       params = {
@@ -3271,7 +3271,7 @@ return {
       }
     },
     {
-      name = "SetWindowOpacity",
+      name = "RL_SetWindowOpacity",
       description = "Set window opacity [0.0f..1.0f]",
       returnType = "void",
       params = {
@@ -3279,55 +3279,55 @@ return {
       }
     },
     {
-      name = "SetWindowFocused",
+      name = "RL_SetWindowFocused",
       description = "Set window focused",
       returnType = "void"
     },
     {
-      name = "GetWindowHandle",
+      name = "RL_GetWindowHandle",
       description = "Get native window handle",
       returnType = "void *"
     },
     {
-      name = "GetScreenWidth",
+      name = "RL_GetScreenWidth",
       description = "Get current screen width",
       returnType = "int"
     },
     {
-      name = "GetScreenHeight",
+      name = "RL_GetScreenHeight",
       description = "Get current screen height",
       returnType = "int"
     },
     {
-      name = "GetRenderWidth",
+      name = "RL_GetRenderWidth",
       description = "Get current render width (it considers HiDPI)",
       returnType = "int"
     },
     {
-      name = "GetRenderHeight",
+      name = "RL_GetRenderHeight",
       description = "Get current render height (it considers HiDPI)",
       returnType = "int"
     },
     {
-      name = "GetMonitorCount",
+      name = "RL_GetMonitorCount",
       description = "Get number of connected monitors",
       returnType = "int"
     },
     {
-      name = "GetCurrentMonitor",
+      name = "RL_GetCurrentMonitor",
       description = "Get current monitor where window is placed",
       returnType = "int"
     },
     {
-      name = "GetMonitorPosition",
+      name = "RL_GetMonitorPosition",
       description = "Get specified monitor position",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
         {type = "int", name = "monitor"}
       }
     },
     {
-      name = "GetMonitorWidth",
+      name = "RL_GetMonitorWidth",
       description = "Get specified monitor width (current video mode used by monitor)",
       returnType = "int",
       params = {
@@ -3335,7 +3335,7 @@ return {
       }
     },
     {
-      name = "GetMonitorHeight",
+      name = "RL_GetMonitorHeight",
       description = "Get specified monitor height (current video mode used by monitor)",
       returnType = "int",
       params = {
@@ -3343,7 +3343,7 @@ return {
       }
     },
     {
-      name = "GetMonitorPhysicalWidth",
+      name = "RL_GetMonitorPhysicalWidth",
       description = "Get specified monitor physical width in millimetres",
       returnType = "int",
       params = {
@@ -3351,7 +3351,7 @@ return {
       }
     },
     {
-      name = "GetMonitorPhysicalHeight",
+      name = "RL_GetMonitorPhysicalHeight",
       description = "Get specified monitor physical height in millimetres",
       returnType = "int",
       params = {
@@ -3359,7 +3359,7 @@ return {
       }
     },
     {
-      name = "GetMonitorRefreshRate",
+      name = "RL_GetMonitorRefreshRate",
       description = "Get specified monitor refresh rate",
       returnType = "int",
       params = {
@@ -3367,17 +3367,17 @@ return {
       }
     },
     {
-      name = "GetWindowPosition",
+      name = "RL_GetWindowPosition",
       description = "Get window position XY on monitor",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "GetWindowScaleDPI",
+      name = "RL_GetWindowScaleDPI",
       description = "Get window scale DPI factor",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "GetMonitorName",
+      name = "RL_GetMonitorName",
       description = "Get the human-readable, UTF-8 encoded name of the specified monitor",
       returnType = "const char *",
       params = {
@@ -3385,7 +3385,7 @@ return {
       }
     },
     {
-      name = "SetClipboardText",
+      name = "RL_SetClipboardText",
       description = "Set clipboard text content",
       returnType = "void",
       params = {
@@ -3393,127 +3393,127 @@ return {
       }
     },
     {
-      name = "GetClipboardText",
+      name = "RL_GetClipboardText",
       description = "Get clipboard text content",
       returnType = "const char *"
     },
     {
       name = "GetClipboardImage",
       description = "Get clipboard image content",
-      returnType = "Image"
+      returnType = "RL_Image"
     },
     {
-      name = "EnableEventWaiting",
-      description = "Enable waiting for events on EndDrawing(), no automatic event polling",
+      name = "RL_EnableEventWaiting",
+      description = "Enable waiting for events on RL_EndDrawing(), no automatic event polling",
       returnType = "void"
     },
     {
-      name = "DisableEventWaiting",
-      description = "Disable waiting for events on EndDrawing(), automatic events polling",
+      name = "RL_DisableEventWaiting",
+      description = "Disable waiting for events on RL_EndDrawing(), automatic events polling",
       returnType = "void"
     },
     {
-      name = "ShowCursor",
+      name = "RL_ShowCursor",
       description = "Shows cursor",
       returnType = "void"
     },
     {
-      name = "HideCursor",
+      name = "RL_HideCursor",
       description = "Hides cursor",
       returnType = "void"
     },
     {
-      name = "IsCursorHidden",
+      name = "RL_IsCursorHidden",
       description = "Check if cursor is not visible",
       returnType = "bool"
     },
     {
-      name = "EnableCursor",
+      name = "RL_EnableCursor",
       description = "Enables cursor (unlock cursor)",
       returnType = "void"
     },
     {
-      name = "DisableCursor",
+      name = "RL_DisableCursor",
       description = "Disables cursor (lock cursor)",
       returnType = "void"
     },
     {
-      name = "IsCursorOnScreen",
+      name = "RL_IsCursorOnScreen",
       description = "Check if cursor is on the screen",
       returnType = "bool"
     },
     {
-      name = "ClearBackground",
+      name = "RL_ClearBackground",
       description = "Set background color (framebuffer clear color)",
       returnType = "void",
       params = {
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "BeginDrawing",
+      name = "RL_BeginDrawing",
       description = "Setup canvas (framebuffer) to start drawing",
       returnType = "void"
     },
     {
-      name = "EndDrawing",
+      name = "RL_EndDrawing",
       description = "End canvas drawing and swap buffers (double buffering)",
       returnType = "void"
     },
     {
-      name = "BeginMode2D",
+      name = "RL_BeginMode2D",
       description = "Begin 2D mode with custom camera (2D)",
       returnType = "void",
       params = {
-        {type = "Camera2D", name = "camera"}
+        {type = "RL_Camera2D", name = "camera"}
       }
     },
     {
-      name = "EndMode2D",
+      name = "RL_EndMode2D",
       description = "Ends 2D mode with custom camera",
       returnType = "void"
     },
     {
-      name = "BeginMode3D",
+      name = "RL_BeginMode3D",
       description = "Begin 3D mode with custom camera (3D)",
       returnType = "void",
       params = {
-        {type = "Camera3D", name = "camera"}
+        {type = "RL_Camera3D", name = "camera"}
       }
     },
     {
-      name = "EndMode3D",
+      name = "RL_EndMode3D",
       description = "Ends 3D mode and returns to default 2D orthographic mode",
       returnType = "void"
     },
     {
-      name = "BeginTextureMode",
+      name = "RL_BeginTextureMode",
       description = "Begin drawing to render texture",
       returnType = "void",
       params = {
-        {type = "RenderTexture2D", name = "target"}
+        {type = "RL_RenderTexture2D", name = "target"}
       }
     },
     {
-      name = "EndTextureMode",
+      name = "RL_EndTextureMode",
       description = "Ends drawing to render texture",
       returnType = "void"
     },
     {
-      name = "BeginShaderMode",
+      name = "RL_BeginShaderMode",
       description = "Begin custom shader drawing",
       returnType = "void",
       params = {
-        {type = "Shader", name = "shader"}
+        {type = "RL_Shader", name = "shader"}
       }
     },
     {
-      name = "EndShaderMode",
+      name = "RL_EndShaderMode",
       description = "End custom shader drawing (use default shader)",
       returnType = "void"
     },
     {
-      name = "BeginBlendMode",
+      name = "RL_BeginBlendMode",
       description = "Begin blending mode (alpha, additive, multiplied, subtract, custom)",
       returnType = "void",
       params = {
@@ -3521,12 +3521,12 @@ return {
       }
     },
     {
-      name = "EndBlendMode",
+      name = "RL_EndBlendMode",
       description = "End blending mode (reset to default: alpha blending)",
       returnType = "void"
     },
     {
-      name = "BeginScissorMode",
+      name = "RL_BeginScissorMode",
       description = "Begin scissor mode (define screen area for following drawing)",
       returnType = "void",
       params = {
@@ -3537,52 +3537,52 @@ return {
       }
     },
     {
-      name = "EndScissorMode",
+      name = "RL_EndScissorMode",
       description = "End scissor mode",
       returnType = "void"
     },
     {
-      name = "BeginVrStereoMode",
+      name = "RL_BeginVrStereoMode",
       description = "Begin stereo rendering (requires VR simulator)",
       returnType = "void",
       params = {
-        {type = "VrStereoConfig", name = "config"}
+        {type = "RL_VrStereoConfig", name = "config"}
       }
     },
     {
-      name = "EndVrStereoMode",
+      name = "RL_EndVrStereoMode",
       description = "End stereo rendering (requires VR simulator)",
       returnType = "void"
     },
     {
-      name = "LoadVrStereoConfig",
+      name = "RL_LoadVrStereoConfig",
       description = "Load VR stereo config for VR simulator device parameters",
-      returnType = "VrStereoConfig",
+      returnType = "RL_VrStereoConfig",
       params = {
-        {type = "VrDeviceInfo", name = "device"}
+        {type = "RL_VrDeviceInfo", name = "device"}
       }
     },
     {
-      name = "UnloadVrStereoConfig",
+      name = "RL_UnloadVrStereoConfig",
       description = "Unload VR stereo config",
       returnType = "void",
       params = {
-        {type = "VrStereoConfig", name = "config"}
+        {type = "RL_VrStereoConfig", name = "config"}
       }
     },
     {
-      name = "LoadShader",
+      name = "RL_LoadShader",
       description = "Load shader from files and bind default locations",
-      returnType = "Shader",
+      returnType = "RL_Shader",
       params = {
         {type = "const char *", name = "vsFileName"},
         {type = "const char *", name = "fsFileName"}
       }
     },
     {
-      name = "LoadShaderFromMemory",
+      name = "RL_LoadShaderFromMemory",
       description = "Load shader from code strings and bind default locations",
-      returnType = "Shader",
+      returnType = "RL_Shader",
       params = {
         {type = "const char *", name = "vsCode"},
         {type = "const char *", name = "fsCode"}
@@ -3593,44 +3593,44 @@ return {
       description = "Check if a shader is valid (loaded on GPU)",
       returnType = "bool",
       params = {
-        {type = "Shader", name = "shader"}
+        {type = "RL_Shader", name = "shader"}
       }
     },
     {
-      name = "GetShaderLocation",
+      name = "RL_GetShaderLocation",
       description = "Get shader uniform location",
       returnType = "int",
       params = {
-        {type = "Shader", name = "shader"},
+        {type = "RL_Shader", name = "shader"},
         {type = "const char *", name = "uniformName"}
       }
     },
     {
-      name = "GetShaderLocationAttrib",
+      name = "RL_GetShaderLocationAttrib",
       description = "Get shader attribute location",
       returnType = "int",
       params = {
-        {type = "Shader", name = "shader"},
+        {type = "RL_Shader", name = "shader"},
         {type = "const char *", name = "attribName"}
       }
     },
     {
-      name = "SetShaderValue",
+      name = "RL_SetShaderValue",
       description = "Set shader uniform value",
       returnType = "void",
       params = {
-        {type = "Shader", name = "shader"},
+        {type = "RL_Shader", name = "shader"},
         {type = "int", name = "locIndex"},
         {type = "const void *", name = "value"},
         {type = "int", name = "uniformType"}
       }
     },
     {
-      name = "SetShaderValueV",
+      name = "RL_SetShaderValueV",
       description = "Set shader uniform value vector",
       returnType = "void",
       params = {
-        {type = "Shader", name = "shader"},
+        {type = "RL_Shader", name = "shader"},
         {type = "int", name = "locIndex"},
         {type = "const void *", name = "value"},
         {type = "int", name = "uniformType"},
@@ -3638,109 +3638,109 @@ return {
       }
     },
     {
-      name = "SetShaderValueMatrix",
+      name = "RL_SetShaderValueMatrix",
       description = "Set shader uniform value (matrix 4x4)",
       returnType = "void",
       params = {
-        {type = "Shader", name = "shader"},
+        {type = "RL_Shader", name = "shader"},
         {type = "int", name = "locIndex"},
-        {type = "Matrix", name = "mat"}
+        {type = "RL_Matrix", name = "mat"}
       }
     },
     {
-      name = "SetShaderValueTexture",
+      name = "RL_SetShaderValueTexture",
       description = "Set shader uniform value for texture (sampler2d)",
       returnType = "void",
       params = {
-        {type = "Shader", name = "shader"},
+        {type = "RL_Shader", name = "shader"},
         {type = "int", name = "locIndex"},
-        {type = "Texture2D", name = "texture"}
+        {type = "RL_Texture2D", name = "texture"}
       }
     },
     {
-      name = "UnloadShader",
+      name = "RL_UnloadShader",
       description = "Unload shader from GPU memory (VRAM)",
       returnType = "void",
       params = {
-        {type = "Shader", name = "shader"}
+        {type = "RL_Shader", name = "shader"}
       }
     },
     {
-      name = "GetScreenToWorldRay",
+      name = "RL_GetScreenToWorldRay",
       description = "Get a ray trace from screen position (i.e mouse)",
-      returnType = "Ray",
+      returnType = "RL_Ray",
       params = {
-        {type = "Vector2", name = "position"},
-        {type = "Camera", name = "camera"}
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Camera", name = "camera"}
       }
     },
     {
-      name = "GetScreenToWorldRayEx",
+      name = "RL_GetScreenToWorldRayEx",
       description = "Get a ray trace from screen position (i.e mouse) in a viewport",
-      returnType = "Ray",
+      returnType = "RL_Ray",
       params = {
-        {type = "Vector2", name = "position"},
-        {type = "Camera", name = "camera"},
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Camera", name = "camera"},
         {type = "int", name = "width"},
         {type = "int", name = "height"}
       }
     },
     {
-      name = "GetWorldToScreen",
+      name = "RL_GetWorldToScreen",
       description = "Get the screen space position for a 3d world space position",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector3", name = "position"},
-        {type = "Camera", name = "camera"}
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Camera", name = "camera"}
       }
     },
     {
-      name = "GetWorldToScreenEx",
+      name = "RL_GetWorldToScreenEx",
       description = "Get size position for a 3d world space position",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector3", name = "position"},
-        {type = "Camera", name = "camera"},
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Camera", name = "camera"},
         {type = "int", name = "width"},
         {type = "int", name = "height"}
       }
     },
     {
-      name = "GetWorldToScreen2D",
+      name = "RL_GetWorldToScreen2D",
       description = "Get the screen space position for a 2d camera world space position",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "position"},
-        {type = "Camera2D", name = "camera"}
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Camera2D", name = "camera"}
       }
     },
     {
-      name = "GetScreenToWorld2D",
+      name = "RL_GetScreenToWorld2D",
       description = "Get the world space position for a 2d camera screen space position",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "position"},
-        {type = "Camera2D", name = "camera"}
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Camera2D", name = "camera"}
       }
     },
     {
-      name = "GetCameraMatrix",
+      name = "RL_GetCameraMatrix",
       description = "Get camera transform matrix (view matrix)",
-      returnType = "Matrix",
+      returnType = "RL_Matrix",
       params = {
-        {type = "Camera", name = "camera"}
+        {type = "RL_Camera", name = "camera"}
       }
     },
     {
-      name = "GetCameraMatrix2D",
+      name = "RL_GetCameraMatrix2D",
       description = "Get camera 2d transform matrix",
-      returnType = "Matrix",
+      returnType = "RL_Matrix",
       params = {
-        {type = "Camera2D", name = "camera"}
+        {type = "RL_Camera2D", name = "camera"}
       }
     },
     {
-      name = "SetTargetFPS",
+      name = "RL_SetTargetFPS",
       description = "Set target FPS (maximum)",
       returnType = "void",
       params = {
@@ -3748,32 +3748,32 @@ return {
       }
     },
     {
-      name = "GetFrameTime",
+      name = "RL_GetFrameTime",
       description = "Get time in seconds for last frame drawn (delta time)",
       returnType = "float"
     },
     {
-      name = "GetTime",
-      description = "Get elapsed time in seconds since InitWindow()",
+      name = "RL_GetTime",
+      description = "Get elapsed time in seconds since RL_InitWindow()",
       returnType = "double"
     },
     {
-      name = "GetFPS",
+      name = "RL_GetFPS",
       description = "Get current FPS",
       returnType = "int"
     },
     {
-      name = "SwapScreenBuffer",
+      name = "RL_SwapScreenBuffer",
       description = "Swap back buffer with front buffer (screen drawing)",
       returnType = "void"
     },
     {
-      name = "PollInputEvents",
+      name = "RL_PollInputEvents",
       description = "Register all input events",
       returnType = "void"
     },
     {
-      name = "WaitTime",
+      name = "RL_WaitTime",
       description = "Wait for some time (halt program execution)",
       returnType = "void",
       params = {
@@ -3781,7 +3781,7 @@ return {
       }
     },
     {
-      name = "SetRandomSeed",
+      name = "RL_SetRandomSeed",
       description = "Set the seed for the random number generator",
       returnType = "void",
       params = {
@@ -3789,7 +3789,7 @@ return {
       }
     },
     {
-      name = "GetRandomValue",
+      name = "RL_GetRandomValue",
       description = "Get a random value between min and max (both included)",
       returnType = "int",
       params = {
@@ -3798,7 +3798,7 @@ return {
       }
     },
     {
-      name = "LoadRandomSequence",
+      name = "RL_LoadRandomSequence",
       description = "Load random values sequence, no values repeated",
       returnType = "int *",
       params = {
@@ -3808,7 +3808,7 @@ return {
       }
     },
     {
-      name = "UnloadRandomSequence",
+      name = "RL_UnloadRandomSequence",
       description = "Unload random values sequence",
       returnType = "void",
       params = {
@@ -3816,7 +3816,7 @@ return {
       }
     },
     {
-      name = "TakeScreenshot",
+      name = "RL_TakeScreenshot",
       description = "Takes a screenshot of current screen (filename extension defines format)",
       returnType = "void",
       params = {
@@ -3824,7 +3824,7 @@ return {
       }
     },
     {
-      name = "SetConfigFlags",
+      name = "RL_SetConfigFlags",
       description = "Setup init configuration flags (view FLAGS)",
       returnType = "void",
       params = {
@@ -3832,7 +3832,7 @@ return {
       }
     },
     {
-      name = "OpenURL",
+      name = "RL_OpenURL",
       description = "Open URL with default system browser (if available)",
       returnType = "void",
       params = {
@@ -3840,7 +3840,7 @@ return {
       }
     },
     {
-      name = "TraceLog",
+      name = "RL_TraceLog",
       description = "Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)",
       returnType = "void",
       params = {
@@ -3850,7 +3850,7 @@ return {
       }
     },
     {
-      name = "SetTraceLogLevel",
+      name = "RL_SetTraceLogLevel",
       description = "Set the current threshold (minimum) log level",
       returnType = "void",
       params = {
@@ -3858,7 +3858,7 @@ return {
       }
     },
     {
-      name = "MemAlloc",
+      name = "RL_MemAlloc",
       description = "Internal memory allocator",
       returnType = "void *",
       params = {
@@ -3866,7 +3866,7 @@ return {
       }
     },
     {
-      name = "MemRealloc",
+      name = "RL_MemRealloc",
       description = "Internal memory reallocator",
       returnType = "void *",
       params = {
@@ -3875,7 +3875,7 @@ return {
       }
     },
     {
-      name = "MemFree",
+      name = "RL_MemFree",
       description = "Internal memory free",
       returnType = "void",
       params = {
@@ -3883,47 +3883,47 @@ return {
       }
     },
     {
-      name = "SetTraceLogCallback",
+      name = "RL_SetTraceLogCallback",
       description = "Set custom trace log",
       returnType = "void",
       params = {
-        {type = "TraceLogCallback", name = "callback"}
+        {type = "RL_TraceLogCallback", name = "callback"}
       }
     },
     {
-      name = "SetLoadFileDataCallback",
+      name = "RL_SetLoadFileDataCallback",
       description = "Set custom file binary data loader",
       returnType = "void",
       params = {
-        {type = "LoadFileDataCallback", name = "callback"}
+        {type = "RL_LoadFileDataCallback", name = "callback"}
       }
     },
     {
-      name = "SetSaveFileDataCallback",
+      name = "RL_SetSaveFileDataCallback",
       description = "Set custom file binary data saver",
       returnType = "void",
       params = {
-        {type = "SaveFileDataCallback", name = "callback"}
+        {type = "RL_SaveFileDataCallback", name = "callback"}
       }
     },
     {
-      name = "SetLoadFileTextCallback",
+      name = "RL_SetLoadFileTextCallback",
       description = "Set custom file text data loader",
       returnType = "void",
       params = {
-        {type = "LoadFileTextCallback", name = "callback"}
+        {type = "RL_LoadFileTextCallback", name = "callback"}
       }
     },
     {
-      name = "SetSaveFileTextCallback",
+      name = "RL_SetSaveFileTextCallback",
       description = "Set custom file text data saver",
       returnType = "void",
       params = {
-        {type = "SaveFileTextCallback", name = "callback"}
+        {type = "RL_SaveFileTextCallback", name = "callback"}
       }
     },
     {
-      name = "LoadFileData",
+      name = "RL_LoadFileData",
       description = "Load file data as byte array (read)",
       returnType = "unsigned char *",
       params = {
@@ -3932,15 +3932,15 @@ return {
       }
     },
     {
-      name = "UnloadFileData",
-      description = "Unload file data allocated by LoadFileData()",
+      name = "RL_UnloadFileData",
+      description = "Unload file data allocated by RL_LoadFileData()",
       returnType = "void",
       params = {
         {type = "unsigned char *", name = "data"}
       }
     },
     {
-      name = "SaveFileData",
+      name = "RL_SaveFileData",
       description = "Save data to file from byte array (write), returns true on success",
       returnType = "bool",
       params = {
@@ -3950,7 +3950,7 @@ return {
       }
     },
     {
-      name = "ExportDataAsCode",
+      name = "RL_ExportDataAsCode",
       description = "Export data to code (.h), returns true on success",
       returnType = "bool",
       params = {
@@ -3960,7 +3960,7 @@ return {
       }
     },
     {
-      name = "LoadFileText",
+      name = "RL_LoadFileText",
       description = "Load text data from file (read), returns a '\\0' terminated string",
       returnType = "char *",
       params = {
@@ -3968,15 +3968,15 @@ return {
       }
     },
     {
-      name = "UnloadFileText",
-      description = "Unload file text data allocated by LoadFileText()",
+      name = "RL_UnloadFileText",
+      description = "Unload file text data allocated by RL_LoadFileText()",
       returnType = "void",
       params = {
         {type = "char *", name = "text"}
       }
     },
     {
-      name = "SaveFileText",
+      name = "RL_SaveFileText",
       description = "Save text data to file (write), string must be '\\0' terminated, returns true on success",
       returnType = "bool",
       params = {
@@ -3985,7 +3985,7 @@ return {
       }
     },
     {
-      name = "FileExists",
+      name = "RL_FileExists",
       description = "Check if file exists",
       returnType = "bool",
       params = {
@@ -3993,7 +3993,7 @@ return {
       }
     },
     {
-      name = "DirectoryExists",
+      name = "RL_DirectoryExists",
       description = "Check if a directory path exists",
       returnType = "bool",
       params = {
@@ -4001,7 +4001,7 @@ return {
       }
     },
     {
-      name = "IsFileExtension",
+      name = "RL_IsFileExtension",
       description = "Check file extension (including point: .png, .wav)",
       returnType = "bool",
       params = {
@@ -4010,7 +4010,7 @@ return {
       }
     },
     {
-      name = "GetFileLength",
+      name = "RL_GetFileLength",
       description = "Get file length in bytes (NOTE: GetFileSize() conflicts with windows.h)",
       returnType = "int",
       params = {
@@ -4018,7 +4018,7 @@ return {
       }
     },
     {
-      name = "GetFileExtension",
+      name = "RL_GetFileExtension",
       description = "Get pointer to extension for a filename string (includes dot: '.png')",
       returnType = "const char *",
       params = {
@@ -4026,7 +4026,7 @@ return {
       }
     },
     {
-      name = "GetFileName",
+      name = "RL_GetFileName",
       description = "Get pointer to filename for a path string",
       returnType = "const char *",
       params = {
@@ -4034,7 +4034,7 @@ return {
       }
     },
     {
-      name = "GetFileNameWithoutExt",
+      name = "RL_GetFileNameWithoutExt",
       description = "Get filename string without extension (uses static string)",
       returnType = "const char *",
       params = {
@@ -4042,7 +4042,7 @@ return {
       }
     },
     {
-      name = "GetDirectoryPath",
+      name = "RL_GetDirectoryPath",
       description = "Get full path for a given fileName with path (uses static string)",
       returnType = "const char *",
       params = {
@@ -4050,7 +4050,7 @@ return {
       }
     },
     {
-      name = "GetPrevDirectoryPath",
+      name = "RL_GetPrevDirectoryPath",
       description = "Get previous directory path for a given path (uses static string)",
       returnType = "const char *",
       params = {
@@ -4058,12 +4058,12 @@ return {
       }
     },
     {
-      name = "GetWorkingDirectory",
+      name = "RL_GetWorkingDirectory",
       description = "Get current working directory (uses static string)",
       returnType = "const char *"
     },
     {
-      name = "GetApplicationDirectory",
+      name = "RL_GetApplicationDirectory",
       description = "Get the directory of the running application (uses static string)",
       returnType = "const char *"
     },
@@ -4076,7 +4076,7 @@ return {
       }
     },
     {
-      name = "ChangeDirectory",
+      name = "RL_ChangeDirectory",
       description = "Change working directory, return true on success",
       returnType = "bool",
       params = {
@@ -4084,7 +4084,7 @@ return {
       }
     },
     {
-      name = "IsPathFile",
+      name = "RL_IsPathFile",
       description = "Check if a given path is a file or a directory",
       returnType = "bool",
       params = {
@@ -4092,7 +4092,7 @@ return {
       }
     },
     {
-      name = "IsFileNameValid",
+      name = "RL_IsFileNameValid",
       description = "Check if fileName is valid for the platform/OS",
       returnType = "bool",
       params = {
@@ -4100,17 +4100,17 @@ return {
       }
     },
     {
-      name = "LoadDirectoryFiles",
+      name = "RL_LoadDirectoryFiles",
       description = "Load directory filepaths",
-      returnType = "FilePathList",
+      returnType = "RL_FilePathList",
       params = {
         {type = "const char *", name = "dirPath"}
       }
     },
     {
-      name = "LoadDirectoryFilesEx",
+      name = "RL_LoadDirectoryFilesEx",
       description = "Load directory filepaths with extension filtering and recursive directory scan. Use 'DIR' in the filter string to include directories in the result",
-      returnType = "FilePathList",
+      returnType = "RL_FilePathList",
       params = {
         {type = "const char *", name = "basePath"},
         {type = "const char *", name = "filter"},
@@ -4118,33 +4118,33 @@ return {
       }
     },
     {
-      name = "UnloadDirectoryFiles",
+      name = "RL_UnloadDirectoryFiles",
       description = "Unload filepaths",
       returnType = "void",
       params = {
-        {type = "FilePathList", name = "files"}
+        {type = "RL_FilePathList", name = "files"}
       }
     },
     {
-      name = "IsFileDropped",
+      name = "RL_IsFileDropped",
       description = "Check if a file has been dropped into window",
       returnType = "bool"
     },
     {
-      name = "LoadDroppedFiles",
+      name = "RL_LoadDroppedFiles",
       description = "Load dropped filepaths",
-      returnType = "FilePathList"
+      returnType = "RL_FilePathList"
     },
     {
-      name = "UnloadDroppedFiles",
+      name = "RL_UnloadDroppedFiles",
       description = "Unload dropped filepaths",
       returnType = "void",
       params = {
-        {type = "FilePathList", name = "files"}
+        {type = "RL_FilePathList", name = "files"}
       }
     },
     {
-      name = "GetFileModTime",
+      name = "RL_GetFileModTime",
       description = "Get file modification time (last write time)",
       returnType = "long",
       params = {
@@ -4152,8 +4152,8 @@ return {
       }
     },
     {
-      name = "CompressData",
-      description = "Compress data (DEFLATE algorithm), memory must be MemFree()",
+      name = "RL_CompressData",
+      description = "Compress data (DEFLATE algorithm), memory must be RL_MemFree()",
       returnType = "unsigned char *",
       params = {
         {type = "const unsigned char *", name = "data"},
@@ -4162,8 +4162,8 @@ return {
       }
     },
     {
-      name = "DecompressData",
-      description = "Decompress data (DEFLATE algorithm), memory must be MemFree()",
+      name = "RL_DecompressData",
+      description = "Decompress data (DEFLATE algorithm), memory must be RL_MemFree()",
       returnType = "unsigned char *",
       params = {
         {type = "const unsigned char *", name = "compData"},
@@ -4172,8 +4172,8 @@ return {
       }
     },
     {
-      name = "EncodeDataBase64",
-      description = "Encode data to Base64 string, memory must be MemFree()",
+      name = "RL_EncodeDataBase64",
+      description = "Encode data to Base64 string, memory must be RL_MemFree()",
       returnType = "char *",
       params = {
         {type = "const unsigned char *", name = "data"},
@@ -4182,8 +4182,8 @@ return {
       }
     },
     {
-      name = "DecodeDataBase64",
-      description = "Decode Base64 string data, memory must be MemFree()",
+      name = "RL_DecodeDataBase64",
+      description = "Decode Base64 string data, memory must be RL_MemFree()",
       returnType = "unsigned char *",
       params = {
         {type = "const unsigned char *", name = "data"},
@@ -4218,40 +4218,40 @@ return {
       }
     },
     {
-      name = "LoadAutomationEventList",
+      name = "RL_LoadAutomationEventList",
       description = "Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS",
-      returnType = "AutomationEventList",
+      returnType = "RL_AutomationEventList",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "UnloadAutomationEventList",
+      name = "RL_UnloadAutomationEventList",
       description = "Unload automation events list from file",
       returnType = "void",
       params = {
-        {type = "AutomationEventList", name = "list"}
+        {type = "RL_AutomationEventList", name = "list"}
       }
     },
     {
-      name = "ExportAutomationEventList",
+      name = "RL_ExportAutomationEventList",
       description = "Export automation events list as text file",
       returnType = "bool",
       params = {
-        {type = "AutomationEventList", name = "list"},
+        {type = "RL_AutomationEventList", name = "list"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "SetAutomationEventList",
+      name = "RL_SetAutomationEventList",
       description = "Set automation event list to record to",
       returnType = "void",
       params = {
-        {type = "AutomationEventList *", name = "list"}
+        {type = "RL_AutomationEventList *", name = "list"}
       }
     },
     {
-      name = "SetAutomationEventBaseFrame",
+      name = "RL_SetAutomationEventBaseFrame",
       description = "Set automation event internal base frame to start recording",
       returnType = "void",
       params = {
@@ -4259,25 +4259,25 @@ return {
       }
     },
     {
-      name = "StartAutomationEventRecording",
-      description = "Start recording automation events (AutomationEventList must be set)",
+      name = "RL_StartAutomationEventRecording",
+      description = "Start recording automation events (RL_AutomationEventList must be set)",
       returnType = "void"
     },
     {
-      name = "StopAutomationEventRecording",
+      name = "RL_StopAutomationEventRecording",
       description = "Stop recording automation events",
       returnType = "void"
     },
     {
-      name = "PlayAutomationEvent",
+      name = "RL_PlayAutomationEvent",
       description = "Play a recorded automation event",
       returnType = "void",
       params = {
-        {type = "AutomationEvent", name = "event"}
+        {type = "RL_AutomationEvent", name = "event"}
       }
     },
     {
-      name = "IsKeyPressed",
+      name = "RL_IsKeyPressed",
       description = "Check if a key has been pressed once",
       returnType = "bool",
       params = {
@@ -4285,7 +4285,7 @@ return {
       }
     },
     {
-      name = "IsKeyPressedRepeat",
+      name = "RL_IsKeyPressedRepeat",
       description = "Check if a key has been pressed again",
       returnType = "bool",
       params = {
@@ -4293,7 +4293,7 @@ return {
       }
     },
     {
-      name = "IsKeyDown",
+      name = "RL_IsKeyDown",
       description = "Check if a key is being pressed",
       returnType = "bool",
       params = {
@@ -4301,7 +4301,7 @@ return {
       }
     },
     {
-      name = "IsKeyReleased",
+      name = "RL_IsKeyReleased",
       description = "Check if a key has been released once",
       returnType = "bool",
       params = {
@@ -4309,7 +4309,7 @@ return {
       }
     },
     {
-      name = "IsKeyUp",
+      name = "RL_IsKeyUp",
       description = "Check if a key is NOT being pressed",
       returnType = "bool",
       params = {
@@ -4317,17 +4317,17 @@ return {
       }
     },
     {
-      name = "GetKeyPressed",
+      name = "RL_GetKeyPressed",
       description = "Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty",
       returnType = "int"
     },
     {
-      name = "GetCharPressed",
+      name = "RL_GetCharPressed",
       description = "Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty",
       returnType = "int"
     },
     {
-      name = "SetExitKey",
+      name = "RL_SetExitKey",
       description = "Set a custom key to exit program (default is ESC)",
       returnType = "void",
       params = {
@@ -4335,7 +4335,7 @@ return {
       }
     },
     {
-      name = "IsGamepadAvailable",
+      name = "RL_IsGamepadAvailable",
       description = "Check if a gamepad is available",
       returnType = "bool",
       params = {
@@ -4343,7 +4343,7 @@ return {
       }
     },
     {
-      name = "GetGamepadName",
+      name = "RL_GetGamepadName",
       description = "Get gamepad internal name id",
       returnType = "const char *",
       params = {
@@ -4351,7 +4351,7 @@ return {
       }
     },
     {
-      name = "IsGamepadButtonPressed",
+      name = "RL_IsGamepadButtonPressed",
       description = "Check if a gamepad button has been pressed once",
       returnType = "bool",
       params = {
@@ -4360,7 +4360,7 @@ return {
       }
     },
     {
-      name = "IsGamepadButtonDown",
+      name = "RL_IsGamepadButtonDown",
       description = "Check if a gamepad button is being pressed",
       returnType = "bool",
       params = {
@@ -4369,7 +4369,7 @@ return {
       }
     },
     {
-      name = "IsGamepadButtonReleased",
+      name = "RL_IsGamepadButtonReleased",
       description = "Check if a gamepad button has been released once",
       returnType = "bool",
       params = {
@@ -4378,7 +4378,7 @@ return {
       }
     },
     {
-      name = "IsGamepadButtonUp",
+      name = "RL_IsGamepadButtonUp",
       description = "Check if a gamepad button is NOT being pressed",
       returnType = "bool",
       params = {
@@ -4387,12 +4387,12 @@ return {
       }
     },
     {
-      name = "GetGamepadButtonPressed",
+      name = "RL_GetGamepadButtonPressed",
       description = "Get the last gamepad button pressed",
       returnType = "int"
     },
     {
-      name = "GetGamepadAxisCount",
+      name = "RL_GetGamepadAxisCount",
       description = "Get gamepad axis count for a gamepad",
       returnType = "int",
       params = {
@@ -4400,7 +4400,7 @@ return {
       }
     },
     {
-      name = "GetGamepadAxisMovement",
+      name = "RL_GetGamepadAxisMovement",
       description = "Get axis movement value for a gamepad axis",
       returnType = "float",
       params = {
@@ -4409,7 +4409,7 @@ return {
       }
     },
     {
-      name = "SetGamepadMappings",
+      name = "RL_SetGamepadMappings",
       description = "Set internal gamepad mappings (SDL_GameControllerDB)",
       returnType = "int",
       params = {
@@ -4417,7 +4417,7 @@ return {
       }
     },
     {
-      name = "SetGamepadVibration",
+      name = "RL_SetGamepadVibration",
       description = "Set gamepad vibration for both motors (duration in seconds)",
       returnType = "void",
       params = {
@@ -4428,7 +4428,7 @@ return {
       }
     },
     {
-      name = "IsMouseButtonPressed",
+      name = "RL_IsMouseButtonPressed",
       description = "Check if a mouse button has been pressed once",
       returnType = "bool",
       params = {
@@ -4436,7 +4436,7 @@ return {
       }
     },
     {
-      name = "IsMouseButtonDown",
+      name = "RL_IsMouseButtonDown",
       description = "Check if a mouse button is being pressed",
       returnType = "bool",
       params = {
@@ -4444,7 +4444,7 @@ return {
       }
     },
     {
-      name = "IsMouseButtonReleased",
+      name = "RL_IsMouseButtonReleased",
       description = "Check if a mouse button has been released once",
       returnType = "bool",
       params = {
@@ -4452,7 +4452,7 @@ return {
       }
     },
     {
-      name = "IsMouseButtonUp",
+      name = "RL_IsMouseButtonUp",
       description = "Check if a mouse button is NOT being pressed",
       returnType = "bool",
       params = {
@@ -4460,27 +4460,27 @@ return {
       }
     },
     {
-      name = "GetMouseX",
+      name = "RL_GetMouseX",
       description = "Get mouse position X",
       returnType = "int"
     },
     {
-      name = "GetMouseY",
+      name = "RL_GetMouseY",
       description = "Get mouse position Y",
       returnType = "int"
     },
     {
-      name = "GetMousePosition",
+      name = "RL_GetMousePosition",
       description = "Get mouse position XY",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "GetMouseDelta",
+      name = "RL_GetMouseDelta",
       description = "Get mouse delta between frames",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "SetMousePosition",
+      name = "RL_SetMousePosition",
       description = "Set mouse position XY",
       returnType = "void",
       params = {
@@ -4489,7 +4489,7 @@ return {
       }
     },
     {
-      name = "SetMouseOffset",
+      name = "RL_SetMouseOffset",
       description = "Set mouse offset",
       returnType = "void",
       params = {
@@ -4498,7 +4498,7 @@ return {
       }
     },
     {
-      name = "SetMouseScale",
+      name = "RL_SetMouseScale",
       description = "Set mouse scaling",
       returnType = "void",
       params = {
@@ -4507,17 +4507,17 @@ return {
       }
     },
     {
-      name = "GetMouseWheelMove",
+      name = "RL_GetMouseWheelMove",
       description = "Get mouse wheel movement for X or Y, whichever is larger",
       returnType = "float"
     },
     {
-      name = "GetMouseWheelMoveV",
+      name = "RL_GetMouseWheelMoveV",
       description = "Get mouse wheel movement for both X and Y",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "SetMouseCursor",
+      name = "RL_SetMouseCursor",
       description = "Set mouse cursor",
       returnType = "void",
       params = {
@@ -4525,25 +4525,25 @@ return {
       }
     },
     {
-      name = "GetTouchX",
+      name = "RL_GetTouchX",
       description = "Get touch position X for touch point 0 (relative to screen size)",
       returnType = "int"
     },
     {
-      name = "GetTouchY",
+      name = "RL_GetTouchY",
       description = "Get touch position Y for touch point 0 (relative to screen size)",
       returnType = "int"
     },
     {
-      name = "GetTouchPosition",
+      name = "RL_GetTouchPosition",
       description = "Get touch position XY for a touch point index (relative to screen size)",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
         {type = "int", name = "index"}
       }
     },
     {
-      name = "GetTouchPointId",
+      name = "RL_GetTouchPointId",
       description = "Get touch point identifier for given index",
       returnType = "int",
       params = {
@@ -4551,12 +4551,12 @@ return {
       }
     },
     {
-      name = "GetTouchPointCount",
+      name = "RL_GetTouchPointCount",
       description = "Get number of touch points",
       returnType = "int"
     },
     {
-      name = "SetGesturesEnabled",
+      name = "RL_SetGesturesEnabled",
       description = "Enable a set of gestures using flags",
       returnType = "void",
       params = {
@@ -4564,7 +4564,7 @@ return {
       }
     },
     {
-      name = "IsGestureDetected",
+      name = "RL_IsGestureDetected",
       description = "Check if a gesture have been detected",
       returnType = "bool",
       params = {
@@ -4572,95 +4572,95 @@ return {
       }
     },
     {
-      name = "GetGestureDetected",
+      name = "RL_GetGestureDetected",
       description = "Get latest detected gesture",
       returnType = "int"
     },
     {
-      name = "GetGestureHoldDuration",
+      name = "RL_GetGestureHoldDuration",
       description = "Get gesture hold time in seconds",
       returnType = "float"
     },
     {
-      name = "GetGestureDragVector",
+      name = "RL_GetGestureDragVector",
       description = "Get gesture drag vector",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "GetGestureDragAngle",
+      name = "RL_GetGestureDragAngle",
       description = "Get gesture drag angle",
       returnType = "float"
     },
     {
-      name = "GetGesturePinchVector",
+      name = "RL_GetGesturePinchVector",
       description = "Get gesture pinch delta",
-      returnType = "Vector2"
+      returnType = "RL_Vector2"
     },
     {
-      name = "GetGesturePinchAngle",
+      name = "RL_GetGesturePinchAngle",
       description = "Get gesture pinch angle",
       returnType = "float"
     },
     {
-      name = "UpdateCamera",
+      name = "RL_UpdateCamera",
       description = "Update camera position for selected mode",
       returnType = "void",
       params = {
-        {type = "Camera *", name = "camera"},
+        {type = "RL_Camera *", name = "camera"},
         {type = "int", name = "mode"}
       }
     },
     {
-      name = "UpdateCameraPro",
+      name = "RL_UpdateCameraPro",
       description = "Update camera movement/rotation",
       returnType = "void",
       params = {
-        {type = "Camera *", name = "camera"},
-        {type = "Vector3", name = "movement"},
-        {type = "Vector3", name = "rotation"},
+        {type = "RL_Camera *", name = "camera"},
+        {type = "RL_Vector3", name = "movement"},
+        {type = "RL_Vector3", name = "rotation"},
         {type = "float", name = "zoom"}
       }
     },
     {
-      name = "SetShapesTexture",
+      name = "RL_SetShapesTexture",
       description = "Set texture and rectangle to be used on shapes drawing",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "Rectangle", name = "source"}
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Rectangle", name = "source"}
       }
     },
     {
-      name = "GetShapesTexture",
+      name = "RL_GetShapesTexture",
       description = "Get texture that is used for shapes drawing",
-      returnType = "Texture2D"
+      returnType = "RL_Texture2D"
     },
     {
-      name = "GetShapesTextureRectangle",
+      name = "RL_GetShapesTextureRectangle",
       description = "Get texture source rectangle that is used for shapes drawing",
-      returnType = "Rectangle"
+      returnType = "RL_Rectangle"
     },
     {
-      name = "DrawPixel",
+      name = "RL_DrawPixel",
       description = "Draw a pixel using geometry [Can be slow, use with care]",
       returnType = "void",
       params = {
         {type = "int", name = "posX"},
         {type = "int", name = "posY"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawPixelV",
+      name = "RL_DrawPixelV",
       description = "Draw a pixel using geometry (Vector version) [Can be slow, use with care]",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "position"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawLine",
+      name = "RL_DrawLine",
       description = "Draw a line",
       returnType = "void",
       params = {
@@ -4668,133 +4668,133 @@ return {
         {type = "int", name = "startPosY"},
         {type = "int", name = "endPosX"},
         {type = "int", name = "endPosY"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawLineV",
+      name = "RL_DrawLineV",
       description = "Draw a line (using gl lines)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "startPos"},
-        {type = "Vector2", name = "endPos"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector2", name = "startPos"},
+        {type = "RL_Vector2", name = "endPos"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawLineEx",
+      name = "RL_DrawLineEx",
       description = "Draw a line (using triangles/quads)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "startPos"},
-        {type = "Vector2", name = "endPos"},
+        {type = "RL_Vector2", name = "startPos"},
+        {type = "RL_Vector2", name = "endPos"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawLineStrip",
+      name = "RL_DrawLineStrip",
       description = "Draw lines sequence (using gl lines)",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawLineBezier",
+      name = "RL_DrawLineBezier",
       description = "Draw line segment cubic-bezier in-out interpolation",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "startPos"},
-        {type = "Vector2", name = "endPos"},
+        {type = "RL_Vector2", name = "startPos"},
+        {type = "RL_Vector2", name = "endPos"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircle",
+      name = "RL_DrawCircle",
       description = "Draw a color-filled circle",
       returnType = "void",
       params = {
         {type = "int", name = "centerX"},
         {type = "int", name = "centerY"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircleSector",
+      name = "RL_DrawCircleSector",
       description = "Draw a piece of a circle",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"},
         {type = "float", name = "startAngle"},
         {type = "float", name = "endAngle"},
         {type = "int", name = "segments"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircleSectorLines",
+      name = "RL_DrawCircleSectorLines",
       description = "Draw circle sector outline",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"},
         {type = "float", name = "startAngle"},
         {type = "float", name = "endAngle"},
         {type = "int", name = "segments"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircleGradient",
+      name = "RL_DrawCircleGradient",
       description = "Draw a gradient-filled circle",
       returnType = "void",
       params = {
         {type = "int", name = "centerX"},
         {type = "int", name = "centerY"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "inner"},
-        {type = "Color", name = "outer"}
+        {type = "RL_Color", name = "inner"},
+        {type = "RL_Color", name = "outer"}
       }
     },
     {
-      name = "DrawCircleV",
+      name = "RL_DrawCircleV",
       description = "Draw a color-filled circle (Vector version)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircleLines",
+      name = "RL_DrawCircleLines",
       description = "Draw circle outline",
       returnType = "void",
       params = {
         {type = "int", name = "centerX"},
         {type = "int", name = "centerY"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircleLinesV",
+      name = "RL_DrawCircleLinesV",
       description = "Draw circle outline (Vector version)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawEllipse",
+      name = "RL_DrawEllipse",
       description = "Draw ellipse",
       returnType = "void",
       params = {
@@ -4802,11 +4802,11 @@ return {
         {type = "int", name = "centerY"},
         {type = "float", name = "radiusH"},
         {type = "float", name = "radiusV"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawEllipseLines",
+      name = "RL_DrawEllipseLines",
       description = "Draw ellipse outline",
       returnType = "void",
       params = {
@@ -4814,39 +4814,39 @@ return {
         {type = "int", name = "centerY"},
         {type = "float", name = "radiusH"},
         {type = "float", name = "radiusV"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRing",
+      name = "RL_DrawRing",
       description = "Draw ring",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "innerRadius"},
         {type = "float", name = "outerRadius"},
         {type = "float", name = "startAngle"},
         {type = "float", name = "endAngle"},
         {type = "int", name = "segments"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRingLines",
+      name = "RL_DrawRingLines",
       description = "Draw ring outline",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "innerRadius"},
         {type = "float", name = "outerRadius"},
         {type = "float", name = "startAngle"},
         {type = "float", name = "endAngle"},
         {type = "int", name = "segments"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangle",
+      name = "RL_DrawRectangle",
       description = "Draw a color-filled rectangle",
       returnType = "void",
       params = {
@@ -4854,41 +4854,41 @@ return {
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleV",
+      name = "RL_DrawRectangleV",
       description = "Draw a color-filled rectangle (Vector version)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "position"},
-        {type = "Vector2", name = "size"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Vector2", name = "size"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleRec",
+      name = "RL_DrawRectangleRec",
       description = "Draw a color-filled rectangle",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
-        {type = "Color", name = "color"}
+        {type = "RL_Rectangle", name = "rec"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectanglePro",
+      name = "RL_DrawRectanglePro",
       description = "Draw a color-filled rectangle with pro parameters",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
-        {type = "Vector2", name = "origin"},
+        {type = "RL_Rectangle", name = "rec"},
+        {type = "RL_Vector2", name = "origin"},
         {type = "float", name = "rotation"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleGradientV",
+      name = "RL_DrawRectangleGradientV",
       description = "Draw a vertical-gradient-filled rectangle",
       returnType = "void",
       params = {
@@ -4896,12 +4896,12 @@ return {
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "top"},
-        {type = "Color", name = "bottom"}
+        {type = "RL_Color", name = "top"},
+        {type = "RL_Color", name = "bottom"}
       }
     },
     {
-      name = "DrawRectangleGradientH",
+      name = "RL_DrawRectangleGradientH",
       description = "Draw a horizontal-gradient-filled rectangle",
       returnType = "void",
       params = {
@@ -4909,24 +4909,24 @@ return {
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "left"},
-        {type = "Color", name = "right"}
+        {type = "RL_Color", name = "left"},
+        {type = "RL_Color", name = "right"}
       }
     },
     {
-      name = "DrawRectangleGradientEx",
+      name = "RL_DrawRectangleGradientEx",
       description = "Draw a gradient-filled rectangle with custom vertex colors",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
-        {type = "Color", name = "topLeft"},
-        {type = "Color", name = "bottomLeft"},
-        {type = "Color", name = "topRight"},
-        {type = "Color", name = "bottomRight"}
+        {type = "RL_Rectangle", name = "rec"},
+        {type = "RL_Color", name = "topLeft"},
+        {type = "RL_Color", name = "bottomLeft"},
+        {type = "RL_Color", name = "topRight"},
+        {type = "RL_Color", name = "bottomRight"}
       }
     },
     {
-      name = "DrawRectangleLines",
+      name = "RL_DrawRectangleLines",
       description = "Draw rectangle outline",
       returnType = "void",
       params = {
@@ -4934,431 +4934,431 @@ return {
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleLinesEx",
+      name = "RL_DrawRectangleLinesEx",
       description = "Draw rectangle outline with extended parameters",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
+        {type = "RL_Rectangle", name = "rec"},
         {type = "float", name = "lineThick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleRounded",
+      name = "RL_DrawRectangleRounded",
       description = "Draw rectangle with rounded edges",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
+        {type = "RL_Rectangle", name = "rec"},
         {type = "float", name = "roundness"},
         {type = "int", name = "segments"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleRoundedLines",
+      name = "RL_DrawRectangleRoundedLines",
       description = "Draw rectangle lines with rounded edges",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
+        {type = "RL_Rectangle", name = "rec"},
         {type = "float", name = "roundness"},
         {type = "int", name = "segments"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRectangleRoundedLinesEx",
+      name = "RL_DrawRectangleRoundedLinesEx",
       description = "Draw rectangle with rounded edges outline",
       returnType = "void",
       params = {
-        {type = "Rectangle", name = "rec"},
+        {type = "RL_Rectangle", name = "rec"},
         {type = "float", name = "roundness"},
         {type = "int", name = "segments"},
         {type = "float", name = "lineThick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTriangle",
+      name = "RL_DrawTriangle",
       description = "Draw a color-filled triangle (vertex in counter-clockwise order!)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "v1"},
-        {type = "Vector2", name = "v2"},
-        {type = "Vector2", name = "v3"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector2", name = "v1"},
+        {type = "RL_Vector2", name = "v2"},
+        {type = "RL_Vector2", name = "v3"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTriangleLines",
+      name = "RL_DrawTriangleLines",
       description = "Draw triangle outline (vertex in counter-clockwise order!)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "v1"},
-        {type = "Vector2", name = "v2"},
-        {type = "Vector2", name = "v3"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector2", name = "v1"},
+        {type = "RL_Vector2", name = "v2"},
+        {type = "RL_Vector2", name = "v3"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTriangleFan",
+      name = "RL_DrawTriangleFan",
       description = "Draw a triangle fan defined by points (first vertex is the center)",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTriangleStrip",
+      name = "RL_DrawTriangleStrip",
       description = "Draw a triangle strip defined by points",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawPoly",
+      name = "RL_DrawPoly",
       description = "Draw a regular polygon (Vector version)",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "int", name = "sides"},
         {type = "float", name = "radius"},
         {type = "float", name = "rotation"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawPolyLines",
+      name = "RL_DrawPolyLines",
       description = "Draw a polygon outline of n sides",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "int", name = "sides"},
         {type = "float", name = "radius"},
         {type = "float", name = "rotation"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawPolyLinesEx",
+      name = "RL_DrawPolyLinesEx",
       description = "Draw a polygon outline of n sides with extended parameters",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "int", name = "sides"},
         {type = "float", name = "radius"},
         {type = "float", name = "rotation"},
         {type = "float", name = "lineThick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineLinear",
+      name = "RL_DrawSplineLinear",
       description = "Draw spline: Linear, minimum 2 points",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineBasis",
+      name = "RL_DrawSplineBasis",
       description = "Draw spline: B-Spline, minimum 4 points",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineCatmullRom",
+      name = "RL_DrawSplineCatmullRom",
       description = "Draw spline: Catmull-Rom, minimum 4 points",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineBezierQuadratic",
+      name = "RL_DrawSplineBezierQuadratic",
       description = "Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineBezierCubic",
+      name = "RL_DrawSplineBezierCubic",
       description = "Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]",
       returnType = "void",
       params = {
-        {type = "const Vector2 *", name = "points"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineSegmentLinear",
+      name = "RL_DrawSplineSegmentLinear",
       description = "Draw spline segment: Linear, 2 points",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineSegmentBasis",
+      name = "RL_DrawSplineSegmentBasis",
       description = "Draw spline segment: B-Spline, 4 points",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
-        {type = "Vector2", name = "p3"},
-        {type = "Vector2", name = "p4"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "p3"},
+        {type = "RL_Vector2", name = "p4"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineSegmentCatmullRom",
+      name = "RL_DrawSplineSegmentCatmullRom",
       description = "Draw spline segment: Catmull-Rom, 4 points",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
-        {type = "Vector2", name = "p3"},
-        {type = "Vector2", name = "p4"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "p3"},
+        {type = "RL_Vector2", name = "p4"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineSegmentBezierQuadratic",
+      name = "RL_DrawSplineSegmentBezierQuadratic",
       description = "Draw spline segment: Quadratic Bezier, 2 points, 1 control point",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "c2"},
-        {type = "Vector2", name = "p3"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "c2"},
+        {type = "RL_Vector2", name = "p3"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSplineSegmentBezierCubic",
+      name = "RL_DrawSplineSegmentBezierCubic",
       description = "Draw spline segment: Cubic Bezier, 2 points, 2 control points",
       returnType = "void",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "c2"},
-        {type = "Vector2", name = "c3"},
-        {type = "Vector2", name = "p4"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "c2"},
+        {type = "RL_Vector2", name = "c3"},
+        {type = "RL_Vector2", name = "p4"},
         {type = "float", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "GetSplinePointLinear",
+      name = "RL_GetSplinePointLinear",
       description = "Get (evaluate) spline point: Linear",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "startPos"},
-        {type = "Vector2", name = "endPos"},
+        {type = "RL_Vector2", name = "startPos"},
+        {type = "RL_Vector2", name = "endPos"},
         {type = "float", name = "t"}
       }
     },
     {
-      name = "GetSplinePointBasis",
+      name = "RL_GetSplinePointBasis",
       description = "Get (evaluate) spline point: B-Spline",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
-        {type = "Vector2", name = "p3"},
-        {type = "Vector2", name = "p4"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "p3"},
+        {type = "RL_Vector2", name = "p4"},
         {type = "float", name = "t"}
       }
     },
     {
-      name = "GetSplinePointCatmullRom",
+      name = "RL_GetSplinePointCatmullRom",
       description = "Get (evaluate) spline point: Catmull-Rom",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
-        {type = "Vector2", name = "p3"},
-        {type = "Vector2", name = "p4"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "p3"},
+        {type = "RL_Vector2", name = "p4"},
         {type = "float", name = "t"}
       }
     },
     {
-      name = "GetSplinePointBezierQuad",
+      name = "RL_GetSplinePointBezierQuad",
       description = "Get (evaluate) spline point: Quadratic Bezier",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "c2"},
-        {type = "Vector2", name = "p3"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "c2"},
+        {type = "RL_Vector2", name = "p3"},
         {type = "float", name = "t"}
       }
     },
     {
-      name = "GetSplinePointBezierCubic",
+      name = "RL_GetSplinePointBezierCubic",
       description = "Get (evaluate) spline point: Cubic Bezier",
-      returnType = "Vector2",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "c2"},
-        {type = "Vector2", name = "c3"},
-        {type = "Vector2", name = "p4"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "c2"},
+        {type = "RL_Vector2", name = "c3"},
+        {type = "RL_Vector2", name = "p4"},
         {type = "float", name = "t"}
       }
     },
     {
-      name = "CheckCollisionRecs",
+      name = "RL_CheckCollisionRecs",
       description = "Check collision between two rectangles",
       returnType = "bool",
       params = {
-        {type = "Rectangle", name = "rec1"},
-        {type = "Rectangle", name = "rec2"}
+        {type = "RL_Rectangle", name = "rec1"},
+        {type = "RL_Rectangle", name = "rec2"}
       }
     },
     {
-      name = "CheckCollisionCircles",
+      name = "RL_CheckCollisionCircles",
       description = "Check collision between two circles",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "center1"},
+        {type = "RL_Vector2", name = "center1"},
         {type = "float", name = "radius1"},
-        {type = "Vector2", name = "center2"},
+        {type = "RL_Vector2", name = "center2"},
         {type = "float", name = "radius2"}
       }
     },
     {
-      name = "CheckCollisionCircleRec",
+      name = "RL_CheckCollisionCircleRec",
       description = "Check collision between circle and rectangle",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"},
-        {type = "Rectangle", name = "rec"}
+        {type = "RL_Rectangle", name = "rec"}
       }
     },
     {
-      name = "CheckCollisionCircleLine",
+      name = "RL_CheckCollisionCircleLine",
       description = "Check if circle collides with a line created betweeen two points [p1] and [p2]",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"},
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"}
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"}
       }
     },
     {
-      name = "CheckCollisionPointRec",
+      name = "RL_CheckCollisionPointRec",
       description = "Check if point is inside rectangle",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "point"},
-        {type = "Rectangle", name = "rec"}
+        {type = "RL_Vector2", name = "point"},
+        {type = "RL_Rectangle", name = "rec"}
       }
     },
     {
-      name = "CheckCollisionPointCircle",
+      name = "RL_CheckCollisionPointCircle",
       description = "Check if point is inside circle",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "point"},
-        {type = "Vector2", name = "center"},
+        {type = "RL_Vector2", name = "point"},
+        {type = "RL_Vector2", name = "center"},
         {type = "float", name = "radius"}
       }
     },
     {
-      name = "CheckCollisionPointTriangle",
+      name = "RL_CheckCollisionPointTriangle",
       description = "Check if point is inside a triangle",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "point"},
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
-        {type = "Vector2", name = "p3"}
+        {type = "RL_Vector2", name = "point"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "p3"}
       }
     },
     {
-      name = "CheckCollisionPointLine",
+      name = "RL_CheckCollisionPointLine",
       description = "Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "point"},
-        {type = "Vector2", name = "p1"},
-        {type = "Vector2", name = "p2"},
+        {type = "RL_Vector2", name = "point"},
+        {type = "RL_Vector2", name = "p1"},
+        {type = "RL_Vector2", name = "p2"},
         {type = "int", name = "threshold"}
       }
     },
     {
-      name = "CheckCollisionPointPoly",
+      name = "RL_CheckCollisionPointPoly",
       description = "Check if point is within a polygon described by array of vertices",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "point"},
-        {type = "const Vector2 *", name = "points"},
+        {type = "RL_Vector2", name = "point"},
+        {type = "const RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"}
       }
     },
     {
-      name = "CheckCollisionLines",
+      name = "RL_CheckCollisionLines",
       description = "Check the collision between two lines defined by two points each, returns collision point by reference",
       returnType = "bool",
       params = {
-        {type = "Vector2", name = "startPos1"},
-        {type = "Vector2", name = "endPos1"},
-        {type = "Vector2", name = "startPos2"},
-        {type = "Vector2", name = "endPos2"},
-        {type = "Vector2 *", name = "collisionPoint"}
+        {type = "RL_Vector2", name = "startPos1"},
+        {type = "RL_Vector2", name = "endPos1"},
+        {type = "RL_Vector2", name = "startPos2"},
+        {type = "RL_Vector2", name = "endPos2"},
+        {type = "RL_Vector2 *", name = "collisionPoint"}
       }
     },
     {
-      name = "GetCollisionRec",
+      name = "RL_GetCollisionRec",
       description = "Get collision rectangle for two rectangles collision",
-      returnType = "Rectangle",
+      returnType = "RL_Rectangle",
       params = {
-        {type = "Rectangle", name = "rec1"},
-        {type = "Rectangle", name = "rec2"}
+        {type = "RL_Rectangle", name = "rec1"},
+        {type = "RL_Rectangle", name = "rec2"}
       }
     },
     {
-      name = "LoadImage",
+      name = "RL_LoadImage",
       description = "Load image from file into CPU memory (RAM)",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadImageRaw",
+      name = "RL_LoadImageRaw",
       description = "Load image from RAW file data",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "const char *", name = "fileName"},
         {type = "int", name = "width"},
@@ -5368,18 +5368,18 @@ return {
       }
     },
     {
-      name = "LoadImageAnim",
+      name = "RL_LoadImageAnim",
       description = "Load image sequence from file (frames appended to image.data)",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "const char *", name = "fileName"},
         {type = "int *", name = "frames"}
       }
     },
     {
-      name = "LoadImageAnimFromMemory",
+      name = "RL_LoadImageAnimFromMemory",
       description = "Load image sequence from memory buffer",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "const char *", name = "fileType"},
         {type = "const unsigned char *", name = "fileData"},
@@ -5388,9 +5388,9 @@ return {
       }
     },
     {
-      name = "LoadImageFromMemory",
+      name = "RL_LoadImageFromMemory",
       description = "Load image from memory buffer, fileType refers to extension: i.e. '.png'",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "const char *", name = "fileType"},
         {type = "const unsigned char *", name = "fileData"},
@@ -5398,125 +5398,125 @@ return {
       }
     },
     {
-      name = "LoadImageFromTexture",
+      name = "RL_LoadImageFromTexture",
       description = "Load image from GPU texture data",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
-        {type = "Texture2D", name = "texture"}
+        {type = "RL_Texture2D", name = "texture"}
       }
     },
     {
-      name = "LoadImageFromScreen",
+      name = "RL_LoadImageFromScreen",
       description = "Load image from screen buffer and (screenshot)",
-      returnType = "Image"
+      returnType = "RL_Image"
     },
     {
       name = "IsImageValid",
       description = "Check if an image is valid (data and parameters)",
       returnType = "bool",
       params = {
-        {type = "Image", name = "image"}
+        {type = "RL_Image", name = "image"}
       }
     },
     {
-      name = "UnloadImage",
+      name = "RL_UnloadImage",
       description = "Unload image from CPU memory (RAM)",
       returnType = "void",
       params = {
-        {type = "Image", name = "image"}
+        {type = "RL_Image", name = "image"}
       }
     },
     {
-      name = "ExportImage",
+      name = "RL_ExportImage",
       description = "Export image data to file, returns true on success",
       returnType = "bool",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "ExportImageToMemory",
+      name = "RL_ExportImageToMemory",
       description = "Export image to memory buffer",
       returnType = "unsigned char *",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "const char *", name = "fileType"},
         {type = "int *", name = "fileSize"}
       }
     },
     {
-      name = "ExportImageAsCode",
+      name = "RL_ExportImageAsCode",
       description = "Export image as code file defining an array of bytes, returns true on success",
       returnType = "bool",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "GenImageColor",
+      name = "RL_GenImageColor",
       description = "Generate image: plain color",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "GenImageGradientLinear",
+      name = "RL_GenImageGradientLinear",
       description = "Generate image: linear gradient, direction in degrees [0..360], 0=Vertical gradient",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
         {type = "int", name = "direction"},
-        {type = "Color", name = "start"},
-        {type = "Color", name = "end"}
+        {type = "RL_Color", name = "start"},
+        {type = "RL_Color", name = "end"}
       }
     },
     {
-      name = "GenImageGradientRadial",
+      name = "RL_GenImageGradientRadial",
       description = "Generate image: radial gradient",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
         {type = "float", name = "density"},
-        {type = "Color", name = "inner"},
-        {type = "Color", name = "outer"}
+        {type = "RL_Color", name = "inner"},
+        {type = "RL_Color", name = "outer"}
       }
     },
     {
-      name = "GenImageGradientSquare",
+      name = "RL_GenImageGradientSquare",
       description = "Generate image: square gradient",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
         {type = "float", name = "density"},
-        {type = "Color", name = "inner"},
-        {type = "Color", name = "outer"}
+        {type = "RL_Color", name = "inner"},
+        {type = "RL_Color", name = "outer"}
       }
     },
     {
-      name = "GenImageChecked",
+      name = "RL_GenImageChecked",
       description = "Generate image: checked",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
         {type = "int", name = "checksX"},
         {type = "int", name = "checksY"},
-        {type = "Color", name = "col1"},
-        {type = "Color", name = "col2"}
+        {type = "RL_Color", name = "col1"},
+        {type = "RL_Color", name = "col2"}
       }
     },
     {
-      name = "GenImageWhiteNoise",
+      name = "RL_GenImageWhiteNoise",
       description = "Generate image: white noise",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
@@ -5524,9 +5524,9 @@ return {
       }
     },
     {
-      name = "GenImagePerlinNoise",
+      name = "RL_GenImagePerlinNoise",
       description = "Generate image: perlin noise",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
@@ -5536,9 +5536,9 @@ return {
       }
     },
     {
-      name = "GenImageCellular",
+      name = "RL_GenImageCellular",
       description = "Generate image: cellular algorithm, bigger tileSize means bigger cells",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
@@ -5546,9 +5546,9 @@ return {
       }
     },
     {
-      name = "GenImageText",
+      name = "RL_GenImageText",
       description = "Generate image: grayscale image from text data",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"},
@@ -5556,182 +5556,182 @@ return {
       }
     },
     {
-      name = "ImageCopy",
+      name = "RL_ImageCopy",
       description = "Create an image duplicate (useful for transformations)",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
-        {type = "Image", name = "image"}
+        {type = "RL_Image", name = "image"}
       }
     },
     {
-      name = "ImageFromImage",
+      name = "RL_ImageFromImage",
       description = "Create an image from another image piece",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
-        {type = "Image", name = "image"},
-        {type = "Rectangle", name = "rec"}
+        {type = "RL_Image", name = "image"},
+        {type = "RL_Rectangle", name = "rec"}
       }
     },
     {
-      name = "ImageFromChannel",
+      name = "RL_ImageFromChannel",
       description = "Create an image from a selected channel of another image (GRAYSCALE)",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "int", name = "selectedChannel"}
       }
     },
     {
-      name = "ImageText",
+      name = "RL_ImageText",
       description = "Create an image from text (default font)",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
         {type = "const char *", name = "text"},
         {type = "int", name = "fontSize"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageTextEx",
+      name = "RL_ImageTextEx",
       description = "Create an image from text (custom sprite font)",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "const char *", name = "text"},
         {type = "float", name = "fontSize"},
         {type = "float", name = "spacing"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "ImageFormat",
+      name = "RL_ImageFormat",
       description = "Convert image data to desired format",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "newFormat"}
       }
     },
     {
-      name = "ImageToPOT",
+      name = "RL_ImageToPOT",
       description = "Convert image to POT (power-of-two)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
-        {type = "Color", name = "fill"}
+        {type = "RL_Image *", name = "image"},
+        {type = "RL_Color", name = "fill"}
       }
     },
     {
-      name = "ImageCrop",
+      name = "RL_ImageCrop",
       description = "Crop an image to a defined rectangle",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
-        {type = "Rectangle", name = "crop"}
+        {type = "RL_Image *", name = "image"},
+        {type = "RL_Rectangle", name = "crop"}
       }
     },
     {
-      name = "ImageAlphaCrop",
+      name = "RL_ImageAlphaCrop",
       description = "Crop image depending on alpha value",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "float", name = "threshold"}
       }
     },
     {
-      name = "ImageAlphaClear",
+      name = "RL_ImageAlphaClear",
       description = "Clear alpha channel to desired color",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
-        {type = "Color", name = "color"},
+        {type = "RL_Image *", name = "image"},
+        {type = "RL_Color", name = "color"},
         {type = "float", name = "threshold"}
       }
     },
     {
-      name = "ImageAlphaMask",
+      name = "RL_ImageAlphaMask",
       description = "Apply alpha mask to image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
-        {type = "Image", name = "alphaMask"}
+        {type = "RL_Image *", name = "image"},
+        {type = "RL_Image", name = "alphaMask"}
       }
     },
     {
-      name = "ImageAlphaPremultiply",
+      name = "RL_ImageAlphaPremultiply",
       description = "Premultiply alpha channel",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageBlurGaussian",
+      name = "RL_ImageBlurGaussian",
       description = "Apply Gaussian blur using a box blur approximation",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "blurSize"}
       }
     },
     {
-      name = "ImageKernelConvolution",
+      name = "RL_ImageKernelConvolution",
       description = "Apply custom square convolution kernel to image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "const float *", name = "kernel"},
         {type = "int", name = "kernelSize"}
       }
     },
     {
-      name = "ImageResize",
+      name = "RL_ImageResize",
       description = "Resize image (Bicubic scaling algorithm)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "newWidth"},
         {type = "int", name = "newHeight"}
       }
     },
     {
-      name = "ImageResizeNN",
+      name = "RL_ImageResizeNN",
       description = "Resize image (Nearest-Neighbor scaling algorithm)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "newWidth"},
         {type = "int", name = "newHeight"}
       }
     },
     {
-      name = "ImageResizeCanvas",
+      name = "RL_ImageResizeCanvas",
       description = "Resize canvas and fill with color",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "newWidth"},
         {type = "int", name = "newHeight"},
         {type = "int", name = "offsetX"},
         {type = "int", name = "offsetY"},
-        {type = "Color", name = "fill"}
+        {type = "RL_Color", name = "fill"}
       }
     },
     {
-      name = "ImageMipmaps",
+      name = "RL_ImageMipmaps",
       description = "Compute all mipmap levels for a provided image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageDither",
+      name = "RL_ImageDither",
       description = "Dither image data to 16bpp or lower (Floyd-Steinberg dithering)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "rBpp"},
         {type = "int", name = "gBpp"},
         {type = "int", name = "bBpp"},
@@ -5739,437 +5739,437 @@ return {
       }
     },
     {
-      name = "ImageFlipVertical",
+      name = "RL_ImageFlipVertical",
       description = "Flip image vertically",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageFlipHorizontal",
+      name = "RL_ImageFlipHorizontal",
       description = "Flip image horizontally",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageRotate",
+      name = "RL_ImageRotate",
       description = "Rotate image by input angle in degrees (-359 to 359)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "degrees"}
       }
     },
     {
-      name = "ImageRotateCW",
+      name = "RL_ImageRotateCW",
       description = "Rotate image clockwise 90deg",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageRotateCCW",
+      name = "RL_ImageRotateCCW",
       description = "Rotate image counter-clockwise 90deg",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageColorTint",
+      name = "RL_ImageColorTint",
       description = "Modify image color: tint",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "image"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageColorInvert",
+      name = "RL_ImageColorInvert",
       description = "Modify image color: invert",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageColorGrayscale",
+      name = "RL_ImageColorGrayscale",
       description = "Modify image color: grayscale",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"}
+        {type = "RL_Image *", name = "image"}
       }
     },
     {
-      name = "ImageColorContrast",
+      name = "RL_ImageColorContrast",
       description = "Modify image color: contrast (-100 to 100)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "float", name = "contrast"}
       }
     },
     {
-      name = "ImageColorBrightness",
+      name = "RL_ImageColorBrightness",
       description = "Modify image color: brightness (-255 to 255)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
+        {type = "RL_Image *", name = "image"},
         {type = "int", name = "brightness"}
       }
     },
     {
-      name = "ImageColorReplace",
+      name = "RL_ImageColorReplace",
       description = "Modify image color: replace color",
       returnType = "void",
       params = {
-        {type = "Image *", name = "image"},
-        {type = "Color", name = "color"},
-        {type = "Color", name = "replace"}
+        {type = "RL_Image *", name = "image"},
+        {type = "RL_Color", name = "color"},
+        {type = "RL_Color", name = "replace"}
       }
     },
     {
-      name = "LoadImageColors",
-      description = "Load color data from image as a Color array (RGBA - 32bit)",
-      returnType = "Color *",
+      name = "RL_LoadImageColors",
+      description = "Load color data from image as a RL_Color array (RGBA - 32bit)",
+      returnType = "RL_Color *",
       params = {
-        {type = "Image", name = "image"}
+        {type = "RL_Image", name = "image"}
       }
     },
     {
-      name = "LoadImagePalette",
-      description = "Load colors palette from image as a Color array (RGBA - 32bit)",
-      returnType = "Color *",
+      name = "RL_LoadImagePalette",
+      description = "Load colors palette from image as a RL_Color array (RGBA - 32bit)",
+      returnType = "RL_Color *",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "int", name = "maxPaletteSize"},
         {type = "int *", name = "colorCount"}
       }
     },
     {
-      name = "UnloadImageColors",
-      description = "Unload color data loaded with LoadImageColors()",
+      name = "RL_UnloadImageColors",
+      description = "Unload color data loaded with RL_LoadImageColors()",
       returnType = "void",
       params = {
-        {type = "Color *", name = "colors"}
+        {type = "RL_Color *", name = "colors"}
       }
     },
     {
-      name = "UnloadImagePalette",
-      description = "Unload colors palette loaded with LoadImagePalette()",
+      name = "RL_UnloadImagePalette",
+      description = "Unload colors palette loaded with RL_LoadImagePalette()",
       returnType = "void",
       params = {
-        {type = "Color *", name = "colors"}
+        {type = "RL_Color *", name = "colors"}
       }
     },
     {
-      name = "GetImageAlphaBorder",
+      name = "RL_GetImageAlphaBorder",
       description = "Get image alpha border rectangle",
-      returnType = "Rectangle",
+      returnType = "RL_Rectangle",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "float", name = "threshold"}
       }
     },
     {
-      name = "GetImageColor",
+      name = "RL_GetImageColor",
       description = "Get image pixel color at (x, y) position",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "int", name = "x"},
         {type = "int", name = "y"}
       }
     },
     {
-      name = "ImageClearBackground",
+      name = "RL_ImageClearBackground",
       description = "Clear image background with given color",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawPixel",
+      name = "RL_ImageDrawPixel",
       description = "Draw pixel within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
+        {type = "RL_Image *", name = "dst"},
         {type = "int", name = "posX"},
         {type = "int", name = "posY"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawPixelV",
+      name = "RL_ImageDrawPixelV",
       description = "Draw pixel within an image (Vector version)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "position"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawLine",
+      name = "RL_ImageDrawLine",
       description = "Draw line within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
+        {type = "RL_Image *", name = "dst"},
         {type = "int", name = "startPosX"},
         {type = "int", name = "startPosY"},
         {type = "int", name = "endPosX"},
         {type = "int", name = "endPosY"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawLineV",
+      name = "RL_ImageDrawLineV",
       description = "Draw line within an image (Vector version)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "start"},
-        {type = "Vector2", name = "end"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "start"},
+        {type = "RL_Vector2", name = "end"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawLineEx",
+      name = "RL_ImageDrawLineEx",
       description = "Draw a line defining thickness within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "start"},
-        {type = "Vector2", name = "end"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "start"},
+        {type = "RL_Vector2", name = "end"},
         {type = "int", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawCircle",
+      name = "RL_ImageDrawCircle",
       description = "Draw a filled circle within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
+        {type = "RL_Image *", name = "dst"},
         {type = "int", name = "centerX"},
         {type = "int", name = "centerY"},
         {type = "int", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawCircleV",
+      name = "RL_ImageDrawCircleV",
       description = "Draw a filled circle within an image (Vector version)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "center"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "center"},
         {type = "int", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawCircleLines",
+      name = "RL_ImageDrawCircleLines",
       description = "Draw circle outline within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
+        {type = "RL_Image *", name = "dst"},
         {type = "int", name = "centerX"},
         {type = "int", name = "centerY"},
         {type = "int", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawCircleLinesV",
+      name = "RL_ImageDrawCircleLinesV",
       description = "Draw circle outline within an image (Vector version)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "center"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "center"},
         {type = "int", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawRectangle",
+      name = "RL_ImageDrawRectangle",
       description = "Draw rectangle within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
+        {type = "RL_Image *", name = "dst"},
         {type = "int", name = "posX"},
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawRectangleV",
+      name = "RL_ImageDrawRectangleV",
       description = "Draw rectangle within an image (Vector version)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "position"},
-        {type = "Vector2", name = "size"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Vector2", name = "size"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawRectangleRec",
+      name = "RL_ImageDrawRectangleRec",
       description = "Draw rectangle within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Rectangle", name = "rec"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Rectangle", name = "rec"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawRectangleLines",
+      name = "RL_ImageDrawRectangleLines",
       description = "Draw rectangle lines within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Rectangle", name = "rec"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Rectangle", name = "rec"},
         {type = "int", name = "thick"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawTriangle",
+      name = "RL_ImageDrawTriangle",
       description = "Draw triangle within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "v1"},
-        {type = "Vector2", name = "v2"},
-        {type = "Vector2", name = "v3"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "v1"},
+        {type = "RL_Vector2", name = "v2"},
+        {type = "RL_Vector2", name = "v3"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawTriangleEx",
+      name = "RL_ImageDrawTriangleEx",
       description = "Draw triangle with interpolated colors within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "v1"},
-        {type = "Vector2", name = "v2"},
-        {type = "Vector2", name = "v3"},
-        {type = "Color", name = "c1"},
-        {type = "Color", name = "c2"},
-        {type = "Color", name = "c3"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "v1"},
+        {type = "RL_Vector2", name = "v2"},
+        {type = "RL_Vector2", name = "v3"},
+        {type = "RL_Color", name = "c1"},
+        {type = "RL_Color", name = "c2"},
+        {type = "RL_Color", name = "c3"}
       }
     },
     {
-      name = "ImageDrawTriangleLines",
+      name = "RL_ImageDrawTriangleLines",
       description = "Draw triangle outline within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2", name = "v1"},
-        {type = "Vector2", name = "v2"},
-        {type = "Vector2", name = "v3"},
-        {type = "Color", name = "color"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2", name = "v1"},
+        {type = "RL_Vector2", name = "v2"},
+        {type = "RL_Vector2", name = "v3"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawTriangleFan",
+      name = "RL_ImageDrawTriangleFan",
       description = "Draw a triangle fan defined by points within an image (first vertex is the center)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2 *", name = "points"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawTriangleStrip",
+      name = "RL_ImageDrawTriangleStrip",
       description = "Draw a triangle strip defined by points within an image",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Vector2 *", name = "points"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Vector2 *", name = "points"},
         {type = "int", name = "pointCount"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDraw",
+      name = "RL_ImageDraw",
       description = "Draw a source image within a destination image (tint applied to source)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Image", name = "src"},
-        {type = "Rectangle", name = "srcRec"},
-        {type = "Rectangle", name = "dstRec"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Image", name = "src"},
+        {type = "RL_Rectangle", name = "srcRec"},
+        {type = "RL_Rectangle", name = "dstRec"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "ImageDrawText",
+      name = "RL_ImageDrawText",
       description = "Draw text (using default font) within an image (destination)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
+        {type = "RL_Image *", name = "dst"},
         {type = "const char *", name = "text"},
         {type = "int", name = "posX"},
         {type = "int", name = "posY"},
         {type = "int", name = "fontSize"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ImageDrawTextEx",
+      name = "RL_ImageDrawTextEx",
       description = "Draw text (custom sprite font) within an image (destination)",
       returnType = "void",
       params = {
-        {type = "Image *", name = "dst"},
-        {type = "Font", name = "font"},
+        {type = "RL_Image *", name = "dst"},
+        {type = "RL_Font", name = "font"},
         {type = "const char *", name = "text"},
-        {type = "Vector2", name = "position"},
+        {type = "RL_Vector2", name = "position"},
         {type = "float", name = "fontSize"},
         {type = "float", name = "spacing"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "LoadTexture",
+      name = "RL_LoadTexture",
       description = "Load texture from file into GPU memory (VRAM)",
-      returnType = "Texture2D",
+      returnType = "RL_Texture2D",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadTextureFromImage",
+      name = "RL_LoadTextureFromImage",
       description = "Load texture from image data",
-      returnType = "Texture2D",
+      returnType = "RL_Texture2D",
       params = {
-        {type = "Image", name = "image"}
+        {type = "RL_Image", name = "image"}
       }
     },
     {
-      name = "LoadTextureCubemap",
+      name = "RL_LoadTextureCubemap",
       description = "Load cubemap from image, multiple image cubemap layouts supported",
-      returnType = "TextureCubemap",
+      returnType = "RL_TextureCubemap",
       params = {
-        {type = "Image", name = "image"},
+        {type = "RL_Image", name = "image"},
         {type = "int", name = "layout"}
       }
     },
     {
-      name = "LoadRenderTexture",
+      name = "RL_LoadRenderTexture",
       description = "Load texture for rendering (framebuffer)",
-      returnType = "RenderTexture2D",
+      returnType = "RL_RenderTexture2D",
       params = {
         {type = "int", name = "width"},
         {type = "int", name = "height"}
@@ -6180,15 +6180,15 @@ return {
       description = "Check if a texture is valid (loaded in GPU)",
       returnType = "bool",
       params = {
-        {type = "Texture2D", name = "texture"}
+        {type = "RL_Texture2D", name = "texture"}
       }
     },
     {
-      name = "UnloadTexture",
+      name = "RL_UnloadTexture",
       description = "Unload texture from GPU memory (VRAM)",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"}
+        {type = "RL_Texture2D", name = "texture"}
       }
     },
     {
@@ -6196,186 +6196,186 @@ return {
       description = "Check if a render texture is valid (loaded in GPU)",
       returnType = "bool",
       params = {
-        {type = "RenderTexture2D", name = "target"}
+        {type = "RL_RenderTexture2D", name = "target"}
       }
     },
     {
-      name = "UnloadRenderTexture",
+      name = "RL_UnloadRenderTexture",
       description = "Unload render texture from GPU memory (VRAM)",
       returnType = "void",
       params = {
-        {type = "RenderTexture2D", name = "target"}
+        {type = "RL_RenderTexture2D", name = "target"}
       }
     },
     {
-      name = "UpdateTexture",
+      name = "RL_UpdateTexture",
       description = "Update GPU texture with new data",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
+        {type = "RL_Texture2D", name = "texture"},
         {type = "const void *", name = "pixels"}
       }
     },
     {
-      name = "UpdateTextureRec",
+      name = "RL_UpdateTextureRec",
       description = "Update GPU texture rectangle with new data",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "Rectangle", name = "rec"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Rectangle", name = "rec"},
         {type = "const void *", name = "pixels"}
       }
     },
     {
-      name = "GenTextureMipmaps",
+      name = "RL_GenTextureMipmaps",
       description = "Generate GPU mipmaps for a texture",
       returnType = "void",
       params = {
-        {type = "Texture2D *", name = "texture"}
+        {type = "RL_Texture2D *", name = "texture"}
       }
     },
     {
-      name = "SetTextureFilter",
+      name = "RL_SetTextureFilter",
       description = "Set texture scaling filter mode",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
+        {type = "RL_Texture2D", name = "texture"},
         {type = "int", name = "filter"}
       }
     },
     {
-      name = "SetTextureWrap",
+      name = "RL_SetTextureWrap",
       description = "Set texture wrapping mode",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
+        {type = "RL_Texture2D", name = "texture"},
         {type = "int", name = "wrap"}
       }
     },
     {
-      name = "DrawTexture",
-      description = "Draw a Texture2D",
+      name = "RL_DrawTexture",
+      description = "Draw a RL_Texture2D",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
+        {type = "RL_Texture2D", name = "texture"},
         {type = "int", name = "posX"},
         {type = "int", name = "posY"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextureV",
-      description = "Draw a Texture2D with position defined as Vector2",
+      name = "RL_DrawTextureV",
+      description = "Draw a RL_Texture2D with position defined as RL_Vector2",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "Vector2", name = "position"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextureEx",
-      description = "Draw a Texture2D with extended parameters",
+      name = "RL_DrawTextureEx",
+      description = "Draw a RL_Texture2D with extended parameters",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "Vector2", name = "position"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Vector2", name = "position"},
         {type = "float", name = "rotation"},
         {type = "float", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextureRec",
+      name = "RL_DrawTextureRec",
       description = "Draw a part of a texture defined by a rectangle",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "Rectangle", name = "source"},
-        {type = "Vector2", name = "position"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Rectangle", name = "source"},
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTexturePro",
+      name = "RL_DrawTexturePro",
       description = "Draw a part of a texture defined by a rectangle with 'pro' parameters",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "Rectangle", name = "source"},
-        {type = "Rectangle", name = "dest"},
-        {type = "Vector2", name = "origin"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Rectangle", name = "source"},
+        {type = "RL_Rectangle", name = "dest"},
+        {type = "RL_Vector2", name = "origin"},
         {type = "float", name = "rotation"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextureNPatch",
+      name = "RL_DrawTextureNPatch",
       description = "Draws a texture (or part of it) that stretches or shrinks nicely",
       returnType = "void",
       params = {
-        {type = "Texture2D", name = "texture"},
-        {type = "NPatchInfo", name = "nPatchInfo"},
-        {type = "Rectangle", name = "dest"},
-        {type = "Vector2", name = "origin"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_NPatchInfo", name = "nPatchInfo"},
+        {type = "RL_Rectangle", name = "dest"},
+        {type = "RL_Vector2", name = "origin"},
         {type = "float", name = "rotation"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "ColorIsEqual",
+      name = "RL_ColorIsEqual",
       description = "Check if two colors are equal",
       returnType = "bool",
       params = {
-        {type = "Color", name = "col1"},
-        {type = "Color", name = "col2"}
+        {type = "RL_Color", name = "col1"},
+        {type = "RL_Color", name = "col2"}
       }
     },
     {
-      name = "Fade",
+      name = "RL_Fade",
       description = "Get color with alpha applied, alpha goes from 0.0f to 1.0f",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "color"},
+        {type = "RL_Color", name = "color"},
         {type = "float", name = "alpha"}
       }
     },
     {
-      name = "ColorToInt",
-      description = "Get hexadecimal value for a Color (0xRRGGBBAA)",
+      name = "RL_ColorToInt",
+      description = "Get hexadecimal value for a RL_Color (0xRRGGBBAA)",
       returnType = "int",
       params = {
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ColorNormalize",
-      description = "Get Color normalized as float [0..1]",
-      returnType = "Vector4",
+      name = "RL_ColorNormalize",
+      description = "Get RL_Color normalized as float [0..1]",
+      returnType = "RL_Vector4",
       params = {
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ColorFromNormalized",
-      description = "Get Color from normalized values [0..1]",
-      returnType = "Color",
+      name = "RL_ColorFromNormalized",
+      description = "Get RL_Color from normalized values [0..1]",
+      returnType = "RL_Color",
       params = {
-        {type = "Vector4", name = "normalized"}
+        {type = "RL_Vector4", name = "normalized"}
       }
     },
     {
-      name = "ColorToHSV",
-      description = "Get HSV values for a Color, hue [0..360], saturation/value [0..1]",
-      returnType = "Vector3",
+      name = "RL_ColorToHSV",
+      description = "Get HSV values for a RL_Color, hue [0..360], saturation/value [0..1]",
+      returnType = "RL_Vector3",
       params = {
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "ColorFromHSV",
-      description = "Get a Color from HSV values, hue [0..360], saturation/value [0..1]",
-      returnType = "Color",
+      name = "RL_ColorFromHSV",
+      description = "Get a RL_Color from HSV values, hue [0..360], saturation/value [0..1]",
+      returnType = "RL_Color",
       params = {
         {type = "float", name = "hue"},
         {type = "float", name = "saturation"},
@@ -6383,90 +6383,90 @@ return {
       }
     },
     {
-      name = "ColorTint",
+      name = "RL_ColorTint",
       description = "Get color multiplied with another color",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "color"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "color"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "ColorBrightness",
+      name = "RL_ColorBrightness",
       description = "Get color with brightness correction, brightness factor goes from -1.0f to 1.0f",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "color"},
+        {type = "RL_Color", name = "color"},
         {type = "float", name = "factor"}
       }
     },
     {
-      name = "ColorContrast",
+      name = "RL_ColorContrast",
       description = "Get color with contrast correction, contrast values between -1.0f and 1.0f",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "color"},
+        {type = "RL_Color", name = "color"},
         {type = "float", name = "contrast"}
       }
     },
     {
-      name = "ColorAlpha",
+      name = "RL_ColorAlpha",
       description = "Get color with alpha applied, alpha goes from 0.0f to 1.0f",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "color"},
+        {type = "RL_Color", name = "color"},
         {type = "float", name = "alpha"}
       }
     },
     {
-      name = "ColorAlphaBlend",
+      name = "RL_ColorAlphaBlend",
       description = "Get src alpha-blended into dst color with tint",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "dst"},
-        {type = "Color", name = "src"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "dst"},
+        {type = "RL_Color", name = "src"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
       name = "ColorLerp",
       description = "Get color lerp interpolation between two colors, factor [0.0f..1.0f]",
-      returnType = "Color",
+      returnType = "RL_Color",
       params = {
-        {type = "Color", name = "color1"},
-        {type = "Color", name = "color2"},
+        {type = "RL_Color", name = "color1"},
+        {type = "RL_Color", name = "color2"},
         {type = "float", name = "factor"}
       }
     },
     {
-      name = "GetColor",
-      description = "Get Color structure from hexadecimal value",
-      returnType = "Color",
+      name = "RL_GetColor",
+      description = "Get RL_Color structure from hexadecimal value",
+      returnType = "RL_Color",
       params = {
         {type = "unsigned int", name = "hexValue"}
       }
     },
     {
-      name = "GetPixelColor",
-      description = "Get Color from a source pixel pointer of certain format",
-      returnType = "Color",
+      name = "RL_GetPixelColor",
+      description = "Get RL_Color from a source pixel pointer of certain format",
+      returnType = "RL_Color",
       params = {
         {type = "void *", name = "srcPtr"},
         {type = "int", name = "format"}
       }
     },
     {
-      name = "SetPixelColor",
+      name = "RL_SetPixelColor",
       description = "Set color formatted into destination pixel pointer",
       returnType = "void",
       params = {
         {type = "void *", name = "dstPtr"},
-        {type = "Color", name = "color"},
+        {type = "RL_Color", name = "color"},
         {type = "int", name = "format"}
       }
     },
     {
-      name = "GetPixelDataSize",
+      name = "RL_GetPixelDataSize",
       description = "Get pixel data size in bytes for certain format",
       returnType = "int",
       params = {
@@ -6476,22 +6476,22 @@ return {
       }
     },
     {
-      name = "GetFontDefault",
-      description = "Get the default Font",
-      returnType = "Font"
+      name = "RL_GetFontDefault",
+      description = "Get the default RL_Font",
+      returnType = "RL_Font"
     },
     {
-      name = "LoadFont",
+      name = "RL_LoadFont",
       description = "Load font from file into GPU memory (VRAM)",
-      returnType = "Font",
+      returnType = "RL_Font",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadFontEx",
+      name = "RL_LoadFontEx",
       description = "Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set, font size is provided in pixels height",
-      returnType = "Font",
+      returnType = "RL_Font",
       params = {
         {type = "const char *", name = "fileName"},
         {type = "int", name = "fontSize"},
@@ -6500,19 +6500,19 @@ return {
       }
     },
     {
-      name = "LoadFontFromImage",
-      description = "Load font from Image (XNA style)",
-      returnType = "Font",
+      name = "RL_LoadFontFromImage",
+      description = "Load font from RL_Image (XNA style)",
+      returnType = "RL_Font",
       params = {
-        {type = "Image", name = "image"},
-        {type = "Color", name = "key"},
+        {type = "RL_Image", name = "image"},
+        {type = "RL_Color", name = "key"},
         {type = "int", name = "firstChar"}
       }
     },
     {
-      name = "LoadFontFromMemory",
+      name = "RL_LoadFontFromMemory",
       description = "Load font from memory buffer, fileType refers to extension: i.e. '.ttf'",
-      returnType = "Font",
+      returnType = "RL_Font",
       params = {
         {type = "const char *", name = "fileType"},
         {type = "const unsigned char *", name = "fileData"},
@@ -6527,13 +6527,13 @@ return {
       description = "Check if a font is valid (font data loaded, WARNING: GPU texture not checked)",
       returnType = "bool",
       params = {
-        {type = "Font", name = "font"}
+        {type = "RL_Font", name = "font"}
       }
     },
     {
-      name = "LoadFontData",
+      name = "RL_LoadFontData",
       description = "Load font data for further use",
-      returnType = "GlyphInfo *",
+      returnType = "RL_GlyphInfo *",
       params = {
         {type = "const unsigned char *", name = "fileData"},
         {type = "int", name = "dataSize"},
@@ -6544,12 +6544,12 @@ return {
       }
     },
     {
-      name = "GenImageFontAtlas",
+      name = "RL_GenImageFontAtlas",
       description = "Generate image font atlas using chars info",
-      returnType = "Image",
+      returnType = "RL_Image",
       params = {
-        {type = "const GlyphInfo *", name = "glyphs"},
-        {type = "Rectangle **", name = "glyphRecs"},
+        {type = "const RL_GlyphInfo *", name = "glyphs"},
+        {type = "RL_Rectangle **", name = "glyphRecs"},
         {type = "int", name = "glyphCount"},
         {type = "int", name = "fontSize"},
         {type = "int", name = "padding"},
@@ -6557,33 +6557,33 @@ return {
       }
     },
     {
-      name = "UnloadFontData",
+      name = "RL_UnloadFontData",
       description = "Unload font chars info data (RAM)",
       returnType = "void",
       params = {
-        {type = "GlyphInfo *", name = "glyphs"},
+        {type = "RL_GlyphInfo *", name = "glyphs"},
         {type = "int", name = "glyphCount"}
       }
     },
     {
-      name = "UnloadFont",
+      name = "RL_UnloadFont",
       description = "Unload font from GPU memory (VRAM)",
       returnType = "void",
       params = {
-        {type = "Font", name = "font"}
+        {type = "RL_Font", name = "font"}
       }
     },
     {
-      name = "ExportFontAsCode",
+      name = "RL_ExportFontAsCode",
       description = "Export font as code file, returns true on success",
       returnType = "bool",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "DrawFPS",
+      name = "RL_DrawFPS",
       description = "Draw current FPS",
       returnType = "void",
       params = {
@@ -6592,7 +6592,7 @@ return {
       }
     },
     {
-      name = "DrawText",
+      name = "RL_DrawText",
       description = "Draw text (using default font)",
       returnType = "void",
       params = {
@@ -6600,65 +6600,65 @@ return {
         {type = "int", name = "posX"},
         {type = "int", name = "posY"},
         {type = "int", name = "fontSize"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTextEx",
+      name = "RL_DrawTextEx",
       description = "Draw text using font and additional parameters",
       returnType = "void",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "const char *", name = "text"},
-        {type = "Vector2", name = "position"},
+        {type = "RL_Vector2", name = "position"},
         {type = "float", name = "fontSize"},
         {type = "float", name = "spacing"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextPro",
-      description = "Draw text using Font and pro parameters (rotation)",
+      name = "RL_DrawTextPro",
+      description = "Draw text using RL_Font and pro parameters (rotation)",
       returnType = "void",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "const char *", name = "text"},
-        {type = "Vector2", name = "position"},
-        {type = "Vector2", name = "origin"},
+        {type = "RL_Vector2", name = "position"},
+        {type = "RL_Vector2", name = "origin"},
         {type = "float", name = "rotation"},
         {type = "float", name = "fontSize"},
         {type = "float", name = "spacing"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextCodepoint",
+      name = "RL_DrawTextCodepoint",
       description = "Draw one character (codepoint)",
       returnType = "void",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "int", name = "codepoint"},
-        {type = "Vector2", name = "position"},
+        {type = "RL_Vector2", name = "position"},
         {type = "float", name = "fontSize"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawTextCodepoints",
+      name = "RL_DrawTextCodepoints",
       description = "Draw multiple character (codepoint)",
       returnType = "void",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "const int *", name = "codepoints"},
         {type = "int", name = "codepointCount"},
-        {type = "Vector2", name = "position"},
+        {type = "RL_Vector2", name = "position"},
         {type = "float", name = "fontSize"},
         {type = "float", name = "spacing"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "SetTextLineSpacing",
+      name = "RL_SetTextLineSpacing",
       description = "Set vertical line spacing when drawing with line-breaks",
       returnType = "void",
       params = {
@@ -6666,7 +6666,7 @@ return {
       }
     },
     {
-      name = "MeasureText",
+      name = "RL_MeasureText",
       description = "Measure string width for default font",
       returnType = "int",
       params = {
@@ -6675,45 +6675,45 @@ return {
       }
     },
     {
-      name = "MeasureTextEx",
-      description = "Measure string size for Font",
-      returnType = "Vector2",
+      name = "RL_MeasureTextEx",
+      description = "Measure string size for RL_Font",
+      returnType = "RL_Vector2",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "const char *", name = "text"},
         {type = "float", name = "fontSize"},
         {type = "float", name = "spacing"}
       }
     },
     {
-      name = "GetGlyphIndex",
+      name = "RL_GetGlyphIndex",
       description = "Get glyph index position in font for a codepoint (unicode character), fallback to '?' if not found",
       returnType = "int",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "int", name = "codepoint"}
       }
     },
     {
-      name = "GetGlyphInfo",
+      name = "RL_GetGlyphInfo",
       description = "Get glyph font info data for a codepoint (unicode character), fallback to '?' if not found",
-      returnType = "GlyphInfo",
+      returnType = "RL_GlyphInfo",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "int", name = "codepoint"}
       }
     },
     {
-      name = "GetGlyphAtlasRec",
+      name = "RL_GetGlyphAtlasRec",
       description = "Get glyph rectangle in font atlas for a codepoint (unicode character), fallback to '?' if not found",
-      returnType = "Rectangle",
+      returnType = "RL_Rectangle",
       params = {
-        {type = "Font", name = "font"},
+        {type = "RL_Font", name = "font"},
         {type = "int", name = "codepoint"}
       }
     },
     {
-      name = "LoadUTF8",
+      name = "RL_LoadUTF8",
       description = "Load UTF-8 text encoded from codepoints array",
       returnType = "char *",
       params = {
@@ -6722,7 +6722,7 @@ return {
       }
     },
     {
-      name = "UnloadUTF8",
+      name = "RL_UnloadUTF8",
       description = "Unload UTF-8 text encoded from codepoints array",
       returnType = "void",
       params = {
@@ -6730,7 +6730,7 @@ return {
       }
     },
     {
-      name = "LoadCodepoints",
+      name = "RL_LoadCodepoints",
       description = "Load all codepoints from a UTF-8 text string, codepoints count returned by parameter",
       returnType = "int *",
       params = {
@@ -6739,7 +6739,7 @@ return {
       }
     },
     {
-      name = "UnloadCodepoints",
+      name = "RL_UnloadCodepoints",
       description = "Unload codepoints data from memory",
       returnType = "void",
       params = {
@@ -6747,7 +6747,7 @@ return {
       }
     },
     {
-      name = "GetCodepointCount",
+      name = "RL_GetCodepointCount",
       description = "Get total number of codepoints in a UTF-8 encoded string",
       returnType = "int",
       params = {
@@ -6755,7 +6755,7 @@ return {
       }
     },
     {
-      name = "GetCodepoint",
+      name = "RL_GetCodepoint",
       description = "Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure",
       returnType = "int",
       params = {
@@ -6764,7 +6764,7 @@ return {
       }
     },
     {
-      name = "GetCodepointNext",
+      name = "RL_GetCodepointNext",
       description = "Get next codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure",
       returnType = "int",
       params = {
@@ -6773,7 +6773,7 @@ return {
       }
     },
     {
-      name = "GetCodepointPrevious",
+      name = "RL_GetCodepointPrevious",
       description = "Get previous codepoint in a UTF-8 encoded string, 0x3f('?') is returned on failure",
       returnType = "int",
       params = {
@@ -6782,7 +6782,7 @@ return {
       }
     },
     {
-      name = "CodepointToUTF8",
+      name = "RL_CodepointToUTF8",
       description = "Encode one codepoint into UTF-8 byte array (array length returned as parameter)",
       returnType = "const char *",
       params = {
@@ -6791,7 +6791,7 @@ return {
       }
     },
     {
-      name = "TextCopy",
+      name = "RL_TextCopy",
       description = "Copy one string to another, returns bytes copied",
       returnType = "int",
       params = {
@@ -6800,7 +6800,7 @@ return {
       }
     },
     {
-      name = "TextIsEqual",
+      name = "RL_TextIsEqual",
       description = "Check if two text string are equal",
       returnType = "bool",
       params = {
@@ -6809,7 +6809,7 @@ return {
       }
     },
     {
-      name = "TextLength",
+      name = "RL_TextLength",
       description = "Get text length, checks for '\\0' ending",
       returnType = "unsigned int",
       params = {
@@ -6817,7 +6817,7 @@ return {
       }
     },
     {
-      name = "TextFormat",
+      name = "RL_TextFormat",
       description = "Text formatting with variables (sprintf() style)",
       returnType = "const char *",
       params = {
@@ -6826,7 +6826,7 @@ return {
       }
     },
     {
-      name = "TextSubtext",
+      name = "RL_TextSubtext",
       description = "Get a piece of a text string",
       returnType = "const char *",
       params = {
@@ -6836,7 +6836,7 @@ return {
       }
     },
     {
-      name = "TextReplace",
+      name = "RL_TextReplace",
       description = "Replace text string (WARNING: memory must be freed!)",
       returnType = "char *",
       params = {
@@ -6846,7 +6846,7 @@ return {
       }
     },
     {
-      name = "TextInsert",
+      name = "RL_TextInsert",
       description = "Insert text in a position (WARNING: memory must be freed!)",
       returnType = "char *",
       params = {
@@ -6856,7 +6856,7 @@ return {
       }
     },
     {
-      name = "TextJoin",
+      name = "RL_TextJoin",
       description = "Join text strings with delimiter",
       returnType = "const char *",
       params = {
@@ -6866,7 +6866,7 @@ return {
       }
     },
     {
-      name = "TextSplit",
+      name = "RL_TextSplit",
       description = "Split text into multiple strings",
       returnType = "const char **",
       params = {
@@ -6876,7 +6876,7 @@ return {
       }
     },
     {
-      name = "TextAppend",
+      name = "RL_TextAppend",
       description = "Append text at specific position and move cursor!",
       returnType = "void",
       params = {
@@ -6886,7 +6886,7 @@ return {
       }
     },
     {
-      name = "TextFindIndex",
+      name = "RL_TextFindIndex",
       description = "Find first text occurrence within a string",
       returnType = "int",
       params = {
@@ -6895,7 +6895,7 @@ return {
       }
     },
     {
-      name = "TextToUpper",
+      name = "RL_TextToUpper",
       description = "Get upper case version of provided string",
       returnType = "const char *",
       params = {
@@ -6903,7 +6903,7 @@ return {
       }
     },
     {
-      name = "TextToLower",
+      name = "RL_TextToLower",
       description = "Get lower case version of provided string",
       returnType = "const char *",
       params = {
@@ -6911,7 +6911,7 @@ return {
       }
     },
     {
-      name = "TextToPascal",
+      name = "RL_TextToPascal",
       description = "Get Pascal case notation version of provided string",
       returnType = "const char *",
       params = {
@@ -6919,7 +6919,7 @@ return {
       }
     },
     {
-      name = "TextToSnake",
+      name = "RL_TextToSnake",
       description = "Get Snake case notation version of provided string",
       returnType = "const char *",
       params = {
@@ -6927,7 +6927,7 @@ return {
       }
     },
     {
-      name = "TextToCamel",
+      name = "RL_TextToCamel",
       description = "Get Camel case notation version of provided string",
       returnType = "const char *",
       params = {
@@ -6935,7 +6935,7 @@ return {
       }
     },
     {
-      name = "TextToInteger",
+      name = "RL_TextToInteger",
       description = "Get integer value from text (negative values not supported)",
       returnType = "int",
       params = {
@@ -6943,7 +6943,7 @@ return {
       }
     },
     {
-      name = "TextToFloat",
+      name = "RL_TextToFloat",
       description = "Get float value from text (negative values not supported)",
       returnType = "float",
       params = {
@@ -6951,234 +6951,234 @@ return {
       }
     },
     {
-      name = "DrawLine3D",
+      name = "RL_DrawLine3D",
       description = "Draw a line in 3D world space",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "startPos"},
-        {type = "Vector3", name = "endPos"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector3", name = "startPos"},
+        {type = "RL_Vector3", name = "endPos"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawPoint3D",
+      name = "RL_DrawPoint3D",
       description = "Draw a point in 3D space, actually a small line",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCircle3D",
+      name = "RL_DrawCircle3D",
       description = "Draw a circle in 3D world space",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "center"},
+        {type = "RL_Vector3", name = "center"},
         {type = "float", name = "radius"},
-        {type = "Vector3", name = "rotationAxis"},
+        {type = "RL_Vector3", name = "rotationAxis"},
         {type = "float", name = "rotationAngle"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTriangle3D",
+      name = "RL_DrawTriangle3D",
       description = "Draw a color-filled triangle (vertex in counter-clockwise order!)",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "v1"},
-        {type = "Vector3", name = "v2"},
-        {type = "Vector3", name = "v3"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector3", name = "v1"},
+        {type = "RL_Vector3", name = "v2"},
+        {type = "RL_Vector3", name = "v3"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawTriangleStrip3D",
+      name = "RL_DrawTriangleStrip3D",
       description = "Draw a triangle strip defined by points",
       returnType = "void",
       params = {
-        {type = "const Vector3 *", name = "points"},
+        {type = "const RL_Vector3 *", name = "points"},
         {type = "int", name = "pointCount"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCube",
+      name = "RL_DrawCube",
       description = "Draw cube",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "width"},
         {type = "float", name = "height"},
         {type = "float", name = "length"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCubeV",
+      name = "RL_DrawCubeV",
       description = "Draw cube (Vector version)",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
-        {type = "Vector3", name = "size"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector3", name = "size"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCubeWires",
+      name = "RL_DrawCubeWires",
       description = "Draw cube wires",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "width"},
         {type = "float", name = "height"},
         {type = "float", name = "length"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCubeWiresV",
+      name = "RL_DrawCubeWiresV",
       description = "Draw cube wires (Vector version)",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
-        {type = "Vector3", name = "size"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector3", name = "size"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSphere",
+      name = "RL_DrawSphere",
       description = "Draw sphere",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "centerPos"},
+        {type = "RL_Vector3", name = "centerPos"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSphereEx",
+      name = "RL_DrawSphereEx",
       description = "Draw sphere with extended parameters",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "centerPos"},
+        {type = "RL_Vector3", name = "centerPos"},
         {type = "float", name = "radius"},
         {type = "int", name = "rings"},
         {type = "int", name = "slices"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawSphereWires",
+      name = "RL_DrawSphereWires",
       description = "Draw sphere wires",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "centerPos"},
+        {type = "RL_Vector3", name = "centerPos"},
         {type = "float", name = "radius"},
         {type = "int", name = "rings"},
         {type = "int", name = "slices"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCylinder",
+      name = "RL_DrawCylinder",
       description = "Draw a cylinder/cone",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "radiusTop"},
         {type = "float", name = "radiusBottom"},
         {type = "float", name = "height"},
         {type = "int", name = "slices"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCylinderEx",
+      name = "RL_DrawCylinderEx",
       description = "Draw a cylinder with base at startPos and top at endPos",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "startPos"},
-        {type = "Vector3", name = "endPos"},
+        {type = "RL_Vector3", name = "startPos"},
+        {type = "RL_Vector3", name = "endPos"},
         {type = "float", name = "startRadius"},
         {type = "float", name = "endRadius"},
         {type = "int", name = "sides"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCylinderWires",
+      name = "RL_DrawCylinderWires",
       description = "Draw a cylinder/cone wires",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "position"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "radiusTop"},
         {type = "float", name = "radiusBottom"},
         {type = "float", name = "height"},
         {type = "int", name = "slices"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCylinderWiresEx",
+      name = "RL_DrawCylinderWiresEx",
       description = "Draw a cylinder wires with base at startPos and top at endPos",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "startPos"},
-        {type = "Vector3", name = "endPos"},
+        {type = "RL_Vector3", name = "startPos"},
+        {type = "RL_Vector3", name = "endPos"},
         {type = "float", name = "startRadius"},
         {type = "float", name = "endRadius"},
         {type = "int", name = "sides"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCapsule",
+      name = "RL_DrawCapsule",
       description = "Draw a capsule with the center of its sphere caps at startPos and endPos",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "startPos"},
-        {type = "Vector3", name = "endPos"},
+        {type = "RL_Vector3", name = "startPos"},
+        {type = "RL_Vector3", name = "endPos"},
         {type = "float", name = "radius"},
         {type = "int", name = "slices"},
         {type = "int", name = "rings"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawCapsuleWires",
+      name = "RL_DrawCapsuleWires",
       description = "Draw capsule wireframe with the center of its sphere caps at startPos and endPos",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "startPos"},
-        {type = "Vector3", name = "endPos"},
+        {type = "RL_Vector3", name = "startPos"},
+        {type = "RL_Vector3", name = "endPos"},
         {type = "float", name = "radius"},
         {type = "int", name = "slices"},
         {type = "int", name = "rings"},
-        {type = "Color", name = "color"}
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawPlane",
+      name = "RL_DrawPlane",
       description = "Draw a plane XZ",
       returnType = "void",
       params = {
-        {type = "Vector3", name = "centerPos"},
-        {type = "Vector2", name = "size"},
-        {type = "Color", name = "color"}
+        {type = "RL_Vector3", name = "centerPos"},
+        {type = "RL_Vector2", name = "size"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawRay",
+      name = "RL_DrawRay",
       description = "Draw a ray line",
       returnType = "void",
       params = {
-        {type = "Ray", name = "ray"},
-        {type = "Color", name = "color"}
+        {type = "RL_Ray", name = "ray"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawGrid",
+      name = "RL_DrawGrid",
       description = "Draw a grid (centered at (0, 0, 0))",
       returnType = "void",
       params = {
@@ -7187,19 +7187,19 @@ return {
       }
     },
     {
-      name = "LoadModel",
+      name = "RL_LoadModel",
       description = "Load model from files (meshes and materials)",
-      returnType = "Model",
+      returnType = "RL_Model",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadModelFromMesh",
+      name = "RL_LoadModelFromMesh",
       description = "Load model from generated mesh (default material)",
-      returnType = "Model",
+      returnType = "RL_Model",
       params = {
-        {type = "Mesh", name = "mesh"}
+        {type = "RL_Mesh", name = "mesh"}
       }
     },
     {
@@ -7207,71 +7207,71 @@ return {
       description = "Check if a model is valid (loaded in GPU, VAO/VBOs)",
       returnType = "bool",
       params = {
-        {type = "Model", name = "model"}
+        {type = "RL_Model", name = "model"}
       }
     },
     {
-      name = "UnloadModel",
+      name = "RL_UnloadModel",
       description = "Unload model (including meshes) from memory (RAM and/or VRAM)",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"}
+        {type = "RL_Model", name = "model"}
       }
     },
     {
-      name = "GetModelBoundingBox",
+      name = "RL_GetModelBoundingBox",
       description = "Compute model bounding box limits (considers all meshes)",
-      returnType = "BoundingBox",
+      returnType = "RL_BoundingBox",
       params = {
-        {type = "Model", name = "model"}
+        {type = "RL_Model", name = "model"}
       }
     },
     {
-      name = "DrawModel",
+      name = "RL_DrawModel",
       description = "Draw a model (with texture if set)",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "Vector3", name = "position"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawModelEx",
+      name = "RL_DrawModelEx",
       description = "Draw a model with extended parameters",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "Vector3", name = "position"},
-        {type = "Vector3", name = "rotationAxis"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector3", name = "rotationAxis"},
         {type = "float", name = "rotationAngle"},
-        {type = "Vector3", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Vector3", name = "scale"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawModelWires",
+      name = "RL_DrawModelWires",
       description = "Draw a model wires (with texture if set)",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "Vector3", name = "position"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawModelWiresEx",
+      name = "RL_DrawModelWiresEx",
       description = "Draw a model wires (with texture if set) with extended parameters",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "Vector3", name = "position"},
-        {type = "Vector3", name = "rotationAxis"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector3", name = "rotationAxis"},
         {type = "float", name = "rotationAngle"},
-        {type = "Vector3", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Vector3", name = "scale"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
@@ -7279,10 +7279,10 @@ return {
       description = "Draw a model as points",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "Vector3", name = "position"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
@@ -7290,79 +7290,79 @@ return {
       description = "Draw a model as points with extended parameters",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "Vector3", name = "position"},
-        {type = "Vector3", name = "rotationAxis"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector3", name = "rotationAxis"},
         {type = "float", name = "rotationAngle"},
-        {type = "Vector3", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Vector3", name = "scale"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawBoundingBox",
+      name = "RL_DrawBoundingBox",
       description = "Draw bounding box (wires)",
       returnType = "void",
       params = {
-        {type = "BoundingBox", name = "box"},
-        {type = "Color", name = "color"}
+        {type = "RL_BoundingBox", name = "box"},
+        {type = "RL_Color", name = "color"}
       }
     },
     {
-      name = "DrawBillboard",
+      name = "RL_DrawBillboard",
       description = "Draw a billboard texture",
       returnType = "void",
       params = {
-        {type = "Camera", name = "camera"},
-        {type = "Texture2D", name = "texture"},
-        {type = "Vector3", name = "position"},
+        {type = "RL_Camera", name = "camera"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Vector3", name = "position"},
         {type = "float", name = "scale"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawBillboardRec",
+      name = "RL_DrawBillboardRec",
       description = "Draw a billboard texture defined by source",
       returnType = "void",
       params = {
-        {type = "Camera", name = "camera"},
-        {type = "Texture2D", name = "texture"},
-        {type = "Rectangle", name = "source"},
-        {type = "Vector3", name = "position"},
-        {type = "Vector2", name = "size"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Camera", name = "camera"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Rectangle", name = "source"},
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector2", name = "size"},
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "DrawBillboardPro",
+      name = "RL_DrawBillboardPro",
       description = "Draw a billboard texture defined by source and rotation",
       returnType = "void",
       params = {
-        {type = "Camera", name = "camera"},
-        {type = "Texture2D", name = "texture"},
-        {type = "Rectangle", name = "source"},
-        {type = "Vector3", name = "position"},
-        {type = "Vector3", name = "up"},
-        {type = "Vector2", name = "size"},
-        {type = "Vector2", name = "origin"},
+        {type = "RL_Camera", name = "camera"},
+        {type = "RL_Texture2D", name = "texture"},
+        {type = "RL_Rectangle", name = "source"},
+        {type = "RL_Vector3", name = "position"},
+        {type = "RL_Vector3", name = "up"},
+        {type = "RL_Vector2", name = "size"},
+        {type = "RL_Vector2", name = "origin"},
         {type = "float", name = "rotation"},
-        {type = "Color", name = "tint"}
+        {type = "RL_Color", name = "tint"}
       }
     },
     {
-      name = "UploadMesh",
+      name = "RL_UploadMesh",
       description = "Upload mesh vertex data in GPU and provide VAO/VBO ids",
       returnType = "void",
       params = {
-        {type = "Mesh *", name = "mesh"},
+        {type = "RL_Mesh *", name = "mesh"},
         {type = "bool", name = "dynamic"}
       }
     },
     {
-      name = "UpdateMeshBuffer",
+      name = "RL_UpdateMeshBuffer",
       description = "Update mesh vertex data in GPU for a specific buffer index",
       returnType = "void",
       params = {
-        {type = "Mesh", name = "mesh"},
+        {type = "RL_Mesh", name = "mesh"},
         {type = "int", name = "index"},
         {type = "const void *", name = "data"},
         {type = "int", name = "dataSize"},
@@ -7370,81 +7370,81 @@ return {
       }
     },
     {
-      name = "UnloadMesh",
+      name = "RL_UnloadMesh",
       description = "Unload mesh data from CPU and GPU",
       returnType = "void",
       params = {
-        {type = "Mesh", name = "mesh"}
+        {type = "RL_Mesh", name = "mesh"}
       }
     },
     {
-      name = "DrawMesh",
+      name = "RL_DrawMesh",
       description = "Draw a 3d mesh with material and transform",
       returnType = "void",
       params = {
-        {type = "Mesh", name = "mesh"},
-        {type = "Material", name = "material"},
-        {type = "Matrix", name = "transform"}
+        {type = "RL_Mesh", name = "mesh"},
+        {type = "RL_Material", name = "material"},
+        {type = "RL_Matrix", name = "transform"}
       }
     },
     {
-      name = "DrawMeshInstanced",
+      name = "RL_DrawMeshInstanced",
       description = "Draw multiple mesh instances with material and different transforms",
       returnType = "void",
       params = {
-        {type = "Mesh", name = "mesh"},
-        {type = "Material", name = "material"},
-        {type = "const Matrix *", name = "transforms"},
+        {type = "RL_Mesh", name = "mesh"},
+        {type = "RL_Material", name = "material"},
+        {type = "const RL_Matrix *", name = "transforms"},
         {type = "int", name = "instances"}
       }
     },
     {
-      name = "GetMeshBoundingBox",
+      name = "RL_GetMeshBoundingBox",
       description = "Compute mesh bounding box limits",
-      returnType = "BoundingBox",
+      returnType = "RL_BoundingBox",
       params = {
-        {type = "Mesh", name = "mesh"}
+        {type = "RL_Mesh", name = "mesh"}
       }
     },
     {
-      name = "GenMeshTangents",
+      name = "RL_GenMeshTangents",
       description = "Compute mesh tangents",
       returnType = "void",
       params = {
-        {type = "Mesh *", name = "mesh"}
+        {type = "RL_Mesh *", name = "mesh"}
       }
     },
     {
-      name = "ExportMesh",
+      name = "RL_ExportMesh",
       description = "Export mesh data to file, returns true on success",
       returnType = "bool",
       params = {
-        {type = "Mesh", name = "mesh"},
+        {type = "RL_Mesh", name = "mesh"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "ExportMeshAsCode",
+      name = "RL_ExportMeshAsCode",
       description = "Export mesh as code file (.h) defining multiple arrays of vertex attributes",
       returnType = "bool",
       params = {
-        {type = "Mesh", name = "mesh"},
+        {type = "RL_Mesh", name = "mesh"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "GenMeshPoly",
+      name = "RL_GenMeshPoly",
       description = "Generate polygonal mesh",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "int", name = "sides"},
         {type = "float", name = "radius"}
       }
     },
     {
-      name = "GenMeshPlane",
+      name = "RL_GenMeshPlane",
       description = "Generate plane mesh (with subdivisions)",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "width"},
         {type = "float", name = "length"},
@@ -7453,9 +7453,9 @@ return {
       }
     },
     {
-      name = "GenMeshCube",
+      name = "RL_GenMeshCube",
       description = "Generate cuboid mesh",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "width"},
         {type = "float", name = "height"},
@@ -7463,9 +7463,9 @@ return {
       }
     },
     {
-      name = "GenMeshSphere",
+      name = "RL_GenMeshSphere",
       description = "Generate sphere mesh (standard sphere)",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "radius"},
         {type = "int", name = "rings"},
@@ -7473,9 +7473,9 @@ return {
       }
     },
     {
-      name = "GenMeshHemiSphere",
+      name = "RL_GenMeshHemiSphere",
       description = "Generate half-sphere mesh (no bottom cap)",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "radius"},
         {type = "int", name = "rings"},
@@ -7483,9 +7483,9 @@ return {
       }
     },
     {
-      name = "GenMeshCylinder",
+      name = "RL_GenMeshCylinder",
       description = "Generate cylinder mesh",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "radius"},
         {type = "float", name = "height"},
@@ -7493,9 +7493,9 @@ return {
       }
     },
     {
-      name = "GenMeshCone",
+      name = "RL_GenMeshCone",
       description = "Generate cone/pyramid mesh",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "radius"},
         {type = "float", name = "height"},
@@ -7503,9 +7503,9 @@ return {
       }
     },
     {
-      name = "GenMeshTorus",
+      name = "RL_GenMeshTorus",
       description = "Generate torus mesh",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "radius"},
         {type = "float", name = "size"},
@@ -7514,9 +7514,9 @@ return {
       }
     },
     {
-      name = "GenMeshKnot",
+      name = "RL_GenMeshKnot",
       description = "Generate trefoil knot mesh",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
         {type = "float", name = "radius"},
         {type = "float", name = "size"},
@@ -7525,89 +7525,89 @@ return {
       }
     },
     {
-      name = "GenMeshHeightmap",
+      name = "RL_GenMeshHeightmap",
       description = "Generate heightmap mesh from image data",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
-        {type = "Image", name = "heightmap"},
-        {type = "Vector3", name = "size"}
+        {type = "RL_Image", name = "heightmap"},
+        {type = "RL_Vector3", name = "size"}
       }
     },
     {
-      name = "GenMeshCubicmap",
+      name = "RL_GenMeshCubicmap",
       description = "Generate cubes-based map mesh from image data",
-      returnType = "Mesh",
+      returnType = "RL_Mesh",
       params = {
-        {type = "Image", name = "cubicmap"},
-        {type = "Vector3", name = "cubeSize"}
+        {type = "RL_Image", name = "cubicmap"},
+        {type = "RL_Vector3", name = "cubeSize"}
       }
     },
     {
-      name = "LoadMaterials",
+      name = "RL_LoadMaterials",
       description = "Load materials from model file",
-      returnType = "Material *",
+      returnType = "RL_Material *",
       params = {
         {type = "const char *", name = "fileName"},
         {type = "int *", name = "materialCount"}
       }
     },
     {
-      name = "LoadMaterialDefault",
+      name = "RL_LoadMaterialDefault",
       description = "Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)",
-      returnType = "Material"
+      returnType = "RL_Material"
     },
     {
       name = "IsMaterialValid",
       description = "Check if a material is valid (shader assigned, map textures loaded in GPU)",
       returnType = "bool",
       params = {
-        {type = "Material", name = "material"}
+        {type = "RL_Material", name = "material"}
       }
     },
     {
-      name = "UnloadMaterial",
+      name = "RL_UnloadMaterial",
       description = "Unload material from GPU memory (VRAM)",
       returnType = "void",
       params = {
-        {type = "Material", name = "material"}
+        {type = "RL_Material", name = "material"}
       }
     },
     {
-      name = "SetMaterialTexture",
+      name = "RL_SetMaterialTexture",
       description = "Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)",
       returnType = "void",
       params = {
-        {type = "Material *", name = "material"},
+        {type = "RL_Material *", name = "material"},
         {type = "int", name = "mapType"},
-        {type = "Texture2D", name = "texture"}
+        {type = "RL_Texture2D", name = "texture"}
       }
     },
     {
-      name = "SetModelMeshMaterial",
+      name = "RL_SetModelMeshMaterial",
       description = "Set material for a mesh",
       returnType = "void",
       params = {
-        {type = "Model *", name = "model"},
+        {type = "RL_Model *", name = "model"},
         {type = "int", name = "meshId"},
         {type = "int", name = "materialId"}
       }
     },
     {
-      name = "LoadModelAnimations",
+      name = "RL_LoadModelAnimations",
       description = "Load model animations from file",
-      returnType = "ModelAnimation *",
+      returnType = "RL_ModelAnimation *",
       params = {
         {type = "const char *", name = "fileName"},
         {type = "int *", name = "animCount"}
       }
     },
     {
-      name = "UpdateModelAnimation",
+      name = "RL_UpdateModelAnimation",
       description = "Update model animation pose (CPU)",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "ModelAnimation", name = "anim"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_ModelAnimation", name = "anim"},
         {type = "int", name = "frame"}
       }
     },
@@ -7616,136 +7616,136 @@ return {
       description = "Update model animation mesh bone matrices (GPU skinning)",
       returnType = "void",
       params = {
-        {type = "Model", name = "model"},
-        {type = "ModelAnimation", name = "anim"},
+        {type = "RL_Model", name = "model"},
+        {type = "RL_ModelAnimation", name = "anim"},
         {type = "int", name = "frame"}
       }
     },
     {
-      name = "UnloadModelAnimation",
+      name = "RL_UnloadModelAnimation",
       description = "Unload animation data",
       returnType = "void",
       params = {
-        {type = "ModelAnimation", name = "anim"}
+        {type = "RL_ModelAnimation", name = "anim"}
       }
     },
     {
-      name = "UnloadModelAnimations",
+      name = "RL_UnloadModelAnimations",
       description = "Unload animation array data",
       returnType = "void",
       params = {
-        {type = "ModelAnimation *", name = "animations"},
+        {type = "RL_ModelAnimation *", name = "animations"},
         {type = "int", name = "animCount"}
       }
     },
     {
-      name = "IsModelAnimationValid",
+      name = "RL_IsModelAnimationValid",
       description = "Check model animation skeleton match",
       returnType = "bool",
       params = {
-        {type = "Model", name = "model"},
-        {type = "ModelAnimation", name = "anim"}
+        {type = "RL_Model", name = "model"},
+        {type = "RL_ModelAnimation", name = "anim"}
       }
     },
     {
-      name = "CheckCollisionSpheres",
+      name = "RL_CheckCollisionSpheres",
       description = "Check collision between two spheres",
       returnType = "bool",
       params = {
-        {type = "Vector3", name = "center1"},
+        {type = "RL_Vector3", name = "center1"},
         {type = "float", name = "radius1"},
-        {type = "Vector3", name = "center2"},
+        {type = "RL_Vector3", name = "center2"},
         {type = "float", name = "radius2"}
       }
     },
     {
-      name = "CheckCollisionBoxes",
+      name = "RL_CheckCollisionBoxes",
       description = "Check collision between two bounding boxes",
       returnType = "bool",
       params = {
-        {type = "BoundingBox", name = "box1"},
-        {type = "BoundingBox", name = "box2"}
+        {type = "RL_BoundingBox", name = "box1"},
+        {type = "RL_BoundingBox", name = "box2"}
       }
     },
     {
-      name = "CheckCollisionBoxSphere",
+      name = "RL_CheckCollisionBoxSphere",
       description = "Check collision between box and sphere",
       returnType = "bool",
       params = {
-        {type = "BoundingBox", name = "box"},
-        {type = "Vector3", name = "center"},
+        {type = "RL_BoundingBox", name = "box"},
+        {type = "RL_Vector3", name = "center"},
         {type = "float", name = "radius"}
       }
     },
     {
-      name = "GetRayCollisionSphere",
+      name = "RL_GetRayCollisionSphere",
       description = "Get collision info between ray and sphere",
-      returnType = "RayCollision",
+      returnType = "RL_RayCollision",
       params = {
-        {type = "Ray", name = "ray"},
-        {type = "Vector3", name = "center"},
+        {type = "RL_Ray", name = "ray"},
+        {type = "RL_Vector3", name = "center"},
         {type = "float", name = "radius"}
       }
     },
     {
-      name = "GetRayCollisionBox",
+      name = "RL_GetRayCollisionBox",
       description = "Get collision info between ray and box",
-      returnType = "RayCollision",
+      returnType = "RL_RayCollision",
       params = {
-        {type = "Ray", name = "ray"},
-        {type = "BoundingBox", name = "box"}
+        {type = "RL_Ray", name = "ray"},
+        {type = "RL_BoundingBox", name = "box"}
       }
     },
     {
-      name = "GetRayCollisionMesh",
+      name = "RL_GetRayCollisionMesh",
       description = "Get collision info between ray and mesh",
-      returnType = "RayCollision",
+      returnType = "RL_RayCollision",
       params = {
-        {type = "Ray", name = "ray"},
-        {type = "Mesh", name = "mesh"},
-        {type = "Matrix", name = "transform"}
+        {type = "RL_Ray", name = "ray"},
+        {type = "RL_Mesh", name = "mesh"},
+        {type = "RL_Matrix", name = "transform"}
       }
     },
     {
-      name = "GetRayCollisionTriangle",
+      name = "RL_GetRayCollisionTriangle",
       description = "Get collision info between ray and triangle",
-      returnType = "RayCollision",
+      returnType = "RL_RayCollision",
       params = {
-        {type = "Ray", name = "ray"},
-        {type = "Vector3", name = "p1"},
-        {type = "Vector3", name = "p2"},
-        {type = "Vector3", name = "p3"}
+        {type = "RL_Ray", name = "ray"},
+        {type = "RL_Vector3", name = "p1"},
+        {type = "RL_Vector3", name = "p2"},
+        {type = "RL_Vector3", name = "p3"}
       }
     },
     {
-      name = "GetRayCollisionQuad",
+      name = "RL_GetRayCollisionQuad",
       description = "Get collision info between ray and quad",
-      returnType = "RayCollision",
+      returnType = "RL_RayCollision",
       params = {
-        {type = "Ray", name = "ray"},
-        {type = "Vector3", name = "p1"},
-        {type = "Vector3", name = "p2"},
-        {type = "Vector3", name = "p3"},
-        {type = "Vector3", name = "p4"}
+        {type = "RL_Ray", name = "ray"},
+        {type = "RL_Vector3", name = "p1"},
+        {type = "RL_Vector3", name = "p2"},
+        {type = "RL_Vector3", name = "p3"},
+        {type = "RL_Vector3", name = "p4"}
       }
     },
     {
-      name = "InitAudioDevice",
+      name = "RL_InitAudioDevice",
       description = "Initialize audio device and context",
       returnType = "void"
     },
     {
-      name = "CloseAudioDevice",
+      name = "RL_CloseAudioDevice",
       description = "Close the audio device and context",
       returnType = "void"
     },
     {
-      name = "IsAudioDeviceReady",
+      name = "RL_IsAudioDeviceReady",
       description = "Check if audio device has been initialized successfully",
       returnType = "bool"
     },
     {
-      name = "SetMasterVolume",
+      name = "RL_SetMasterVolume",
       description = "Set master volume (listener)",
       returnType = "void",
       params = {
@@ -7753,22 +7753,22 @@ return {
       }
     },
     {
-      name = "GetMasterVolume",
+      name = "RL_GetMasterVolume",
       description = "Get master volume (listener)",
       returnType = "float"
     },
     {
-      name = "LoadWave",
+      name = "RL_LoadWave",
       description = "Load wave data from file",
-      returnType = "Wave",
+      returnType = "RL_Wave",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadWaveFromMemory",
+      name = "RL_LoadWaveFromMemory",
       description = "Load wave from memory buffer, fileType refers to extension: i.e. '.wav'",
-      returnType = "Wave",
+      returnType = "RL_Wave",
       params = {
         {type = "const char *", name = "fileType"},
         {type = "const unsigned char *", name = "fileData"},
@@ -7780,31 +7780,31 @@ return {
       description = "Checks if wave data is valid (data loaded and parameters)",
       returnType = "bool",
       params = {
-        {type = "Wave", name = "wave"}
+        {type = "RL_Wave", name = "wave"}
       }
     },
     {
-      name = "LoadSound",
+      name = "RL_LoadSound",
       description = "Load sound from file",
-      returnType = "Sound",
+      returnType = "RL_Sound",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadSoundFromWave",
+      name = "RL_LoadSoundFromWave",
       description = "Load sound from wave data",
-      returnType = "Sound",
+      returnType = "RL_Sound",
       params = {
-        {type = "Wave", name = "wave"}
+        {type = "RL_Wave", name = "wave"}
       }
     },
     {
-      name = "LoadSoundAlias",
+      name = "RL_LoadSoundAlias",
       description = "Create a new sound that shares the same sample data as the source sound, does not own the sound data",
-      returnType = "Sound",
+      returnType = "RL_Sound",
       params = {
-        {type = "Sound", name = "source"}
+        {type = "RL_Sound", name = "source"}
       }
     },
     {
@@ -7812,185 +7812,185 @@ return {
       description = "Checks if a sound is valid (data loaded and buffers initialized)",
       returnType = "bool",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "UpdateSound",
+      name = "RL_UpdateSound",
       description = "Update sound buffer with new data",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"},
+        {type = "RL_Sound", name = "sound"},
         {type = "const void *", name = "data"},
         {type = "int", name = "sampleCount"}
       }
     },
     {
-      name = "UnloadWave",
+      name = "RL_UnloadWave",
       description = "Unload wave data",
       returnType = "void",
       params = {
-        {type = "Wave", name = "wave"}
+        {type = "RL_Wave", name = "wave"}
       }
     },
     {
-      name = "UnloadSound",
+      name = "RL_UnloadSound",
       description = "Unload sound",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "UnloadSoundAlias",
+      name = "RL_UnloadSoundAlias",
       description = "Unload a sound alias (does not deallocate sample data)",
       returnType = "void",
       params = {
-        {type = "Sound", name = "alias"}
+        {type = "RL_Sound", name = "alias"}
       }
     },
     {
-      name = "ExportWave",
+      name = "RL_ExportWave",
       description = "Export wave data to file, returns true on success",
       returnType = "bool",
       params = {
-        {type = "Wave", name = "wave"},
+        {type = "RL_Wave", name = "wave"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "ExportWaveAsCode",
+      name = "RL_ExportWaveAsCode",
       description = "Export wave sample data to code (.h), returns true on success",
       returnType = "bool",
       params = {
-        {type = "Wave", name = "wave"},
+        {type = "RL_Wave", name = "wave"},
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "PlaySound",
+      name = "RL_PlaySound",
       description = "Play a sound",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "StopSound",
+      name = "RL_StopSound",
       description = "Stop playing a sound",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "PauseSound",
+      name = "RL_PauseSound",
       description = "Pause a sound",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "ResumeSound",
+      name = "RL_ResumeSound",
       description = "Resume a paused sound",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "IsSoundPlaying",
+      name = "RL_IsSoundPlaying",
       description = "Check if a sound is currently playing",
       returnType = "bool",
       params = {
-        {type = "Sound", name = "sound"}
+        {type = "RL_Sound", name = "sound"}
       }
     },
     {
-      name = "SetSoundVolume",
+      name = "RL_SetSoundVolume",
       description = "Set volume for a sound (1.0 is max level)",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"},
+        {type = "RL_Sound", name = "sound"},
         {type = "float", name = "volume"}
       }
     },
     {
-      name = "SetSoundPitch",
+      name = "RL_SetSoundPitch",
       description = "Set pitch for a sound (1.0 is base level)",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"},
+        {type = "RL_Sound", name = "sound"},
         {type = "float", name = "pitch"}
       }
     },
     {
-      name = "SetSoundPan",
+      name = "RL_SetSoundPan",
       description = "Set pan for a sound (0.5 is center)",
       returnType = "void",
       params = {
-        {type = "Sound", name = "sound"},
+        {type = "RL_Sound", name = "sound"},
         {type = "float", name = "pan"}
       }
     },
     {
-      name = "WaveCopy",
+      name = "RL_WaveCopy",
       description = "Copy a wave to a new wave",
-      returnType = "Wave",
+      returnType = "RL_Wave",
       params = {
-        {type = "Wave", name = "wave"}
+        {type = "RL_Wave", name = "wave"}
       }
     },
     {
-      name = "WaveCrop",
+      name = "RL_WaveCrop",
       description = "Crop a wave to defined frames range",
       returnType = "void",
       params = {
-        {type = "Wave *", name = "wave"},
+        {type = "RL_Wave *", name = "wave"},
         {type = "int", name = "initFrame"},
         {type = "int", name = "finalFrame"}
       }
     },
     {
-      name = "WaveFormat",
+      name = "RL_WaveFormat",
       description = "Convert wave data to desired format",
       returnType = "void",
       params = {
-        {type = "Wave *", name = "wave"},
+        {type = "RL_Wave *", name = "wave"},
         {type = "int", name = "sampleRate"},
         {type = "int", name = "sampleSize"},
         {type = "int", name = "channels"}
       }
     },
     {
-      name = "LoadWaveSamples",
+      name = "RL_LoadWaveSamples",
       description = "Load samples data from wave as a 32bit float data array",
       returnType = "float *",
       params = {
-        {type = "Wave", name = "wave"}
+        {type = "RL_Wave", name = "wave"}
       }
     },
     {
-      name = "UnloadWaveSamples",
-      description = "Unload samples data loaded with LoadWaveSamples()",
+      name = "RL_UnloadWaveSamples",
+      description = "Unload samples data loaded with RL_LoadWaveSamples()",
       returnType = "void",
       params = {
         {type = "float *", name = "samples"}
       }
     },
     {
-      name = "LoadMusicStream",
+      name = "RL_LoadMusicStream",
       description = "Load music stream from file",
-      returnType = "Music",
+      returnType = "RL_Music",
       params = {
         {type = "const char *", name = "fileName"}
       }
     },
     {
-      name = "LoadMusicStreamFromMemory",
+      name = "RL_LoadMusicStreamFromMemory",
       description = "Load music stream from data",
-      returnType = "Music",
+      returnType = "RL_Music",
       params = {
         {type = "const char *", name = "fileType"},
         {type = "const unsigned char *", name = "data"},
@@ -8002,121 +8002,121 @@ return {
       description = "Checks if a music stream is valid (context and buffers initialized)",
       returnType = "bool",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "UnloadMusicStream",
+      name = "RL_UnloadMusicStream",
       description = "Unload music stream",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "PlayMusicStream",
+      name = "RL_PlayMusicStream",
       description = "Start music playing",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "IsMusicStreamPlaying",
+      name = "RL_IsMusicStreamPlaying",
       description = "Check if music is playing",
       returnType = "bool",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "UpdateMusicStream",
+      name = "RL_UpdateMusicStream",
       description = "Updates buffers for music streaming",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "StopMusicStream",
+      name = "RL_StopMusicStream",
       description = "Stop music playing",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "PauseMusicStream",
+      name = "RL_PauseMusicStream",
       description = "Pause music playing",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "ResumeMusicStream",
+      name = "RL_ResumeMusicStream",
       description = "Resume playing paused music",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "SeekMusicStream",
+      name = "RL_SeekMusicStream",
       description = "Seek music to a position (in seconds)",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"},
+        {type = "RL_Music", name = "music"},
         {type = "float", name = "position"}
       }
     },
     {
-      name = "SetMusicVolume",
+      name = "RL_SetMusicVolume",
       description = "Set volume for music (1.0 is max level)",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"},
+        {type = "RL_Music", name = "music"},
         {type = "float", name = "volume"}
       }
     },
     {
-      name = "SetMusicPitch",
+      name = "RL_SetMusicPitch",
       description = "Set pitch for a music (1.0 is base level)",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"},
+        {type = "RL_Music", name = "music"},
         {type = "float", name = "pitch"}
       }
     },
     {
-      name = "SetMusicPan",
+      name = "RL_SetMusicPan",
       description = "Set pan for a music (0.5 is center)",
       returnType = "void",
       params = {
-        {type = "Music", name = "music"},
+        {type = "RL_Music", name = "music"},
         {type = "float", name = "pan"}
       }
     },
     {
-      name = "GetMusicTimeLength",
+      name = "RL_GetMusicTimeLength",
       description = "Get music time length (in seconds)",
       returnType = "float",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "GetMusicTimePlayed",
+      name = "RL_GetMusicTimePlayed",
       description = "Get current music time played (in seconds)",
       returnType = "float",
       params = {
-        {type = "Music", name = "music"}
+        {type = "RL_Music", name = "music"}
       }
     },
     {
-      name = "LoadAudioStream",
+      name = "RL_LoadAudioStream",
       description = "Load audio stream (to stream raw audio pcm data)",
-      returnType = "AudioStream",
+      returnType = "RL_AudioStream",
       params = {
         {type = "unsigned int", name = "sampleRate"},
         {type = "unsigned int", name = "sampleSize"},
@@ -8128,104 +8128,104 @@ return {
       description = "Checks if an audio stream is valid (buffers initialized)",
       returnType = "bool",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "UnloadAudioStream",
+      name = "RL_UnloadAudioStream",
       description = "Unload audio stream and free memory",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "UpdateAudioStream",
+      name = "RL_UpdateAudioStream",
       description = "Update audio stream buffers with data",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "const void *", name = "data"},
         {type = "int", name = "frameCount"}
       }
     },
     {
-      name = "IsAudioStreamProcessed",
+      name = "RL_IsAudioStreamProcessed",
       description = "Check if any audio stream buffers requires refill",
       returnType = "bool",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "PlayAudioStream",
+      name = "RL_PlayAudioStream",
       description = "Play audio stream",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "PauseAudioStream",
+      name = "RL_PauseAudioStream",
       description = "Pause audio stream",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "ResumeAudioStream",
+      name = "RL_ResumeAudioStream",
       description = "Resume audio stream",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "IsAudioStreamPlaying",
+      name = "RL_IsAudioStreamPlaying",
       description = "Check if audio stream is playing",
       returnType = "bool",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "StopAudioStream",
+      name = "RL_StopAudioStream",
       description = "Stop audio stream",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"}
+        {type = "RL_AudioStream", name = "stream"}
       }
     },
     {
-      name = "SetAudioStreamVolume",
+      name = "RL_SetAudioStreamVolume",
       description = "Set volume for audio stream (1.0 is max level)",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "float", name = "volume"}
       }
     },
     {
-      name = "SetAudioStreamPitch",
+      name = "RL_SetAudioStreamPitch",
       description = "Set pitch for audio stream (1.0 is base level)",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "float", name = "pitch"}
       }
     },
     {
-      name = "SetAudioStreamPan",
+      name = "RL_SetAudioStreamPan",
       description = "Set pan for audio stream (0.5 is centered)",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "float", name = "pan"}
       }
     },
     {
-      name = "SetAudioStreamBufferSizeDefault",
+      name = "RL_SetAudioStreamBufferSizeDefault",
       description = "Default size for new audio streams",
       returnType = "void",
       params = {
@@ -8233,34 +8233,34 @@ return {
       }
     },
     {
-      name = "SetAudioStreamCallback",
+      name = "RL_SetAudioStreamCallback",
       description = "Audio thread callback to request new data",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "AudioCallback", name = "callback"}
       }
     },
     {
-      name = "AttachAudioStreamProcessor",
+      name = "RL_AttachAudioStreamProcessor",
       description = "Attach audio stream processor to stream, receives the samples as 'float'",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "AudioCallback", name = "processor"}
       }
     },
     {
-      name = "DetachAudioStreamProcessor",
+      name = "RL_DetachAudioStreamProcessor",
       description = "Detach audio stream processor from stream",
       returnType = "void",
       params = {
-        {type = "AudioStream", name = "stream"},
+        {type = "RL_AudioStream", name = "stream"},
         {type = "AudioCallback", name = "processor"}
       }
     },
     {
-      name = "AttachAudioMixedProcessor",
+      name = "RL_AttachAudioMixedProcessor",
       description = "Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'",
       returnType = "void",
       params = {
@@ -8268,7 +8268,7 @@ return {
       }
     },
     {
-      name = "DetachAudioMixedProcessor",
+      name = "RL_DetachAudioMixedProcessor",
       description = "Detach audio stream processor from the entire audio pipeline",
       returnType = "void",
       params = {

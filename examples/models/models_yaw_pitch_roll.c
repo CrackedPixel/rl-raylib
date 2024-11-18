@@ -27,35 +27,35 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    //SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_WINDOW_HIGHDPI);
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - plane rotations (yaw, pitch, roll)");
+    //RL_SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_WINDOW_HIGHDPI);
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - plane rotations (yaw, pitch, roll)");
 
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 0.0f, 50.0f, -120.0f };// Camera position perspective
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 30.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 0.0f, 50.0f, -120.0f };// RL_Camera position perspective
+    camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 30.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera type
 
-    Model model = LoadModel("resources/models/obj/plane.obj");                  // Load model
-    Texture2D texture = LoadTexture("resources/models/obj/plane_diffuse.png");  // Load model texture
+    RL_Model model = RL_LoadModel("resources/models/obj/plane.obj");                  // Load model
+    RL_Texture2D texture = RL_LoadTexture("resources/models/obj/plane_diffuse.png");  // Load model texture
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;            // Set map diffuse texture
 
     float pitch = 0.0f;
     float roll = 0.0f;
     float yaw = 0.0f;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
         // Plane pitch (x-axis) controls
-        if (IsKeyDown(KEY_DOWN)) pitch += 0.6f;
-        else if (IsKeyDown(KEY_UP)) pitch -= 0.6f;
+        if (RL_IsKeyDown(KEY_DOWN)) pitch += 0.6f;
+        else if (RL_IsKeyDown(KEY_UP)) pitch -= 0.6f;
         else
         {
             if (pitch > 0.3f) pitch -= 0.3f;
@@ -63,8 +63,8 @@ int main(void)
         }
 
         // Plane yaw (y-axis) controls
-        if (IsKeyDown(KEY_S)) yaw -= 1.0f;
-        else if (IsKeyDown(KEY_A)) yaw += 1.0f;
+        if (RL_IsKeyDown(KEY_S)) yaw -= 1.0f;
+        else if (RL_IsKeyDown(KEY_A)) yaw += 1.0f;
         else
         {
             if (yaw > 0.0f) yaw -= 0.5f;
@@ -72,8 +72,8 @@ int main(void)
         }
 
         // Plane roll (z-axis) controls
-        if (IsKeyDown(KEY_LEFT)) roll -= 1.0f;
-        else if (IsKeyDown(KEY_RIGHT)) roll += 1.0f;
+        if (RL_IsKeyDown(KEY_LEFT)) roll -= 1.0f;
+        else if (RL_IsKeyDown(KEY_RIGHT)) roll += 1.0f;
         else
         {
             if (roll > 0.0f) roll -= 0.5f;
@@ -81,42 +81,42 @@ int main(void)
         }
 
         // Tranformation matrix for rotations
-        model.transform = MatrixRotateXYZ((Vector3){ DEG2RAD*pitch, DEG2RAD*yaw, DEG2RAD*roll });
+        model.transform = MatrixRotateXYZ((RL_Vector3){ DEG2RAD*pitch, DEG2RAD*yaw, DEG2RAD*roll });
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             // Draw 3D model (recomended to draw 3D always before 2D)
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
-                DrawModel(model, (Vector3){ 0.0f, -8.0f, 0.0f }, 1.0f, WHITE);   // Draw 3d model with texture
-                DrawGrid(10, 10.0f);
+                RL_DrawModel(model, (RL_Vector3){ 0.0f, -8.0f, 0.0f }, 1.0f, RL_WHITE);   // Draw 3d model with texture
+                RL_DrawGrid(10, 10.0f);
 
-            EndMode3D();
+            RL_EndMode3D();
 
             // Draw controls info
-            DrawRectangle(30, 370, 260, 70, Fade(GREEN, 0.5f));
-            DrawRectangleLines(30, 370, 260, 70, Fade(DARKGREEN, 0.5f));
-            DrawText("Pitch controlled with: KEY_UP / KEY_DOWN", 40, 380, 10, DARKGRAY);
-            DrawText("Roll controlled with: KEY_LEFT / KEY_RIGHT", 40, 400, 10, DARKGRAY);
-            DrawText("Yaw controlled with: KEY_A / KEY_S", 40, 420, 10, DARKGRAY);
+            RL_DrawRectangle(30, 370, 260, 70, RL_Fade(RL_GREEN, 0.5f));
+            RL_DrawRectangleLines(30, 370, 260, 70, RL_Fade(RL_DARKGREEN, 0.5f));
+            RL_DrawText("Pitch controlled with: KEY_UP / KEY_DOWN", 40, 380, 10, RL_DARKGRAY);
+            RL_DrawText("Roll controlled with: KEY_LEFT / KEY_RIGHT", 40, 400, 10, RL_DARKGRAY);
+            RL_DrawText("Yaw controlled with: KEY_A / KEY_S", 40, 420, 10, RL_DARKGRAY);
 
-            DrawText("(c) WWI Plane Model created by GiaHanLam", screenWidth - 240, screenHeight - 20, 10, DARKGRAY);
+            RL_DrawText("(c) WWI Plane RL_Model created by GiaHanLam", screenWidth - 240, screenHeight - 20, 10, RL_DARKGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadModel(model);     // Unload model data
-    UnloadTexture(texture); // Unload texture data
+    RL_UnloadModel(model);     // Unload model data
+    RL_UnloadTexture(texture); // Unload texture data
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

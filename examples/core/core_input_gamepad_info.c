@@ -26,15 +26,15 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation
+    RL_SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - gamepad information");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - gamepad information");
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -43,41 +43,41 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             for (int i = 0, y = 5; i < 4; i++)     // MAX_GAMEPADS = 4
             {
-                if (IsGamepadAvailable(i))
+                if (RL_IsGamepadAvailable(i))
                 {
-                    DrawText(TextFormat("Gamepad name: %s", GetGamepadName(i)), 10, y, 10, BLACK);
+                    RL_DrawText(RL_TextFormat("Gamepad name: %s", RL_GetGamepadName(i)), 10, y, 10, RL_BLACK);
                     y += 11;
-                    DrawText(TextFormat("\tAxis count:   %d", GetGamepadAxisCount(i)), 10, y, 10, BLACK);
+                    RL_DrawText(RL_TextFormat("\tAxis count:   %d", RL_GetGamepadAxisCount(i)), 10, y, 10, RL_BLACK);
                     y += 11;
 
-                    for (int axis = 0; axis < GetGamepadAxisCount(i); axis++)
+                    for (int axis = 0; axis < RL_GetGamepadAxisCount(i); axis++)
                     {
-                        DrawText(TextFormat("\tAxis %d = %f", axis, GetGamepadAxisMovement(i, axis)), 10, y, 10, BLACK);
+                        RL_DrawText(RL_TextFormat("\tAxis %d = %f", axis, RL_GetGamepadAxisMovement(i, axis)), 10, y, 10, RL_BLACK);
                         y += 11;
                     }
 
                     for (int button = 0; button < 32; button++)
                     {
-                        DrawText(TextFormat("\tButton %d = %d", button, IsGamepadButtonDown(i, button)), 10, y, 10, BLACK);
+                        RL_DrawText(RL_TextFormat("\tButton %d = %d", button, RL_IsGamepadButtonDown(i, button)), 10, y, 10, RL_BLACK);
                         y += 11;
                     }
                 }
             }
 
-            DrawFPS(GetScreenWidth() - 100, 100);
+            RL_DrawFPS(RL_GetScreenWidth() - 100, 100);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 }

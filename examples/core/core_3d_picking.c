@@ -23,49 +23,49 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 10.0f, 10.0f, 10.0f }; // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
-    Vector3 cubePosition = { 0.0f, 1.0f, 0.0f };
-    Vector3 cubeSize = { 2.0f, 2.0f, 2.0f };
+    RL_Vector3 cubePosition = { 0.0f, 1.0f, 0.0f };
+    RL_Vector3 cubeSize = { 2.0f, 2.0f, 2.0f };
 
-    Ray ray = { 0 };                    // Picking line ray
-    RayCollision collision = { 0 };     // Ray collision hit info
+    RL_Ray ray = { 0 };                    // Picking line ray
+    RL_RayCollision collision = { 0 };     // RL_Ray collision hit info
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsCursorHidden()) UpdateCamera(&camera, CAMERA_FIRST_PERSON);
+        if (RL_IsCursorHidden()) RL_UpdateCamera(&camera, CAMERA_FIRST_PERSON);
 
         // Toggle camera controls
-        if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+        if (RL_IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
         {
-            if (IsCursorHidden()) EnableCursor();
-            else DisableCursor();
+            if (RL_IsCursorHidden()) RL_EnableCursor();
+            else RL_DisableCursor();
         }
 
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        if (RL_IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             if (!collision.hit)
             {
-                ray = GetScreenToWorldRay(GetMousePosition(), camera);
+                ray = RL_GetScreenToWorldRay(RL_GetMousePosition(), camera);
 
                 // Check collision between ray and box
-                collision = GetRayCollisionBox(ray,
-                            (BoundingBox){(Vector3){ cubePosition.x - cubeSize.x/2, cubePosition.y - cubeSize.y/2, cubePosition.z - cubeSize.z/2 },
-                                          (Vector3){ cubePosition.x + cubeSize.x/2, cubePosition.y + cubeSize.y/2, cubePosition.z + cubeSize.z/2 }});
+                collision = RL_GetRayCollisionBox(ray,
+                            (RL_BoundingBox){(RL_Vector3){ cubePosition.x - cubeSize.x/2, cubePosition.y - cubeSize.y/2, cubePosition.z - cubeSize.z/2 },
+                                          (RL_Vector3){ cubePosition.x + cubeSize.x/2, cubePosition.y + cubeSize.y/2, cubePosition.z + cubeSize.z/2 }});
             }
             else collision.hit = false;
         }
@@ -73,45 +73,45 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
                 if (collision.hit)
                 {
-                    DrawCube(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, RED);
-                    DrawCubeWires(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, MAROON);
+                    RL_DrawCube(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, RL_RED);
+                    RL_DrawCubeWires(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, RL_MAROON);
 
-                    DrawCubeWires(cubePosition, cubeSize.x + 0.2f, cubeSize.y + 0.2f, cubeSize.z + 0.2f, GREEN);
+                    RL_DrawCubeWires(cubePosition, cubeSize.x + 0.2f, cubeSize.y + 0.2f, cubeSize.z + 0.2f, RL_GREEN);
                 }
                 else
                 {
-                    DrawCube(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, GRAY);
-                    DrawCubeWires(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, DARKGRAY);
+                    RL_DrawCube(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, RL_GRAY);
+                    RL_DrawCubeWires(cubePosition, cubeSize.x, cubeSize.y, cubeSize.z, RL_DARKGRAY);
                 }
 
-                DrawRay(ray, MAROON);
-                DrawGrid(10, 1.0f);
+                RL_DrawRay(ray, RL_MAROON);
+                RL_DrawGrid(10, 1.0f);
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("Try clicking on the box with your mouse!", 240, 10, 20, DARKGRAY);
+            RL_DrawText("Try clicking on the box with your mouse!", 240, 10, 20, RL_DARKGRAY);
 
-            if (collision.hit) DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, GREEN);
+            if (collision.hit) RL_DrawText("BOX SELECTED", (screenWidth - RL_MeasureText("BOX SELECTED", 30)) / 2, (int)(screenHeight * 0.1f), 30, RL_GREEN);
 
-            DrawText("Right click mouse to toggle camera controls", 10, 430, 10, GRAY);
+            RL_DrawText("Right click mouse to toggle camera controls", 10, 430, 10, RL_GRAY);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

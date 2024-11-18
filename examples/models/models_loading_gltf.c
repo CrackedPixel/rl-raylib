@@ -30,69 +30,69 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - loading gltf animations");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - loading gltf animations");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 6.0f, 6.0f, 6.0f };    // Camera position
-    camera.target = (Vector3){ 0.0f, 2.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 6.0f, 6.0f, 6.0f };    // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 2.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
     // Load gltf model
-    Model model = LoadModel("resources/models/gltf/robot.glb");
-    Vector3 position = { 0.0f, 0.0f, 0.0f }; // Set model position
+    RL_Model model = RL_LoadModel("resources/models/gltf/robot.glb");
+    RL_Vector3 position = { 0.0f, 0.0f, 0.0f }; // Set model position
     
     // Load gltf model animations
     int animsCount = 0;
     unsigned int animIndex = 0;
     unsigned int animCurrentFrame = 0;
-    ModelAnimation *modelAnimations = LoadModelAnimations("resources/models/gltf/robot.glb", &animsCount);
+    RL_ModelAnimation *modelAnimations = RL_LoadModelAnimations("resources/models/gltf/robot.glb", &animsCount);
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_ORBITAL);
+        RL_UpdateCamera(&camera, CAMERA_ORBITAL);
 
         // Select current animation
-        if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) animIndex = (animIndex + 1)%animsCount;
-        else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) animIndex = (animIndex + animsCount - 1)%animsCount;
+        if (RL_IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) animIndex = (animIndex + 1)%animsCount;
+        else if (RL_IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) animIndex = (animIndex + animsCount - 1)%animsCount;
 
         // Update model animation
-        ModelAnimation anim = modelAnimations[animIndex];
+        RL_ModelAnimation anim = modelAnimations[animIndex];
         animCurrentFrame = (animCurrentFrame + 1)%anim.frameCount;
-        UpdateModelAnimation(model, anim, animCurrentFrame);
+        RL_UpdateModelAnimation(model, anim, animCurrentFrame);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
-                DrawModel(model, position, 1.0f, WHITE);    // Draw animated model
-                DrawGrid(10, 1.0f);
-            EndMode3D();
+            RL_BeginMode3D(camera);
+                RL_DrawModel(model, position, 1.0f, RL_WHITE);    // Draw animated model
+                RL_DrawGrid(10, 1.0f);
+            RL_EndMode3D();
 
-            DrawText("Use the LEFT/RIGHT mouse buttons to switch animation", 10, 10, 20, GRAY);
-            DrawText(TextFormat("Animation: %s", anim.name), 10, GetScreenHeight() - 20, 10, DARKGRAY);
+            RL_DrawText("Use the LEFT/RIGHT mouse buttons to switch animation", 10, 10, 20, RL_GRAY);
+            RL_DrawText(RL_TextFormat("Animation: %s", anim.name), 10, RL_GetScreenHeight() - 20, 10, RL_DARKGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadModel(model);         // Unload model and meshes/material
+    RL_UnloadModel(model);         // Unload model and meshes/material
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

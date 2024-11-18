@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - Texture drawing
+*   raylib [textures] example - RL_Texture drawing
 *
 *   NOTE: This example illustrates how to draw into a blank texture using a shader
 *
@@ -33,53 +33,53 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture drawing");
 
-    Image imBlank = GenImageColor(1024, 1024, BLANK);
-    Texture2D texture = LoadTextureFromImage(imBlank);  // Load blank texture to fill on shader
-    UnloadImage(imBlank);
+    RL_Image imBlank = RL_GenImageColor(1024, 1024, RL_BLANK);
+    RL_Texture2D texture = RL_LoadTextureFromImage(imBlank);  // Load blank texture to fill on shader
+    RL_UnloadImage(imBlank);
 
     // NOTE: Using GLSL 330 shader version, on OpenGL ES 2.0 use GLSL 100 shader version
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/cubes_panning.fs", GLSL_VERSION));
 
     float time = 0.0f;
-    int timeLoc = GetShaderLocation(shader, "uTime");
-    SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
+    int timeLoc = RL_GetShaderLocation(shader, "uTime");
+    RL_SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     // -------------------------------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        time = (float)GetTime();
-        SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
+        time = (float)RL_GetTime();
+        RL_SetShaderValue(shader, timeLoc, &time, SHADER_UNIFORM_FLOAT);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
-                DrawTexture(texture, 0, 0, WHITE);  // Drawing BLANK texture, all magic happens on shader
-            EndShaderMode();            // Disable our custom shader, return to default shader
+            RL_BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
+                RL_DrawTexture(texture, 0, 0, RL_WHITE);  // Drawing RL_BLANK texture, all magic happens on shader
+            RL_EndShaderMode();            // Disable our custom shader, return to default shader
 
-            DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, MAROON);
+            RL_DrawText("BACKGROUND is PAINTED and ANIMATED on SHADER!", 10, 10, 20, RL_MAROON);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);
-    UnloadTexture(texture);
+    RL_UnloadShader(shader);
+    RL_UnloadTexture(texture);
 
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

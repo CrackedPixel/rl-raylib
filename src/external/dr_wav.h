@@ -704,7 +704,7 @@ typedef struct
 } drwav_list_label_or_note;
 
 /*
-BEXT metadata, also known as Broadcast Wave Format (BWF)
+BEXT metadata, also known as Broadcast RL_Wave Format (BWF)
 
 This metadata adds some extra description to an audio file. You must check the version field to
 determine if the UMID or the loudness fields are valid.

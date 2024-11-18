@@ -41,16 +41,16 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
 #else
-    SetTargetFPS(60);   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         UpdateDrawFrame();
     }
@@ -58,7 +58,7 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;
@@ -76,12 +76,12 @@ void UpdateDrawFrame(void)
 
     // Draw
     //----------------------------------------------------------------------------------
-    BeginDrawing();
+    RL_BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        RL_ClearBackground(RL_RAYWHITE);
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+        RL_DrawText("Congrats! You created your first window!", 190, 200, 20, RL_LIGHTGRAY);
 
-    EndDrawing();
+    RL_EndDrawing();
     //----------------------------------------------------------------------------------
 }

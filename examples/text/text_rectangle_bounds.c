@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [text] example - Rectangle bounds
+*   raylib [text] example - RL_Rectangle bounds
 *
 *   Example originally created with raylib 2.5, last time updated with raylib 4.0
 *
@@ -15,8 +15,8 @@
 
 #include "raylib.h"
 
-static void DrawTextBoxed(Font font, const char *text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint);   // Draw text using font inside rectangle limits
-static void DrawTextBoxedSelectable(Font font, const char *text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint);    // Draw text using font inside rectangle limits with support for text selection
+static void DrawTextBoxed(RL_Font font, const char *text, RL_Rectangle rec, float fontSize, float spacing, bool wordWrap, RL_Color tint);   // Draw text using font inside rectangle limits
+static void DrawTextBoxedSelectable(RL_Font font, const char *text, RL_Rectangle rec, float fontSize, float spacing, bool wordWrap, RL_Color tint, int selectStart, int selectLength, RL_Color selectTint, RL_Color selectBackTint);    // Draw text using font inside rectangle limits with support for text selection
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -28,7 +28,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [text] example - draw text inside a rectangle");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [text] example - draw text inside a rectangle");
 
     const char text[] = "Text cannot escape\tthis container\t...word wrap also works when active so here's \
 a long text for testing.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \
@@ -37,8 +37,8 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
     bool resizing = false;
     bool wordWrap = true;
 
-    Rectangle container = { 25.0f, 25.0f, screenWidth - 50.0f, screenHeight - 250.0f };
-    Rectangle resizer = { container.x + container.width - 17, container.y + container.height - 17, 14, 14 };
+    RL_Rectangle container = { 25.0f, 25.0f, screenWidth - 50.0f, screenHeight - 250.0f };
+    RL_Rectangle resizer = { container.x + container.width - 17, container.y + container.height - 17, 14, 14 };
 
     // Minimum width and heigh for the container rectangle
     const float minWidth = 60;
@@ -46,30 +46,30 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
     const float maxWidth = screenWidth - 50.0f;
     const float maxHeight = screenHeight - 160.0f;
 
-    Vector2 lastMouse = { 0.0f, 0.0f }; // Stores last mouse coordinates
-    Color borderColor = MAROON;         // Container border color
-    Font font = GetFontDefault();       // Get default system font
+    RL_Vector2 lastMouse = { 0.0f, 0.0f }; // Stores last mouse coordinates
+    RL_Color borderColor = RL_MAROON;         // Container border color
+    RL_Font font = RL_GetFontDefault();       // Get default system font
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KEY_SPACE)) wordWrap = !wordWrap;
+        if (RL_IsKeyPressed(KEY_SPACE)) wordWrap = !wordWrap;
 
-        Vector2 mouse = GetMousePosition();
+        RL_Vector2 mouse = RL_GetMousePosition();
 
         // Check if the mouse is inside the container and toggle border color
-        if (CheckCollisionPointRec(mouse, container)) borderColor = Fade(MAROON, 0.4f);
-        else if (!resizing) borderColor = MAROON;
+        if (RL_CheckCollisionPointRec(mouse, container)) borderColor = RL_Fade(RL_MAROON, 0.4f);
+        else if (!resizing) borderColor = RL_MAROON;
 
         // Container resizing logic
         if (resizing)
         {
-            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) resizing = false;
+            if (RL_IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) resizing = false;
 
             float width = container.width + (mouse.x - lastMouse.x);
             container.width = (width > minWidth)? ((width < maxWidth)? width : maxWidth) : minWidth;
@@ -80,7 +80,7 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
         else
         {
             // Check if we're resizing
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mouse, resizer)) resizing = true;
+            if (RL_IsMouseButtonDown(MOUSE_BUTTON_LEFT) && RL_CheckCollisionPointRec(mouse, resizer)) resizing = true;
         }
 
         // Move resizer rectangle properly
@@ -92,36 +92,36 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawRectangleLinesEx(container, 3, borderColor);    // Draw container border
+            RL_DrawRectangleLinesEx(container, 3, borderColor);    // Draw container border
 
             // Draw text in container (add some padding)
-            DrawTextBoxed(font, text, (Rectangle){ container.x + 4, container.y + 4, container.width - 4, container.height - 4 }, 20.0f, 2.0f, wordWrap, GRAY);
+            DrawTextBoxed(font, text, (RL_Rectangle){ container.x + 4, container.y + 4, container.width - 4, container.height - 4 }, 20.0f, 2.0f, wordWrap, RL_GRAY);
 
-            DrawRectangleRec(resizer, borderColor);             // Draw the resize box
+            RL_DrawRectangleRec(resizer, borderColor);             // Draw the resize box
 
             // Draw bottom info
-            DrawRectangle(0, screenHeight - 54, screenWidth, 54, GRAY);
-            DrawRectangleRec((Rectangle){ 382.0f, screenHeight - 34.0f, 12.0f, 12.0f }, MAROON);
+            RL_DrawRectangle(0, screenHeight - 54, screenWidth, 54, RL_GRAY);
+            RL_DrawRectangleRec((RL_Rectangle){ 382.0f, screenHeight - 34.0f, 12.0f, 12.0f }, RL_MAROON);
 
-            DrawText("Word Wrap: ", 313, screenHeight-115, 20, BLACK);
-            if (wordWrap) DrawText("ON", 447, screenHeight - 115, 20, RED);
-            else DrawText("OFF", 447, screenHeight - 115, 20, BLACK);
+            RL_DrawText("Word Wrap: ", 313, screenHeight-115, 20, RL_BLACK);
+            if (wordWrap) RL_DrawText("ON", 447, screenHeight - 115, 20, RL_RED);
+            else RL_DrawText("OFF", 447, screenHeight - 115, 20, RL_BLACK);
 
-            DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, GRAY);
+            RL_DrawText("Press [SPACE] to toggle word wrap", 218, screenHeight - 86, 20, RL_GRAY);
 
-            DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, RAYWHITE);
+            RL_DrawText("Click hold & drag the    to resize the container", 155, screenHeight - 38, 20, RL_RAYWHITE);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;
@@ -132,15 +132,15 @@ tempor incididunt ut labore et dolore magna aliqua. Nec ullamcorper sit amet ris
 //--------------------------------------------------------------------------------------
 
 // Draw text using font inside rectangle limits
-static void DrawTextBoxed(Font font, const char *text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint)
+static void DrawTextBoxed(RL_Font font, const char *text, RL_Rectangle rec, float fontSize, float spacing, bool wordWrap, RL_Color tint)
 {
-    DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, WHITE, WHITE);
+    DrawTextBoxedSelectable(font, text, rec, fontSize, spacing, wordWrap, tint, 0, 0, RL_WHITE, RL_WHITE);
 }
 
 // Draw text using font inside rectangle limits with support for text selection
-static void DrawTextBoxedSelectable(Font font, const char *text, Rectangle rec, float fontSize, float spacing, bool wordWrap, Color tint, int selectStart, int selectLength, Color selectTint, Color selectBackTint)
+static void DrawTextBoxedSelectable(RL_Font font, const char *text, RL_Rectangle rec, float fontSize, float spacing, bool wordWrap, RL_Color tint, int selectStart, int selectLength, RL_Color selectTint, RL_Color selectBackTint)
 {
-    int length = TextLength(text);  // Total length in bytes of the text, scanned by codepoints in loop
+    int length = RL_TextLength(text);  // Total length in bytes of the text, scanned by codepoints in loop
 
     float textOffsetY = 0;          // Offset between lines (on line break '\n')
     float textOffsetX = 0.0f;       // Offset X to next character to draw
@@ -159,8 +159,8 @@ static void DrawTextBoxedSelectable(Font font, const char *text, Rectangle rec, 
     {
         // Get next codepoint from byte string and glyph index in font
         int codepointByteCount = 0;
-        int codepoint = GetCodepoint(&text[i], &codepointByteCount);
-        int index = GetGlyphIndex(font, codepoint);
+        int codepoint = RL_GetCodepoint(&text[i], &codepointByteCount);
+        int index = RL_GetGlyphIndex(font, codepoint);
 
         // NOTE: Normally we exit the decoding sequence as soon as a bad byte is found (and return 0x3f)
         // but we need to draw all of the bad bytes using the '?' symbol moving one byte
@@ -238,14 +238,14 @@ static void DrawTextBoxedSelectable(Font font, const char *text, Rectangle rec, 
                 bool isGlyphSelected = false;
                 if ((selectStart >= 0) && (k >= selectStart) && (k < (selectStart + selectLength)))
                 {
-                    DrawRectangleRec((Rectangle){ rec.x + textOffsetX - 1, rec.y + textOffsetY, glyphWidth, (float)font.baseSize*scaleFactor }, selectBackTint);
+                    RL_DrawRectangleRec((RL_Rectangle){ rec.x + textOffsetX - 1, rec.y + textOffsetY, glyphWidth, (float)font.baseSize*scaleFactor }, selectBackTint);
                     isGlyphSelected = true;
                 }
 
                 // Draw current character glyph
                 if ((codepoint != ' ') && (codepoint != '\t'))
                 {
-                    DrawTextCodepoint(font, codepoint, (Vector2){ rec.x + textOffsetX, rec.y + textOffsetY }, fontSize, isGlyphSelected? selectTint : tint);
+                    RL_DrawTextCodepoint(font, codepoint, (RL_Vector2){ rec.x + textOffsetX, rec.y + textOffsetY }, fontSize, isGlyphSelected? selectTint : tint);
                 }
             }
 

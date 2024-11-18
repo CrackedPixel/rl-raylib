@@ -43,19 +43,19 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Sieve of Eratosthenes");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Sieve of Eratosthenes");
 
-    RenderTexture2D target = LoadRenderTexture(screenWidth, screenHeight);
+    RL_RenderTexture2D target = RL_LoadRenderTexture(screenWidth, screenHeight);
 
     // Load Eratosthenes shader
     // NOTE: Defining 0 (NULL) for vertex shader forces usage of internal default vertex shader
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/eratosthenes.fs", GLSL_VERSION));
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -64,33 +64,33 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginTextureMode(target);       // Enable drawing to texture
-            ClearBackground(BLACK);     // Clear the render texture
+        RL_BeginTextureMode(target);       // Enable drawing to texture
+            RL_ClearBackground(RL_BLACK);     // Clear the render texture
 
             // Draw a rectangle in shader mode to be used as shader canvas
-            // NOTE: Rectangle uses font white character texture coordinates,
+            // NOTE: RL_Rectangle uses font white character texture coordinates,
             // so shader can not be applied here directly because input vertexTexCoord
             // do not represent full screen coordinates (space where want to apply shader)
-            DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLACK);
-        EndTextureMode();               // End drawing to texture (now we have a blank texture available for the shader)
+            RL_DrawRectangle(0, 0, RL_GetScreenWidth(), RL_GetScreenHeight(), RL_BLACK);
+        RL_EndTextureMode();               // End drawing to texture (now we have a blank texture available for the shader)
 
-        BeginDrawing();
-            ClearBackground(RAYWHITE);  // Clear screen background
+        RL_BeginDrawing();
+            RL_ClearBackground(RL_RAYWHITE);  // Clear screen background
 
-            BeginShaderMode(shader);
+            RL_BeginShaderMode(shader);
                 // NOTE: Render texture must be y-flipped due to default OpenGL coordinates (left-bottom)
-                DrawTextureRec(target.texture, (Rectangle){ 0, 0, (float)target.texture.width, (float)-target.texture.height }, (Vector2){ 0.0f, 0.0f }, WHITE);
-            EndShaderMode();
-        EndDrawing();
+                RL_DrawTextureRec(target.texture, (RL_Rectangle){ 0, 0, (float)target.texture.width, (float)-target.texture.height }, (RL_Vector2){ 0.0f, 0.0f }, RL_WHITE);
+            RL_EndShaderMode();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);               // Unload shader
-    UnloadRenderTexture(target);        // Unload render texture
+    RL_UnloadShader(shader);               // Unload shader
+    RL_UnloadRenderTexture(target);        // Unload render texture
 
-    CloseWindow();                      // Close window and OpenGL context
+    RL_CloseWindow();                      // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

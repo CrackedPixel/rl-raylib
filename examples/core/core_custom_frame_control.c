@@ -3,19 +3,19 @@
 *   raylib [core] example - custom frame control
 *
 *   NOTE: WARNING: This is an example for advanced users willing to have full control over
-*   the frame processes. By default, EndDrawing() calls the following processes:
+*   the frame processes. By default, RL_EndDrawing() calls the following processes:
 *       1. Draw remaining batch data: rlDrawRenderBatchActive()
-*       2. SwapScreenBuffer()
-*       3. Frame time control: WaitTime()
-*       4. PollInputEvents()
+*       2. RL_SwapScreenBuffer()
+*       3. Frame time control: RL_WaitTime()
+*       4. RL_PollInputEvents()
 *
 *   To avoid steps 2, 3 and 4, flag SUPPORT_CUSTOM_FRAME_CONTROL can be enabled in
 *   config.h (it requires recompiling raylib). This way those steps are up to the user.
 *
 *   Note that enabling this flag invalidates some functions:
-*       - GetFrameTime()
-*       - SetTargetFPS()
-*       - GetFPS()
+*       - RL_GetFrameTime()
+*       - RL_SetTargetFPS()
+*       - RL_GetFPS()
 *
 *   Example originally created with raylib 4.0, last time updated with raylib 4.0
 *
@@ -38,10 +38,10 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
     
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - custom frame control");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - custom frame control");
 
     // Custom timming variables
-    double previousTime = GetTime();    // Previous time measure
+    double previousTime = RL_GetTime();    // Previous time measure
     double currentTime = 0.0;           // Current time measure
     double updateDrawTime = 0.0;        // Update + Draw time
     double waitTime = 0.0;              // Wait time (if target fps required)
@@ -55,54 +55,54 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        PollInputEvents();              // Poll input events (SUPPORT_CUSTOM_FRAME_CONTROL)
+        RL_PollInputEvents();              // Poll input events (SUPPORT_CUSTOM_FRAME_CONTROL)
         
-        if (IsKeyPressed(KEY_SPACE)) pause = !pause;
+        if (RL_IsKeyPressed(KEY_SPACE)) pause = !pause;
         
-        if (IsKeyPressed(KEY_UP)) targetFPS += 20;
-        else if (IsKeyPressed(KEY_DOWN)) targetFPS -= 20;
+        if (RL_IsKeyPressed(KEY_UP)) targetFPS += 20;
+        else if (RL_IsKeyPressed(KEY_DOWN)) targetFPS -= 20;
         
         if (targetFPS < 0) targetFPS = 0;
 
         if (!pause)
         {
             position += 200*deltaTime;  // We move at 200 pixels per second
-            if (position >= GetScreenWidth()) position = 0;
+            if (position >= RL_GetScreenWidth()) position = 0;
             timeCounter += deltaTime;   // We count time (seconds)
         }
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            for (int i = 0; i < GetScreenWidth()/200; i++) DrawRectangle(200*i, 0, 1, GetScreenHeight(), SKYBLUE);
+            for (int i = 0; i < RL_GetScreenWidth()/200; i++) RL_DrawRectangle(200*i, 0, 1, RL_GetScreenHeight(), RL_SKYBLUE);
             
-            DrawCircle((int)position, GetScreenHeight()/2 - 25, 50, RED);
+            RL_DrawCircle((int)position, RL_GetScreenHeight()/2 - 25, 50, RL_RED);
             
-            DrawText(TextFormat("%03.0f ms", timeCounter*1000.0f), (int)position - 40, GetScreenHeight()/2 - 100, 20, MAROON);
-            DrawText(TextFormat("PosX: %03.0f", position), (int)position - 50, GetScreenHeight()/2 + 40, 20, BLACK);
+            RL_DrawText(RL_TextFormat("%03.0f ms", timeCounter*1000.0f), (int)position - 40, RL_GetScreenHeight()/2 - 100, 20, RL_MAROON);
+            RL_DrawText(RL_TextFormat("PosX: %03.0f", position), (int)position - 50, RL_GetScreenHeight()/2 + 40, 20, RL_BLACK);
             
-            DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, DARKGRAY);
-            DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, GRAY);
-            DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, GRAY);
-            DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, LIME);
-            DrawText(TextFormat("CURRENT FPS: %i", (int)(1.0f/deltaTime)), GetScreenWidth() - 220, 40, 20, GREEN);
+            RL_DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20, RL_DARKGRAY);
+            RL_DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, RL_GetScreenHeight() - 60, 20, RL_GRAY);
+            RL_DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, RL_GetScreenHeight() - 30, 20, RL_GRAY);
+            RL_DrawText(RL_TextFormat("TARGET FPS: %i", targetFPS), RL_GetScreenWidth() - 220, 10, 20, RL_LIME);
+            RL_DrawText(RL_TextFormat("CURRENT FPS: %i", (int)(1.0f/deltaTime)), RL_GetScreenWidth() - 220, 40, 20, RL_GREEN);
 
-        EndDrawing();
+        RL_EndDrawing();
 
         // NOTE: In case raylib is configured to SUPPORT_CUSTOM_FRAME_CONTROL, 
         // Events polling, screen buffer swap and frame time control must be managed by the user
 
-        SwapScreenBuffer();         // Flip the back buffer to screen (front buffer)
+        RL_SwapScreenBuffer();         // Flip the back buffer to screen (front buffer)
         
-        currentTime = GetTime();
+        currentTime = RL_GetTime();
         updateDrawTime = currentTime - previousTime;
         
         if (targetFPS > 0)          // We want a fixed frame rate
@@ -110,8 +110,8 @@ int main(void)
             waitTime = (1.0f/(float)targetFPS) - updateDrawTime;
             if (waitTime > 0.0) 
             {
-                WaitTime((float)waitTime);
-                currentTime = GetTime();
+                RL_WaitTime((float)waitTime);
+                currentTime = RL_GetTime();
                 deltaTime = (float)(currentTime - previousTime);
             }
         }
@@ -123,7 +123,7 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

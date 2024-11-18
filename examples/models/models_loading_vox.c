@@ -45,36 +45,36 @@ int main(void)
 		"resources/models/vox/fez.vox"
 	};
 
-	InitWindow(screenWidth, screenHeight, "raylib [models] example - magicavoxel loading");
+	RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - magicavoxel loading");
 
 	// Define the camera to look into our 3d world
-	Camera camera = { 0 };
-	camera.position = (Vector3){ 10.0f, 10.0f, 10.0f }; // Camera position
-	camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-	camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-	camera.fovy = 45.0f;                                // Camera field-of-view Y
-	camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+	RL_Camera camera = { 0 };
+	camera.position = (RL_Vector3){ 10.0f, 10.0f, 10.0f }; // RL_Camera position
+	camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+	camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+	camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+	camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
 	//--------------------------------------------------------------------------------------
 	// Load MagicaVoxel files
-	Model models[MAX_VOX_FILES] = { 0 };
+	RL_Model models[MAX_VOX_FILES] = { 0 };
 
 	for (int i = 0; i < MAX_VOX_FILES; i++)
 	{
 		// Load VOX file and measure time
-		double t0 = GetTime() * 1000.0;
-		models[i] = LoadModel(voxFileNames[i]);
-		double t1 = GetTime() * 1000.0;
+		double t0 = RL_GetTime() * 1000.0;
+		models[i] = RL_LoadModel(voxFileNames[i]);
+		double t1 = RL_GetTime() * 1000.0;
 
-		TraceLog(LOG_WARNING, TextFormat("[%s] File loaded in %.3f ms", voxFileNames[i], t1 - t0));
+		RL_TraceLog(LOG_WARNING, RL_TextFormat("[%s] File loaded in %.3f ms", voxFileNames[i], t1 - t0));
 
 		// Compute model translation matrix to center model on draw position (0, 0 , 0)
-		BoundingBox bb = GetModelBoundingBox(models[i]);
-		Vector3 center = { 0 };
+		RL_BoundingBox bb = RL_GetModelBoundingBox(models[i]);
+		RL_Vector3 center = { 0 };
 		center.x = bb.min.x + (((bb.max.x - bb.min.x) / 2));
 		center.z = bb.min.z + (((bb.max.z - bb.min.z) / 2));
 
-		Matrix matTranslate = MatrixTranslate(-center.x, 0, -center.z);
+		RL_Matrix matTranslate = MatrixTranslate(-center.x, 0, -center.z);
 		models[i].transform = matTranslate;
 	}
 
@@ -82,23 +82,23 @@ int main(void)
 
 	//--------------------------------------------------------------------------------------
 	// Load voxel shader
-	Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/voxel_lighting.vs", GLSL_VERSION),
-		TextFormat("resources/shaders/glsl%i/voxel_lighting.fs", GLSL_VERSION));
+	RL_Shader shader = RL_LoadShader(RL_TextFormat("resources/shaders/glsl%i/voxel_lighting.vs", GLSL_VERSION),
+		RL_TextFormat("resources/shaders/glsl%i/voxel_lighting.fs", GLSL_VERSION));
 
 	// Get some required shader locations
-	shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
+	shader.locs[SHADER_LOC_VECTOR_VIEW] = RL_GetShaderLocation(shader, "viewPos");
 	// NOTE: "matModel" location name is automatically assigned on shader loading, 
 	// no need to get the location again if using that uniform name
-	//shader.locs[SHADER_LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
+	//shader.locs[SHADER_LOC_MATRIX_MODEL] = RL_GetShaderLocation(shader, "matModel");
 
 	// Ambient light level (some basic lighting)
-	int ambientLoc = GetShaderLocation(shader, "ambient");
-	SetShaderValue(shader, ambientLoc, (float[4]) { 0.1f, 0.1f, 0.1f, 1.0f }, SHADER_UNIFORM_VEC4);
+	int ambientLoc = RL_GetShaderLocation(shader, "ambient");
+	RL_SetShaderValue(shader, ambientLoc, (float[4]) { 0.1f, 0.1f, 0.1f, 1.0f }, SHADER_UNIFORM_VEC4);
 
 	// Assign out lighting shader to model
 	for (int i = 0; i < MAX_VOX_FILES; i++)
 	{
-		Model m = models[i];
+		RL_Model m = models[i];
 		for (int j = 0; j < m.materialCount; j++)
 		{
 			m.materials[j].shader = shader;
@@ -107,26 +107,26 @@ int main(void)
 
 	// Create lights
 	Light lights[MAX_LIGHTS] = { 0 };
-	lights[0] = CreateLight(LIGHT_POINT, (Vector3) { -20, 20, -20 }, Vector3Zero(), GRAY, shader);
-	lights[1] = CreateLight(LIGHT_POINT, (Vector3) { 20, -20, 20 }, Vector3Zero(), GRAY, shader);
-	lights[2] = CreateLight(LIGHT_POINT, (Vector3) { -20, 20, 20 }, Vector3Zero(), GRAY, shader);
-	lights[3] = CreateLight(LIGHT_POINT, (Vector3) { 20, -20, -20 }, Vector3Zero(), GRAY, shader);
+	lights[0] = CreateLight(LIGHT_POINT, (RL_Vector3) { -20, 20, -20 }, Vector3Zero(), RL_GRAY, shader);
+	lights[1] = CreateLight(LIGHT_POINT, (RL_Vector3) { 20, -20, 20 }, Vector3Zero(), RL_GRAY, shader);
+	lights[2] = CreateLight(LIGHT_POINT, (RL_Vector3) { -20, 20, 20 }, Vector3Zero(), RL_GRAY, shader);
+	lights[3] = CreateLight(LIGHT_POINT, (RL_Vector3) { 20, -20, -20 }, Vector3Zero(), RL_GRAY, shader);
 
 
-	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+	RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
 	//--------------------------------------------------------------------------------------
-	Vector3 modelpos = { 0 };
-	Vector3 camerarot = { 0 };
+	RL_Vector3 modelpos = { 0 };
+	RL_Vector3 camerarot = { 0 };
 
 	// Main game loop
-	while (!WindowShouldClose())    // Detect window close button or ESC key
+	while (!RL_WindowShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
 		//----------------------------------------------------------------------------------
-		if (IsMouseButtonDown(MOUSE_BUTTON_MIDDLE))
+		if (RL_IsMouseButtonDown(MOUSE_BUTTON_MIDDLE))
 		{
-			const Vector2 mouseDelta = GetMouseDelta();
+			const RL_Vector2 mouseDelta = RL_GetMouseDelta();
 			camerarot.x = mouseDelta.x * 0.05f;
 			camerarot.y = mouseDelta.y * 0.05f;
 		}
@@ -136,23 +136,23 @@ int main(void)
 			camerarot.y = 0;
 		}
 
-		UpdateCameraPro(&camera,
-			(Vector3) {
-			(IsKeyDown(KEY_W) || IsKeyDown(KEY_UP)) * 0.1f -      // Move forward-backward
-				(IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN)) * 0.1f,
-				(IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) * 0.1f -   // Move right-left
-				(IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) * 0.1f,
+		RL_UpdateCameraPro(&camera,
+			(RL_Vector3) {
+			(RL_IsKeyDown(KEY_W) || RL_IsKeyDown(KEY_UP)) * 0.1f -      // Move forward-backward
+				(RL_IsKeyDown(KEY_S) || RL_IsKeyDown(KEY_DOWN)) * 0.1f,
+				(RL_IsKeyDown(KEY_D) || RL_IsKeyDown(KEY_RIGHT)) * 0.1f -   // Move right-left
+				(RL_IsKeyDown(KEY_A) || RL_IsKeyDown(KEY_LEFT)) * 0.1f,
 				0.0f                                                // Move up-down
 		},
 			camerarot,
-			GetMouseWheelMove() * -2.0f);                              // Move to target (zoom)
+			RL_GetMouseWheelMove() * -2.0f);                              // Move to target (zoom)
 
 		// Cycle between models on mouse click
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) currentModel = (currentModel + 1) % MAX_VOX_FILES;
+		if (RL_IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) currentModel = (currentModel + 1) % MAX_VOX_FILES;
 
 		// Update the shader with the camera view vector (points towards { 0.0f, 0.0f, 0.0f })
 		float cameraPos[3] = { camera.position.x, camera.position.y, camera.position.z };
-		SetShaderValue(shader, shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
+		RL_SetShaderValue(shader, shader.locs[SHADER_LOC_VECTOR_VIEW], cameraPos, SHADER_UNIFORM_VEC3);
 
 		// Update light values (actually, only enable/disable them)
 		for (int i = 0; i < MAX_LIGHTS; i++) UpdateLightValues(shader, lights[i]);
@@ -160,43 +160,43 @@ int main(void)
 		//----------------------------------------------------------------------------------
 		// Draw
 		//----------------------------------------------------------------------------------
-		BeginDrawing();
+		RL_BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		RL_ClearBackground(RL_RAYWHITE);
 
 		// Draw 3D model
-		BeginMode3D(camera);
+		RL_BeginMode3D(camera);
 
-		DrawModel(models[currentModel], modelpos, 1.0f, WHITE);
-		DrawGrid(10, 1.0);
+		RL_DrawModel(models[currentModel], modelpos, 1.0f, RL_WHITE);
+		RL_DrawGrid(10, 1.0);
 
 		// Draw spheres to show where the lights are
 		for (int i = 0; i < MAX_LIGHTS; i++)
 		{
-			if (lights[i].enabled) DrawSphereEx(lights[i].position, 0.2f, 8, 8, lights[i].color);
-			else DrawSphereWires(lights[i].position, 0.2f, 8, 8, ColorAlpha(lights[i].color, 0.3f));
+			if (lights[i].enabled) RL_DrawSphereEx(lights[i].position, 0.2f, 8, 8, lights[i].color);
+			else RL_DrawSphereWires(lights[i].position, 0.2f, 8, 8, RL_ColorAlpha(lights[i].color, 0.3f));
 		}
 
-		EndMode3D();
+		RL_EndMode3D();
 
 		// Display info
-		DrawRectangle(10, 400, 340, 60, Fade(SKYBLUE, 0.5f));
-		DrawRectangleLines(10, 400, 340, 60, Fade(DARKBLUE, 0.5f));
-		DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, BLUE);
-		DrawText("MOUSE MIDDLE BUTTON to ZOOM OR ROTATE CAMERA", 40, 420, 10, BLUE);
-		DrawText("UP-DOWN-LEFT-RIGHT KEYS to MOVE CAMERA", 40, 430, 10, BLUE);
-		DrawText(TextFormat("File: %s", GetFileName(voxFileNames[currentModel])), 10, 10, 20, GRAY);
+		RL_DrawRectangle(10, 400, 340, 60, RL_Fade(RL_SKYBLUE, 0.5f));
+		RL_DrawRectangleLines(10, 400, 340, 60, RL_Fade(RL_DARKBLUE, 0.5f));
+		RL_DrawText("MOUSE LEFT BUTTON to CYCLE VOX MODELS", 40, 410, 10, RL_BLUE);
+		RL_DrawText("MOUSE MIDDLE BUTTON to ZOOM OR ROTATE CAMERA", 40, 420, 10, RL_BLUE);
+		RL_DrawText("UP-DOWN-LEFT-RIGHT KEYS to MOVE CAMERA", 40, 430, 10, RL_BLUE);
+		RL_DrawText(RL_TextFormat("File: %s", RL_GetFileName(voxFileNames[currentModel])), 10, 10, 20, RL_GRAY);
 
-		EndDrawing();
+		RL_EndDrawing();
 		//----------------------------------------------------------------------------------
 	}
 
 	// De-Initialization
 	//--------------------------------------------------------------------------------------
 	// Unload models data (GPU VRAM)
-	for (int i = 0; i < MAX_VOX_FILES; i++) UnloadModel(models[i]);
+	for (int i = 0; i < MAX_VOX_FILES; i++) RL_UnloadModel(models[i]);
 
-	CloseWindow();          // Close window and OpenGL context
+	RL_CloseWindow();          // Close window and OpenGL context
 	//--------------------------------------------------------------------------------------
 
 	return 0;

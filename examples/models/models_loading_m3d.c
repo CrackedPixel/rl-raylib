@@ -29,17 +29,17 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - M3D model loading");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - M3D model loading");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 1.5f, 1.5f, 1.5f };    // Camera position
-    camera.target = (Vector3){ 0.0f, 0.4f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 1.5f, 1.5f, 1.5f };    // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 0.4f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
-    Vector3 position = { 0.0f, 0.0f, 0.0f };            // Set model position
+    RL_Vector3 position = { 0.0f, 0.0f, 0.0f };            // Set model position
 
     char modelFileName[128] = "resources/models/m3d/cesium_man.m3d";
     bool drawMesh = 1;
@@ -47,67 +47,67 @@ int main(void)
     bool animPlaying = false;   // Store anim state, what to draw
 
     // Load model
-    Model model = LoadModel(modelFileName); // Load the bind-pose model mesh and basic data
+    RL_Model model = RL_LoadModel(modelFileName); // Load the bind-pose model mesh and basic data
 
     // Load animations
     int animsCount = 0;
     int animFrameCounter = 0, animId = 0;
-    ModelAnimation *anims = LoadModelAnimations(modelFileName, &animsCount); // Load skeletal animation data
+    RL_ModelAnimation *anims = RL_LoadModelAnimations(modelFileName, &animsCount); // Load skeletal animation data
 
-    DisableCursor();                    // Limit cursor to relative movement inside the window
+    RL_DisableCursor();                    // Limit cursor to relative movement inside the window
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_FIRST_PERSON);
+        RL_UpdateCamera(&camera, CAMERA_FIRST_PERSON);
 
         if (animsCount)
         {
             // Play animation when spacebar is held down (or step one frame with N)
-            if (IsKeyDown(KEY_SPACE) || IsKeyPressed(KEY_N))
+            if (RL_IsKeyDown(KEY_SPACE) || RL_IsKeyPressed(KEY_N))
             {
                 animFrameCounter++;
 
                 if (animFrameCounter >= anims[animId].frameCount) animFrameCounter = 0;
 
-                UpdateModelAnimation(model, anims[animId], animFrameCounter);
+                RL_UpdateModelAnimation(model, anims[animId], animFrameCounter);
                 animPlaying = true;
             }
 
             // Select animation by pressing C
-            if (IsKeyPressed(KEY_C))
+            if (RL_IsKeyPressed(KEY_C))
             {
                 animFrameCounter = 0;
                 animId++;
 
                 if (animId >= (int)animsCount) animId = 0;
-                UpdateModelAnimation(model, anims[animId], 0);
+                RL_UpdateModelAnimation(model, anims[animId], 0);
                 animPlaying = true;
             }
         }
 
         // Toggle skeleton drawing
-        if (IsKeyPressed(KEY_B)) drawSkeleton ^= 1;
+        if (RL_IsKeyPressed(KEY_B)) drawSkeleton ^= 1;
 
         // Toggle mesh drawing
-        if (IsKeyPressed(KEY_M)) drawMesh ^= 1;
+        if (RL_IsKeyPressed(KEY_M)) drawMesh ^= 1;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
                 // Draw 3d model with texture
-                if (drawMesh) DrawModel(model, position, 1.0f, WHITE);
+                if (drawMesh) RL_DrawModel(model, position, 1.0f, RL_WHITE);
 
                 // Draw the animated skeleton
                 if (drawSkeleton)
@@ -117,45 +117,45 @@ int main(void)
                     // without a -1, we would always draw a cube at the origin
                     for (int i = 0; i < model.boneCount - 1; i++)
                     {
-                        // By default the model is loaded in bind-pose by LoadModel().
-                        // But if UpdateModelAnimation() has been called at least once
+                        // By default the model is loaded in bind-pose by RL_LoadModel().
+                        // But if RL_UpdateModelAnimation() has been called at least once
                         // then the model is already in animation pose, so we need the animated skeleton
                         if (!animPlaying || !animsCount)
                         {
                             // Display the bind-pose skeleton
-                            DrawCube(model.bindPose[i].translation, 0.04f, 0.04f, 0.04f, RED);
+                            RL_DrawCube(model.bindPose[i].translation, 0.04f, 0.04f, 0.04f, RL_RED);
 
                             if (model.bones[i].parent >= 0)
                             {
-                                DrawLine3D(model.bindPose[i].translation,
-                                    model.bindPose[model.bones[i].parent].translation, RED);
+                                RL_DrawLine3D(model.bindPose[i].translation,
+                                    model.bindPose[model.bones[i].parent].translation, RL_RED);
                             }
                         }
                         else
                         {
                             // Display the frame-pose skeleton
-                            DrawCube(anims[animId].framePoses[animFrameCounter][i].translation, 0.05f, 0.05f, 0.05f, RED);
+                            RL_DrawCube(anims[animId].framePoses[animFrameCounter][i].translation, 0.05f, 0.05f, 0.05f, RL_RED);
 
                             if (anims[animId].bones[i].parent >= 0)
                             {
-                                DrawLine3D(anims[animId].framePoses[animFrameCounter][i].translation,
-                                    anims[animId].framePoses[animFrameCounter][anims[animId].bones[i].parent].translation, RED);
+                                RL_DrawLine3D(anims[animId].framePoses[animFrameCounter][i].translation,
+                                    anims[animId].framePoses[animFrameCounter][anims[animId].bones[i].parent].translation, RL_RED);
                             }
                         }
                     }
                 }
 
-                DrawGrid(10, 1.0f);         // Draw a grid
+                RL_DrawGrid(10, 1.0f);         // Draw a grid
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, GetScreenHeight() - 80, 10, MAROON);
-            DrawText("PRESS N to STEP ONE ANIMATION FRAME", 10, GetScreenHeight() - 60, 10, DARKGRAY);
-            DrawText("PRESS C to CYCLE THROUGH ANIMATIONS", 10, GetScreenHeight() - 40, 10, DARKGRAY);
-            DrawText("PRESS M to toggle MESH, B to toggle SKELETON DRAWING", 10, GetScreenHeight() - 20, 10, DARKGRAY);
-            DrawText("(c) CesiumMan model by KhronosGroup", GetScreenWidth() - 210, GetScreenHeight() - 20, 10, GRAY);
+            RL_DrawText("PRESS SPACE to PLAY MODEL ANIMATION", 10, RL_GetScreenHeight() - 80, 10, RL_MAROON);
+            RL_DrawText("PRESS N to STEP ONE ANIMATION FRAME", 10, RL_GetScreenHeight() - 60, 10, RL_DARKGRAY);
+            RL_DrawText("PRESS C to CYCLE THROUGH ANIMATIONS", 10, RL_GetScreenHeight() - 40, 10, RL_DARKGRAY);
+            RL_DrawText("PRESS M to toggle MESH, B to toggle SKELETON DRAWING", 10, RL_GetScreenHeight() - 20, 10, RL_DARKGRAY);
+            RL_DrawText("(c) CesiumMan model by KhronosGroup", RL_GetScreenWidth() - 210, RL_GetScreenHeight() - 20, 10, RL_GRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
@@ -163,11 +163,11 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     // Unload model animations data
-    UnloadModelAnimations(anims, animsCount);
+    RL_UnloadModelAnimations(anims, animsCount);
 
-    UnloadModel(model);         // Unload model
+    RL_UnloadModel(model);         // Unload model
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -16,11 +16,11 @@
 #define MAX_CIRCLES  64
 
 typedef struct {
-    Vector2 position;
+    RL_Vector2 position;
     float radius;
     float alpha;
     float speed;
-    Color color;
+    RL_Color color;
 } CircleWave;
 
 //------------------------------------------------------------------------------------
@@ -33,14 +33,14 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    SetConfigFlags(FLAG_MSAA_4X_HINT);  // NOTE: Try to enable MSAA 4X
+    RL_SetConfigFlags(FLAG_MSAA_4X_HINT);  // NOTE: Try to enable MSAA 4X
 
-    InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [audio] example - module playing (streaming)");
 
-    InitAudioDevice();                  // Initialize audio device
+    RL_InitAudioDevice();                  // Initialize audio device
 
-    Color colors[14] = { ORANGE, RED, GOLD, LIME, BLUE, VIOLET, BROWN, LIGHTGRAY, PINK,
-                         YELLOW, GREEN, SKYBLUE, PURPLE, BEIGE };
+    RL_Color colors[14] = { RL_ORANGE, RL_RED, RL_GOLD, RL_LIME, RL_BLUE, RL_VIOLET, RL_BROWN, RL_LIGHTGRAY, RL_PINK,
+                         RL_YELLOW, RL_GREEN, RL_SKYBLUE, RL_PURPLE, RL_BEIGE };
 
     // Creates some circles for visual effect
     CircleWave circles[MAX_CIRCLES] = { 0 };
@@ -48,58 +48,58 @@ int main(void)
     for (int i = MAX_CIRCLES - 1; i >= 0; i--)
     {
         circles[i].alpha = 0.0f;
-        circles[i].radius = (float)GetRandomValue(10, 40);
-        circles[i].position.x = (float)GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
-        circles[i].position.y = (float)GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
-        circles[i].speed = (float)GetRandomValue(1, 100)/2000.0f;
-        circles[i].color = colors[GetRandomValue(0, 13)];
+        circles[i].radius = (float)RL_GetRandomValue(10, 40);
+        circles[i].position.x = (float)RL_GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
+        circles[i].position.y = (float)RL_GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
+        circles[i].speed = (float)RL_GetRandomValue(1, 100)/2000.0f;
+        circles[i].color = colors[RL_GetRandomValue(0, 13)];
     }
 
-    Music music = LoadMusicStream("resources/mini1111.xm");
+    RL_Music music = RL_LoadMusicStream("resources/mini1111.xm");
     music.looping = false;
     float pitch = 1.0f;
 
-    PlayMusicStream(music);
+    RL_PlayMusicStream(music);
 
     float timePlayed = 0.0f;
     bool pause = false;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateMusicStream(music);      // Update music buffer with new stream data
+        RL_UpdateMusicStream(music);      // Update music buffer with new stream data
 
         // Restart music playing (stop and play)
-        if (IsKeyPressed(KEY_SPACE))
+        if (RL_IsKeyPressed(KEY_SPACE))
         {
-            StopMusicStream(music);
-            PlayMusicStream(music);
+            RL_StopMusicStream(music);
+            RL_PlayMusicStream(music);
             pause = false;
         }
 
         // Pause/Resume music playing
-        if (IsKeyPressed(KEY_P))
+        if (RL_IsKeyPressed(KEY_P))
         {
             pause = !pause;
 
-            if (pause) PauseMusicStream(music);
-            else ResumeMusicStream(music);
+            if (pause) RL_PauseMusicStream(music);
+            else RL_ResumeMusicStream(music);
         }
 
-        if (IsKeyDown(KEY_DOWN)) pitch -= 0.01f;
-        else if (IsKeyDown(KEY_UP)) pitch += 0.01f;
+        if (RL_IsKeyDown(KEY_DOWN)) pitch -= 0.01f;
+        else if (RL_IsKeyDown(KEY_UP)) pitch += 0.01f;
 
-        SetMusicPitch(music, pitch);
+        RL_SetMusicPitch(music, pitch);
 
         // Get timePlayed scaled to bar dimensions
-        timePlayed = GetMusicTimePlayed(music)/GetMusicTimeLength(music)*(screenWidth - 40);
+        timePlayed = RL_GetMusicTimePlayed(music)/RL_GetMusicTimeLength(music)*(screenWidth - 40);
 
-        // Color circles animation
+        // RL_Color circles animation
         for (int i = MAX_CIRCLES - 1; (i >= 0) && !pause; i--)
         {
             circles[i].alpha += circles[i].speed;
@@ -110,50 +110,50 @@ int main(void)
             if (circles[i].alpha <= 0.0f)
             {
                 circles[i].alpha = 0.0f;
-                circles[i].radius = (float)GetRandomValue(10, 40);
-                circles[i].position.x = (float)GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
-                circles[i].position.y = (float)GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
-                circles[i].color = colors[GetRandomValue(0, 13)];
-                circles[i].speed = (float)GetRandomValue(1, 100)/2000.0f;
+                circles[i].radius = (float)RL_GetRandomValue(10, 40);
+                circles[i].position.x = (float)RL_GetRandomValue((int)circles[i].radius, (int)(screenWidth - circles[i].radius));
+                circles[i].position.y = (float)RL_GetRandomValue((int)circles[i].radius, (int)(screenHeight - circles[i].radius));
+                circles[i].color = colors[RL_GetRandomValue(0, 13)];
+                circles[i].speed = (float)RL_GetRandomValue(1, 100)/2000.0f;
             }
         }
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             for (int i = MAX_CIRCLES - 1; i >= 0; i--)
             {
-                DrawCircleV(circles[i].position, circles[i].radius, Fade(circles[i].color, circles[i].alpha));
+                RL_DrawCircleV(circles[i].position, circles[i].radius, RL_Fade(circles[i].color, circles[i].alpha));
             }
 
             // Draw time bar
-            DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, LIGHTGRAY);
-            DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, MAROON);
-            DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, GRAY);
+            RL_DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, RL_LIGHTGRAY);
+            RL_DrawRectangle(20, screenHeight - 20 - 12, (int)timePlayed, 12, RL_MAROON);
+            RL_DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, RL_GRAY);
 
             // Draw help instructions
-            DrawRectangle(20, 20, 425, 145, WHITE);
-            DrawRectangleLines(20, 20, 425, 145, GRAY);
-            DrawText("PRESS SPACE TO RESTART MUSIC", 40, 40, 20, BLACK);
-            DrawText("PRESS P TO PAUSE/RESUME", 40, 70, 20, BLACK);
-            DrawText("PRESS UP/DOWN TO CHANGE SPEED", 40, 100, 20, BLACK);
-            DrawText(TextFormat("SPEED: %f", pitch), 40, 130, 20, MAROON);
+            RL_DrawRectangle(20, 20, 425, 145, RL_WHITE);
+            RL_DrawRectangleLines(20, 20, 425, 145, RL_GRAY);
+            RL_DrawText("PRESS SPACE TO RESTART MUSIC", 40, 40, 20, RL_BLACK);
+            RL_DrawText("PRESS P TO PAUSE/RESUME", 40, 70, 20, RL_BLACK);
+            RL_DrawText("PRESS UP/DOWN TO CHANGE SPEED", 40, 100, 20, RL_BLACK);
+            RL_DrawText(RL_TextFormat("SPEED: %f", pitch), 40, 130, 20, RL_MAROON);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadMusicStream(music);          // Unload music stream buffers from RAM
+    RL_UnloadMusicStream(music);          // Unload music stream buffers from RAM
 
-    CloseAudioDevice();     // Close audio device (music streaming is automatically stopped)
+    RL_CloseAudioDevice();     // Close audio device (music streaming is automatically stopped)
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -30,10 +30,10 @@ int main(void)
     const int screenHeight = 450;
 
     // NOTE: screenWidth/screenHeight should match VR device aspect ratio
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - vr simulator");
 
     // VR device parameters definition
-    VrDeviceInfo device = {
+    RL_VrDeviceInfo device = {
         // Oculus Rift CV1 parameters for simulator
         .hResolution = 2160,                 // Horizontal resolution in pixels
         .vResolution = 1200,                 // Vertical resolution in pixels
@@ -56,94 +56,94 @@ int main(void)
     };
 
     // Load VR stereo config for VR device parameteres (Oculus Rift CV1 parameters)
-    VrStereoConfig config = LoadVrStereoConfig(device);
+    RL_VrStereoConfig config = RL_LoadVrStereoConfig(device);
 
     // Distortion shader (uses device lens distortion and chroma)
-    Shader distortion = LoadShader(0, TextFormat("resources/distortion%i.fs", GLSL_VERSION));
+    RL_Shader distortion = RL_LoadShader(0, RL_TextFormat("resources/distortion%i.fs", GLSL_VERSION));
 
     // Update distortion shader with lens and distortion-scale parameters
-    SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "leftLensCenter"),
                    config.leftLensCenter, SHADER_UNIFORM_VEC2);
-    SetShaderValue(distortion, GetShaderLocation(distortion, "rightLensCenter"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "rightLensCenter"),
                    config.rightLensCenter, SHADER_UNIFORM_VEC2);
-    SetShaderValue(distortion, GetShaderLocation(distortion, "leftScreenCenter"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "leftScreenCenter"),
                    config.leftScreenCenter, SHADER_UNIFORM_VEC2);
-    SetShaderValue(distortion, GetShaderLocation(distortion, "rightScreenCenter"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "rightScreenCenter"),
                    config.rightScreenCenter, SHADER_UNIFORM_VEC2);
 
-    SetShaderValue(distortion, GetShaderLocation(distortion, "scale"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "scale"),
                    config.scale, SHADER_UNIFORM_VEC2);
-    SetShaderValue(distortion, GetShaderLocation(distortion, "scaleIn"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "scaleIn"),
                    config.scaleIn, SHADER_UNIFORM_VEC2);
-    SetShaderValue(distortion, GetShaderLocation(distortion, "deviceWarpParam"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "deviceWarpParam"),
                    device.lensDistortionValues, SHADER_UNIFORM_VEC4);
-    SetShaderValue(distortion, GetShaderLocation(distortion, "chromaAbParam"),
+    RL_SetShaderValue(distortion, RL_GetShaderLocation(distortion, "chromaAbParam"),
                    device.chromaAbCorrection, SHADER_UNIFORM_VEC4);
 
     // Initialize framebuffer for stereo rendering
     // NOTE: Screen size should match HMD aspect ratio
-    RenderTexture2D target = LoadRenderTexture(device.hResolution, device.vResolution);
+    RL_RenderTexture2D target = RL_LoadRenderTexture(device.hResolution, device.vResolution);
 
-    // The target's height is flipped (in the source Rectangle), due to OpenGL reasons
-    Rectangle sourceRec = { 0.0f, 0.0f, (float)target.texture.width, -(float)target.texture.height };
-    Rectangle destRec = { 0.0f, 0.0f, (float)GetScreenWidth(), (float)GetScreenHeight() };
+    // The target's height is flipped (in the source RL_Rectangle), due to OpenGL reasons
+    RL_Rectangle sourceRec = { 0.0f, 0.0f, (float)target.texture.width, -(float)target.texture.height };
+    RL_Rectangle destRec = { 0.0f, 0.0f, (float)RL_GetScreenWidth(), (float)RL_GetScreenHeight() };
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 5.0f, 2.0f, 5.0f };    // Camera position
-    camera.target = (Vector3){ 0.0f, 2.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector
-    camera.fovy = 60.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 5.0f, 2.0f, 5.0f };    // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 2.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector
+    camera.fovy = 60.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
-    Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
+    RL_Vector3 cubePosition = { 0.0f, 0.0f, 0.0f };
 
-    DisableCursor();                    // Limit cursor to relative movement inside the window
+    RL_DisableCursor();                    // Limit cursor to relative movement inside the window
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_FIRST_PERSON);
+        RL_UpdateCamera(&camera, CAMERA_FIRST_PERSON);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginTextureMode(target);
-            ClearBackground(RAYWHITE);
-            BeginVrStereoMode(config);
-                BeginMode3D(camera);
+        RL_BeginTextureMode(target);
+            RL_ClearBackground(RL_RAYWHITE);
+            RL_BeginVrStereoMode(config);
+                RL_BeginMode3D(camera);
 
-                    DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-                    DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
-                    DrawGrid(40, 1.0f);
+                    RL_DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RL_RED);
+                    RL_DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, RL_MAROON);
+                    RL_DrawGrid(40, 1.0f);
 
-                EndMode3D();
-            EndVrStereoMode();
-        EndTextureMode();
+                RL_EndMode3D();
+            RL_EndVrStereoMode();
+        RL_EndTextureMode();
         
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
-            BeginShaderMode(distortion);
-                DrawTexturePro(target.texture, sourceRec, destRec, (Vector2){ 0.0f, 0.0f }, 0.0f, WHITE);
-            EndShaderMode();
-            DrawFPS(10, 10);
-        EndDrawing();
+        RL_BeginDrawing();
+            RL_ClearBackground(RL_RAYWHITE);
+            RL_BeginShaderMode(distortion);
+                RL_DrawTexturePro(target.texture, sourceRec, destRec, (RL_Vector2){ 0.0f, 0.0f }, 0.0f, RL_WHITE);
+            RL_EndShaderMode();
+            RL_DrawFPS(10, 10);
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadVrStereoConfig(config);   // Unload stereo config
+    RL_UnloadVrStereoConfig(config);   // Unload stereo config
 
-    UnloadRenderTexture(target);    // Unload stereo render fbo
-    UnloadShader(distortion);       // Unload distortion shader
+    RL_UnloadRenderTexture(target);    // Unload stereo render fbo
+    RL_UnloadShader(distortion);       // Unload distortion shader
 
-    CloseWindow();                  // Close window and OpenGL context
+    RL_CloseWindow();                  // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -28,78 +28,78 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - extract channel from image");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - extract channel from image");
 
-    Image fudesumiImage = LoadImage("resources/fudesumi.png");
+    RL_Image fudesumiImage = RL_LoadImage("resources/fudesumi.png");
 
-    Image imageAlpha = ImageFromChannel(fudesumiImage, 3);
-    ImageAlphaMask(&imageAlpha, imageAlpha);
+    RL_Image imageAlpha = RL_ImageFromChannel(fudesumiImage, 3);
+    RL_ImageAlphaMask(&imageAlpha, imageAlpha);
 
-    Image imageRed = ImageFromChannel(fudesumiImage, 0);
-    ImageAlphaMask(&imageRed, imageAlpha);
+    RL_Image imageRed = RL_ImageFromChannel(fudesumiImage, 0);
+    RL_ImageAlphaMask(&imageRed, imageAlpha);
 
-    Image imageGreen = ImageFromChannel(fudesumiImage, 1);
-    ImageAlphaMask(&imageGreen, imageAlpha);
+    RL_Image imageGreen = RL_ImageFromChannel(fudesumiImage, 1);
+    RL_ImageAlphaMask(&imageGreen, imageAlpha);
 
-    Image imageBlue = ImageFromChannel(fudesumiImage, 2);
-    ImageAlphaMask(&imageBlue, imageAlpha);
+    RL_Image imageBlue = RL_ImageFromChannel(fudesumiImage, 2);
+    RL_ImageAlphaMask(&imageBlue, imageAlpha);
 
-    Image backgroundImage = GenImageChecked(screenWidth, screenHeight, screenWidth/20, screenHeight/20, ORANGE, YELLOW);
+    RL_Image backgroundImage = RL_GenImageChecked(screenWidth, screenHeight, screenWidth/20, screenHeight/20, RL_ORANGE, RL_YELLOW);
 
-    Texture2D fudesumiTexture = LoadTextureFromImage(fudesumiImage);
-    Texture2D textureAlpha = LoadTextureFromImage(imageAlpha);
-    Texture2D textureRed = LoadTextureFromImage(imageRed);
-    Texture2D textureGreen = LoadTextureFromImage(imageGreen);
-    Texture2D textureBlue = LoadTextureFromImage(imageBlue);
-    Texture2D backgroundTexture = LoadTextureFromImage(backgroundImage);
+    RL_Texture2D fudesumiTexture = RL_LoadTextureFromImage(fudesumiImage);
+    RL_Texture2D textureAlpha = RL_LoadTextureFromImage(imageAlpha);
+    RL_Texture2D textureRed = RL_LoadTextureFromImage(imageRed);
+    RL_Texture2D textureGreen = RL_LoadTextureFromImage(imageGreen);
+    RL_Texture2D textureBlue = RL_LoadTextureFromImage(imageBlue);
+    RL_Texture2D backgroundTexture = RL_LoadTextureFromImage(backgroundImage);
 
-    UnloadImage(fudesumiImage);
-    UnloadImage(imageAlpha);
-    UnloadImage(imageRed);
-    UnloadImage(imageGreen);
-    UnloadImage(imageBlue);
-    UnloadImage(backgroundImage);
+    RL_UnloadImage(fudesumiImage);
+    RL_UnloadImage(imageAlpha);
+    RL_UnloadImage(imageRed);
+    RL_UnloadImage(imageGreen);
+    RL_UnloadImage(imageBlue);
+    RL_UnloadImage(backgroundImage);
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 
-    Rectangle fudesumiRec = {0, 0, fudesumiImage.width, fudesumiImage.height};
+    RL_Rectangle fudesumiRec = {0, 0, fudesumiImage.width, fudesumiImage.height};
 
-    Rectangle fudesumiPos = {50, 10, fudesumiImage.width*0.8f, fudesumiImage.height*0.8f};
-    Rectangle redPos = { 410, 10, fudesumiPos.width / 2, fudesumiPos.height / 2 };
-    Rectangle greenPos = { 600, 10, fudesumiPos.width / 2, fudesumiPos.height / 2 };
-    Rectangle bluePos = { 410, 230, fudesumiPos.width / 2, fudesumiPos.height / 2 };
-    Rectangle alphaPos = { 600, 230, fudesumiPos.width / 2, fudesumiPos.height / 2 };
+    RL_Rectangle fudesumiPos = {50, 10, fudesumiImage.width*0.8f, fudesumiImage.height*0.8f};
+    RL_Rectangle redPos = { 410, 10, fudesumiPos.width / 2, fudesumiPos.height / 2 };
+    RL_Rectangle greenPos = { 600, 10, fudesumiPos.width / 2, fudesumiPos.height / 2 };
+    RL_Rectangle bluePos = { 410, 230, fudesumiPos.width / 2, fudesumiPos.height / 2 };
+    RL_Rectangle alphaPos = { 600, 230, fudesumiPos.width / 2, fudesumiPos.height / 2 };
 
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            DrawTexture(backgroundTexture, 0, 0, WHITE);
-            DrawTexturePro(fudesumiTexture, fudesumiRec, fudesumiPos, (Vector2) {0, 0}, 0, WHITE);
+            RL_DrawTexture(backgroundTexture, 0, 0, RL_WHITE);
+            RL_DrawTexturePro(fudesumiTexture, fudesumiRec, fudesumiPos, (RL_Vector2) {0, 0}, 0, RL_WHITE);
 
-            DrawTexturePro(textureRed, fudesumiRec, redPos, (Vector2) {0, 0}, 0, RED);
-            DrawTexturePro(textureGreen, fudesumiRec, greenPos, (Vector2) {0, 0}, 0, GREEN);
-            DrawTexturePro(textureBlue, fudesumiRec, bluePos, (Vector2) {0, 0}, 0, BLUE);
-            DrawTexturePro(textureAlpha, fudesumiRec, alphaPos, (Vector2) {0, 0}, 0, WHITE);
+            RL_DrawTexturePro(textureRed, fudesumiRec, redPos, (RL_Vector2) {0, 0}, 0, RL_RED);
+            RL_DrawTexturePro(textureGreen, fudesumiRec, greenPos, (RL_Vector2) {0, 0}, 0, RL_GREEN);
+            RL_DrawTexturePro(textureBlue, fudesumiRec, bluePos, (RL_Vector2) {0, 0}, 0, RL_BLUE);
+            RL_DrawTexturePro(textureAlpha, fudesumiRec, alphaPos, (RL_Vector2) {0, 0}, 0, RL_WHITE);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(backgroundTexture);
-    UnloadTexture(fudesumiTexture);
-    UnloadTexture(textureRed);
-    UnloadTexture(textureGreen);
-    UnloadTexture(textureBlue);
-    UnloadTexture(textureAlpha);
-    CloseWindow();        // Close window and OpenGL context
+    RL_UnloadTexture(backgroundTexture);
+    RL_UnloadTexture(fudesumiTexture);
+    RL_UnloadTexture(textureRed);
+    RL_UnloadTexture(textureGreen);
+    RL_UnloadTexture(textureBlue);
+    RL_UnloadTexture(textureAlpha);
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

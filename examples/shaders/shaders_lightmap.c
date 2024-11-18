@@ -41,20 +41,20 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    SetConfigFlags(FLAG_MSAA_4X_HINT);  // Enable Multi Sampling Anti Aliasing 4x (if available)
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - lightmap");
+    RL_SetConfigFlags(FLAG_MSAA_4X_HINT);  // Enable Multi Sampling Anti Aliasing 4x (if available)
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - lightmap");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 4.0f, 6.0f, 8.0f };    // Camera position
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 4.0f, 6.0f, 8.0f };    // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
-    Mesh mesh = GenMeshPlane((float)MAP_SIZE, (float)MAP_SIZE, 1, 1);
+    RL_Mesh mesh = RL_GenMeshPlane((float)MAP_SIZE, (float)MAP_SIZE, 1, 1);
 
-    // GenMeshPlane doesn't generate texcoords2 so we will upload them separately
+    // RL_GenMeshPlane doesn't generate texcoords2 so we will upload them separately
     mesh.texcoords2 = (float *)RL_MALLOC(mesh.vertexCount*2*sizeof(float));
 
     // X                          // Y
@@ -73,101 +73,101 @@ int main(void)
     rlDisableVertexArray();
 
     // Load lightmap shader
-    Shader shader = LoadShader(TextFormat("resources/shaders/glsl%i/lightmap.vs", GLSL_VERSION),
-                               TextFormat("resources/shaders/glsl%i/lightmap.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(RL_TextFormat("resources/shaders/glsl%i/lightmap.vs", GLSL_VERSION),
+                               RL_TextFormat("resources/shaders/glsl%i/lightmap.fs", GLSL_VERSION));
 
-    Texture texture = LoadTexture("resources/cubicmap_atlas.png");
-    Texture light = LoadTexture("resources/spark_flame.png");
+    RL_Texture texture = RL_LoadTexture("resources/cubicmap_atlas.png");
+    RL_Texture light = RL_LoadTexture("resources/spark_flame.png");
 
-    GenTextureMipmaps(&texture);
-    SetTextureFilter(texture, TEXTURE_FILTER_TRILINEAR);
+    RL_GenTextureMipmaps(&texture);
+    RL_SetTextureFilter(texture, TEXTURE_FILTER_TRILINEAR);
 
-    RenderTexture lightmap = LoadRenderTexture(MAP_SIZE, MAP_SIZE);
+    RL_RenderTexture lightmap = RL_LoadRenderTexture(MAP_SIZE, MAP_SIZE);
 
-    SetTextureFilter(lightmap.texture, TEXTURE_FILTER_TRILINEAR);
+    RL_SetTextureFilter(lightmap.texture, TEXTURE_FILTER_TRILINEAR);
 
-    Material material = LoadMaterialDefault();
+    RL_Material material = RL_LoadMaterialDefault();
     material.shader = shader;
     material.maps[MATERIAL_MAP_ALBEDO].texture = texture;
     material.maps[MATERIAL_MAP_METALNESS].texture = lightmap.texture;
 
     // Drawing to lightmap
-    BeginTextureMode(lightmap);
-        ClearBackground(BLACK);
+    RL_BeginTextureMode(lightmap);
+        RL_ClearBackground(RL_BLACK);
 
-        BeginBlendMode(BLEND_ADDITIVE);
-            DrawTexturePro(
+        RL_BeginBlendMode(BLEND_ADDITIVE);
+            RL_DrawTexturePro(
                 light,
-                (Rectangle){ 0, 0, light.width, light.height },
-                (Rectangle){ 0, 0, 20, 20 },
-                (Vector2){ 10.0, 10.0 },
+                (RL_Rectangle){ 0, 0, light.width, light.height },
+                (RL_Rectangle){ 0, 0, 20, 20 },
+                (RL_Vector2){ 10.0, 10.0 },
                 0.0,
-                RED
+                RL_RED
             );
-            DrawTexturePro(
+            RL_DrawTexturePro(
                 light,
-                (Rectangle){ 0, 0, light.width, light.height },
-                (Rectangle){ 8, 4, 20, 20 },
-                (Vector2){ 10.0, 10.0 },
+                (RL_Rectangle){ 0, 0, light.width, light.height },
+                (RL_Rectangle){ 8, 4, 20, 20 },
+                (RL_Vector2){ 10.0, 10.0 },
                 0.0,
-                BLUE
+                RL_BLUE
             );
-            DrawTexturePro(
+            RL_DrawTexturePro(
                 light,
-                (Rectangle){ 0, 0, light.width, light.height },
-                (Rectangle){ 8, 8, 10, 10 },
-                (Vector2){ 5.0, 5.0 },
+                (RL_Rectangle){ 0, 0, light.width, light.height },
+                (RL_Rectangle){ 8, 8, 10, 10 },
+                (RL_Vector2){ 5.0, 5.0 },
                 0.0,
-                GREEN
+                RL_GREEN
             );
-        BeginBlendMode(BLEND_ALPHA);
-    EndTextureMode();
+        RL_BeginBlendMode(BLEND_ALPHA);
+    RL_EndTextureMode();
 
-    SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);                   // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_ORBITAL);
+        RL_UpdateCamera(&camera, CAMERA_ORBITAL);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
+        RL_BeginDrawing();
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
-                DrawMesh(mesh, material, MatrixIdentity());
-            EndMode3D();
+            RL_BeginMode3D(camera);
+                RL_DrawMesh(mesh, material, MatrixIdentity());
+            RL_EndMode3D();
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-            DrawTexturePro(
+            RL_DrawTexturePro(
                 lightmap.texture,
-                (Rectangle){ 0, 0, -MAP_SIZE, -MAP_SIZE },
-                (Rectangle){ GetRenderWidth() - MAP_SIZE*8 - 10, 10, MAP_SIZE*8, MAP_SIZE*8 },
-                (Vector2){ 0.0, 0.0 },
+                (RL_Rectangle){ 0, 0, -MAP_SIZE, -MAP_SIZE },
+                (RL_Rectangle){ RL_GetRenderWidth() - MAP_SIZE*8 - 10, 10, MAP_SIZE*8, MAP_SIZE*8 },
+                (RL_Vector2){ 0.0, 0.0 },
                 0.0,
-                WHITE);
+                RL_WHITE);
                 
-            DrawText("lightmap", GetRenderWidth() - 66, 16 + MAP_SIZE*8, 10, GRAY);
-            DrawText("10x10 pixels", GetRenderWidth() - 76, 30 + MAP_SIZE*8, 10, GRAY);
+            RL_DrawText("lightmap", RL_GetRenderWidth() - 66, 16 + MAP_SIZE*8, 10, RL_GRAY);
+            RL_DrawText("10x10 pixels", RL_GetRenderWidth() - 76, 30 + MAP_SIZE*8, 10, RL_GRAY);
                 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadMesh(mesh);       // Unload the mesh
-    UnloadShader(shader);   // Unload shader
-    UnloadTexture(texture); // Unload texture
-    UnloadTexture(light);   // Unload texture
+    RL_UnloadMesh(mesh);       // Unload the mesh
+    RL_UnloadShader(shader);   // Unload shader
+    RL_UnloadTexture(texture); // Unload texture
+    RL_UnloadTexture(light);   // Unload texture
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

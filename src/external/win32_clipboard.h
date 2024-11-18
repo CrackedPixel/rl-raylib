@@ -234,7 +234,7 @@ unsigned char* Win32GetClipboardImageData(int* width, int* height, unsigned long
     HGLOBAL clipHandle = (HGLOBAL)GetClipboardData(CF_DIB);
     if (!clipHandle) {
         severity = LOG_ERROR;
-        msgString = "Clipboard data is not an Image";
+        msgString = "Clipboard data is not an RL_Image";
         goto close;
     }
 

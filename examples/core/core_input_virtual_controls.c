@@ -27,12 +27,12 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - input virtual controls");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - input virtual controls");
 
     const float dpadX = 90;
     const float dpadY = 300;
     const float dpadRad = 25.0f;//radius of each pad
-    Color dpadColor = BLUE;
+    RL_Color dpadColor = RL_BLUE;
     int dpadKeydown = -1;//-1 if not down, else 0,1,2,3 
 
     
@@ -48,26 +48,26 @@ int main(void)
     float playerX=100;
     float playerY=100;
 
-    SetTargetFPS(60);
+    RL_SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
     // Update 
     //--------------------------------------------------------------------------
         dpadKeydown = -1; //reset
         int inputX = 0;
         int inputY = 0;
-        if(GetTouchPointCount()>0)
+        if(RL_GetTouchPointCount()>0)
         {//use touch pos
-            inputX = GetTouchX();
-            inputY = GetTouchY();
+            inputX = RL_GetTouchX();
+            inputY = RL_GetTouchY();
         }
         else
         {//use mouse pos
-            inputX = GetMouseX();
-            inputY = GetMouseY();
+            inputX = RL_GetMouseX();
+            inputY = RL_GetMouseY();
         }
         for(int i=0;i<4;i++)
         {
@@ -80,42 +80,42 @@ int main(void)
         }
         // move player
         switch(dpadKeydown){
-            case 0: playerY -= 50*GetFrameTime();
+            case 0: playerY -= 50*RL_GetFrameTime();
             break;
-            case 1: playerX -= 50*GetFrameTime();
+            case 1: playerX -= 50*RL_GetFrameTime();
             break;
-            case 2: playerX += 50*GetFrameTime();
+            case 2: playerX += 50*RL_GetFrameTime();
             break;
-            case 3: playerY += 50*GetFrameTime();
+            case 3: playerY += 50*RL_GetFrameTime();
             default:;
         };
     //--------------------------------------------------------------------------
     // Draw 
     //--------------------------------------------------------------------------
-       BeginDrawing();
-            ClearBackground(RAYWHITE);
+       RL_BeginDrawing();
+            RL_ClearBackground(RL_RAYWHITE);
             for(int i=0;i<4;i++)
             {
                 //draw all pad
-                DrawCircleV((Vector2) { dpadCollider[i][0], dpadCollider[i][1] }, dpadRad, dpadColor);
+                RL_DrawCircleV((RL_Vector2) { dpadCollider[i][0], dpadCollider[i][1] }, dpadRad, dpadColor);
                 if(i!=dpadKeydown)
                 {
                     //draw label
-                    DrawText(TextSubtext(dpadLabel,i,1),
+                    RL_DrawText(RL_TextSubtext(dpadLabel,i,1),
                              (int)dpadCollider[i][0]-7,
-                             (int)dpadCollider[i][1]-8,20,BLACK);
+                             (int)dpadCollider[i][1]-8,20,RL_BLACK);
                 }
             }
 
-            DrawRectangleRec((Rectangle) { playerX - 4, playerY - 4, 75, 28 }, RED);
-            DrawText("Player", (int)playerX, (int)playerY, 20, WHITE);
-        EndDrawing();
+            RL_DrawRectangleRec((RL_Rectangle) { playerX - 4, playerY - 4, 75, 28 }, RL_RED);
+            RL_DrawText("Player", (int)playerX, (int)playerY, 20, RL_WHITE);
+        RL_EndDrawing();
     //--------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

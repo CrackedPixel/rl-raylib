@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [shaders] example - Texture Waves
+*   raylib [shaders] example - RL_Texture Waves
 *
 *   NOTE: This example requires raylib OpenGL 3.3 or ES2 versions for shaders support,
 *         OpenGL 1.1 does not support shaders, recompile raylib to OpenGL 3.3 version.
@@ -38,23 +38,23 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture waves");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - texture waves");
 
     // Load texture texture to apply shaders
-    Texture2D texture = LoadTexture("resources/space.png");
+    RL_Texture2D texture = RL_LoadTexture("resources/space.png");
 
     // Load shader and setup location points and values
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/wave.fs", GLSL_VERSION));
 
-    int secondsLoc = GetShaderLocation(shader, "seconds");
-    int freqXLoc = GetShaderLocation(shader, "freqX");
-    int freqYLoc = GetShaderLocation(shader, "freqY");
-    int ampXLoc = GetShaderLocation(shader, "ampX");
-    int ampYLoc = GetShaderLocation(shader, "ampY");
-    int speedXLoc = GetShaderLocation(shader, "speedX");
-    int speedYLoc = GetShaderLocation(shader, "speedY");
+    int secondsLoc = RL_GetShaderLocation(shader, "seconds");
+    int freqXLoc = RL_GetShaderLocation(shader, "freqX");
+    int freqYLoc = RL_GetShaderLocation(shader, "freqY");
+    int ampXLoc = RL_GetShaderLocation(shader, "ampX");
+    int ampYLoc = RL_GetShaderLocation(shader, "ampY");
+    int speedXLoc = RL_GetShaderLocation(shader, "speedX");
+    int speedYLoc = RL_GetShaderLocation(shader, "speedY");
 
-    // Shader uniform values that can be updated at any time
+    // RL_Shader uniform values that can be updated at any time
     float freqX = 25.0f;
     float freqY = 25.0f;
     float ampX = 5.0f;
@@ -62,53 +62,53 @@ int main(void)
     float speedX = 8.0f;
     float speedY = 8.0f;
 
-    float screenSize[2] = { (float)GetScreenWidth(), (float)GetScreenHeight() };
-    SetShaderValue(shader, GetShaderLocation(shader, "size"), &screenSize, SHADER_UNIFORM_VEC2);
-    SetShaderValue(shader, freqXLoc, &freqX, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shader, freqYLoc, &freqY, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shader, ampXLoc, &ampX, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shader, ampYLoc, &ampY, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shader, speedXLoc, &speedX, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shader, speedYLoc, &speedY, SHADER_UNIFORM_FLOAT);
+    float screenSize[2] = { (float)RL_GetScreenWidth(), (float)RL_GetScreenHeight() };
+    RL_SetShaderValue(shader, RL_GetShaderLocation(shader, "size"), &screenSize, SHADER_UNIFORM_VEC2);
+    RL_SetShaderValue(shader, freqXLoc, &freqX, SHADER_UNIFORM_FLOAT);
+    RL_SetShaderValue(shader, freqYLoc, &freqY, SHADER_UNIFORM_FLOAT);
+    RL_SetShaderValue(shader, ampXLoc, &ampX, SHADER_UNIFORM_FLOAT);
+    RL_SetShaderValue(shader, ampYLoc, &ampY, SHADER_UNIFORM_FLOAT);
+    RL_SetShaderValue(shader, speedXLoc, &speedX, SHADER_UNIFORM_FLOAT);
+    RL_SetShaderValue(shader, speedYLoc, &speedY, SHADER_UNIFORM_FLOAT);
 
     float seconds = 0.0f;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     // -------------------------------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        seconds += GetFrameTime();
+        seconds += RL_GetFrameTime();
 
-        SetShaderValue(shader, secondsLoc, &seconds, SHADER_UNIFORM_FLOAT);
+        RL_SetShaderValue(shader, secondsLoc, &seconds, SHADER_UNIFORM_FLOAT);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginShaderMode(shader);
+            RL_BeginShaderMode(shader);
 
-                DrawTexture(texture, 0, 0, WHITE);
-                DrawTexture(texture, texture.width, 0, WHITE);
+                RL_DrawTexture(texture, 0, 0, RL_WHITE);
+                RL_DrawTexture(texture, texture.width, 0, RL_WHITE);
 
-            EndShaderMode();
+            RL_EndShaderMode();
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadShader(shader);         // Unload shader
-    UnloadTexture(texture);       // Unload texture
+    RL_UnloadShader(shader);         // Unload shader
+    RL_UnloadTexture(texture);       // Unload texture
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -34,68 +34,68 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Apply an outline to a texture");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - Apply an outline to a texture");
 
-    Texture2D texture = LoadTexture("resources/fudesumi.png");
+    RL_Texture2D texture = RL_LoadTexture("resources/fudesumi.png");
 
-    Shader shdrOutline = LoadShader(0, TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
+    RL_Shader shdrOutline = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/outline.fs", GLSL_VERSION));
 
     float outlineSize = 2.0f;
-    float outlineColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };     // Normalized RED color
+    float outlineColor[4] = { 1.0f, 0.0f, 0.0f, 1.0f };     // Normalized RL_RED color
     float textureSize[2] = { (float)texture.width, (float)texture.height };
 
     // Get shader locations
-    int outlineSizeLoc = GetShaderLocation(shdrOutline, "outlineSize");
-    int outlineColorLoc = GetShaderLocation(shdrOutline, "outlineColor");
-    int textureSizeLoc = GetShaderLocation(shdrOutline, "textureSize");
+    int outlineSizeLoc = RL_GetShaderLocation(shdrOutline, "outlineSize");
+    int outlineColorLoc = RL_GetShaderLocation(shdrOutline, "outlineColor");
+    int textureSizeLoc = RL_GetShaderLocation(shdrOutline, "textureSize");
 
     // Set shader values (they can be changed later)
-    SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
-    SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, SHADER_UNIFORM_VEC4);
-    SetShaderValue(shdrOutline, textureSizeLoc, textureSize, SHADER_UNIFORM_VEC2);
+    RL_SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
+    RL_SetShaderValue(shdrOutline, outlineColorLoc, outlineColor, SHADER_UNIFORM_VEC4);
+    RL_SetShaderValue(shdrOutline, textureSizeLoc, textureSize, SHADER_UNIFORM_VEC2);
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        outlineSize += GetMouseWheelMove();
+        outlineSize += RL_GetMouseWheelMove();
         if (outlineSize < 1.0f) outlineSize = 1.0f;
 
-        SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
+        RL_SetShaderValue(shdrOutline, outlineSizeLoc, &outlineSize, SHADER_UNIFORM_FLOAT);
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginShaderMode(shdrOutline);
+            RL_BeginShaderMode(shdrOutline);
 
-                DrawTexture(texture, GetScreenWidth()/2 - texture.width/2, -30, WHITE);
+                RL_DrawTexture(texture, RL_GetScreenWidth()/2 - texture.width/2, -30, RL_WHITE);
 
-            EndShaderMode();
+            RL_EndShaderMode();
 
-            DrawText("Shader-based\ntexture\noutline", 10, 10, 20, GRAY);
-            DrawText("Scroll mouse wheel to\nchange outline size", 10, 72, 20, GRAY);
-            DrawText(TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, MAROON);
+            RL_DrawText("RL_Shader-based\ntexture\noutline", 10, 10, 20, RL_GRAY);
+            RL_DrawText("Scroll mouse wheel to\nchange outline size", 10, 72, 20, RL_GRAY);
+            RL_DrawText(RL_TextFormat("Outline size: %i px", (int)outlineSize), 10, 120, 20, RL_MAROON);
 
-            DrawFPS(710, 10);
+            RL_DrawFPS(710, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(texture);
-    UnloadShader(shdrOutline);
+    RL_UnloadTexture(texture);
+    RL_UnloadShader(shdrOutline);
 
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

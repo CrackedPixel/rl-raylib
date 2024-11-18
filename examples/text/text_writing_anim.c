@@ -23,44 +23,44 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [text] example - text writing anim");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [text] example - text writing anim");
 
     const char message[128] = "This sample illustrates a text writing\nanimation effect! Check it out! ;)";
 
     int framesCounter = 0;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_SPACE)) framesCounter += 8;
+        if (RL_IsKeyDown(KEY_SPACE)) framesCounter += 8;
         else framesCounter++;
 
-        if (IsKeyPressed(KEY_ENTER)) framesCounter = 0;
+        if (RL_IsKeyPressed(KEY_ENTER)) framesCounter = 0;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextSubtext(message, 0, framesCounter/10), 210, 160, 20, MAROON);
+            RL_DrawText(RL_TextSubtext(message, 0, framesCounter/10), 210, 160, 20, RL_MAROON);
 
-            DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, LIGHTGRAY);
-            DrawText("HOLD [SPACE] to SPEED UP!", 239, 300, 20, LIGHTGRAY);
+            RL_DrawText("PRESS [ENTER] to RESTART!", 240, 260, 20, RL_LIGHTGRAY);
+            RL_DrawText("HOLD [SPACE] to SPEED UP!", 239, 300, 20, RL_LIGHTGRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

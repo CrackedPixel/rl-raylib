@@ -39,62 +39,62 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - simple shader mask");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shaders] example - simple shader mask");
 
     // Define the camera to look into our 3d world
-    Camera camera = { 0 };
-    camera.position = (Vector3){ 0.0f, 1.0f, 2.0f };    // Camera position
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };      // Camera looking at point
-    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;                                // Camera field-of-view Y
-    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+    RL_Camera camera = { 0 };
+    camera.position = (RL_Vector3){ 0.0f, 1.0f, 2.0f };    // RL_Camera position
+    camera.target = (RL_Vector3){ 0.0f, 0.0f, 0.0f };      // RL_Camera looking at point
+    camera.up = (RL_Vector3){ 0.0f, 1.0f, 0.0f };          // RL_Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                                // RL_Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // RL_Camera projection type
 
     // Define our three models to show the shader on
-    Mesh torus = GenMeshTorus(0.3f, 1, 16, 32);
-    Model model1 = LoadModelFromMesh(torus);
+    RL_Mesh torus = RL_GenMeshTorus(0.3f, 1, 16, 32);
+    RL_Model model1 = RL_LoadModelFromMesh(torus);
 
-    Mesh cube = GenMeshCube(0.8f,0.8f,0.8f);
-    Model model2 = LoadModelFromMesh(cube);
+    RL_Mesh cube = RL_GenMeshCube(0.8f,0.8f,0.8f);
+    RL_Model model2 = RL_LoadModelFromMesh(cube);
 
     // Generate model to be shaded just to see the gaps in the other two
-    Mesh sphere = GenMeshSphere(1, 16, 16);
-    Model model3 = LoadModelFromMesh(sphere);
+    RL_Mesh sphere = RL_GenMeshSphere(1, 16, 16);
+    RL_Model model3 = RL_LoadModelFromMesh(sphere);
 
     // Load the shader
-    Shader shader = LoadShader(0, TextFormat("resources/shaders/glsl%i/mask.fs", GLSL_VERSION));
+    RL_Shader shader = RL_LoadShader(0, RL_TextFormat("resources/shaders/glsl%i/mask.fs", GLSL_VERSION));
 
     // Load and apply the diffuse texture (colour map)
-    Texture texDiffuse = LoadTexture("resources/plasma.png");
+    RL_Texture texDiffuse = RL_LoadTexture("resources/plasma.png");
     model1.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
     model2.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texDiffuse;
 
     // Using MATERIAL_MAP_EMISSION as a spare slot to use for 2nd texture
     // NOTE: Don't use MATERIAL_MAP_IRRADIANCE, MATERIAL_MAP_PREFILTER or  MATERIAL_MAP_CUBEMAP as they are bound as cube maps
-    Texture texMask = LoadTexture("resources/mask.png");
+    RL_Texture texMask = RL_LoadTexture("resources/mask.png");
     model1.materials[0].maps[MATERIAL_MAP_EMISSION].texture = texMask;
     model2.materials[0].maps[MATERIAL_MAP_EMISSION].texture = texMask;
-    shader.locs[SHADER_LOC_MAP_EMISSION] = GetShaderLocation(shader, "mask");
+    shader.locs[SHADER_LOC_MAP_EMISSION] = RL_GetShaderLocation(shader, "mask");
 
     // Frame is incremented each frame to animate the shader
-    int shaderFrame = GetShaderLocation(shader, "frame");
+    int shaderFrame = RL_GetShaderLocation(shader, "frame");
 
     // Apply the shader to the two models
     model1.materials[0].shader = shader;
     model2.materials[0].shader = shader;
 
     int framesCounter = 0;
-    Vector3 rotation = { 0 };           // Model rotation angles
+    RL_Vector3 rotation = { 0 };           // RL_Model rotation angles
 
-    DisableCursor();                    // Limit cursor to relative movement inside the window
-    SetTargetFPS(60);                   // Set  to run at 60 frames-per-second
+    RL_DisableCursor();                    // Limit cursor to relative movement inside the window
+    RL_SetTargetFPS(60);                   // Set  to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())        // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())        // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        UpdateCamera(&camera, CAMERA_FIRST_PERSON);
+        RL_UpdateCamera(&camera, CAMERA_FIRST_PERSON);
         
         framesCounter++;
         rotation.x += 0.01f;
@@ -102,7 +102,7 @@ int main(void)
         rotation.z -= 0.0025f;
 
         // Send frames counter to shader for animation
-        SetShaderValue(shader, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
+        RL_SetShaderValue(shader, shaderFrame, &framesCounter, SHADER_UNIFORM_INT);
 
         // Rotate one of the models
         model1.transform = MatrixRotateXYZ(rotation);
@@ -110,40 +110,40 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(DARKBLUE);
+            RL_ClearBackground(RL_DARKBLUE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
-                DrawModel(model1, (Vector3){ 0.5f, 0.0f, 0.0f }, 1, WHITE);
-                DrawModelEx(model2, (Vector3){ -0.5f, 0.0f, 0.0f }, (Vector3){ 1.0f, 1.0f, 0.0f }, 50, (Vector3){ 1.0f, 1.0f, 1.0f }, WHITE);
-                DrawModel(model3,(Vector3){ 0.0f, 0.0f, -1.5f }, 1, WHITE);
-                DrawGrid(10, 1.0f);        // Draw a grid
+                RL_DrawModel(model1, (RL_Vector3){ 0.5f, 0.0f, 0.0f }, 1, RL_WHITE);
+                RL_DrawModelEx(model2, (RL_Vector3){ -0.5f, 0.0f, 0.0f }, (RL_Vector3){ 1.0f, 1.0f, 0.0f }, 50, (RL_Vector3){ 1.0f, 1.0f, 1.0f }, RL_WHITE);
+                RL_DrawModel(model3,(RL_Vector3){ 0.0f, 0.0f, -1.5f }, 1, RL_WHITE);
+                RL_DrawGrid(10, 1.0f);        // Draw a grid
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawRectangle(16, 698, MeasureText(TextFormat("Frame: %i", framesCounter), 20) + 8, 42, BLUE);
-            DrawText(TextFormat("Frame: %i", framesCounter), 20, 700, 20, WHITE);
+            RL_DrawRectangle(16, 698, RL_MeasureText(RL_TextFormat("Frame: %i", framesCounter), 20) + 8, 42, RL_BLUE);
+            RL_DrawText(RL_TextFormat("Frame: %i", framesCounter), 20, 700, 20, RL_WHITE);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadModel(model1);
-    UnloadModel(model2);
-    UnloadModel(model3);
+    RL_UnloadModel(model1);
+    RL_UnloadModel(model2);
+    RL_UnloadModel(model3);
 
-    UnloadTexture(texDiffuse);  // Unload default diffuse texture
-    UnloadTexture(texMask);     // Unload texture mask
+    RL_UnloadTexture(texDiffuse);  // Unload default diffuse texture
+    RL_UnloadTexture(texMask);     // Unload texture mask
 
-    UnloadShader(shader);       // Unload shader
+    RL_UnloadShader(shader);       // Unload shader
 
-    CloseWindow();              // Close window and OpenGL context
+    RL_CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

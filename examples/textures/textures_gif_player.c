@@ -26,20 +26,20 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - gif playing");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - gif playing");
 
     int animFrames = 0;
 
-    // Load all GIF animation frames into a single Image
+    // Load all GIF animation frames into a single RL_Image
     // NOTE: GIF data is always loaded as RGBA (32bit) by default
     // NOTE: Frames are just appended one after another in image.data memory
-    Image imScarfyAnim = LoadImageAnim("resources/scarfy_run.gif", &animFrames);
+    RL_Image imScarfyAnim = RL_LoadImageAnim("resources/scarfy_run.gif", &animFrames);
 
     // Load texture from image
     // NOTE: We will update this texture when required with next frame data
     // WARNING: It's not recommended to use this technique for sprites animation,
     // use spritesheets instead, like illustrated in textures_sprite_anim example
-    Texture2D texScarfyAnim = LoadTextureFromImage(imScarfyAnim);
+    RL_Texture2D texScarfyAnim = RL_LoadTextureFromImage(imScarfyAnim);
 
     unsigned int nextFrameDataOffset = 0;  // Current byte offset to next frame in image.data
 
@@ -47,11 +47,11 @@ int main(void)
     int frameDelay = 8;             // Frame delay to switch between animation frames
     int frameCounter = 0;           // General frames counter
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -68,14 +68,14 @@ int main(void)
 
             // Update GPU texture data with next frame image data
             // WARNING: Data size (frame size) and pixel format must match already created texture
-            UpdateTexture(texScarfyAnim, ((unsigned char *)imScarfyAnim.data) + nextFrameDataOffset);
+            RL_UpdateTexture(texScarfyAnim, ((unsigned char *)imScarfyAnim.data) + nextFrameDataOffset);
 
             frameCounter = 0;
         }
 
         // Control frames delay
-        if (IsKeyPressed(KEY_RIGHT)) frameDelay++;
-        else if (IsKeyPressed(KEY_LEFT)) frameDelay--;
+        if (RL_IsKeyPressed(KEY_RIGHT)) frameDelay++;
+        else if (RL_IsKeyPressed(KEY_LEFT)) frameDelay--;
 
         if (frameDelay > MAX_FRAME_DELAY) frameDelay = MAX_FRAME_DELAY;
         else if (frameDelay < MIN_FRAME_DELAY) frameDelay = MIN_FRAME_DELAY;
@@ -83,38 +83,38 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawText(TextFormat("TOTAL GIF FRAMES:  %02i", animFrames), 50, 30, 20, LIGHTGRAY);
-            DrawText(TextFormat("CURRENT FRAME: %02i", currentAnimFrame), 50, 60, 20, GRAY);
-            DrawText(TextFormat("CURRENT FRAME IMAGE.DATA OFFSET: %02i", nextFrameDataOffset), 50, 90, 20, GRAY);
+            RL_DrawText(RL_TextFormat("TOTAL GIF FRAMES:  %02i", animFrames), 50, 30, 20, RL_LIGHTGRAY);
+            RL_DrawText(RL_TextFormat("CURRENT FRAME: %02i", currentAnimFrame), 50, 60, 20, RL_GRAY);
+            RL_DrawText(RL_TextFormat("CURRENT FRAME IMAGE.DATA OFFSET: %02i", nextFrameDataOffset), 50, 90, 20, RL_GRAY);
 
-            DrawText("FRAMES DELAY: ", 100, 305, 10, DARKGRAY);
-            DrawText(TextFormat("%02i frames", frameDelay), 620, 305, 10, DARKGRAY);
-            DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 350, 10, DARKGRAY);
+            RL_DrawText("FRAMES DELAY: ", 100, 305, 10, RL_DARKGRAY);
+            RL_DrawText(RL_TextFormat("%02i frames", frameDelay), 620, 305, 10, RL_DARKGRAY);
+            RL_DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 350, 10, RL_DARKGRAY);
 
             for (int i = 0; i < MAX_FRAME_DELAY; i++)
             {
-                if (i < frameDelay) DrawRectangle(190 + 21*i, 300, 20, 20, RED);
-                DrawRectangleLines(190 + 21*i, 300, 20, 20, MAROON);
+                if (i < frameDelay) RL_DrawRectangle(190 + 21*i, 300, 20, 20, RL_RED);
+                RL_DrawRectangleLines(190 + 21*i, 300, 20, 20, RL_MAROON);
             }
 
-            DrawTexture(texScarfyAnim, GetScreenWidth()/2 - texScarfyAnim.width/2, 140, WHITE);
+            RL_DrawTexture(texScarfyAnim, RL_GetScreenWidth()/2 - texScarfyAnim.width/2, 140, RL_WHITE);
 
-            DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
+            RL_DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, RL_GRAY);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(texScarfyAnim);   // Unload texture
-    UnloadImage(imScarfyAnim);      // Unload image (contains all frames)
+    RL_UnloadTexture(texScarfyAnim);   // Unload texture
+    RL_UnloadImage(imScarfyAnim);      // Unload image (contains all frames)
 
-    CloseWindow();                  // Close window and OpenGL context
+    RL_CloseWindow();                  // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -30,7 +30,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
 
     GameScreen currentScreen = LOGO;
 
@@ -38,11 +38,11 @@ int main(void)
 
     int framesCounter = 0;          // Useful to count frames
 
-    SetTargetFPS(60);               // Set desired framerate (frames-per-second)
+    RL_SetTargetFPS(60);               // Set desired framerate (frames-per-second)
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ int main(void)
                 // TODO: Update TITLE screen variables here!
 
                 // Press enter to change to GAMEPLAY screen
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                if (RL_IsKeyPressed(KEY_ENTER) || RL_IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = GAMEPLAY;
                 }
@@ -75,7 +75,7 @@ int main(void)
                 // TODO: Update GAMEPLAY screen variables here!
 
                 // Press enter to change to ENDING screen
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                if (RL_IsKeyPressed(KEY_ENTER) || RL_IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = ENDING;
                 }
@@ -85,7 +85,7 @@ int main(void)
                 // TODO: Update ENDING screen variables here!
 
                 // Press enter to return to TITLE screen
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                if (RL_IsKeyPressed(KEY_ENTER) || RL_IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = TITLE;
                 }
@@ -96,47 +96,47 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
             switch(currentScreen)
             {
                 case LOGO:
                 {
                     // TODO: Draw LOGO screen here!
-                    DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
-                    DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
+                    RL_DrawText("LOGO SCREEN", 20, 20, 40, RL_LIGHTGRAY);
+                    RL_DrawText("WAIT for 2 SECONDS...", 290, 220, 20, RL_GRAY);
 
                 } break;
                 case TITLE:
                 {
                     // TODO: Draw TITLE screen here!
-                    DrawRectangle(0, 0, screenWidth, screenHeight, GREEN);
-                    DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
-                    DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
+                    RL_DrawRectangle(0, 0, screenWidth, screenHeight, RL_GREEN);
+                    RL_DrawText("TITLE SCREEN", 20, 20, 40, RL_DARKGREEN);
+                    RL_DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, RL_DARKGREEN);
 
                 } break;
                 case GAMEPLAY:
                 {
                     // TODO: Draw GAMEPLAY screen here!
-                    DrawRectangle(0, 0, screenWidth, screenHeight, PURPLE);
-                    DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
-                    DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
+                    RL_DrawRectangle(0, 0, screenWidth, screenHeight, RL_PURPLE);
+                    RL_DrawText("GAMEPLAY SCREEN", 20, 20, 40, RL_MAROON);
+                    RL_DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, RL_MAROON);
 
                 } break;
                 case ENDING:
                 {
                     // TODO: Draw ENDING screen here!
-                    DrawRectangle(0, 0, screenWidth, screenHeight, BLUE);
-                    DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
-                    DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+                    RL_DrawRectangle(0, 0, screenWidth, screenHeight, RL_BLUE);
+                    RL_DrawText("ENDING SCREEN", 20, 20, 40, RL_DARKBLUE);
+                    RL_DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, RL_DARKBLUE);
 
                 } break;
                 default: break;
             }
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
@@ -145,7 +145,7 @@ int main(void)
 
     // TODO: Unload all loaded data (textures, fonts, audio) here!
 
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

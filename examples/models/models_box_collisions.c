@@ -23,103 +23,103 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [models] example - box collisions");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [models] example - box collisions");
 
     // Define the camera to look into our 3d world
-    Camera camera = { { 0.0f, 10.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
+    RL_Camera camera = { { 0.0f, 10.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
 
-    Vector3 playerPosition = { 0.0f, 1.0f, 2.0f };
-    Vector3 playerSize = { 1.0f, 2.0f, 1.0f };
-    Color playerColor = GREEN;
+    RL_Vector3 playerPosition = { 0.0f, 1.0f, 2.0f };
+    RL_Vector3 playerSize = { 1.0f, 2.0f, 1.0f };
+    RL_Color playerColor = RL_GREEN;
 
-    Vector3 enemyBoxPos = { -4.0f, 1.0f, 0.0f };
-    Vector3 enemyBoxSize = { 2.0f, 2.0f, 2.0f };
+    RL_Vector3 enemyBoxPos = { -4.0f, 1.0f, 0.0f };
+    RL_Vector3 enemyBoxSize = { 2.0f, 2.0f, 2.0f };
 
-    Vector3 enemySpherePos = { 4.0f, 0.0f, 0.0f };
+    RL_Vector3 enemySpherePos = { 4.0f, 0.0f, 0.0f };
     float enemySphereSize = 1.5f;
 
     bool collision = false;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
 
         // Move player
-        if (IsKeyDown(KEY_RIGHT)) playerPosition.x += 0.2f;
-        else if (IsKeyDown(KEY_LEFT)) playerPosition.x -= 0.2f;
-        else if (IsKeyDown(KEY_DOWN)) playerPosition.z += 0.2f;
-        else if (IsKeyDown(KEY_UP)) playerPosition.z -= 0.2f;
+        if (RL_IsKeyDown(KEY_RIGHT)) playerPosition.x += 0.2f;
+        else if (RL_IsKeyDown(KEY_LEFT)) playerPosition.x -= 0.2f;
+        else if (RL_IsKeyDown(KEY_DOWN)) playerPosition.z += 0.2f;
+        else if (RL_IsKeyDown(KEY_UP)) playerPosition.z -= 0.2f;
 
         collision = false;
 
         // Check collisions player vs enemy-box
-        if (CheckCollisionBoxes(
-            (BoundingBox){(Vector3){ playerPosition.x - playerSize.x/2,
+        if (RL_CheckCollisionBoxes(
+            (RL_BoundingBox){(RL_Vector3){ playerPosition.x - playerSize.x/2,
                                      playerPosition.y - playerSize.y/2,
                                      playerPosition.z - playerSize.z/2 },
-                          (Vector3){ playerPosition.x + playerSize.x/2,
+                          (RL_Vector3){ playerPosition.x + playerSize.x/2,
                                      playerPosition.y + playerSize.y/2,
                                      playerPosition.z + playerSize.z/2 }},
-            (BoundingBox){(Vector3){ enemyBoxPos.x - enemyBoxSize.x/2,
+            (RL_BoundingBox){(RL_Vector3){ enemyBoxPos.x - enemyBoxSize.x/2,
                                      enemyBoxPos.y - enemyBoxSize.y/2,
                                      enemyBoxPos.z - enemyBoxSize.z/2 },
-                          (Vector3){ enemyBoxPos.x + enemyBoxSize.x/2,
+                          (RL_Vector3){ enemyBoxPos.x + enemyBoxSize.x/2,
                                      enemyBoxPos.y + enemyBoxSize.y/2,
                                      enemyBoxPos.z + enemyBoxSize.z/2 }})) collision = true;
 
         // Check collisions player vs enemy-sphere
-        if (CheckCollisionBoxSphere(
-            (BoundingBox){(Vector3){ playerPosition.x - playerSize.x/2,
+        if (RL_CheckCollisionBoxSphere(
+            (RL_BoundingBox){(RL_Vector3){ playerPosition.x - playerSize.x/2,
                                      playerPosition.y - playerSize.y/2,
                                      playerPosition.z - playerSize.z/2 },
-                          (Vector3){ playerPosition.x + playerSize.x/2,
+                          (RL_Vector3){ playerPosition.x + playerSize.x/2,
                                      playerPosition.y + playerSize.y/2,
                                      playerPosition.z + playerSize.z/2 }},
             enemySpherePos, enemySphereSize)) collision = true;
 
-        if (collision) playerColor = RED;
-        else playerColor = GREEN;
+        if (collision) playerColor = RL_RED;
+        else playerColor = RL_GREEN;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            BeginMode3D(camera);
+            RL_BeginMode3D(camera);
 
                 // Draw enemy-box
-                DrawCube(enemyBoxPos, enemyBoxSize.x, enemyBoxSize.y, enemyBoxSize.z, GRAY);
-                DrawCubeWires(enemyBoxPos, enemyBoxSize.x, enemyBoxSize.y, enemyBoxSize.z, DARKGRAY);
+                RL_DrawCube(enemyBoxPos, enemyBoxSize.x, enemyBoxSize.y, enemyBoxSize.z, RL_GRAY);
+                RL_DrawCubeWires(enemyBoxPos, enemyBoxSize.x, enemyBoxSize.y, enemyBoxSize.z, RL_DARKGRAY);
 
                 // Draw enemy-sphere
-                DrawSphere(enemySpherePos, enemySphereSize, GRAY);
-                DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, DARKGRAY);
+                RL_DrawSphere(enemySpherePos, enemySphereSize, RL_GRAY);
+                RL_DrawSphereWires(enemySpherePos, enemySphereSize, 16, 16, RL_DARKGRAY);
 
                 // Draw player
-                DrawCubeV(playerPosition, playerSize, playerColor);
+                RL_DrawCubeV(playerPosition, playerSize, playerColor);
 
-                DrawGrid(10, 1.0f);        // Draw a grid
+                RL_DrawGrid(10, 1.0f);        // Draw a grid
 
-            EndMode3D();
+            RL_EndMode3D();
 
-            DrawText("Move player with arrow keys to collide", 220, 40, 20, GRAY);
+            RL_DrawText("Move player with arrow keys to collide", 220, 40, 20, RL_GRAY);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

@@ -25,49 +25,49 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite button");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite button");
 
-    InitAudioDevice();      // Initialize audio device
+    RL_InitAudioDevice();      // Initialize audio device
 
-    Sound fxButton = LoadSound("resources/buttonfx.wav");   // Load button sound
-    Texture2D button = LoadTexture("resources/button.png"); // Load button texture
+    RL_Sound fxButton = RL_LoadSound("resources/buttonfx.wav");   // Load button sound
+    RL_Texture2D button = RL_LoadTexture("resources/button.png"); // Load button texture
 
     // Define frame rectangle for drawing
     float frameHeight = (float)button.height/NUM_FRAMES;
-    Rectangle sourceRec = { 0, 0, (float)button.width, frameHeight };
+    RL_Rectangle sourceRec = { 0, 0, (float)button.width, frameHeight };
 
     // Define button bounds on screen
-    Rectangle btnBounds = { screenWidth/2.0f - button.width/2.0f, screenHeight/2.0f - button.height/NUM_FRAMES/2.0f, (float)button.width, frameHeight };
+    RL_Rectangle btnBounds = { screenWidth/2.0f - button.width/2.0f, screenHeight/2.0f - button.height/NUM_FRAMES/2.0f, (float)button.width, frameHeight };
 
     int btnState = 0;               // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
     bool btnAction = false;         // Button action should be activated
 
-    Vector2 mousePoint = { 0.0f, 0.0f };
+    RL_Vector2 mousePoint = { 0.0f, 0.0f };
 
-    SetTargetFPS(60);
+    RL_SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        mousePoint = GetMousePosition();
+        mousePoint = RL_GetMousePosition();
         btnAction = false;
 
         // Check button state
-        if (CheckCollisionPointRec(mousePoint, btnBounds))
+        if (RL_CheckCollisionPointRec(mousePoint, btnBounds))
         {
-            if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
+            if (RL_IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
             else btnState = 1;
 
-            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
+            if (RL_IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
         }
         else btnState = 0;
 
         if (btnAction)
         {
-            PlaySound(fxButton);
+            RL_PlaySound(fxButton);
 
             // TODO: Any desired action
         }
@@ -78,24 +78,24 @@ int main(void)
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawTextureRec(button, sourceRec, (Vector2){ btnBounds.x, btnBounds.y }, WHITE); // Draw button frame
+            RL_DrawTextureRec(button, sourceRec, (RL_Vector2){ btnBounds.x, btnBounds.y }, RL_WHITE); // Draw button frame
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(button);  // Unload button texture
-    UnloadSound(fxButton);  // Unload sound
+    RL_UnloadTexture(button);  // Unload button texture
+    RL_UnloadSound(fxButton);  // Unload sound
 
-    CloseAudioDevice();     // Close audio device
+    RL_CloseAudioDevice();     // Close audio device
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

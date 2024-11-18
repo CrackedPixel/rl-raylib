@@ -23,25 +23,25 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    SetConfigFlags(FLAG_MSAA_4X_HINT);
-    InitWindow(screenWidth, screenHeight, "raylib [shapes] example - bouncing ball");
+    RL_SetConfigFlags(FLAG_MSAA_4X_HINT);
+    RL_InitWindow(screenWidth, screenHeight, "raylib [shapes] example - bouncing ball");
 
-    Vector2 ballPosition = { GetScreenWidth()/2.0f, GetScreenHeight()/2.0f };
-    Vector2 ballSpeed = { 5.0f, 4.0f };
+    RL_Vector2 ballPosition = { RL_GetScreenWidth()/2.0f, RL_GetScreenHeight()/2.0f };
+    RL_Vector2 ballSpeed = { 5.0f, 4.0f };
     int ballRadius = 20;
 
     bool pause = 0;
     int framesCounter = 0;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //----------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //-----------------------------------------------------
-        if (IsKeyPressed(KEY_SPACE)) pause = !pause;
+        if (RL_IsKeyPressed(KEY_SPACE)) pause = !pause;
 
         if (!pause)
         {
@@ -49,33 +49,33 @@ int main(void)
             ballPosition.y += ballSpeed.y;
 
             // Check walls collision for bouncing
-            if ((ballPosition.x >= (GetScreenWidth() - ballRadius)) || (ballPosition.x <= ballRadius)) ballSpeed.x *= -1.0f;
-            if ((ballPosition.y >= (GetScreenHeight() - ballRadius)) || (ballPosition.y <= ballRadius)) ballSpeed.y *= -1.0f;
+            if ((ballPosition.x >= (RL_GetScreenWidth() - ballRadius)) || (ballPosition.x <= ballRadius)) ballSpeed.x *= -1.0f;
+            if ((ballPosition.y >= (RL_GetScreenHeight() - ballRadius)) || (ballPosition.y <= ballRadius)) ballSpeed.y *= -1.0f;
         }
         else framesCounter++;
         //-----------------------------------------------------
 
         // Draw
         //-----------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            DrawCircleV(ballPosition, (float)ballRadius, MAROON);
-            DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, GetScreenHeight() - 25, 20, LIGHTGRAY);
+            RL_DrawCircleV(ballPosition, (float)ballRadius, RL_MAROON);
+            RL_DrawText("PRESS SPACE to PAUSE BALL MOVEMENT", 10, RL_GetScreenHeight() - 25, 20, RL_LIGHTGRAY);
 
             // On pause, we draw a blinking message
-            if (pause && ((framesCounter/30)%2)) DrawText("PAUSED", 350, 200, 30, GRAY);
+            if (pause && ((framesCounter/30)%2)) RL_DrawText("PAUSED", 350, 200, 30, RL_GRAY);
 
-            DrawFPS(10, 10);
+            RL_DrawFPS(10, 10);
 
-        EndDrawing();
+        RL_EndDrawing();
         //-----------------------------------------------------
     }
 
     // De-Initialization
     //---------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    RL_CloseWindow();        // Close window and OpenGL context
     //----------------------------------------------------------
 
     return 0;

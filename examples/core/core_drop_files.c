@@ -30,7 +30,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
+    RL_InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
 
     int filePathCounter = 0;
     char *filePaths[MAX_FILEPATH_RECORDED] = { 0 }; // We will register a maximum of filepaths
@@ -41,54 +41,54 @@ int main(void)
         filePaths[i] = (char *)RL_CALLOC(MAX_FILEPATH_SIZE, 1);
     }
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    RL_SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!RL_WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        if (IsFileDropped())
+        if (RL_IsFileDropped())
         {
-            FilePathList droppedFiles = LoadDroppedFiles();
+            RL_FilePathList droppedFiles = RL_LoadDroppedFiles();
 
             for (int i = 0, offset = filePathCounter; i < (int)droppedFiles.count; i++)
             {
                 if (filePathCounter < (MAX_FILEPATH_RECORDED - 1))
                 {
-                    TextCopy(filePaths[offset + i], droppedFiles.paths[i]);
+                    RL_TextCopy(filePaths[offset + i], droppedFiles.paths[i]);
                     filePathCounter++;
                 }
             }
 
-            UnloadDroppedFiles(droppedFiles);    // Unload filepaths from memory
+            RL_UnloadDroppedFiles(droppedFiles);    // Unload filepaths from memory
         }
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
-        BeginDrawing();
+        RL_BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            RL_ClearBackground(RL_RAYWHITE);
 
-            if (filePathCounter == 0) DrawText("Drop your files to this window!", 100, 40, 20, DARKGRAY);
+            if (filePathCounter == 0) RL_DrawText("Drop your files to this window!", 100, 40, 20, RL_DARKGRAY);
             else
             {
-                DrawText("Dropped files:", 100, 40, 20, DARKGRAY);
+                RL_DrawText("Dropped files:", 100, 40, 20, RL_DARKGRAY);
 
                 for (int i = 0; i < filePathCounter; i++)
                 {
-                    if (i%2 == 0) DrawRectangle(0, 85 + 40*i, screenWidth, 40, Fade(LIGHTGRAY, 0.5f));
-                    else DrawRectangle(0, 85 + 40*i, screenWidth, 40, Fade(LIGHTGRAY, 0.3f));
+                    if (i%2 == 0) RL_DrawRectangle(0, 85 + 40*i, screenWidth, 40, RL_Fade(RL_LIGHTGRAY, 0.5f));
+                    else RL_DrawRectangle(0, 85 + 40*i, screenWidth, 40, RL_Fade(RL_LIGHTGRAY, 0.3f));
 
-                    DrawText(filePaths[i], 120, 100 + 40*i, 10, GRAY);
+                    RL_DrawText(filePaths[i], 120, 100 + 40*i, 10, RL_GRAY);
                 }
 
-                DrawText("Drop new files...", 100, 110 + 40*filePathCounter, 20, DARKGRAY);
+                RL_DrawText("Drop new files...", 100, 110 + 40*filePathCounter, 20, RL_DARKGRAY);
             }
 
-        EndDrawing();
+        RL_EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
@@ -99,7 +99,7 @@ int main(void)
         RL_FREE(filePaths[i]); // Free allocated memory for all filepaths
     }
 
-    CloseWindow();          // Close window and OpenGL context
+    RL_CloseWindow();          // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;

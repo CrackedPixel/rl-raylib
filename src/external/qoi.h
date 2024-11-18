@@ -4,7 +4,7 @@ Copyright (c) 2021, Dominic Szablewski - https://phoboslab.org
 SPDX-License-Identifier: MIT
 
 
-QOI - The "Quite OK Image" format for fast, lossless image compression
+QOI - The "Quite OK RL_Image" format for fast, lossless image compression
 
 -- About
 
