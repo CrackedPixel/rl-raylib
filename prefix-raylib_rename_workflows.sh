@@ -2,7 +2,7 @@
 
 replacements=(
     # paths
-    'cd ../../../raylib,cd ../../../prefix-raylib'
+    'cd ../../../raylib,cd ../../../raylib'
     'make PLATFORM=PLATFORM_WEB EMSDK_PATH="D:/a/raylib/raylib/emsdk-cache/emsdk-main" RAYLIB_RELEASE_PATH="../build/${{ env.RELEASE_NAME }}/lib" -B, make PLATFORM=PLATFORM_WEB EMSDK_PATH="D:/a/raylib/prefix-raylib/emsdk-cache/emsdk-main" RAYLIB_RELEASE_PATH="../build/${{ env.RELEASE_NAME }}/lib" -B'
 )
 
